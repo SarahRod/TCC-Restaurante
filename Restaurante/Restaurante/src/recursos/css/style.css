@@ -1,0 +1,141 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+/*RETIRA A FORMATAÇÃO DAS INPUTS*/
+textarea:focus, input:focus, select:focus, a:focus{
+    border-color: none !important;
+    outline: 0;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+html, body{
+    height: 100%;
+    min-height: 100%;
+}
+
+textarea{
+    resize: none;
+}
+
+.logo{
+    width: 200px;
+}
+
+.seta{
+    width: 50px;
+}
+
+.container{
+    height: 100%;
+}
+
+.navbar{
+    height: 100px;
+}
+
+.andamento-cadastro{
+    height: 7px;
+    background: #F26B3A;
+    animation-name: progressBar;
+    animation-iteration-count: 1;
+    animation-duration: 1s;
+}
+
+@keyframes progressBar {
+    0% {
+      width: 10%;
+    }
+    
+  }
+
+
+.btn-orange, .btn-orange a:link, 
+.btn-orange  a:visited{
+   
+    border: 2px solid #F26B3A;
+    color: #F26B3A;
+   
+}
+
+.btn-orange:hover,.btn-orange a:hover,
+.btn-orange a:active{
+    background: #F26B3A;
+    color: #ffffff;
+    
+}
+
+input{
+    height: 40px;
+    border: 1px solid #DEDEDE;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+
+.border-input{
+    border: 1px solid #DEDEDE;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+
+}
+
+footer{
+    height: 80px;
+    position: relative;
+    bottom:0;
+    width:100%;
+}
+
+select{
+    box-sizing: border-box;
+    
+}
+.container{
+    min-height: 600px;
+}
+
+textarea{
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.img-login{
+    width: 250px;
+    height: 250px;
+}
+
+.file-input{
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.label-file{
+    width: 200px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.file-input + .label-file {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: #F26B3A;
+    display: inline-block;
+}
+
+.file-input:focus + .label-file,
+.file-inputs + .label-file:hover {
+    background-color: #F26B3A;
+}
+
