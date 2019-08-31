@@ -51,13 +51,15 @@ export class FormularioEndereco extends Component {
 
     //ENVIA OS DADOS DO FORMULÁRIO PARA O SESSION STORAGE
     enviaFormulario(e) {
-        const dadosRestaurante = sessionStorage.getItem('dadosRestaurante');
-        
-        
-        const restaurante = {dadosRestaurante,...this.state.restaurante, ...this.state.cidade, ...this.state.estado}
+        var dados = sessionStorage.getItem('dados');
 
-        console.log(restaurante)
-        sessionStorage.setItem('dados', JSON.stringify(restaurante));
+        const json = JSON.parse(dados);
+
+        const restaurante = { ...this.state.restaurante }
+
+        var novoDado = { ...json, 'estado':{...restaurante }};
+
+        sessionStorage.setItem('dados', JSON.stringify(novoDado));
     }
 
 
