@@ -1,12 +1,12 @@
-import React, { Component, Fragment } from 'react';
-import { Input } from '../../../globais/input/Input';
+import React, { Component } from 'react';
+import { InputCadastro } from '../../../globais/input/Input';
 import { Label } from '../../../globais/label/Label';
 import { BotaoLink } from '../../../globais/botao/Botao';
 import Corpo from '../../../corpo/Corpo';
 import { withRouter } from 'react-router-dom';
 import PropTypes from "prop-types";
 import $ from 'jquery';
-import { DOMINIO } from '../../../../link_config'
+import { DOMINIO } from '../../../../link_config';
 
 /*PROPRIEDADES DO CABEÇALHO*/
 const propriedadesCabecalho = {
@@ -113,13 +113,13 @@ class FormularioDados extends Component {
                 <span className={this.state.classErro}>{this.state.textoErro}</span>
                 <Label className="h2 mb-4" texto="Dados do Restaurante" />
                 <div className="row mb-4">
-                    <Input className="col col-sm col-md col-lg p-1 ml-3 mr-3" id="txt-nome-restaurante" name="nome" type="text"
+                    <InputCadastro className="col col-sm col-md col-lg p-1 ml-3 mr-3" id="txt-nome-restaurante" name="nome" type="text"
                         placeholder="Nome do restaurante" value={this.state.restaurante.nome} onChange={e => this.atualizaCampo(e)} />
                 </div>
                 <div className="row mb-5">
-                    <Input className="col col-sm col-md col-lg p-1 ml-3 mr-3" id="txt-cnpj-restaurante" name="cnpj" type="text"
+                    <InputCadastro className="col col-sm col-md col-lg p-1 ml-3 mr-3" id="txt-cnpj-restaurante" name="cnpj" type="text"
                         placeholder="CNPJ do restaurante" value={this.state.restaurante.cnpj} onChange={e => this.atualizaCampo(e)} />
-                    <Input className="col col-sm col-md col-lg p-1 mr-3" id="txt-telefone-restaurante" name="telefone" type="text"
+                    <InputCadastro className="col col-sm col-md col-lg p-1 mr-3" id="txt-telefone-restaurante" name="telefone" type="text"
                         placeholder="Telefone do restaurante" value={this.state.restaurante.telefone} onChange={e => this.atualizaCampo(e)} />
                 </div>
                 {/*LINHA DO  BOTÃO COM A ROTA PARA O PRÓXIMA PÁGINA  */}

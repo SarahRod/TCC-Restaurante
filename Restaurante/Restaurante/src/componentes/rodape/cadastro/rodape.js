@@ -1,8 +1,8 @@
 import React from 'react';
-import './style.css'
+import { Footer } from './style'
 
-export default () =>(
-    <footer className="border-secundary border-top text-center pt-4">
+export const Rodape =  () =>(
+    <Footer className="border-secundary border-top text-center pt-4">
         ®2019 GoDinner S/A
-    </footer>
+    </Footer>
 )

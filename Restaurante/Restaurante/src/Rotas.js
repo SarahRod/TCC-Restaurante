@@ -21,19 +21,3 @@ export class RotaFormularioCadastro extends Component {
         )
     }
 }
-
-export class RotaSetaCadastro extends Component {
-    render() {
-        return (
-           <Fragment>
-               <BrowserRouter>
-                    <Switch>
-                        <Route path="/" exact component={FormularioDados} />
-                        <Route path="/endereco" component={FormularioEndereco} />
-                        
-                    </Switch>
-                </ BrowserRouter>                
-           </Fragment>
-        )
-    }
-}

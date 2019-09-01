@@ -1,7 +1,7 @@
 import React from 'react' ;
-import './style.css'
+import { Input } from './styled'
 
-export const Input = (props) =>(
-    <input className={`border-input ${props.className}`} id={props.id} name={props.name} 
+export const InputCadastro = (props) =>(
+    <Input className={`${props.className}`} id={props.id} name={props.name} 
         type={props.type} placeholder={props.placeholder} value={props.value} onChange={props.onChange} />
 ) 
