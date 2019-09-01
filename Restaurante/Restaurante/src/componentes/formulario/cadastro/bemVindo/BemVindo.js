@@ -22,9 +22,11 @@ export class FormularioBemVindo extends Component {
                     <div className="row mb-2  justify-content-center">
                         <img className=" img-login rounded-circle img-responsive" src={ImgPizza} alt="Imagem Empresa" />
                     </div>
-                    <div className="row mb-5">
-                        <Input className="file-input" id="foto" name="foto" type="file" />
-                        <Label className="mx-auto label-file" htmlFor="file" texto="Anexar Imagem" />
+                    <div className=" row justify-content-center mb-3">
+                        <div className="input-file">
+                            <span>Anexar Imagem</span>
+                            <input type="file" class="upload" />
+                        </div>
                     </div>
                     <div className="row mb-5">
                         <Label className="col col-sm col-md col-lg h2 text-center" texto="Pizza Do Teco" />
