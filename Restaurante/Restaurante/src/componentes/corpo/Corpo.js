@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
-import { Cabecalho } from '../cabecalho/Cabecalho';
+import { Cabecalho } from '../cabecalho/cadastro/Cabecalho';
+import './style.css'
 
 export default (props) => (
 

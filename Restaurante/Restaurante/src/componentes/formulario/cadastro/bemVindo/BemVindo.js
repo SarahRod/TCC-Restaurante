@@ -18,12 +18,11 @@ export class FormularioBemVindo extends Component {
         return (
             <Fragment>
                 <form className="form-group mt-4">
-                    <Label className="h2 mb-3" texto="Bem Vindo a GoDinner!!!" />
-                    <div className="row mb-3 img">
-                        <img className="col col-sm col-md col-lg img-login rounded-circle img-responsive" src={ImgPizza} alt="Imagem Empresa" />
+                    <Label className="h3 mb-3" texto="Bem Vindo a GoDinner !!!" />
+                    <div className="row mb-2  justify-content-center">
+                        <img className=" img-login rounded-circle img-responsive" src={ImgPizza} alt="Imagem Empresa" />
                     </div>
                     <div className="row mb-5">
-                        
                         <Input className="file-input" id="foto" name="foto" type="file" />
                         <Label className="mx-auto label-file" htmlFor="file" texto="Anexar Imagem" />
                     </div>
@@ -31,7 +30,7 @@ export class FormularioBemVindo extends Component {
                         <Label className="col col-sm col-md col-lg h2 text-center" texto="Pizza Do Teco" />
                     </div>
                     <div className="row mt-3 justify-content-center">
-                        <BotaoLink to="/login" className="col-4 col-sm-4 col-md-5 col-lg-5 btn-orange mr-3" texto="Finalizar" />
+                        <BotaoLink to="/login" className="col-5 col-sm-4 col-md-5 col-lg-5 btn-orange ml-2 mr-3 " texto="Finalizar" />
                     </div>
 
                 </form>

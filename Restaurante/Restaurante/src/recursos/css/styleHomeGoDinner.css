@@ -1,4 +1,4 @@
-body{
+/* body{
     background-color: #F9F7F7;
 }
 
@@ -156,13 +156,9 @@ a{
 .background-mesa {
     width: 100%;
     height: 100%;
-}
+} */
 
-.background-caracteristicas{
-    /* background-image: url("../../img/background/background_caracteristicas.jpeg") */
-}
-
-.icone-android {
+/* .icone-android {
     width: 100px;
     height: 100px;
 }
@@ -173,7 +169,6 @@ a{
 }
 .backgound-icones{
     height: 120px;
-    /* background: url(../../img/backgound_icones.jpeg); */
     width: 100%;
     background-size: contain;
 }
@@ -201,4 +196,4 @@ a{
 .menu-container{
     height: 100px;
 }
-
+ */

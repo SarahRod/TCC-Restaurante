@@ -1,5 +1,6 @@
 import React from 'react' ;
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import './style.css';
 
 export const BotaoLink = (props) =>(
     <Link  onClick={props.onClick} to={props.to} className={`btn ${props.className}`}>{ props.texto }</Link> 

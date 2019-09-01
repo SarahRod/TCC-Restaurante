@@ -38,7 +38,7 @@ class FormularioDados extends Component {
 
     //REDIRECIONA O COMPONENTE VALIDADO
     campoValidado(e) {
-    
+
         this.props.history.push("/endereco");
 
         const restaurante = { ...this.state.restaurante }
@@ -62,11 +62,33 @@ class FormularioDados extends Component {
         const cnpj = restaurante.cnpj;
 
         //REALIZA AS REQUISIÇÕES NA API DE VALIDAÇÃO
-        const URL_CNPJ = `${DOMINIO}/restaurante/valida/cnpj/${cnpj}`;
-        fetch(URL_CNPJ)
-            .then(resposta => resposta.json())
-            .then(data => this.campoValidado(data))
-            .catch(erro => this.erroValidacao(erro));
+        // const URL_CNPJ = `${DOMINIO}/restaurante/valida/cnpj/${cnpj}`;
+        // fetch(URL_CNPJ)
+        //     .then(resposta => resposta.json())
+        //     .then(data => this.campoValidado(data))
+        //     .catch(erro => this.erroValidacao(erro));
+        // fetch(`${DOMINIO}/restaurante/valida/cnpj/`, {
+        //     method: 'POST',
+        //     // headers: new Headers(),
+        //     body: { cnpj: cnpj },
+        // }).then(resposta => resposta.json())
+        //     .then(data => this.campoValidado(data))
+        //     .catch(erro => this.erroValidacao(erro));
+        // $.ajax({
+        //     url : `${DOMINIO}/restaurante/valida/cnpj/`,
+        //     dataType : "json",
+        //     type : 'GET',
+        //     data: { cnpj :  cnpj },
+        //     success : function(data){
+        //         this.campoValidado(data)  
+        //         alert('entrou')   
+        //     }.bind(this),
+        //     error: function(data){
+
+        //        alert('erro');
+
+        //     }
+        // });
 
     }
 
