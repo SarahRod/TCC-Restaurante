@@ -109,7 +109,7 @@ class FormularioDados extends Component {
         return (
 
             /* FORMULÁRIO DO ENDEREÇO */
-            <form className="form-group mt-4" >
+            <form className="form-group mt-5" >
                 <span className={this.state.classErro}>{this.state.textoErro}</span>
                 <Label className="h2 mb-4" texto="Dados do Restaurante" />
                 <div className="row mb-4">

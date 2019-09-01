@@ -104,7 +104,7 @@ export class FormularioEndereco extends Component {
     renderForm() {
         return (
 
-            <form className="form-group mt-4">
+            <form className="form-group mt-5">
                 <Label className="h2 mb-1" texto="Endereço do restaurante" />
                 <div className="row mt-4 mb-4">
                     <Input className="col col-sm p-1 col-md col-lg p-1 ml-3 mr-3" id="cep" name="cep" type="text"
