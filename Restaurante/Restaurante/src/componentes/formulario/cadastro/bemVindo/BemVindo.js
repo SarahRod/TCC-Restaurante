@@ -1,9 +1,8 @@
-import React, { Component, Fragment } from 'react';
-import { Input } from '../../../globais/input/Input';
+import React, { Component } from 'react';
 import { Label } from '../../../globais/label/Label';
 import { BotaoLink } from '../../../globais/botao/Botao';
 import Corpo from '../../../corpo/Corpo';
-import ImgPizza from '../../../../recursos/imgs/pizza.jpg'
+import ImgPizza from '../../../../recursos/imgs/pizza.jpg';
 
 /*PROPRIEDADES DO CABEÇALHO*/
 const propriedadesCabecalho = {
@@ -16,26 +15,25 @@ export class FormularioBemVindo extends Component {
     /* FORMULÁRIO DO ENDEREÇO */
     renderForm() {
         return (
-            <Fragment>
-                <form className="form-group mt-4">
-                    <Label className="h2 mb-3" texto="Bem Vindo a GoDinner!!!" />
-                    <div className="row mb-3 img">
-                        <img className="col col-sm col-md col-lg img-login rounded-circle img-responsive" src={ImgPizza} alt="Imagem Empresa" />
+            <form className="form-group mt-4">
+                <Label className="h1 mb-3" texto="Bem Vindo a GoDinner !!!" />
+                <div className="row mb-2  justify-content-center">
+                    <img className=" img-login rounded-circle img-responsive" src={ImgPizza} alt="Imagem Empresa" />
+                </div>
+                <div className=" row justify-content-center mb-3">
+                    <div className="input-file">
+                        <span>Anexar Imagem</span>
+                        <input type="file" className="upload" />
                     </div>
-                    <div className="row mb-5">
-                        
-                        <Input className="file-input" id="foto" name="foto" type="file" />
-                        <Label className="mx-auto label-file" htmlFor="file" texto="Anexar Imagem" />
-                    </div>
-                    <div className="row mb-5">
-                        <Label className="col col-sm col-md col-lg h2 text-center" texto="Pizza Do Teco" />
-                    </div>
-                    <div className="row mt-3 justify-content-center">
-                        <BotaoLink to="/login" className="col-4 col-sm-4 col-md-5 col-lg-5 btn-orange mr-3" texto="Finalizar" />
-                    </div>
+                </div>
+                <div className="row mb-5">
+                    <Label className="col col-sm col-md col-lg h2 text-center" texto="Pizza Do Teco" />
+                </div>
+                <div className="row mt-3 justify-content-center">
+                    <BotaoLink to="/login" className="col-5 col-sm-4 col-md-5 col-lg-5 btn-orange ml-3 mr-3 " texto="Finalizar" />
+                </div>
 
-                </form>
-            </Fragment>
+            </form>
         )
     }
 

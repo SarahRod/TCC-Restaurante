@@ -1,11 +1,10 @@
-import React, { Component, Fragment } from 'react';
-import { Input } from '../../../globais/input/Input';
+import React, { Component } from 'react';
+import { InputCadastro } from '../../../globais/input/Input';
 import { Label } from '../../../globais/label/Label';
 import { BotaoLink } from '../../../globais/botao/Botao';
 import $ from 'jquery';
 import Corpo from '../../../corpo/Corpo';
-import { DOMINIO } from '../../../../link_config'
-
+import { DOMINIO } from '../../../../link_config';
 
 /*PROPRIEDADES DO CABEÇALHO*/
 const propriedadesCabecalho = {
@@ -51,13 +50,15 @@ export class FormularioEndereco extends Component {
 
     //ENVIA OS DADOS DO FORMULÁRIO PARA O SESSION STORAGE
     enviaFormulario(e) {
-        const dadosRestaurante = sessionStorage.getItem('dadosRestaurante');
-        
-        
-        const restaurante = {dadosRestaurante,...this.state.restaurante, ...this.state.cidade, ...this.state.estado}
+        var dados = sessionStorage.getItem('dados');
 
-        console.log(restaurante)
-        sessionStorage.setItem('dados', JSON.stringify(restaurante));
+        const json = JSON.parse(dados);
+
+        const restaurante = { ...this.state.restaurante }
+
+        var novoDado = { ...json, 'estado':{...restaurante }};
+
+        sessionStorage.setItem('dados', JSON.stringify(novoDado));
     }
 
 
@@ -102,14 +103,14 @@ export class FormularioEndereco extends Component {
     renderForm() {
         return (
 
-            <form className="form-group mt-4">
+            <form className="form-group mt-5">
                 <Label className="h2 mb-1" texto="Endereço do restaurante" />
                 <div className="row mt-4 mb-4">
-                    <Input className="col col-sm p-1 col-md col-lg p-1 ml-3 mr-3" id="cep" name="cep" type="text"
+                    <InputCadastro className="col col-sm p-1 col-md col-lg p-1 ml-3 mr-3" id="cep" name="cep" type="text"
                         placeholder="CEP" value={this.state.restaurante.cep} onChange={e => this.atualizaCampo(e)} />
-                    <Input className="col col-sm-5 col-md-5 col-lg-5 p-1 mr-3" id="logradouro" name="logradouro" type="text"
+                    <InputCadastro className="col col-sm-5 col-md-5 col-lg-5 p-1 mr-3" id="logradouro" name="logradouro" type="text"
                         placeholder="Logradouro" value={this.state.restaurante.longradouro} onChange={e => this.atualizaCampo(e)} />
-                    <Input className="col col-sm col-md col-lg p-1 mr-3" id="bairro" name="bairro" type="text"
+                    <InputCadastro className="col col-sm col-md col-lg p-1 mr-3" id="bairro" name="bairro" type="text"
                         placeholder="Bairro" />
                 </div>
                 <div className="row mb-4" >
@@ -131,9 +132,9 @@ export class FormularioEndereco extends Component {
                     </select>
                 </div>
                 <div className="row mb-4">
-                    <Input className="col col-sm-9 col-md-9 col-lg-9 p-1 ml-3 mr-3 " id="txt-complemento-restaurante" name="complemento" type="text"
+                    <InputCadastro className="col col-sm-9 col-md-9 col-lg-9 p-1 ml-3 mr-3 " id="txt-complemento-restaurante" name="complemento" type="text"
                         placeholder="Complemento" />
-                    <Input className="col col-sm col-md col-lg p-1 mr-3" id="txt-numero-restaurante" name="numero" type="text"
+                    <InputCadastro className="col col-sm col-md col-lg p-1 mr-3" id="txt-numero-restaurante" name="numero" type="text"
                         placeholder="N°" value={this.state.restaurante.n} onChange={e => this.atualizaCampo(e)} />
                 </div>
                 <div className="row mb-1">

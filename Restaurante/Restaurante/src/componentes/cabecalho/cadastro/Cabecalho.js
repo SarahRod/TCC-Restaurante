@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react';
-import Seta from '../../recursos/icons/seta-laranja.png';
+import Seta from '../../../recursos/icons/seta-laranja.png';
 import { Link } from 'react-router-dom';
-import Logo from '../../recursos/imgs/logo.png';
+import Logo from '../../../recursos/imgs/logo.png';
+import './style.css';
 
 export const Cabecalho = (props) => (
     <Fragment>
