@@ -3,6 +3,7 @@ import { Label } from '../../../globais/label/Label';
 import { BotaoLink } from '../../../globais/botao/Botao';
 import Corpo from '../../../corpo/Corpo';
 import ImgPizza from '../../../../recursos/imgs/pizza.jpg';
+import { FaHome } from 'react-icons/fa'
 
 /*PROPRIEDADES DO CABEÇALHO*/
 const propriedadesCabecalho = {
@@ -16,7 +17,7 @@ export class FormularioBemVindo extends Component {
     renderForm() {
         return (
             <form className="form-group mt-4">
-                <Label className="h1 mb-3" texto="Bem Vindo a GoDinner !!!" />
+                <Label className="h1 mb-3" texto="Bem Vindo a GoDinner"/> <FaHome size={30}/>
                 <div className="row mb-2  justify-content-center">
                     <img className=" img-login rounded-circle img-responsive" src={ImgPizza} alt="Imagem Empresa" />
                 </div>

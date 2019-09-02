@@ -59,36 +59,30 @@ class FormularioDados extends Component {
         e.preventDefault();
 
         const restaurante = this.state.restaurante;
-        const cnpj = restaurante.cnpj;
+        const cnpj = restaurante.cnpj.replace("/", "@");
 
         //REALIZA AS REQUISIÇÕES NA API DE VALIDAÇÃO
-        // const URL_CNPJ = `${DOMINIO}/restaurante/valida/cnpj/${cnpj}`;
-        // fetch(URL_CNPJ)
-        //     .then(resposta => resposta.json())
-        //     .then(data => this.campoValidado(data))
-        //     .catch(erro => this.erroValidacao(erro));
-        // fetch(`${DOMINIO}/restaurante/valida/cnpj/`, {
-        //     method: 'POST',
-        //     // headers: new Headers(),
-        //     body: { cnpj: cnpj },
-        // }).then(resposta => resposta.json())
-        //     .then(data => this.campoValidado(data))
-        //     .catch(erro => this.erroValidacao(erro));
-        // $.ajax({
-        //     url : `${DOMINIO}/restaurante/valida/cnpj/`,
-        //     dataType : "json",
-        //     type : 'GET',
-        //     data: { cnpj :  cnpj },
-        //     success : function(data){
-        //         this.campoValidado(data)  
-        //         alert('entrou')   
-        //     }.bind(this),
-        //     error: function(data){
+        const URL_CNPJ = `${DOMINIO}/restaurante/valida/cnpj/${cnpj}`;
 
-        //        alert('erro');
+        $.ajax({
+            url: URL_CNPJ,
+            dataType: "text",
+            type: 'GET',
+            success: function (data) {
+                if (data == "true") {
+                    this.campoValidado(data)
 
-        //     }
-        // });
+                } else {
+                    this.erroValidacao(data)
+                }
+
+            }.bind(this),
+            error: function (data) {
+
+                console.log('Erro:', data);
+
+            }
+        });
 
     }
 
@@ -106,6 +100,7 @@ class FormularioDados extends Component {
 
     /* FORMULÁRIO DO ENDEREÇO */
     renderForm() {
+
         return (
 
             /* FORMULÁRIO DO ENDEREÇO */
