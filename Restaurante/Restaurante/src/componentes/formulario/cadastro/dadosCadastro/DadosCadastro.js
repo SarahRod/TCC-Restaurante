@@ -17,7 +17,7 @@ const propriedadesCabecalho = {
 //ARMAZENA OS ESTADOS INICIAIS
 const initialState = {
     restaurante: {
-        nome: '',
+        razaoSocial: '',
         cnpj: '',
         telefone: '',
     },
@@ -59,36 +59,30 @@ class FormularioDados extends Component {
         e.preventDefault();
 
         const restaurante = this.state.restaurante;
-        const cnpj = restaurante.cnpj;
+        const cnpj = restaurante.cnpj.replace("/", "@");
 
         //REALIZA AS REQUISIÇÕES NA API DE VALIDAÇÃO
-        // const URL_CNPJ = `${DOMINIO}/restaurante/valida/cnpj/${cnpj}`;
-        // fetch(URL_CNPJ)
-        //     .then(resposta => resposta.json())
-        //     .then(data => this.campoValidado(data))
-        //     .catch(erro => this.erroValidacao(erro));
-        // fetch(`${DOMINIO}/restaurante/valida/cnpj/`, {
-        //     method: 'POST',
-        //     // headers: new Headers(),
-        //     body: { cnpj: cnpj },
-        // }).then(resposta => resposta.json())
-        //     .then(data => this.campoValidado(data))
-        //     .catch(erro => this.erroValidacao(erro));
-        // $.ajax({
-        //     url : `${DOMINIO}/restaurante/valida/cnpj/`,
-        //     dataType : "json",
-        //     type : 'GET',
-        //     data: { cnpj :  cnpj },
-        //     success : function(data){
-        //         this.campoValidado(data)  
-        //         alert('entrou')   
-        //     }.bind(this),
-        //     error: function(data){
+        const URL_CNPJ = `${DOMINIO}/restaurante/valida/cnpj/${cnpj}`;
 
-        //        alert('erro');
+        $.ajax({
+            url: URL_CNPJ,
+            dataType: "text",
+            type: 'GET',
+            success: function (data) {
+                if (data == "true") {
+                    this.campoValidado(data)
 
-        //     }
-        // });
+                } else {
+                    this.erroValidacao(data)
+                }
+
+            }.bind(this),
+            error: function (data) {
+
+                console.log('Erro:', data);
+
+            }
+        });
 
     }
 
@@ -96,6 +90,13 @@ class FormularioDados extends Component {
     atualizaCampo(e) {
         const restaurante = { ...this.state.restaurante }
         restaurante[e.target.name] = e.target.value
+
+        //MÁCARAS DOS CAMPOS
+        $("#cnpj").mask("99.999.999/9999-99");
+        $('#telefone').mask('00 0000-0000');
+       
+
+        
         this.setState({
             restaurante,
             textoErro: initialState.textoErro,
@@ -106,6 +107,7 @@ class FormularioDados extends Component {
 
     /* FORMULÁRIO DO ENDEREÇO */
     renderForm() {
+
         return (
 
             /* FORMULÁRIO DO ENDEREÇO */
@@ -113,13 +115,13 @@ class FormularioDados extends Component {
                 <span className={this.state.classErro}>{this.state.textoErro}</span>
                 <Label className="h2 mb-4" texto="Dados do Restaurante" />
                 <div className="row mb-4">
-                    <InputCadastro className="col col-sm col-md col-lg p-1 ml-3 mr-3" id="txt-nome-restaurante" name="nome" type="text"
-                        placeholder="Nome do restaurante" value={this.state.restaurante.nome} onChange={e => this.atualizaCampo(e)} />
+                    <InputCadastro className="col col-sm col-md col-lg p-1 ml-3 mr-3" id="razaoSocial" name="razaoSocial" type="text"
+                        placeholder="Nome do restaurante" value={this.state.restaurante.razaoSocial} onChange={e => this.atualizaCampo(e)} />
                 </div>
                 <div className="row mb-5">
-                    <InputCadastro className="col col-sm col-md col-lg p-1 ml-3 mr-3" id="txt-cnpj-restaurante" name="cnpj" type="text"
-                        placeholder="CNPJ do restaurante" value={this.state.restaurante.cnpj} onChange={e => this.atualizaCampo(e)} />
-                    <InputCadastro className="col col-sm col-md col-lg p-1 mr-3" id="txt-telefone-restaurante" name="telefone" type="text"
+                    <InputCadastro className="col col-sm col-md col-lg p-1 ml-3 mr-3" id="cnpj" name="cnpj" type="text"
+                        placeholder="CNPJ do restaurante" value={this.state.restaurante.cnpj} onChange={e => this.atualizaCampo(e)}/>
+                    <InputCadastro className="col col-sm col-md col-lg p-1 mr-3" id="telefone" name="telefone" type="text"
                         placeholder="Telefone do restaurante" value={this.state.restaurante.telefone} onChange={e => this.atualizaCampo(e)} />
                 </div>
                 {/*LINHA DO  BOTÃO COM A ROTA PARA O PRÓXIMA PÁGINA  */}

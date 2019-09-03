@@ -2,14 +2,17 @@ import React from 'react';
 import { PaginaCadastro } from "./paginas/cadastro/paginaCadastro"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'jquery/dist/jquery.min.js';
-import 'bootstrap/dist/js/bootstrap.min.js';
 import './recursos/css/style.css';
-import 'popper.js/dist/popper.min.js';
+import 'jquery/dist/jquery.js';
+import 'jquery/dist/jquery.slim.js';
+import 'jquery/dist/jquery.slim.min.js';
+import 'jquery-mask-plugin/dist/jquery.mask'
+
 
 
 function App() {
   return (
-  <PaginaCadastro/>
+    <PaginaCadastro />
   );
 }
 
