@@ -45,15 +45,13 @@ export class FormularioLogin extends Component {
 
         const json = JSON.parse(dados);
 
-
-
         var novoDado = { ...json, ...restaurante };
-
-        alert(novoDado)
 
         sessionStorage.setItem('dados', JSON.stringify(novoDado));
 
         const jsonRestaurante = sessionStorage.getItem('dados');
+
+        console.log(jsonRestaurante)
 
         this.props.history.push("/bem-vindo");
 
@@ -69,6 +67,7 @@ export class FormularioLogin extends Component {
             success: function (resposta) {
                 
                 alert('Gravou')
+                sessionStorage.setItem('dados', JSON.stringify(resposta))
 
             }.bind(this),
             error: function (data) {

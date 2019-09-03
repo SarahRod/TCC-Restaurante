@@ -69,7 +69,7 @@ class FormularioDados extends Component {
             dataType: "text",
             type: 'GET',
             success: function (data) {
-                if (data == "false") {
+                if (data == "true") {
                     this.campoValidado(data)
 
                 } else {
@@ -93,7 +93,7 @@ class FormularioDados extends Component {
 
         //MÁCARAS DOS CAMPOS
         $("#cnpj").mask("99.999.999/9999-99");
-        $('#telefone').mask('(00) 0000-0000');
+        $('#telefone').mask('00 0000-0000');
        
 
         
