@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import FormularioDados from './componentes/formulario/cadastro/dadosCadastro/DadosCadastro';
-import { FormularioEndereco } from './componentes/formulario/cadastro/enderecoCadastro/EnderecoCadastro';
+import FormularioEndereco from './componentes/formulario/cadastro/enderecoCadastro/EnderecoCadastro';
 import { BrowserRouter, Switch, Route} from 'react-router-dom';
-import { FormularioLogin } from './componentes/formulario/cadastro/login/Login';
+import  FormularioLogin  from './componentes/formulario/cadastro/login/Login';
 import { FormularioBemVindo } from './componentes/formulario/cadastro/bemVindo/BemVindo'
 
 export class RotaFormularioCadastro extends Component {

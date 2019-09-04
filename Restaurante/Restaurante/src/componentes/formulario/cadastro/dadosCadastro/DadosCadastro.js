@@ -30,6 +30,7 @@ class FormularioDados extends Component {
 
     state = { ...initialState }
 
+    //PROPRIEDADES DO WITH ROUTER
     static propTypes = {
         match: PropTypes.object.isRequired,
         location: PropTypes.object.isRequired,
@@ -48,10 +49,19 @@ class FormularioDados extends Component {
 
     //MENSAGEM DE ERRO DA VALIDAÇÃO
     erroValidacao(e) {
-        this.setState({
-            classErro: 'alert show alert-danger',
-            textoErro: `Esse CNPJ já está cadastrado`
-        })
+
+        this.setState({ classErro: 'alert show alert-danger', })
+
+        if (e == "campoVazio") {
+            this.setState({
+                textoErro: `Preencha os campos corretamente`
+            })
+        } else{
+            this.setState({
+                textoErro: `Esse CNPJ já está cadastrado ou é inválido`
+            })
+        }
+
     }
 
     //ENVIA OS DADOS DO FORMULÁRIO PARA O SESSION STORAGE
@@ -60,6 +70,26 @@ class FormularioDados extends Component {
 
         const restaurante = this.state.restaurante;
         const cnpj = restaurante.cnpj.replace("/", "@");
+
+        const bordasCampoVazio = 'border border-danger';
+
+        //VERIFICA SE OS CAMPOS ESTÃO PRENCHIDOS
+        if (!$('#cnpj').val()) {
+            $('#cnpj').addClass(bordasCampoVazio);
+        }
+
+        if (!$('#razaoSocial').val()) {
+            $('#razaoSocial').addClass(bordasCampoVazio);
+        }
+
+        if (!$('#telefone').val()) {
+            $('#telefone').addClass(bordasCampoVazio);
+        }
+
+        if (!$('#cnpj').val() || !$('#razaoSocial').val() || !$('#telefone').val()) {
+            this.erroValidacao(e = "campoVazio")
+        }
+
 
         //REALIZA AS REQUISIÇÕES NA API DE VALIDAÇÃO
         const URL_CNPJ = `${DOMINIO}/restaurante/valida/cnpj/${cnpj}`;
@@ -73,7 +103,7 @@ class FormularioDados extends Component {
                     this.campoValidado(data)
 
                 } else {
-                    this.erroValidacao(data)
+                    this.erroValidacao(e = "cnpjJaCadastrado")
                 }
 
             }.bind(this),
@@ -89,14 +119,27 @@ class FormularioDados extends Component {
     //ATUALIZA AS INPUTS COM OS ESTADOS 
     atualizaCampo(e) {
         const restaurante = { ...this.state.restaurante }
-        restaurante[e.target.name] = e.target.value
+        restaurante[e.target.name] = e.target.value;
+
+        const bordasCampoVazio = 'border border-danger';
 
         //MÁCARAS DOS CAMPOS
         $("#cnpj").mask("99.999.999/9999-99");
         $('#telefone').mask('00 0000-0000');
-       
 
-        
+        //REMOVE A BORDA VERMELHA DOS CAMPOS PREENCHIDOS
+        if (!$('#cnpj').val() == '') {
+            $('#cnpj').removeClass('border border-danger');
+        }
+
+        if (!$('#razaoSocial').val() == '') {
+            $('#razaoSocial').removeClass(bordasCampoVazio);
+        }
+
+        if (!$('#telefone').val() == '') {
+            $('#telefone').removeClass(bordasCampoVazio);
+        }
+
         this.setState({
             restaurante,
             textoErro: initialState.textoErro,
@@ -120,7 +163,7 @@ class FormularioDados extends Component {
                 </div>
                 <div className="row mb-5">
                     <InputCadastro className="col col-sm col-md col-lg p-1 ml-3 mr-3" id="cnpj" name="cnpj" type="text"
-                        placeholder="CNPJ do restaurante" value={this.state.restaurante.cnpj} onChange={e => this.atualizaCampo(e)}/>
+                        placeholder="CNPJ do restaurante" value={this.state.restaurante.cnpj} onChange={e => this.atualizaCampo(e)} />
                     <InputCadastro className="col col-sm col-md col-lg p-1 mr-3" id="telefone" name="telefone" type="text"
                         placeholder="Telefone do restaurante" value={this.state.restaurante.telefone} onChange={e => this.atualizaCampo(e)} />
                 </div>
