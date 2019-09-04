@@ -256,7 +256,7 @@ class FormularioEndereco extends Component {
                 <div className="row mb-4" >
 
                     <select name="estado" id="sql_estado" onChange={e => this.atualizaCidade(e)} className="col col-sm col-md col-lg p-1 ml-3 mr-3 border-input">
-                        <option>Estado</option>
+                        <option value=''>Estado</option>
                         {this.state.estado.map(item => (
                             <option key={item.id} id={"estado-" + item.id} value={item.id}>
                                 {item.estado}
@@ -264,7 +264,7 @@ class FormularioEndereco extends Component {
                         ))}
                     </select>
                     <select name="cidade" id="sql_cidade" className="col col-sm col-md col-lg p-1 mr-3 border-input">
-                        <option>Cidade</option>
+                        <option value=''>Cidade</option>
                         {this.state.cidade.map(item => (
                             <option key={item.id} id={"cidade-" + item.id} value={item.id}>
                                 {item.cidade}
