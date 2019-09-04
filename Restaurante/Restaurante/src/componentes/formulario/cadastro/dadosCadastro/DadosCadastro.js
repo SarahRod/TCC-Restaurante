@@ -56,6 +56,10 @@ class FormularioDados extends Component {
             this.setState({
                 textoErro: `Preencha os campos corretamente`
             })
+        } else if(e == "nomeMinimo"){
+            this.setState({
+                textoErro: `O nome do restaurante deve conter no mínimo 3 caracteres`
+            })          
         } else{
             this.setState({
                 textoErro: `Esse CNPJ já está cadastrado ou é inválido`
@@ -88,6 +92,8 @@ class FormularioDados extends Component {
 
         if (!$('#cnpj').val() || !$('#razaoSocial').val() || !$('#telefone').val()) {
             this.erroValidacao(e = "campoVazio")
+        }else if(!$('#razaoSocial').val().length < 3){
+             this.erroValidacao(e = "nomeMinimo")
         }
 
 
