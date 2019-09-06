@@ -8,7 +8,7 @@ import './style.css';
 //COMPONENTE DO CORPO DA PÁGINA DE LOGIN
 export const CorpoLogin = (props) => (
 
-    <MainLogin className="row">
+    <MainLogin className="row justify-content-center">
        
        <div className="img-background col-1 col-sm-4 col-md-4 col-lg-4"></div>
 

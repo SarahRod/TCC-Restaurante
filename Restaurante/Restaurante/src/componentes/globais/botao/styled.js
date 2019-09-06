@@ -10,3 +10,8 @@ border: 2px solid #F26B3A !important;
     color: #ffffff !important;
 }
 `;
+
+export const BotaoGrande = styled(Botao)`
+    heigth: 65px;
+
+`

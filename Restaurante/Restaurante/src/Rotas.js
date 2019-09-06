@@ -13,11 +13,11 @@ export class RotaFormularioCadastro extends Component {
            <Fragment>
                <BrowserRouter>
                     <Switch>
-                        <Route path="/cadastro" exact component={FormularioDados} history ={this.history} />
+                        <Route path="/cadastro" component={FormularioDados} history ={this.history} />
                         <Route path="/cadastro/endereco" component={FormularioEndereco} history ={this.history} />
                         <Route path="/cadastro/login" component={FormularioLogin} history ={this.history} />
                         <Route path="/cadastro/bem-vindo" component={FormularioBemVindo} history ={this.history} />
-                        <Route path="/login" component={FormularioBemVindo} history ={this.history} />
+                        {/* <Route path="/" exact component={FormularioBemVindo} history ={this.history} /> */}
                     </Switch>
                 </ BrowserRouter>                
            </Fragment>
@@ -31,7 +31,7 @@ export class RotaPaginas extends Component {
            <Fragment>
                <BrowserRouter>
                     <Switch>
-                        <Route path="/login" exact component={PaginaLogin} history ={this.history} />
+                        <Route path="/" exact component={PaginaLogin} history ={this.history} />
                         <Route path="/cadastro" component={PaginaCadastro} history ={this.history} />
                     </Switch>
                 </ BrowserRouter>                
