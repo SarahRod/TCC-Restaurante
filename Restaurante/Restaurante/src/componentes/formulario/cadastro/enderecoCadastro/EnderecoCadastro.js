@@ -3,12 +3,14 @@ import { InputCadastro } from '../../../globais/input/Input';
 import { Label } from '../../../globais/label/Label';
 import { BotaoLink } from '../../../globais/botao/Botao';
 import $ from 'jquery';
+import { withRouter } from 'react-router-dom';
+import PropTypes from "prop-types";
 import Corpo from '../../../corpo/Corpo';
 import { DOMINIO } from '../../../../link_config';
 
 /*PROPRIEDADES DO CABEÇALHO*/
 const propriedadesCabecalho = {
-    to: '/',
+    to: '/cadastro',
     width: 'w-50'
 }
 
@@ -18,7 +20,7 @@ const initialState = {
 
 }
 
-export class FormularioEndereco extends Component {
+class FormularioEndereco extends Component {
 
     constructor() {
         super();
@@ -34,13 +36,25 @@ export class FormularioEndereco extends Component {
             },
             cidade: [],
 
-            estado: []
+            estado: [],
+
+            classErro: '',
+            textoErro: ''
         }
     }
+
+    //PROPRIEDADES DO WITH ROUTER
+    static propTypes = {
+        match: PropTypes.object.isRequired,
+        location: PropTypes.object.isRequired,
+        history: PropTypes.object.isRequired
+    };
+
     // state = { ...initialState }
 
     //ENVIA OS DADOS DO FORMULÁRIO PARA O SESSION STORAGE
     enviaFormulario(e) {
+
         var dados = sessionStorage.getItem('dados');
 
         const json = JSON.parse(dados);
@@ -55,6 +69,55 @@ export class FormularioEndereco extends Component {
 
         sessionStorage.setItem('dados', JSON.stringify(novoDado));
 
+        this.props.history.push("/cadastro/login");
+
+    }
+
+    //MENSAGEM DE ERRO DA VALIDAÇÃO
+    erroValidacao(e) {
+
+        this.setState({ classErro: 'alert show alert-danger', textoErro: `Preencha os campos corretamente` })
+
+    }
+
+    //ENVIA OS DADOS DO FORMULÁRIO PARA O SESSION STORAGE
+    validaCampos(e) {
+        e.preventDefault();
+
+        const bordasCampoVazio = 'border border-danger';
+
+        //VERIFICA SE OS CAMPOS ESTÃO PRENCHIDOS
+        if (!$('#cep').val()) {
+            $('#cep').addClass(bordasCampoVazio);
+        }
+
+        if (!$('#logradouro').val()) {
+            $('#logradouro').addClass(bordasCampoVazio);
+        }
+
+        if (!$('#bairro').val()) {
+            $('#bairro').addClass(bordasCampoVazio);
+        }
+
+        if (!$('#sql_estado').val()) {
+            $('#sql_estado').addClass(bordasCampoVazio);
+        }
+
+        if (!$('#sql_cidade').val()) {
+            $('#sql_cidade').addClass(bordasCampoVazio);
+        }
+
+        if (!$('#numero').val()) {
+            $('#numero').addClass(bordasCampoVazio);
+        }
+
+        if (!$('#cep').val() || !$('#logradouro').val() || !$('#bairro').val() ||
+            !$('#sql_cidade').val() || !$('#sql_cidade').val() || !$('#numero').val()) {
+
+            this.erroValidacao(e)
+        } else {
+            this.enviaFormulario(e)
+        }
     }
 
 
@@ -78,6 +141,7 @@ export class FormularioEndereco extends Component {
             }
         });
     }
+
     buscarEstados() {
         $.ajax({
             url: `${DOMINIO}/estado`,
@@ -91,9 +155,10 @@ export class FormularioEndereco extends Component {
             }
         });
     }
+
     componentWillMount() {
         this.buscarEstados();
-        this.buscarCidadesporEstado();
+        this.buscarCidadesporEstado(11);
     }
 
 
@@ -103,8 +168,35 @@ export class FormularioEndereco extends Component {
         restaurante[e.target.name] = e.target.value
         this.setState({ restaurante })
 
-      //Máscaras do campos
-      $("#cep").mask("99.999-999");
+        //Máscaras do campos
+        $("#cep").mask("99.999-999");
+
+        const bordasCampoVazio = 'border border-danger';
+
+        //REMOVE A BORDA VERMELHA DOS CAMPOS PREENCHIDOS
+        if (!$('#cep').val() == '') {
+            $('#cep').removeClass(bordasCampoVazio);
+        }
+
+        if (!$('#logradouro').val() == '') {
+            $('#logradouro').removeClass(bordasCampoVazio);
+        }
+
+        if (!$('#bairro').val() == '') {
+            $('#bairro').removeClass(bordasCampoVazio);
+        }
+
+        if (!$('#sql_estado').val() == '') {
+            $('#sql_estado').removeClass(bordasCampoVazio);
+        }
+
+        if (!$('#sql_cidade').val() == '') {
+            $('#sql_cidade').removeClass(bordasCampoVazio);
+        }
+
+        if (!$('#numero').val() == '') {
+            $('#numero').removeClass(bordasCampoVazio);
+        }
 
     }
 
@@ -122,22 +214,18 @@ export class FormularioEndereco extends Component {
             $.ajax({
                 url: `${DOMINIO}/endereco/cep/${cep}`,
                 dataType: 'json',
-                success:  function (resposta) {
+                success: function (resposta) {
                     const restaurante = { ...this.state.restaurante }
 
-                    $("#logradouro").val(resposta.bairro);
-                    $("#bairro").val(resposta.logradouro);
-                    
-                    let idEstado = resposta.cidade.estado.id;
-                    $("estado-" + idEstado).selected = true;
+                    $("#logradouro").val(resposta.logradouro);
+                    $("#bairro").val(resposta.bairro);
+
 
                     //ATRIBUI VALOR AOS ESTADOS
-                   this.state.restaurante.logradouro = resposta.bairro;
-                   this.state.restaurante.bairro = resposta.logradouro;
+                    this.state.restaurante.logradouro = resposta.logradouro;
+                    this.state.restaurante.bairro = resposta.bairro;
 
-                    console.log(restaurante)
 
-                  
                     this.atualizaCidade();
                 }.bind(this),
                 error: function (data) {
@@ -155,6 +243,7 @@ export class FormularioEndereco extends Component {
         return (
 
             <form className="form-group mt-5">
+                <span className={this.state.classErro}>{this.state.textoErro}</span>
                 <Label className="h2 mb-1" texto="Endereço do restaurante" />
                 <div className="row mt-4 mb-4">
                     <InputCadastro className="col col-sm p-1 col-md col-lg p-1 ml-3 mr-3" id="cep" name="cep" type="text"
@@ -162,12 +251,12 @@ export class FormularioEndereco extends Component {
                     <InputCadastro className="col col-sm-5 col-md-5 col-lg-5 p-1 mr-3" id="logradouro" name="logradouro" type="text"
                         placeholder="Logradouro" value={this.state.restaurante.longradouro} onChange={e => this.atualizaCampo(e)} />
                     <InputCadastro className="col col-sm col-md col-lg p-1 mr-3" id="bairro" name="bairro" type="text"
-                        placeholder="Bairro" onChange={e => this.atualizaCampo(e)}/>
+                        placeholder="Bairro" onChange={e => this.atualizaCampo(e)} />
                 </div>
                 <div className="row mb-4" >
 
                     <select name="estado" id="sql_estado" onChange={e => this.atualizaCidade(e)} className="col col-sm col-md col-lg p-1 ml-3 mr-3 border-input">
-                        <option>Estado</option>
+                        <option value=''>Estado</option>
                         {this.state.estado.map(item => (
                             <option key={item.id} id={"estado-" + item.id} value={item.id}>
                                 {item.estado}
@@ -175,7 +264,7 @@ export class FormularioEndereco extends Component {
                         ))}
                     </select>
                     <select name="cidade" id="sql_cidade" className="col col-sm col-md col-lg p-1 mr-3 border-input">
-                        <option>Cidade</option>
+                        <option value=''>Cidade</option>
                         {this.state.cidade.map(item => (
                             <option key={item.id} id={"cidade-" + item.id} value={item.id}>
                                 {item.cidade}
@@ -184,20 +273,20 @@ export class FormularioEndereco extends Component {
                     </select>
                 </div>
                 <div className="row mb-4">
-                    <InputCadastro className="col col-sm-9 col-md-9 col-lg-9 p-1 ml-3 mr-3 " id="txt-complemento-restaurante" name="complemento" type="text"
-                        placeholder="Complemento" />
-                    <InputCadastro className="col col-sm col-md col-lg p-1 mr-3" id="txt-numero-restaurante" name="numero" type="text"
+                    <InputCadastro className="col col-sm-9 col-md-9 col-lg-9 p-1 ml-3 mr-3 " id="complemento" name="complemento" type="text"
+                        placeholder="Complemento" value={this.state.restaurante.complemento} onChange={e => this.atualizaCampo(e)} />
+                    <InputCadastro className="col col-sm col-md col-lg p-1 mr-3" id="numero" name="numero" type="text"
                         placeholder="N°" value={this.state.restaurante.n} onChange={e => this.atualizaCampo(e)} />
                 </div>
                 <div className="row mb-1">
-                    <Label className="col col-sm col-md col-lg p-1 ml-3 mr-3" texto="Referência" />
+                    <Label className="col col-sm col-md col-lg p-1 ml-3 mr-3" texto="Referência" value={this.state.restaurante.referencia} onChange={e => this.atualizaCampo(e)} />
                 </div>
                 <div className="row mb-5">
-                    <textarea className="col col-sm col-md col-lg p-2 ml-3 mr-3 border-input" id="txt-referencia-restaurante" maxLength="150" name="txt-referencia-restaurante" type="text"></textarea>
+                    <textarea className="col col-sm col-md col-lg p-2 ml-3 mr-3 border-input" id="referencia" maxLength="150" name="referencia" type="text"></textarea>
                 </div>
                 {/*LINHA DO  BOTÃO COM A ROTA PARA O PRÓXIMA PÁGINA  */}
                 <div className="row justify-content-end">
-                    <BotaoLink to="/login" onClick={e => this.enviaFormulario(e)} className="col-3 col-sm-3 col-md-3 col-lg-3 btn-orange mr-3" texto="Próximo" />
+                    <BotaoLink to="/cadastro/login" onClick={e => this.validaCampos(e)} className="col-3 col-sm-3 col-md-3 col-lg-3 btn-orange mr-3" texto="Próximo" />
                 </div>
             </form>
         )
@@ -213,4 +302,6 @@ export class FormularioEndereco extends Component {
         )
     }
 }
+
+export default withRouter(FormularioEndereco);
 

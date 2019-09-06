@@ -1,14 +1,16 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import { InputCadastro } from '../../../globais/input/Input';
 import { Label } from '../../../globais/label/Label';
 import { BotaoLink } from '../../../globais/botao/Botao';
 import Corpo from '../../../corpo/Corpo';
 import { DOMINIO } from '../../../../link_config';
 import $ from 'jquery';
+import { withRouter } from 'react-router-dom';
+import PropTypes from "prop-types";
 
 /*PROPRIEDADES DO CABEÇALHO*/
 const propriedadesCabecalho = {
-    to: '/endereco',
+    to: '/cadastro/endereco',
     width: 'w-75'
 }
 
@@ -16,30 +18,54 @@ const propriedadesCabecalho = {
 const initialState = {
     restaurante: {
         email: '',
-        senha: ''
+        senha: '',
     },
 
+    confirmarSenha: '',
     classErro: '',
     textoErro: ''
 }
 
-export class FormularioLogin extends Component {
+class FormularioLogin extends Component {
 
     state = { ...initialState }
 
+    //PROPRIEDADES DO WITH ROUTER
+    static propTypes = {
+        match: PropTypes.object.isRequired,
+        location: PropTypes.object.isRequired,
+        history: PropTypes.object.isRequired
+    };
+
     //MENSAGEM DE ERRO DA VALIDAÇÃO
     erroValidacao(e) {
-        this.setState({
-            classErro: 'alert show alert-danger',
-            textoErro: `Esse e-mail já está cadastrado`
-        })
+
+        this.setState({ classErro: 'alert show alert-danger', })
+
+        if (e == 'campoVazio') {
+            this.setState({
+                textoErro: `Preencha os campos corretamente`
+            })
+        } else if (e == "senhaIncorreta") {
+            this.setState({
+                textoErro: `A Senha está incorreta`
+            })
+        } else if (e == 'emailIncorreto') {
+            this.setState({
+                textoErro: `Preencha o campo email corretamente`
+            })
+        } else if (e == 'senhaMinimo') {
+            this.setState({
+                textoErro: `A senha deve conter no mínimo 8 caracteres`
+            })
+        }
     }
 
 
 
-    enviaFormulario(){
+    enviaFormulario() {
 
-        const restaurante = {...this.state.restaurante}
+        const restaurante = { ...this.state.restaurante }
 
         var dados = sessionStorage.getItem('dados');
 
@@ -55,17 +81,18 @@ export class FormularioLogin extends Component {
 
         this.props.history.push("/bem-vindo");
 
-        const url =  `${DOMINIO}/restaurante/novo`;
+        const url = `${DOMINIO}/restaurante/novo`;
 
+        this.props.history.push("cadastro/bem-vindo");
 
         $.ajax({
             url: url,
             dataType: 'json',
             type: 'POST',
             data: jsonRestaurante,
-            contentType:'application/json',
+            contentType: 'application/json',
             success: function (resposta) {
-                
+
                 alert('Gravou')
                 sessionStorage.setItem('dados', JSON.stringify(resposta))
 
@@ -77,12 +104,38 @@ export class FormularioLogin extends Component {
         });
     }
 
-     //ENVIA OS DADOS DO FORMULÁRIO PARA O SESSION STORAGE
-     validaCampos(e) {
+    //ENVIA OS DADOS DO FORMULÁRIO PARA O SESSION STORAGE
+    validaCampos(e) {
         e.preventDefault();
 
         const restaurante = this.state.restaurante;
         const email = restaurante.email;
+
+        const bordasCampoVazio = 'border border-danger';
+
+        //VERIFICA SE OS CAMPOS ESTÃO PRENCHIDOS
+        if (!$('#email').val()) {
+            $('#email').addClass(bordasCampoVazio);
+        }
+
+        if (!$('#senha').val()) {
+            $('#senha').addClass(bordasCampoVazio);
+        }
+
+        if (!$('#confirmarSenha').val()) {
+            $('#confirmarSenha').addClass(bordasCampoVazio);
+        }
+
+        if (!$('#email').val() || !$('#senha').val() || !$('#confirmarSenha').val()) {
+            this.erroValidacao(e = 'campoVazio')
+        }
+
+        //VERIFICA SE A SENHA FOI DIGITADA CORRETAMENTE
+        if ($('#senha').val() != $('#confirmarSenha').val()) {
+            this.erroValidacao(e = 'senhaIncorreta')
+        } else if ($('#senha').val().length < 8) {
+            this.erroValidacao(e = 'senhaMinimo')
+        }
 
         //REALIZA AS REQUISIÇÕES NA API DE VALIDAÇÃO
         const URL_EMAIL = `${DOMINIO}/restaurante/valida/email/${email}`;
@@ -93,10 +146,12 @@ export class FormularioLogin extends Component {
             type: 'GET',
             success: function (data) {
                 if (data == "false") {
-                    this.enviaFormulario(data)
+                    if ($('#senha').val() != '' && $('#confirmarSenha').val() != '' && $('#senha').val().length >= 8) {
+                        this.enviaFormulario(data)
+                    }
 
                 } else {
-                    this.erroValidacao(data)
+                    this.erroValidacao(e = 'emailIncorreto')
                 }
 
             }.bind(this),
@@ -117,31 +172,46 @@ export class FormularioLogin extends Component {
             restaurante,
             textoErro: initialState.textoErro,
             classErro: initialState.classErro
-        })     
+        })
+
+        const bordasCampoVazio = 'border border-danger';
+
+        //REMOVE A BORDA VERMELHA DOS CAMPOS PREENCHIDOS
+        if (!$('#email').val() == '') {
+            $('#email').removeClass(bordasCampoVazio);
+        }
+
+        if (!$('#senha').val() == '') {
+            $('#senha').removeClass(bordasCampoVazio);
+        }
+
+        if (!$('#confirmarSenha').val() == '') {
+            $('#confirmarSenha').removeClass(bordasCampoVazio);
+        }
 
     }
 
     /* FORMULÁRIO DO ENDEREÇO */
     renderForm() {
         return (
-                <form className="form-group mt-5">
-                    <Label className="h2 mb-1" texto="Login do restaurante" />
-                    <span className={this.state.classErro}>{this.state.textoErro}</span>
-                    <div className="row mt-4 mb-4">
-                        <InputCadastro className="col col-sm p-1 col-md col-lg p-1 ml-3 mr-3" id="email" name="email" 
+            <form className="form-group mt-5">
+                <span className={this.state.classErro}>{this.state.textoErro}</span>
+                <Label className="h2 mb-1" texto="Login do restaurante" />
+                <div className="row mt-4 mb-4">
+                    <InputCadastro className="col col-sm p-1 col-md col-lg p-1 ml-3 mr-3" id="email" name="email"
                         type="email" placeholder="Email" value={this.state.restaurante.email} onChange={e => this.atualizaCampo(e)} />
-                    </div>
-                    <div className="row mb-5">
-                        <InputCadastro className="col col-sm col-md col-lg p-1 ml-3 mr-3" id="txt-senha-restaurante" name="senha" type="password"
-                            placeholder="Senha" value={this.state.restaurante.senha} onChange={e => this.atualizaCampo(e)} />
-                        <InputCadastro className="col col-sm col-md col-lg p-1 mr-3" id="txt-confirmar-restaurante" name="txt-confirmar-restaurante" type="password"
-                            placeholder="Confirmar Senha"/>
-                    </div>
-                    <div className="row justify-content-end">
-                        <BotaoLink to="/bem-vindo" onClick={e => this.validaCampos(e)} className="col-4 col-sm-4 col-md-4 col-lg-4 btn-orange mr-3" texto="Próximo" />
-                    </div>
+                </div>
+                <div className="row mb-5">
+                    <InputCadastro className="col col-sm col-md col-lg p-1 ml-3 mr-3" id="senha" name="senha" type="password"
+                        placeholder="Senha" value={this.state.restaurante.senha} onChange={e => this.atualizaCampo(e)} />
+                    <InputCadastro className="col col-sm col-md col-lg p-1 mr-3" id="confirmarSenha" name="confirmarSenha" type="password"
+                        placeholder="Confirmar Senha" value={this.state.restaurante.confirmarSenha} onChange={e => this.atualizaCampo(e)} />
+                </div>
+                <div className="row justify-content-end">
+                    <BotaoLink to="/bem-vindo" onClick={e => this.validaCampos(e)} className="col-4 col-sm-4 col-md-4 col-lg-4 btn-orange mr-3" texto="Próximo" />
+                </div>
 
-                </form>
+            </form>
         )
     }
 
@@ -155,3 +225,5 @@ export class FormularioLogin extends Component {
         )
     }
 }
+
+export default withRouter(FormularioLogin);
