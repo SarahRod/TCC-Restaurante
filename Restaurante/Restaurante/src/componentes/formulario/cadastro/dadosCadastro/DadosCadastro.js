@@ -10,7 +10,7 @@ import { DOMINIO } from '../../../../link_config';
 
 /*PROPRIEDADES DO CABEÇALHO*/
 const propriedadesCabecalho = {
-    to: '/',
+    to: '/login',
     width: 'w-25'
 }
 
@@ -40,7 +40,7 @@ class FormularioDados extends Component {
     //REDIRECIONA O COMPONENTE VALIDADO
     campoValidado(e) {
 
-        this.props.history.push("/endereco");
+        this.props.history.push("/cadastro/endereco");
 
         const restaurante = { ...this.state.restaurante }
 

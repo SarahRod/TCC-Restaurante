@@ -9,7 +9,7 @@ import $ from 'jquery';
 
 /*PROPRIEDADES DO CABEÇALHO*/
 const propriedadesCabecalho = {
-    to: '/login',
+    to: '/cadastro/login',
     width: 'w-100',
 }
 
@@ -114,7 +114,7 @@ export class FormularioBemVindo extends Component {
                     <Label className="col col-sm col-md col-lg h2 text-center" id="nome-restaurante" name="nome-restaurante" texto={this.state.texto} />
                 </div>
                 <div className="row mt-3 justify-content-center">
-                    <BotaoLink to="/bem-vindo" className="col-5 col-sm-4 col-md-5 col-lg-5 btn-orange ml-3 mr-3 " onClick={e => this.enviaFormulario(e)} texto="Finalizar" />
+                    <BotaoLink to="/login" className="col-5 col-sm-4 col-md-5 col-lg-5 btn-orange ml-3 mr-3 " onClick={e => this.enviaFormulario(e)} texto="Finalizar" />
                 </div>
 
             </form>

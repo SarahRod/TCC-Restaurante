@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 
 /*PROPRIEDADES DO CABEÇALHO*/
 const propriedadesCabecalho = {
-    to: '/endereco',
+    to: '/cadastro/endereco',
     width: 'w-75'
 }
 
@@ -83,7 +83,7 @@ class FormularioLogin extends Component {
 
         const url = `${DOMINIO}/restaurante/novo`;
 
-        this.props.history.push("/bem-vindo");
+        this.props.history.push("cadastro/bem-vindo");
 
         $.ajax({
             url: url,
