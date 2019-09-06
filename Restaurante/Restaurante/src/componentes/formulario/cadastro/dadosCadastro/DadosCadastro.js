@@ -175,7 +175,7 @@ class FormularioDados extends Component {
                 </div>
                 {/*LINHA DO  BOTÃO COM A ROTA PARA O PRÓXIMA PÁGINA  */}
                 <div className="row justify-content-end">
-                    <BotaoLink onClick={e => this.validaCampos(e)} to="/endereco" className="col-4 col-sm-4 col-md-4 col-lg-4 btn-orange mr-3" texto="Próximo" />
+                    <BotaoLink onClick={e => this.validaCampos(e)} to="cadastro/endereco" className="col-4 col-sm-4 col-md-4 col-lg-4 btn-orange mr-3" texto="Próximo" />
                 </div>
             </form>
         )
