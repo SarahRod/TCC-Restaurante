@@ -31,6 +31,23 @@ class FormularioLogin extends Component {
         history: PropTypes.object.isRequired
     };
 
+    //MENSAGEM DE ERRO DA VALIDAÇÃO
+    erroValidacao(e) {
+
+        this.setState({ classErro: 'alert show alert-danger', })
+
+        if (e == "campoVazio") {
+            this.setState({
+                textoErro: `Preencha os campos corretamente`
+            })
+        } else if (e == "usuarioInválido") {
+            this.setState({
+                textoErro: `Email ou senha incorretos`
+            })
+        }
+
+    }
+
     //ENVIA A REQUISIÇÃO
     enviaFormulario() {
 
@@ -54,14 +71,14 @@ class FormularioLogin extends Component {
 
                 const respostaJson = JSON.stringify(resposta)
 
-                if(respostaJson == '{"error":"Usuario não cadastrado"}'){
+                if (respostaJson == '{"error":"Usuario não cadastrado"}') {
                     console.log(resposta)
                     alert('usuário não cadastrado')
-                   
-                }else{
-                    alert('Acesso permitido')
+
+                } else {
+                    this.erroValidacao(e => e ='usuarioInválido')
                 }
-                
+
 
             }.bind(this),
             error: function (data) {
@@ -125,12 +142,14 @@ class FormularioLogin extends Component {
     render() {
         return (
             <form className="form-group col col-sm col-md col-lg-10">
-                <span className={this.state.classErro}>{this.state.textoErro}</span>
                 <div className="row justify-content-center mb-5">
                     <img src={LogoGoDinner} className="img-fluid icone-img" />
                 </div>
                 <div className="row mb-4">
                     <div className="mx-auto h2">Bem-vindo(a) a GoDinner</div>
+                </div>
+                <div className="row justify-content-center">
+                    <span className={`col-5 col-sm-5 col-md-5 col-lg-5 ${this.state.classErro}`} >{this.state.textoErro}</span>
                 </div>
                 <div className="row  justify-content-center mb-2">
                     <div className="col-8 col-sm-8 col-md-8 col-lg-8">

@@ -10,7 +10,7 @@ import { DOMINIO } from '../../../../link_config';
 
 /*PROPRIEDADES DO CABEÇALHO*/
 const propriedadesCabecalho = {
-    to: '/login',
+    to:  '/',
     width: 'w-25'
 }
 
