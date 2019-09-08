@@ -92,7 +92,7 @@ class FormularioDados extends Component {
 
         if (!$('#cnpj').val() || !$('#razaoSocial').val() || !$('#telefone').val()) {
             this.erroValidacao(e = "campoVazio")
-        }else if(!$('#razaoSocial').val().length < 3){
+        }else if($('#razaoSocial').val().length < 3){
              this.erroValidacao(e = "nomeMinimo")
         }
 
