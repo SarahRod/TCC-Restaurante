@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { FormularioLogin } from '../../componentes/formulario/login/Login';
+import FormularioLogin from '../../componentes/formulario/login/Login';
 import { CorpoLogin } from '../../componentes/corpo/login/Corpo';
 import '../../recursos/css/style.css'
 
