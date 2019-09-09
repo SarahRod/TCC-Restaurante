@@ -9,6 +9,7 @@ import 'jquery/dist/jquery.slim.js';
 import 'jquery/dist/jquery.slim.min.js';
 import 'jquery-mask-plugin/dist/jquery.mask'
 import { RotaPaginas } from './Rotas';
+import 'bootstrap';
 
 
 

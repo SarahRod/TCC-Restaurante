@@ -7,7 +7,8 @@ import { FormularioBemVindo } from './componentes/formulario/cadastro/bemVindo/B
 import { PaginaLogin } from './paginas/login/PaginaLogin';
 import { PaginaCadastro } from './paginas/cadastro/paginaCadastro';
 import { Rodape } from './componentes/rodape/cadastro/rodape';
-import { CabecalhoPaginaRestaurante } from './componentes/cabecalho/restaurante/Cabecalho'
+import { CabecalhoPaginaRestaurante } from './componentes/cabecalho/restaurante/Cabecalho';
+import { MenuRestaurante } from './componentes/menu/Menu'
 
 export class RotaPaginas extends Component {
     render() {
@@ -30,9 +31,14 @@ export class RotaPaginas extends Component {
                             )}
                         />
 
-                        <Route path="/restaurante"render={({ match: { url } }) => (
-                             <CabecalhoPaginaRestaurante />
-                        )} />
+                        <Route path="/restaurante" render={({ match: { url } }) => (
+                            <Fragment>
+                                <CabecalhoPaginaRestaurante />
+                                <MenuRestaurante />
+                            </Fragment>
+
+                        )}
+                        />
 
                     </Switch>
                 </ BrowserRouter>
