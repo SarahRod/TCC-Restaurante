@@ -1,136 +1,181 @@
 import React, { Component } from 'react';
 import { Label } from '../../globais/label/Label';
-import LogoGoDinner from '../../../recursos/imgs/logo.png';
+import LogoGoDinner from '../../../recursos/imgs/img-login.png';
 import { InputCadastro } from '../../globais/input/Input';
-import { BotaoLink } from '../../globais/botao/Botao';
+import { BotaoGrande } from '../../globais/botao/styled';
+import $ from 'jquery';
+import { DOMINIO } from '../../../link_config';
+import { withRouter } from 'react-router-dom';
+import PropTypes from "prop-types";
 
 
-export class FormularioLogin extends Component {
+//ARMAZENA OS ESTADOS INICIAIS
+const initialState = {
+    restaurante: {
+        email: '',
+        senha: '',
+    },
 
-    // state = { ...initialState }
+    classErro: '',
+    textoErro: ''
+}
 
-    // componentWillMount(){
-    //     var dados = sessionStorage.getItem('dados');
+class FormularioLogin extends Component {
 
-    //     const json = JSON.parse(dados)
+    state = { ...initialState }
 
-    //     this.state.texto = json.razaoSocial;
+    //PROPRIEDADES DO WITH ROUTER
+    static propTypes = {
+        match: PropTypes.object.isRequired,
+        location: PropTypes.object.isRequired,
+        history: PropTypes.object.isRequired
+    };
 
-    // }
+    //MENSAGEM DE ERRO DA VALIDAÇÃO
+    erroValidacao(e) {
 
-    // enviaFormulario() {
+        this.setState({ classErro: 'alert show alert-danger', })
 
-    //     const restaurante = { ...this.state.restaurante }
+        if (e == "campoVazio") {
+            this.setState({
+                textoErro: `Preencha os campos corretamente`
+            })
+        } else if (e == "usuarioInválido") {
+            this.setState({
+                textoErro: `Email ou senha incorretos`
+            })
+        }
 
-    //     var dados = sessionStorage.getItem('dados');
+    }
 
-    //     const json = JSON.parse(dados)
+    //ENVIA A REQUISIÇÃO
+    enviaFormulario() {
 
-    //     this.state.restaurante.id = json.id;
+        const restaurante = { ...this.state.restaurante }
 
-    //     const url = `${DOMINIO}/foto/restaurante`;
+        const url = `${DOMINIO}/login/restaurante`;
 
-    //     //FAZ O UPLOAD DA FOTO
-    //     var formData = new FormData();
-    //     var files = $("#foto")[0].files[0];
-    //     formData.append('foto', files);
-    //     formData.append('id', this.state.restaurante.id);
+        const email = this.state.restaurante.email;
 
-    //     $.ajax({
-    //         url: url,
-    //         type: 'post',
-    //         data: formData,
-    //         contentType: false,
-    //         processData: false,
-    //         success: function (resposta) {
+        const senha = this.state.restaurante.senha;
 
-    //             console.log('Sucesso');
-    //         }.bind(this),
-    //         error: function (data) {
-    //             console.log('Erro:', data);
+        $.ajax({
+            url: url,
+            type: 'post',
+            data: JSON.stringify({ "email": email, "senha": senha }),
+            dataType: 'json',
+            contentType: "application/json",
+            success: function (resposta) {
 
-    //         }
-    //     });
-    // }
+                console.log(JSON.stringify(resposta));
+
+                const respostaJson = JSON.stringify(resposta)
+
+                if (respostaJson == '{"error":"Usuario não cadastrado"}') {
+                    console.log(resposta)
+                    alert('usuário não cadastrado')
+
+                } else {
+                    this.erroValidacao(e => e ='usuarioInválido')
+                }
+
+
+            }.bind(this),
+            error: function (data) {
+                alert('Erro:', data);
+
+            }
+        });
+    }
+
+    //ENVIA OS DADOS DO FORMULÁRIO PARA O SESSION STORAGE
+    validaCampos(e) {
+        e.preventDefault();
+
+        const bordasCampoVazio = 'border border-danger';
+
+        //VERIFICA SE OS CAMPOS ESTÃO PRENCHIDOS
+        if (!$('#email').val()) {
+            $('#email').addClass(bordasCampoVazio);
+        }
+
+        if (!$('#senha').val()) {
+            $('#senha').addClass(bordasCampoVazio);
+        }
+
+        if (!$('#email').val() || !$('#senha').val()) {
+            this.erroValidacao(e = "campoVazio")
+        } else {
+            this.enviaFormulario(e)
+        }
+
+    }
 
     //ATUALIZA AS INPUTS COM OS ESTADOS 
-    // atualizaCampo(e) {
-    //     const restaurante = { ...this.state.restaurante }
-    //     restaurante[e.target.name] = e.target.value
-    //     this.setState({ restaurante })
+    atualizaCampo(e) {
+        const restaurante = { ...this.state.restaurante }
+        restaurante[e.target.name] = e.target.value;
 
-    //     var file = this.refs.file.files[0];
-    //     var reader = new FileReader();
-    //     var url = reader.readAsDataURL(file);
-
-    //      reader.onloadend = function (e) {
-    //         this.setState({
-    //             imgSrc: [reader.result],
-    //         })
-    //       }.bind(this);  
-
-    // }
+        const bordasCampoVazio = 'border border-danger';
 
 
+        //REMOVE A BORDA VERMELHA DOS CAMPOS PREENCHIDOS
+        if (!$('#email').val() == '') {
+            $('#email').removeClass(bordasCampoVazio);
+        }
+
+        if (!$('#senha').val() == '') {
+            $('#senha').removeClass(bordasCampoVazio);
+        }
+
+
+
+        this.setState({
+            restaurante,
+            textoErro: initialState.textoErro,
+            classErro: initialState.classErro
+        })
+
+    }
 
     /* FORMULÁRIO DO LOGIN */
     render() {
         return (
-            <form className="form-group">
-                <div className="row">
+            <form className="form-group col col-sm col-md col-lg-10">
+                <div className="row justify-content-center mb-5">
                     <img src={LogoGoDinner} className="img-fluid icone-img" />
                 </div>
-                <div className="row mb-5">
-                    <div className="mx-auto h3">Bem-vindo(a) a GoDinner</div>
+                <div className="row mb-4">
+                    <div className="mx-auto h2">Bem-vindo(a) a GoDinner</div>
                 </div>
-                {/* <!--Div de Cadastro--> */}
-                <Label className="ml-5 pl-5 h5" texto="Email" />
-                <div className="row  justify-content-md-center mb-4">
-
-                    <InputCadastro className="col-8 col-sm-8 col-md-8 col-lg-8 p-1 ml-3 mr-3" type="password" id="" name="" placeholder="Digite a seu email .." />
-
+                <div className="row justify-content-center">
+                    <span className={`col-5 col-sm-5 col-md-5 col-lg-5 ${this.state.classErro}`} >{this.state.textoErro}</span>
                 </div>
-                <Label className="ml-5 pl-5 h5" texto="Senha" /><br />
-                <div className="row  justify-content-md-center">
-                    
-                        
-                        <InputCadastro className="col-8 col-sm-8 col-md-8 col-lg-8 p-1 ml-3 mr-3" type="password" id="" name="" placeholder="Digite a sua senha .." />
-                    
-                </div>
-                {/* <!--botões para cadastrar e entrar--> */}
-                <div className="row mt-5 justify-content-md-center">
-
-                    <BotaoLink to="/cadastro" className="col-8 col-sm-8 col-md-8 col-lg-8 p-1 ml-3 mr-3" texto="Entrar"></BotaoLink>
-
-                </div>
-
-                <div className="row mt-4 justify-content-md-center">
-
-                    <BotaoLink to="/cadastro" className="col-8 col-sm-8 col-md-8 col-lg-8 p-1 ml-3 mr-3" texto="Cadastrar"></BotaoLink>
-
-                </div>
-                <div>
-                    <div>
-                        <hr />
-                    </div>
-                    <div className="mt-2 mr-2 ml-2">
-                        <h6>  OU CONERCTAR COM    </h6>
-                    </div>
-                    <div>
-                        <hr />
+                <div className="row  justify-content-center mb-2">
+                    <div className="col-8 col-sm-8 col-md-8 col-lg-8">
+                        <Label className="h5" texto="Email" />
+                        <InputCadastro className="form-control p-1" type="email" id="email" name="email"
+                            placeholder="Digite a seu email .." value={this.state.restaurante.email} onChange={e => this.atualizaCampo(e)} />
                     </div>
                 </div>
-
-                <img src="img/icone/icone-face.png " classNmae="rounded mx-auto d-block" />
-
-                <div className="col-1 col-md-2 col-lg-3"></div> */} */}
-
+                <br />
+                <div className="row  justify-content-center mb-5">
+                    <div className="col-8 col-sm-8 col-md-8 col-lg-8">
+                        <Label className="h5" texto="Senha" />
+                        <InputCadastro className="form-control p-1" type="password" id="senha" name="senha"
+                            placeholder="Digite a sua senha .." value={this.state.restaurante.senha} onChange={e => this.atualizaCampo(e)} />
+                    </div>
+                </div>
+                <div className="row mt-5 justify-content-center">
+                    <BotaoGrande onClick={e => this.validaCampos(e)} to="/cadastro" className="btn col-7 col-sm-7 col-md-7 col-lg-7 p-1">Entrar</BotaoGrande>
+                </div>
+                <div className="row mt-4 justify-content-center">
+                    <BotaoGrande to="/cadastro" className="btn col-7 col-sm-7 col-md-7 col-lg-7 p-1">Cadastrar</BotaoGrande>
+                </div>
             </form>
-
-
         )
-
-
     }
 
 }
+
+export default withRouter(FormularioLogin);

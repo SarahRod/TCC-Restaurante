@@ -10,7 +10,7 @@ import { DOMINIO } from '../../../../link_config';
 
 /*PROPRIEDADES DO CABEÇALHO*/
 const propriedadesCabecalho = {
-    to: '/login',
+    to:  '/',
     width: 'w-25'
 }
 
@@ -92,7 +92,7 @@ class FormularioDados extends Component {
 
         if (!$('#cnpj').val() || !$('#razaoSocial').val() || !$('#telefone').val()) {
             this.erroValidacao(e = "campoVazio")
-        }else if(!$('#razaoSocial').val().length < 3){
+        }else if($('#razaoSocial').val().length < 3){
              this.erroValidacao(e = "nomeMinimo")
         }
 
@@ -175,7 +175,7 @@ class FormularioDados extends Component {
                 </div>
                 {/*LINHA DO  BOTÃO COM A ROTA PARA O PRÓXIMA PÁGINA  */}
                 <div className="row justify-content-end">
-                    <BotaoLink onClick={e => this.validaCampos(e)} to="/endereco" className="col-4 col-sm-4 col-md-4 col-lg-4 btn-orange mr-3" texto="Próximo" />
+                    <BotaoLink onClick={e => this.validaCampos(e)} to="cadastro/endereco" className="col-4 col-sm-4 col-md-4 col-lg-4 btn-orange mr-3" texto="Próximo" />
                 </div>
             </form>
         )
