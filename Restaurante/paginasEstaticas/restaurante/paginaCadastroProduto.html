@@ -119,94 +119,68 @@
                 <!--Coluna de Imagens-->
                 <div class="col-12 col-md-7 red">
                    <div class="row">
-                       <div class="col-9 col-md-10 mx-auto ">
-                            <div class="card">
+                       <div class="col-7 col-md-5 mx-auto ">
+                            <div class="card card-maior">
                                 <img src="img/icone_slider/8.jpg" class="card-img-top tamanho-imagem-produto" alt="...">
                                 <div class="card-body pb-0">
-                                    <h5 class="card-title text-center">Imagem Principal</h5> 
+                                    <h6 class="card-title text-center">Imagem Principal</h6> 
                                     <p>
-                                        <div class="input-group mb-3">
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="inputGroupFile01" >
-                                                <label class="custom-file-label" for="inputGroupFile01"></label>
+                                        <div class="input-group input-group-sm mb-0 ">
+                                            <input type="text" class="form-control mt-0" aria-label="Exemplo do tamanho do input" aria-describedby="inputGroup-sizing-sm" placeholder="Escreva uma legenda..">
+                                            <div class="input-file">
+                                                <span>Anexar</span>
+                                                <input ref="file" type="file" classe="upload"  multiple="true" id="foto" name="foto" value=""/>
                                             </div>
                                         </div>
                                     </p>
-                                    <a class="btn btn-success mb-4" href="javascript:void(0)" id="addInput">
+                                    <a class="btn btn-success btn-sm mb-2" href="javascript:void(0)" id="addImagem">
                                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                                        Adicionar Imagem
+                                        Adicionar
                                     </a>
                                 </div>
                             </div>
-                       </div>
-                        
+                       </div>     
                    </div>
-                </div> 
-                
-            </div>
-            <div class="row mt-5">
-                <div class="col-3 ">
-                    <a href="#" class="btn btn-orange">Cadastrar</a>
-                </div>
-            </div>
-            <div id="dynamicDiv">
-                    <p>
-                        <input type="text" id="inputeste" size="20" value="" placeholder="" />
-                        <a class="btn btn-danger" href="javascript:void(0)" id="remInput">
-                            <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                            Remover Campo
-                        </a>
-                    </p>
-                </div>
-                <script>
-                        $(function () {
-                            var scntDiv = $('#dynamicDiv');
-                            $(document).on('click', '#addInput', function () {
-                                $('<div class="col-3">'+
-                                    '<div class="card card-menor"> '+
-                                        '<div class="card card-menor">'+
-                                            '<img src="img/icone_slider/8.jpg" class="card-img-top tamanho-imagem-produto" alt="...">'+
-                                            '<div class="card-body pb-0">' +
-                                            
-                                            
-                                            '</div>'+
-                                        '</div>'+
-                                    '</div>'+
-                                '</div>').appendTo(scntDiv);
-                                return false;
-                            });
-                            $(document).on('click', '#remInput', function () {
-                                $(this).parents('p').remove();
-                                return false;
-                            });
-                        });
-                        </script>
-           
-        </form>
-        <div class="row">
-            <div class="col-3">
-                <div class="card card-menor">
-                    <img src="img/icone_slider/8.jpg" class="card-img-top tamanho-imagem-produto" alt="...">
-                    <div class="card-body pb-0">
-                        <h5 class="card-title text-center">Imagem Principal</h5> 
-                        <p>
-                            <div class="input-group mb-3">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="inputGroupFile01" >
-                                    <label class="custom-file-label" for="inputGroupFile01"></label>
+                   <div class="row">
+                        <div class="col-5 col-md-4  ">
+                            <div id="dynamicDiv">
+                                <p>
+                                <input type="text" id="inputeste" size="20" value="" placeholder="" />
+                                <a class="btn btn-danger" href="javascript:void(0)" id="remInput">
+                                    <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                                    Remover Campo
+                                </a>
+                            </p>
+                            
+                            
+                            
+                            
+                            
+                            
+                            <div class="card card-menor">
+                                <img src="img/icone_slider/8.jpg" class="card-img-top tamanho-imagem-produto" alt="...">
+                                <div class="card-body pb-0">
+                                    <p>
+                                        <div class="input-group input-group-sm mb-0 ">
+                                            <input type="text" class="form-control mt-0" aria-label="Exemplo do tamanho do input" aria-describedby="inputGroup-sizing-sm" placeholder="Escreva uma legenda..">
+                                            <div class="input-file">
+                                                <span>Anexar</span>
+                                                <input ref="file" type="file" classe="upload"  multiple="true" id="foto" name="foto" value=""/>
+                                            </div>
+                                        </div>
+                                    </p>
+                                    <a class="btn btn-danger btn-sm mb-2" href="javascript:void(0)" id="addInput">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                        Remover
+                                    </a>
                                 </div>
                             </div>
-                        </p>
-                        <a class="btn btn-danger" href="javascript:void(0)" id="remInput">
-                            <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                            Remover Imagem
-                        </a>
+                        </div> 
                     </div>
-                </div>
+                </div> 
             </div>
-        </div>
-
-
+            
+        </form>
         
     </div>
     <script type="text/javascript" src="./bootstrap/js/bootstrap.js"></script>
