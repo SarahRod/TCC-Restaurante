@@ -40,7 +40,7 @@ class FormularioLogin extends Component {
             this.setState({
                 textoErro: `Preencha os campos corretamente`
             })
-        } else if (e == "usuarioInválido") {
+        } else if (e == "usuarioInvalido") {
             this.setState({
                 textoErro: `Email ou senha incorretos`
             })
@@ -72,11 +72,14 @@ class FormularioLogin extends Component {
                 const respostaJson = JSON.stringify(resposta)
 
                 if (respostaJson == '{"error":"Usuario não cadastrado"}') {
-                    console.log(resposta)
-                    alert('usuário não cadastrado')
 
+                    var e;
+                   
+                    alert('usuário não cadastrado')
+                    this.erroValidacao(e ='usuarioInvalido')
                 } else {
-                    this.erroValidacao(e => e ='usuarioInválido')
+                    this.props.history.push("/restaurante");
+                    console.log(resposta)
                 }
 
 
