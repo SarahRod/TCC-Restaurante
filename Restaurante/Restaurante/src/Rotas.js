@@ -7,6 +7,7 @@ import { FormularioBemVindo } from './componentes/formulario/cadastro/bemVindo/B
 import { PaginaLogin } from './paginas/login/PaginaLogin';
 import { PaginaCadastro } from './paginas/cadastro/paginaCadastro';
 import { Rodape } from './componentes/rodape/cadastro/rodape';
+import { PaginaCadastroProduto } from './paginas/cadastroProduto/PaginaCadastroProduto';
 
 export class RotaPaginas extends Component {
     render() {
@@ -26,6 +27,13 @@ export class RotaPaginas extends Component {
                                     <Rodape/>
                                 </Fragment>
                               
+                            )}
+                        />
+                        <Route
+                            path='/cadastroProduto' render={({match:{url}}) =>(
+                              <Fragment>
+                                  <Route path={`${url}/`} component={PaginaCadastroProduto}/>
+                              </Fragment>  
                             )}
                         />
 
