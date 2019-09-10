@@ -75,3 +75,9 @@ select, textarea {
 .icone-img {
     width: 600px !important;
 }
+
+.img-background{
+    background-image: url("../imgs/background-food.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}

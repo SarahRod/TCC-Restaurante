@@ -11,7 +11,7 @@ export const CabecalhoPaginaRestaurante = (props) => (
     <header className="navbar navbar-light bg-light border-bottom">
         <div className="row">
             <div className="col-3 col-sm-3 col-md-3 col-lg-3">
-                <img className="img-fluid" src={Logo} />
+                <img src={Logo} style={{ maxWidth: 200 + 'px' }}/>
             </div>
             <div className="col-9 col-sm-9 col-md-9 col-lg-9">
                 <div className="row justify-content-end pr-5">
