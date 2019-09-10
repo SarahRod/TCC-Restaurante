@@ -35,6 +35,7 @@ export class RotaPaginas extends Component {
                         <Route path="/restaurante" render={({ match: { url } }) => (
                             <Fragment>
                                 <CabecalhoPaginaRestaurante />
+                                <br/>
                                 <CorpoIndex/>
                                 <Rodape />
                             </Fragment>

@@ -144,12 +144,12 @@ class FormularioLogin extends Component {
     /* FORMULÁRIO DO LOGIN */
     render() {
         return (
-            <form className="form-group bg-white container col-10 col-sm-8 col-md-6 col-lg-3 pt-4 pb-5 rounded">
+            <form className="form-group bg-white container col-10 col-sm-8 col-md-6 col-lg-4 pt-4 pb-5 rounded border">
                 <div className="row justify-content-center mb-5">
                     <img src={LogoGoDinner} className="img-fluid icone-img" style={{ maxWidth: 300 + 'px' }} />
                 </div>
                 <div className="row mb-4">
-                    <div className="mx-auto h3">Bem-vindo(a) a GoDinner</div>
+                    <div className="mx-auto text-dark h3">Bem-vindo(a) a GoDinner</div>
                 </div>
                 <div className="row pl-5 pr-5">
                     <span className={` ${this.state.classErro}`} >{this.state.textoErro}</span>

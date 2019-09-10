@@ -10,7 +10,7 @@ import Chat from '../../../recursos/icons/chat.png';
 
 //COMPONENTE DO CORPO DA PÁGINA DE LOGIN
 export const CorpoIndex = (props) => (
-    <div className="container mb-4">
+    <div className="container mt-5">
         <div className="row text-center mt-3">
             <div className="col col-sm col-md col-lg h1">
                 Pizza do Teco
