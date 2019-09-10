@@ -8,7 +8,8 @@ import { PaginaLogin } from './paginas/login/PaginaLogin';
 import { PaginaCadastro } from './paginas/cadastro/paginaCadastro';
 import { Rodape } from './componentes/rodape/cadastro/rodape';
 import { CabecalhoPaginaRestaurante } from './componentes/cabecalho/restaurante/Cabecalho';
-import { MenuRestaurante } from './componentes/menu/Menu'
+import { MenuRestaurante } from './componentes/menu/Menu';
+import { CorpoIndex } from './componentes/corpo/index/Corpo';
 
 export class RotaPaginas extends Component {
     render() {
@@ -35,6 +36,8 @@ export class RotaPaginas extends Component {
                             <Fragment>
                                 <CabecalhoPaginaRestaurante />
                                 <MenuRestaurante />
+                                <CorpoIndex/>
+                                <Rodape />
                             </Fragment>
 
                         )}

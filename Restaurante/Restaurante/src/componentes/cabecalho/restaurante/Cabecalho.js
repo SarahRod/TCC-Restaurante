@@ -8,13 +8,13 @@ import Pizza from '../../../recursos/imgs/pizza.jpg'
 import { ImgRestaurante } from './styled';
 
 export const CabecalhoPaginaRestaurante = (props) => (
-    <header className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="row border-bottom">
+    <header className="navbar navbar-light bg-light border-bottom">
+        <div className="row">
             <div className="col-3 col-sm-3 col-md-3 col-lg-3">
-                <img className="img-fluid w-50" src={Logo} />
+                <img className="img-fluid" src={Logo} />
             </div>
             <div className="col-9 col-sm-9 col-md-9 col-lg-9">
-                <div className="row justify-content-end pr-5 mt-2">
+                <div className="row justify-content-end pr-5">
                     <Label className="align-self-center mr-4 h5" texto="Bar do teco" />
                     <ImgRestaurante className="img-fluid rounded-circle" src={Pizza} />
 
