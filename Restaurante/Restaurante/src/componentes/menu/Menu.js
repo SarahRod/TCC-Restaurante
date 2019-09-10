@@ -3,22 +3,16 @@ import { Menu } from './styled'
 
 
 export const MenuRestaurante = (props) => (
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
-            <span class="navbar-toggler-icon"></span>
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
         </button>
-
-        <div class="collapse navbar-collapse ml-5" id="conteudoNavbarSuportado">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item h5 text-dark mr-3">
-                    <a class="nav-link" href="#">Cadastro de produtos</a>
-                </li>
-
-                <li class="nav-item h5 text-dark">
-                    <a class="nav-link" href="#">Seus produtos</a>
-                </li>
-            </ul>
+        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div className="navbar-nav">
+                <a className="nav-item nav-link" href="#">Seus Pedidos</a>
+                <a className="nav-item nav-link" href="#">Cadastrar Produtos</a>
+            </div>
         </div>
     </nav>
 );

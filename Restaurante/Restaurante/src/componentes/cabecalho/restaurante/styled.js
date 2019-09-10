@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ImgRestaurante = styled.img`
-    width: 90px !important; 
-    height: 80px !important;
+    max-width: 80px !important; 
+    height: 75px !important;
 
 `
