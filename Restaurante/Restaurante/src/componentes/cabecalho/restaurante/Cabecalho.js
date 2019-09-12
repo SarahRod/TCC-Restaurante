@@ -8,8 +8,19 @@ import Pizza from '../../../recursos/imgs/pizza.jpg'
 import { ImgRestaurante } from './styled';
 import { DOMINIO } from '../../../link_config';
 import $ from 'jquery';
+import { BotaoLink} from '../../globais/botao/Botao';
+import { withRouter } from 'react-router-dom';
 
 export class CabecalhoPaginaRestaurante extends Component {
+
+    apagarLocalStorage(){
+
+        localStorage.removeItem("dadosRestaurante");
+
+        localStorage.removeItem("TOKEN");
+
+        this.props.history.push("/cadastro/endereco");
+    }
 
     componentWillMount() {
 
@@ -30,8 +41,6 @@ export class CabecalhoPaginaRestaurante extends Component {
 
                 localStorage.setItem('dadosRestaurante', JSON.stringify(resposta));
 
-                alert(resposta[0].foto)
-
                 $(".foto-restaurante").attr("src", resposta[0].foto);
 
 
@@ -48,7 +57,7 @@ export class CabecalhoPaginaRestaurante extends Component {
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light mb-2">
                 <a className="navbar-brand" href="#">
-                    <img  src={Logo} style={{ maxWidth: 180 + 'px' }} />
+                    <img src={Logo} style={{ maxWidth: 180 + 'px' }} />
                 </a>
 
                 <div className="row align-items-center ml-auto p-2 bg-light ">
@@ -62,10 +71,15 @@ export class CabecalhoPaginaRestaurante extends Component {
                     <a className="navbar-brand col col-sm col-md col-lg-3" href="#">
                         <img className="border rounded-circle foto-restaurante" src='' style={{ width: 65 + 'px', height: 60 + 'px' }} />
                     </a>
+
+                   
                 </div>
 
+                <BotaoLink to="/" class="col col-sm col-md col-lg-3" texto="Logout" onClick={e => this.apagarLocalStorage(e)}/>
 
             </nav>
         )
     }
 }
+
+export default withRouter(CabecalhoPaginaRestaurante);

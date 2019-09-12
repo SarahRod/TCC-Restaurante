@@ -10,7 +10,7 @@ import { Rodape } from './componentes/rodape/cadastro/rodape';
 
 import { PaginaCadastroProduto } from './paginas/cadastroProduto/PaginaCadastroProduto';
 
-import { CabecalhoPaginaRestaurante } from './componentes/cabecalho/restaurante/Cabecalho';
+import CabecalhoPaginaRestaurante from './componentes/cabecalho/restaurante/Cabecalho';
 import { MenuRestaurante } from './componentes/menu/Menu';
 import { CorpoIndex } from './componentes/corpo/index/Corpo';
 
