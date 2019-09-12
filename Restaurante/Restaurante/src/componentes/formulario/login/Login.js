@@ -22,6 +22,7 @@ const initialState = {
 
 class FormularioLogin extends Component {
 
+    //STATE ESTÁ RECEBENDO OS ESTADOS INICIAIS
     state = { ...initialState }
 
     //PROPRIEDADES DO WITH ROUTER
@@ -40,7 +41,7 @@ class FormularioLogin extends Component {
             this.setState({
                 textoErro: `Preencha os campos corretamente`
             })
-        } else if (e == "usuarioInválido") {
+        } else if (e == "usuarioInvalido") {
             this.setState({
                 textoErro: `Email ou senha incorretos`
             })
@@ -48,7 +49,6 @@ class FormularioLogin extends Component {
 
     }
 
-    //ENVIA A REQUISIÇÃO
     enviaFormulario() {
 
         const restaurante = { ...this.state.restaurante }
@@ -62,7 +62,7 @@ class FormularioLogin extends Component {
         $.ajax({
             url: url,
             type: 'post',
-            data: JSON.stringify({ "email": email, "senha": senha }),
+            data: JSON.stringify({ "email": email, "password": senha }),
             dataType: 'json',
             contentType: "application/json",
             success: function (resposta) {
@@ -72,17 +72,22 @@ class FormularioLogin extends Component {
                 const respostaJson = JSON.stringify(resposta)
 
                 if (respostaJson == '{"error":"Usuario não cadastrado"}') {
-                    console.log(resposta)
-                    alert('usuário não cadastrado')
 
+                    var e;
+
+                    this.erroValidacao(e = 'usuarioInvalido')
                 } else {
-                    this.erroValidacao(e => e ='usuarioInválido')
+
+                    this.props.history.push("/restaurante");
+                   
+                    localStorage.setItem("TOKEN", JSON.stringify(resposta.token));
+
                 }
 
 
             }.bind(this),
             error: function (data) {
-                alert('Erro:', data);
+                console.log(data);
 
             }
         });
@@ -105,9 +110,9 @@ class FormularioLogin extends Component {
 
         if (!$('#email').val() || !$('#senha').val()) {
             this.erroValidacao(e = "campoVazio")
-        } else {
-            this.enviaFormulario(e)
-        }
+        }else{
+            this.enviaFormulario(e);
+        } 
 
     }
 
@@ -141,36 +146,36 @@ class FormularioLogin extends Component {
     /* FORMULÁRIO DO LOGIN */
     render() {
         return (
-            <form className="form-group col col-sm col-md col-lg-10">
+            <form className="form-group bg-white container col-10 col-sm-8 col-md-6 col-lg-4 pt-4 pb-5 rounded border" style={{ maxWidth: 450 + 'px' }}>
                 <div className="row justify-content-center mb-5">
-                    <img src={LogoGoDinner} className="img-fluid icone-img" />
+                    <img src={LogoGoDinner} className="img-fluid icone-img" style={{ maxWidth: 300 + 'px' }} />
                 </div>
                 <div className="row mb-4">
-                    <div className="mx-auto h2">Bem-vindo(a) a GoDinner</div>
+                    <div className="mx-auto text-dark h3">Bem-vindo(a) a GoDinner</div>
                 </div>
-                <div className="row justify-content-center">
-                    <span className={`col-5 col-sm-5 col-md-5 col-lg-5 ${this.state.classErro}`} >{this.state.textoErro}</span>
+                <div className="row pl-5 pr-5">
+                    <span className={` ${this.state.classErro}`} >{this.state.textoErro}</span>
                 </div>
-                <div className="row  justify-content-center mb-2">
-                    <div className="col-8 col-sm-8 col-md-8 col-lg-8">
-                        <Label className="h5" texto="Email" />
-                        <InputCadastro className="form-control p-1" type="email" id="email" name="email"
-                            placeholder="Digite a seu email .." value={this.state.restaurante.email} onChange={e => this.atualizaCampo(e)} />
-                    </div>
+                <div className="row mb-4 pl-5 pr-5 ">
+
+                    <Label className="h6 text-secondary" texto="Email" />
+                    <InputCadastro className="form-control p-1" type="email" id="email" name="email" maxWidth={100}
+                        placeholder="Digite a seu email .." value={this.state.restaurante.email} onChange={e => this.atualizaCampo(e)} />
+
                 </div>
-                <br />
-                <div className="row  justify-content-center mb-5">
-                    <div className="col-8 col-sm-8 col-md-8 col-lg-8">
-                        <Label className="h5" texto="Senha" />
-                        <InputCadastro className="form-control p-1" type="password" id="senha" name="senha"
-                            placeholder="Digite a sua senha .." value={this.state.restaurante.senha} onChange={e => this.atualizaCampo(e)} />
-                    </div>
+
+                <div className="row mb-5 pl-5 pr-5">
+
+                    <Label className="h6 text-secondary" texto="Senha" />
+                    <InputCadastro className="form-control p-1" type="password" id="senha" name="senha"
+                        placeholder="Digite a sua senha .." value={this.state.restaurante.senha} onChange={e => this.atualizaCampo(e)} />
+
                 </div>
-                <div className="row mt-5 justify-content-center">
-                    <BotaoGrande onClick={e => this.validaCampos(e)} to="/cadastro" className="btn col-7 col-sm-7 col-md-7 col-lg-7 p-1">Entrar</BotaoGrande>
+                <div className="row mt-5 pl-5 pr-5">
+                    <BotaoGrande onClick={e => this.validaCampos(e)} to="/cadastro" className="btn form-control p-1">Entrar</BotaoGrande>
                 </div>
-                <div className="row mt-4 justify-content-center">
-                    <BotaoGrande to="/cadastro" className="btn col-7 col-sm-7 col-md-7 col-lg-7 p-1">Cadastrar</BotaoGrande>
+                <div className="row mt-3 pl-5 pr-5">
+                    <BotaoGrande to="/cadastro" className="btn form-control p-1">Cadastrar</BotaoGrande>
                 </div>
             </form>
         )

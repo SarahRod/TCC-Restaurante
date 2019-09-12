@@ -30,6 +30,7 @@ const initialState = {
 
 export class FormularioBemVindo extends Component {
 
+    //STATE ESTÁ RECEBENDO OS ESTADOS INICIAIS
     state = { ...initialState }
 
     componentWillMount(){
@@ -41,6 +42,7 @@ export class FormularioBemVindo extends Component {
 
     }
 
+    
     enviaFormulario() {
 
         const restaurante = { ...this.state.restaurante }
