@@ -62,7 +62,7 @@ class FormularioLogin extends Component {
         $.ajax({
             url: url,
             type: 'post',
-            data: JSON.stringify({ "email": email, "senha": senha }),
+            data: JSON.stringify({ "email": email, "password": senha }),
             dataType: 'json',
             contentType: "application/json",
             success: function (resposta) {
@@ -79,7 +79,9 @@ class FormularioLogin extends Component {
                 } else {
 
                     this.props.history.push("/restaurante");
-                    console.log(resposta)
+                   
+                    localStorage.setItem("TOKEN", JSON.stringify(resposta.token));
+
                 }
 
 
@@ -108,9 +110,9 @@ class FormularioLogin extends Component {
 
         if (!$('#email').val() || !$('#senha').val()) {
             this.erroValidacao(e = "campoVazio")
-        } else {
-            this.enviaFormulario(e)
-        }
+        }else{
+            this.enviaFormulario(e);
+        } 
 
     }
 
