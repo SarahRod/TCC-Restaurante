@@ -22,6 +22,7 @@ const initialState = {
 
 class FormularioLogin extends Component {
 
+    //STATE ESTÁ RECEBENDO OS ESTADOS INICIAIS
     state = { ...initialState }
 
     //PROPRIEDADES DO WITH ROUTER
@@ -48,7 +49,6 @@ class FormularioLogin extends Component {
 
     }
 
-    //ENVIA A REQUISIÇÃO
     enviaFormulario() {
 
         const restaurante = { ...this.state.restaurante }
@@ -144,7 +144,7 @@ class FormularioLogin extends Component {
     /* FORMULÁRIO DO LOGIN */
     render() {
         return (
-            <form className="form-group bg-white container col-10 col-sm-8 col-md-6 col-lg-4 pt-4 pb-5 rounded border">
+            <form className="form-group bg-white container col-10 col-sm-8 col-md-6 col-lg-4 pt-4 pb-5 rounded border" style={{ maxWidth: 450 + 'px' }}>
                 <div className="row justify-content-center mb-5">
                     <img src={LogoGoDinner} className="img-fluid icone-img" style={{ maxWidth: 300 + 'px' }} />
                 </div>
