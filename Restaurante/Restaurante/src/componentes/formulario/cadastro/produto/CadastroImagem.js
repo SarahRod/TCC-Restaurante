@@ -22,7 +22,7 @@ export class CadastroImagem extends Component{
                                                 <span>Anexar Imagem</span>
                                                 <input ref="file" type="file" className="upload"  multiple="true" id="foto" name="foto" value=""  onChange=""/>
                                             </div>
-                                    <a class="btn btn-success btn-sm mb-2 btn-tamanho" href="javascript:void(0)" id="addInput">
+                                    <a class="btn btn-success btn-sm mb-2 btn-tamanho" id="addInput">
                                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                                         Adicionar
                                     </a>

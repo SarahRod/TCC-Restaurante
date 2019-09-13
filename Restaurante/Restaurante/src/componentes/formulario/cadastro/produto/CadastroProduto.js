@@ -8,12 +8,13 @@ export class CadastroProduto extends Component{
     componentDidMount() {
         console.log("DidMount");
         $.ajax({
-            url: 'http://localhost:8080/produtos/todos',
+            url: 'http://localhost:8080/produto/todos',
+            type: 'get',
             dataType: 'json',
+            contentType: "application/json",
             success: function(resposta) {
                 console.log("chegou!");
                 //quando da o setState o render atualiza o elemento qu está na tela
-                this.setState({lista: resposta});
             }.bind(this),
             error: function(resposta){
                 console.log("Ocorreu um erro na conexão!!")
@@ -56,7 +57,7 @@ export class CadastroProduto extends Component{
                                 <div className="col-8">
                                     <label  className="h5">Categoria do Produto</label>
                                     <select className="custom-select">
-                                        <option selected>Selecione a categoria para este produto... </option>
+                                        <option value="" selected >Selecione a categoria para este produto... </option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
                                         <option value="3">Three</option>

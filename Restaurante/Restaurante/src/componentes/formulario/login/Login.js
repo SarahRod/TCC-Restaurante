@@ -83,10 +83,8 @@ class FormularioLogin extends Component {
                     localStorage.setItem("token", JSON.stringify(resposta.token));
 
                     this.props.history.push("/restaurante");
-
                 }
-
-
+                
             }.bind(this),
             error: function (data) {
                 console.log(data);
