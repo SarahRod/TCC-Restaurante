@@ -77,10 +77,18 @@ class FormularioLogin extends Component {
 
                     this.erroValidacao(e = 'usuarioInvalido')
                 } else {
-                    
-                    localStorage.setItem("TOKEN", JSON.stringify(resposta.token));
-                    this.props.history.push("/restaurante");
+
+
                    
+                   
+                    localStorage.setItem("token", JSON.stringify(resposta.token));
+
+                    const token = localStorage.getItem("token");
+
+                    if(token != null){
+                        this.props.history.push("/restaurante");
+                    }
+
 
                 }
 

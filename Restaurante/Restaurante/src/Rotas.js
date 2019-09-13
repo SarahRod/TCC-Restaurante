@@ -9,7 +9,12 @@ import { PaginaLogin } from './paginas/login/PaginaLogin';
 import { PaginaCadastro } from './paginas/cadastro/paginaCadastro';
 import { Rodape } from './componentes/rodape/cadastro/rodape';
 
+import ItensLista from './componentes/lista/Lista';
+import $ from 'jquery';
+
+
 import CorpoListagemProdutos from "./componentes/corpo/listagemProdutos/CorpoListagemProduto";
+
 
 import { PaginaCadastroProduto } from './paginas/cadastroProduto/PaginaCadastroProduto';
 
@@ -17,7 +22,7 @@ import CabecalhoPaginaRestaurante from './componentes/cabecalho/restaurante/Cabe
 import { MenuRestaurante } from './componentes/menu/Menu';
 import { CorpoIndex } from './componentes/corpo/index/Corpo';
 
-export const estaAutenticado = () => localStorage.getItem("TOKEN") != null;
+export const estaAutenticado = () => localStorage.getItem("token") != null;
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
@@ -39,6 +44,7 @@ const teste = {
 
 
 export class RotaPaginas extends Component {
+
     render() {
         return (
             <Fragment>
@@ -57,8 +63,12 @@ export class RotaPaginas extends Component {
                                     <Route path={`${url}/endereco`} component={FormularioEndereco} />
                                     <Route path={`${url}/login`} component={FormularioLogin} />
                                     <Route path={`${url}/bem-vindo`} component={FormularioBemVindo} />
+
+                                   
+
                                     <Route path={`${url}/produtos`} component={CorpoListagemProdutos} />
                                     <Rodape />
+
                                 </Fragment>
 
                             )}

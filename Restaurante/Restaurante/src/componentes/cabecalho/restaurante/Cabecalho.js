@@ -15,33 +15,27 @@ export class CabecalhoPaginaRestaurante extends Component {
 
     apagarLocalStorage(){
 
-        localStorage.removeItem("dadosRestaurante");
-
-        localStorage.removeItem("TOKEN");
+        localStorage.clear();
 
         this.props.history.push("/cadastro/endereco");
     }
 
-    // componentWillMount() {
 
-    //     let token = localStorage.getItem('token');
-    //     token = token.replace(/"/g, "");
-    //     localStorage.setItem('token', token);
+    componentDidMount() {
 
-    //     const url = `${DOMINIO}/restaurante/todos`;
+        let token = localStorage.getItem('token');
+        token = token.replace(/"/g, "");
+        localStorage.setItem('token', token);
+        sessionStorage.setItem('token', token);
+     
+        const url = `${DOMINIO}/restaurante/este`;
 
+                localStorage.setItem('id', JSON.stringify(resposta.id));
+                localStorage.setItem('nome', JSON.stringify(resposta.razaoSocial));
+               
+                // localStorage.setItem('id', JSON.stringify(resposta.id));
 
-    //     $.ajax({
-    //         url: url,
-    //         type: 'get',
-    //         headers: { 'token': token },
-    //         dataType: 'json',
-    //         contentType: "application/json",
-    //         success: function (resposta) {
-
-    //             localStorage.setItem('dadosRestaurante', JSON.stringify(resposta));
-
-    //             $(".foto-restaurante").attr("src", resposta[0].foto);
+                $(".foto-restaurante").attr("src", resposta.foto);
 
 
     //         }.bind(this),
@@ -49,8 +43,8 @@ export class CabecalhoPaginaRestaurante extends Component {
     //             console.log(data);
 
     //         }
-    //     });
-    // }
+         });
+     }
 
 
     render() {
