@@ -4,11 +4,17 @@ import FormularioEndereco from './componentes/formulario/cadastro/enderecoCadast
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import FormularioLogin from './componentes/formulario/cadastro/login/Login';
 import { FormularioBemVindo } from './componentes/formulario/cadastro/bemVindo/BemVindo'
+import { Lista } from './componentes/lista/Lista'
 import { PaginaLogin } from './paginas/login/PaginaLogin';
 import { PaginaCadastro } from './paginas/cadastro/paginaCadastro';
 import { Rodape } from './componentes/rodape/cadastro/rodape';
+
 import ItensLista from './componentes/lista/Lista';
 import $ from 'jquery';
+
+
+import CorpoListagemProdutos from "./componentes/corpo/listagemProdutos/CorpoListagemProduto";
+
 
 import { PaginaCadastroProduto } from './paginas/cadastroProduto/PaginaCadastroProduto';
 
@@ -44,7 +50,11 @@ export class RotaPaginas extends Component {
             <Fragment>
                 <BrowserRouter>
                     <Switch>
-                        <Route path="/" exact component={PaginaLogin} />
+                        
+                        {
+                            /*Só p testar pág de Listagem de produtos */
+                            /* <Route path="/" exact component={PaginaLogin} /> */
+                        }
 
                         <Route
                             path="/cadastro" render={({ match: { url } }) => (
@@ -53,7 +63,12 @@ export class RotaPaginas extends Component {
                                     <Route path={`${url}/endereco`} component={FormularioEndereco} />
                                     <Route path={`${url}/login`} component={FormularioLogin} />
                                     <Route path={`${url}/bem-vindo`} component={FormularioBemVindo} />
-                                    {/* <Route path={`${url}/lista`} component={ItensLista} /> */}
+
+                                   
+
+                                    <Route path={`${url}/produtos`} component={CorpoListagemProdutos} />
+                                    <Rodape />
+
                                 </Fragment>
 
                             )}

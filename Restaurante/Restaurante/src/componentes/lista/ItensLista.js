@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
-import Imagem from '../../recursos/imgs/pizza.jpg'
+import Imagem from '../../recursos/imgs/pizza.jpg';
+import { FaPencilAlt } from 'react-icons/fa';
 import $ from 'jquery';
 
-export class ItensLista extends Component{
+class ItensLista extends Component{
 
+    constructor(props){
+        super();
+        this.state = {item: props.item}
+        console.log(this.state.item)
+    }
     // test(){
     //     $(function(){
     //         $('.visualizar').click(function(){
@@ -31,35 +37,36 @@ export class ItensLista extends Component{
 
     render() {
         return (
-            <div className="item-list-p list-group-item-action mb-3 p-3 w-100" >
+            <div className="item-list-p list-group-item-action mb-3 p-2 w-100" >
                  <div className="row m-1">
-                    <div className="col-3 p-3">
+                    <div className="col-3 p-2">
                         <figure className="figure">
-                            <img src={Imagem} className="image-parent card-img rounded-circle"/>
+                            <img src={this.state.item.foto} className="image-parent card-img rounded-circle"/>
                         </figure>
                     </div>
                      <div className="col-9">
                         
                       <div className="row">
                             <div className="col-11">
-                                 <h5 className="h4">Pizza Calabresa</h5>
+                                 <h5 className="h4">{this.state.item.nome}</h5>
                              </div>
                              <div className="col-1">
-                                 <i className="my-3 mx-1 glyphicon glyphicon-pencil"></i>
+                                 <i className="my-3 mx-1 pointer" ><FaPencilAlt/></i>
                              </div>
                          </div>
 
-                         <div className="row p-3 mb-2" >
+                         <div className="row p-0 mb-2" >
                              <p className="text-muted" >
-                                 Saborosa cobertura de mussarela especial, manjericão fresco, pepperoni sadia, fatias de tomates e parmesão artesanalmente gratinados.
+                                 {this.state.item.descricao}
                              </p>
                          </div>
-                         <div className="row p-3 mb-2" >
-                             <small className="text-muted">R$30,00</small>
+                         <div className="row p-0 mb-1" >
+                             <small className="text-muted">{this.state.item.preco}</small>
                          </div>
                      </div>
                  </div>
              </div>
         );
     }
-}export default ItensLista;
+};
+export default ItensLista
