@@ -1,8 +1,27 @@
 import React,{Component, Fragment} from 'react';
 import {CadastroImagem} from './CadastroImagem';
+import $ from 'jquery';
 
 
 export class CadastroProduto extends Component{
+
+    componentDidMount() {
+        console.log("DidMount");
+        $.ajax({
+            url: 'http://localhost:8080/produtos/todos',
+            dataType: 'json',
+            success: function(resposta) {
+                console.log("chegou!");
+                //quando da o setState o render atualiza o elemento qu está na tela
+                this.setState({lista: resposta});
+            }.bind(this),
+            error: function(resposta){
+                console.log("Ocorreu um erro na conexão!!")
+            }
+        })
+    }
+
+
     render(){
         return(
             <Fragment>
