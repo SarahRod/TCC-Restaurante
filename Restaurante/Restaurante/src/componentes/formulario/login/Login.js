@@ -77,10 +77,10 @@ class FormularioLogin extends Component {
 
                     this.erroValidacao(e = 'usuarioInvalido')
                 } else {
-
+                    
+                    localStorage.setItem("TOKEN", JSON.stringify(resposta.token));
                     this.props.history.push("/restaurante");
                    
-                    localStorage.setItem("TOKEN", JSON.stringify(resposta.token));
 
                 }
 

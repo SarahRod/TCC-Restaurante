@@ -22,35 +22,35 @@ export class CabecalhoPaginaRestaurante extends Component {
         this.props.history.push("/cadastro/endereco");
     }
 
-    componentWillMount() {
+    // componentWillMount() {
 
-        let token = localStorage.getItem('TOKEN');
-        token = token.replace('"', "");
-        localStorage.setItem('TOKEN', token);
+    //     let token = localStorage.getItem('token');
+    //     token = token.replace(/"/g, "");
+    //     localStorage.setItem('token', token);
 
-        const url = `${DOMINIO}/restaurante/todos`;
-
-
-        $.ajax({
-            url: url,
-            type: 'get',
-            headers: { 'token': token },
-            dataType: 'json',
-            contentType: "application/json",
-            success: function (resposta) {
-
-                localStorage.setItem('dadosRestaurante', JSON.stringify(resposta));
-
-                $(".foto-restaurante").attr("src", resposta[0].foto);
+    //     const url = `${DOMINIO}/restaurante/todos`;
 
 
-            }.bind(this),
-            error: function (data) {
-                console.log(data);
+    //     $.ajax({
+    //         url: url,
+    //         type: 'get',
+    //         headers: { 'token': token },
+    //         dataType: 'json',
+    //         contentType: "application/json",
+    //         success: function (resposta) {
 
-            }
-        });
-    }
+    //             localStorage.setItem('dadosRestaurante', JSON.stringify(resposta));
+
+    //             $(".foto-restaurante").attr("src", resposta[0].foto);
+
+
+    //         }.bind(this),
+    //         error: function (data) {
+    //             console.log(data);
+
+    //         }
+    //     });
+    // }
 
 
     render() {
