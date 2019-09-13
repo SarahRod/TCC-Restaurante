@@ -14,12 +14,6 @@ const propriedadesCabecalho = {
     width: 'w-50'
 }
 
-//ARMAZENA OS ESTADOS INICIAIS
-const initialState = {
-
-
-}
-
 class FormularioEndereco extends Component {
 
     constructor() {
@@ -120,7 +114,7 @@ class FormularioEndereco extends Component {
         }
     }
 
-
+    //REQUISIÇÃO QUE BUSCA CIDADES DAQUELE ESTADO
     buscarCidadesporEstado(id = "") {
         let url = `${DOMINIO}/cidade`;
         if (id != "") {
@@ -142,6 +136,7 @@ class FormularioEndereco extends Component {
         });
     }
 
+    //REQUISIÇÃO QUE BUSCA TODOS OS ESTADOS
     buscarEstados() {
         $.ajax({
             url: `${DOMINIO}/estado`,
@@ -200,11 +195,13 @@ class FormularioEndereco extends Component {
 
     }
 
+    //PEGA A CIDADE E O ID DELA
     atualizaCidade() {
         let id = document.getElementById("sql_estado").value
         this.buscarCidadesporEstado(id);
     }
 
+    //REQUISIÇÃO QUE PEGA O CEP E PREENCHE OS CAMPOS
     atualizaCamposViaCep(e) {
         let cep = document.getElementById("cep").value;
 
