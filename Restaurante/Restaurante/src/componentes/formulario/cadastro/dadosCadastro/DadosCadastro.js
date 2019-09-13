@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 import $ from 'jquery';
 import { DOMINIO } from '../../../../link_config';
 
+
 /*PROPRIEDADES DO CABEÇALHO*/
 const propriedadesCabecalho = {
     to:  '/',

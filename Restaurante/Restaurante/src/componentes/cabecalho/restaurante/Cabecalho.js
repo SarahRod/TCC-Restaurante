@@ -20,12 +20,13 @@ export class CabecalhoPaginaRestaurante extends Component {
         this.props.history.push("/cadastro/endereco");
     }
 
-    componentWillMount() {
+    componentDidMount() {
 
         let token = localStorage.getItem('token');
-        token = token.replace('"', "");
+        token = token.replace(/"/g, "");
         localStorage.setItem('token', token);
-
+        sessionStorage.setItem('token', token);
+     
         const url = `${DOMINIO}/restaurante/este`;
 
 
@@ -37,7 +38,10 @@ export class CabecalhoPaginaRestaurante extends Component {
             contentType: "application/json",
             success: function (resposta) {
 
-                localStorage.setItem('dadosRestaurante', JSON.stringify(resposta));
+                localStorage.setItem('id', JSON.stringify(resposta.id));
+                localStorage.setItem('nome', JSON.stringify(resposta.razaoSocial));
+               
+                // localStorage.setItem('id', JSON.stringify(resposta.id));
 
                 $(".foto-restaurante").attr("src", resposta.foto);
 

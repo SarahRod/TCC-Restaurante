@@ -62,7 +62,7 @@ class FormularioLogin extends Component {
         $.ajax({
             url: url,
             type: 'post',
-            data: JSON.stringify({ email: email, password: senha }),
+            data: JSON.stringify({ "email": email, "password": senha }),
             dataType: 'json',
             contentType: "application/json",
             success: function (resposta) {
@@ -71,18 +71,27 @@ class FormularioLogin extends Component {
 
                 const respostaJson = JSON.stringify(resposta)
 
-                if (respostaJson == '{"error": "Usuario não cadastrado"}') {
-
-                    alert('não entrou')
+                if (respostaJson == '{"error":"Usuario não cadastrado"}') {
 
                     var e;
 
                     this.erroValidacao(e = 'usuarioInvalido')
                 } else {
 
+                   
+                   
                     localStorage.setItem("token", JSON.stringify(resposta.token));
 
+<<<<<<< HEAD
                     this.props.history.push("/restaurante");
+=======
+                    const token = localStorage.getItem("token");
+
+                    if(token != null){
+                        this.props.history.push("/restaurante");
+                    }
+
+>>>>>>> 576652ad468bd0f8ca180e530f8e60070f4c9ba2
                 }
                 
             }.bind(this),
