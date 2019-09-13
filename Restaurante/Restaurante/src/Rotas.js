@@ -7,6 +7,7 @@ import { FormularioBemVindo } from './componentes/formulario/cadastro/bemVindo/B
 import { PaginaLogin } from './paginas/login/PaginaLogin';
 import { PaginaCadastro } from './paginas/cadastro/paginaCadastro';
 import { Rodape } from './componentes/rodape/cadastro/rodape';
+import ItensLista from './componentes/lista/Lista';
 
 import { PaginaCadastroProduto } from './paginas/cadastroProduto/PaginaCadastroProduto';
 
@@ -50,7 +51,11 @@ export class RotaPaginas extends Component {
                                     <Route path={`${url}/endereco`} component={FormularioEndereco} />
                                     <Route path={`${url}/login`} component={FormularioLogin} />
                                     <Route path={`${url}/bem-vindo`} component={FormularioBemVindo} />
+<<<<<<< HEAD
+                                    <Route path={`${url}/lista`} component={ItensLista} />
+=======
                                     <Rodape />
+>>>>>>> 2068f63e91d424e1a54bc71bafa6dcf0f3ec01b9
                                 </Fragment>
 
                             )}
