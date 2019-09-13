@@ -8,6 +8,7 @@ import { PaginaLogin } from './paginas/login/PaginaLogin';
 import { PaginaCadastro } from './paginas/cadastro/paginaCadastro';
 import { Rodape } from './componentes/rodape/cadastro/rodape';
 import ItensLista from './componentes/lista/Lista';
+import $ from 'jquery';
 
 import { PaginaCadastroProduto } from './paginas/cadastroProduto/PaginaCadastroProduto';
 
@@ -37,6 +38,7 @@ const teste = {
 
 
 export class RotaPaginas extends Component {
+
     render() {
         return (
             <Fragment>
