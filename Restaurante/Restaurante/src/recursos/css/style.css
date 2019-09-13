@@ -145,3 +145,7 @@ textarea:focus, input:focus, select:focus, a:focus{
     background-repeat: no-repeat;
 }
 
+.btn-orange-2{
+    background-color: #F26B3A;
+    width: 20%
+}

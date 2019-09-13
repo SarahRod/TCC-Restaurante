@@ -78,22 +78,21 @@ class FormularioLogin extends Component {
                     this.erroValidacao(e = 'usuarioInvalido')
                 } else {
 
-                   
-                   
+
+
                     localStorage.setItem("token", JSON.stringify(resposta.token));
 
-<<<<<<< HEAD
-                    this.props.history.push("/restaurante");
-=======
+
+
                     const token = localStorage.getItem("token");
 
-                    if(token != null){
+                    if (token != null) {
                         this.props.history.push("/restaurante");
                     }
 
->>>>>>> 576652ad468bd0f8ca180e530f8e60070f4c9ba2
+
                 }
-                
+
             }.bind(this),
             error: function (data) {
                 console.log(data);
@@ -119,9 +118,9 @@ class FormularioLogin extends Component {
 
         if (!$('#email').val() || !$('#senha').val()) {
             this.erroValidacao(e = "campoVazio")
-        }else{
+        } else {
             this.enviaFormulario(e);
-        } 
+        }
 
     }
 
