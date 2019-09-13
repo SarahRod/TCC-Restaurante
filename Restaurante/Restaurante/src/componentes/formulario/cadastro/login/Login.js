@@ -28,6 +28,7 @@ const initialState = {
 
 class FormularioLogin extends Component {
 
+    //STATE ESTÁ RECEBENDO OS ESTADOS INICIAIS
     state = { ...initialState }
 
     //PROPRIEDADES DO WITH ROUTER

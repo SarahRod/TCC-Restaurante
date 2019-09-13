@@ -1,6 +1,6 @@
-import React from 'react';
 import styled from 'styled-components'
 
+//ESTILIZAÇÃO DO CABECALHO
 export const CabecalhoLogin = styled.header`
 width: 100%;
 height: 80px;

@@ -22,6 +22,7 @@ const initialState = {
 
 class FormularioLogin extends Component {
 
+    //STATE ESTÁ RECEBENDO OS ESTADOS INICIAIS
     state = { ...initialState }
 
     //PROPRIEDADES DO WITH ROUTER
@@ -48,7 +49,6 @@ class FormularioLogin extends Component {
 
     }
 
-    //ENVIA A REQUISIÇÃO
     enviaFormulario() {
 
         const restaurante = { ...this.state.restaurante }
@@ -62,7 +62,7 @@ class FormularioLogin extends Component {
         $.ajax({
             url: url,
             type: 'post',
-            data: JSON.stringify({ "email": email, "senha": senha }),
+            data: JSON.stringify({ email: email, password: senha }),
             dataType: 'json',
             contentType: "application/json",
             success: function (resposta) {
@@ -71,15 +71,19 @@ class FormularioLogin extends Component {
 
                 const respostaJson = JSON.stringify(resposta)
 
-                if (respostaJson == '{"error":"Usuario não cadastrado"}') {
+                if (respostaJson == '{"error": "Usuario não cadastrado"}') {
+
+                    alert('não entrou')
 
                     var e;
 
                     this.erroValidacao(e = 'usuarioInvalido')
                 } else {
 
+                    localStorage.setItem("token", JSON.stringify(resposta.token));
+
                     this.props.history.push("/restaurante");
-                    console.log(resposta)
+
                 }
 
 
@@ -108,9 +112,9 @@ class FormularioLogin extends Component {
 
         if (!$('#email').val() || !$('#senha').val()) {
             this.erroValidacao(e = "campoVazio")
-        } else {
-            this.enviaFormulario(e)
-        }
+        }else{
+            this.enviaFormulario(e);
+        } 
 
     }
 
@@ -144,7 +148,7 @@ class FormularioLogin extends Component {
     /* FORMULÁRIO DO LOGIN */
     render() {
         return (
-            <form className="form-group bg-white container col-10 col-sm-8 col-md-6 col-lg-4 pt-4 pb-5 rounded border">
+            <form className="form-group bg-white container col-10 col-sm-8 col-md-6 col-lg-4 pt-4 pb-5 rounded border" style={{ maxWidth: 450 + 'px' }}>
                 <div className="row justify-content-center mb-5">
                     <img src={LogoGoDinner} className="img-fluid icone-img" style={{ maxWidth: 300 + 'px' }} />
                 </div>
