@@ -15,7 +15,7 @@ import CabecalhoPaginaRestaurante from './componentes/cabecalho/restaurante/Cabe
 import { MenuRestaurante } from './componentes/menu/Menu';
 import { CorpoIndex } from './componentes/corpo/index/Corpo';
 
-export const estaAutenticado = () => localStorage.getItem("TOKEN") != null;
+export const estaAutenticado = () => localStorage.getItem("token") != null;
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
@@ -51,11 +51,7 @@ export class RotaPaginas extends Component {
                                     <Route path={`${url}/endereco`} component={FormularioEndereco} />
                                     <Route path={`${url}/login`} component={FormularioLogin} />
                                     <Route path={`${url}/bem-vindo`} component={FormularioBemVindo} />
-<<<<<<< HEAD
-                                    <Route path={`${url}/lista`} component={ItensLista} />
-=======
-                                    <Rodape />
->>>>>>> 2068f63e91d424e1a54bc71bafa6dcf0f3ec01b9
+                                    {/* <Route path={`${url}/lista`} component={ItensLista} /> */}
                                 </Fragment>
 
                             )}

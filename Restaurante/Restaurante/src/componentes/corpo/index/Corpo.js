@@ -19,9 +19,9 @@ export class CorpoIndex extends Component {
 
     const jsonDados = JSON.parse(dados)
 
-    const razaoSocial = jsonDados[0].razaoSocial;
+    const razaoSocial = jsonDados.razaoSocial;
 
-    const fotoRestaurante = jsonDados[0].url;
+    const fotoRestaurante = jsonDados.url;
 
    
         $(".nome-restaurante").text(razaoSocial)

@@ -15,20 +15,18 @@ export class CabecalhoPaginaRestaurante extends Component {
 
     apagarLocalStorage(){
 
-        localStorage.removeItem("dadosRestaurante");
-
-        localStorage.removeItem("TOKEN");
+        localStorage.clear();
 
         this.props.history.push("/cadastro/endereco");
     }
 
     componentWillMount() {
 
-        let token = localStorage.getItem('TOKEN');
+        let token = localStorage.getItem('token');
         token = token.replace('"', "");
-        localStorage.setItem('TOKEN', token);
+        localStorage.setItem('token', token);
 
-        const url = `${DOMINIO}/restaurante/todos`;
+        const url = `${DOMINIO}/restaurante/este`;
 
 
         $.ajax({
@@ -41,7 +39,7 @@ export class CabecalhoPaginaRestaurante extends Component {
 
                 localStorage.setItem('dadosRestaurante', JSON.stringify(resposta));
 
-                $(".foto-restaurante").attr("src", resposta[0].foto);
+                $(".foto-restaurante").attr("src", resposta.foto);
 
 
             }.bind(this),
