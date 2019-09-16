@@ -20,6 +20,7 @@ export class CabecalhoPaginaRestaurante extends Component {
         this.props.history.push("/cadastro/endereco");
     }
 
+
     componentDidMount() {
 
         let token = localStorage.getItem('token');
@@ -29,15 +30,6 @@ export class CabecalhoPaginaRestaurante extends Component {
      
         const url = `${DOMINIO}/restaurante/este`;
 
-
-        $.ajax({
-            url: url,
-            type: 'get',
-            headers: { 'token': token },
-            dataType: 'json',
-            contentType: "application/json",
-            success: function (resposta) {
-
                 localStorage.setItem('id', JSON.stringify(resposta.id));
                 localStorage.setItem('nome', JSON.stringify(resposta.razaoSocial));
                
@@ -46,13 +38,13 @@ export class CabecalhoPaginaRestaurante extends Component {
                 $(".foto-restaurante").attr("src", resposta.foto);
 
 
-            }.bind(this),
-            error: function (data) {
-                console.log(data);
+    //         }.bind(this),
+    //         error: function (data) {
+    //             console.log(data);
 
-            }
-        });
-    }
+    //         }
+         });
+     }
 
 
     render() {
