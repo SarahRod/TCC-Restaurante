@@ -8,10 +8,10 @@ import { DOMINIO } from '../../../../link_config';
 const initialState = {
     produto: {
         nome: '',
-        preco: 200,
+        preco: 0,
         desconto: "0",
         descricao: '',
-        vendido: 0
+        vendidos: 0
     },
 
     restaurante: {
@@ -27,7 +27,7 @@ export class CadastroProduto extends Component {
 
     enviaFormulario() {
 
-        const token = localStorage.getItem('token')
+        const token = localStorage.getItem('token');
 
         const produto = { ...this.state.produto };
 
@@ -35,15 +35,19 @@ export class CadastroProduto extends Component {
 
         const url = `${DOMINIO}/produto/novo`;
 
-        console.log(novoproduto)
+        
+
 
         $.ajax({
+
             url: url,
+            contentType: "application/json",
             dataType: 'json',
             headers: { 'token': token },
             type: 'POST',
-            data: novoproduto,
-            contentType: "application/json",
+            data: JSON.stringify(novoproduto),
+            
+
             success: function (resposta) {
 
                 alert('Gravou')
@@ -52,7 +56,7 @@ export class CadastroProduto extends Component {
             }.bind(this),
             error: function (data) {
                 
-                alert('naõ gravou')
+                alert('nao gravou')
             }
         });
     }
@@ -68,7 +72,6 @@ export class CadastroProduto extends Component {
         })
 
     }
-
 
     render() {
         return (

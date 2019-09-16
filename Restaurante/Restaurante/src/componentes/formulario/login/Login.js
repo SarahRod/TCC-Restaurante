@@ -89,13 +89,8 @@ class FormularioLogin extends Component {
                         this.props.history.push("/restaurante");
                     }
 
-
-
-
                 }
 
-
-                }
 
             }.bind(this),
             error: function (data) {
