@@ -1,13 +1,29 @@
 import React, { Component } from 'react';
-import { ItensLista } from './ItensLista'
+import ItensLista  from './ItensLista';
+import '../../recursos/css/style.css'
 
 
-export class Lista extends Component{
+class Lista extends Component{
+
+    constructor(props){
+        super();
+        this.state = {itens: props.item};
+
+        console.log(props.item);
+        
+        
+    }
+
     render() {
         return (
-            <div className="list-group p-2 w-75">
-                <ItensLista/>
+            <div className="list-group p-1 w-100 container bg-danger mb-5 ">
+                {/* {this.state.itens.map(item => (
+                            <ItensLista item = {item}  />
+                        ))} */}
+                
+                
             </div>
         );
     }
-}export default Lista;
+}
+export default Lista;

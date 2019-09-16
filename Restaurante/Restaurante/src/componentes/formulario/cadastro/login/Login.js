@@ -79,8 +79,6 @@ class FormularioLogin extends Component {
 
         sessionStorage.setItem('dados', JSON.stringify(novoDado));
 
-        alert(JSON.stringify(novoDado))
-
         const jsonRestaurante = sessionStorage.getItem('dados');
 
         console.log(jsonRestaurante)
@@ -147,13 +145,14 @@ class FormularioLogin extends Component {
             dataType: "text",
             type: 'GET',
             success: function (data) {
-                if (data == "false") {
-                    if ($('#senha').val() != '' && $('#confirmarSenha').val() != '' && $('#senha').val().length >= 8) {
+                if (data === "true") {
+                    if ($('#senha').val() != '' && $('#confirmarSenha').val() != '' && $('#senha').val().length >= 6) {
                         this.enviaFormulario(data)
                     }
 
                 } else {
                     this.erroValidacao(e = 'emailIncorreto')
+
                 }
 
             }.bind(this),
