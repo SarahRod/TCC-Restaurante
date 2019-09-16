@@ -16,7 +16,7 @@ import CabecalhoPaginaRestaurante from './componentes/cabecalho/restaurante/Cabe
 import { MenuRestaurante } from './componentes/menu/Menu';
 import { CorpoIndex } from './componentes/corpo/index/Corpo';
 
-export const estaAutenticado = () => localStorage.getItem("token") != null;
+export const estaAutenticado = () => localStorage.getItem("token") != null || sessionStorage.getItem("dadosRestaurante");
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
@@ -31,12 +31,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
     />
   );
 
-/*PROPRIEDADES DO CABEÇALHO*/
-const teste = {
-    nome: "Sarah"
-}
-
-
 export class RotaPaginas extends Component {
 
     render() {
@@ -50,9 +44,9 @@ export class RotaPaginas extends Component {
                             path="/cadastro" render={({ match: { url } }) => (
                                 <Fragment>
                                     <Route path={`${url}/`} component={FormularioDados} exact />
-                                    <Route path={`${url}/endereco`} component={FormularioEndereco} />
-                                    <Route path={`${url}/login`} component={FormularioLogin} />
-                                    <Route path={`${url}/bem-vindo`} component={FormularioBemVindo} />
+                                    <PrivateRoute path={`${url}/endereco`} component={FormularioEndereco} />
+                                    <PrivateRoute path={`${url}/login`} component={FormularioLogin} />
+                                    <PrivateRoute path={`${url}/bem-vindo`} component={FormularioBemVindo} />
                                     {/* <Route path={`${url}/lista`} component={ItensLista} /> */}
                                 </Fragment>
 
