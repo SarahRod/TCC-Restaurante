@@ -79,19 +79,23 @@ class FormularioLogin extends Component {
                 } else {
 
 
-                   
-                   
                     localStorage.setItem("token", JSON.stringify(resposta.token));
+
+
 
                     const token = localStorage.getItem("token");
 
-                    if(token != null){
+                    if (token != null) {
                         this.props.history.push("/restaurante");
                     }
 
 
+
+
                 }
 
+
+                }
 
             }.bind(this),
             error: function (data) {
@@ -118,9 +122,9 @@ class FormularioLogin extends Component {
 
         if (!$('#email').val() || !$('#senha').val()) {
             this.erroValidacao(e = "campoVazio")
-        }else{
+        } else {
             this.enviaFormulario(e);
-        } 
+        }
 
     }
 
