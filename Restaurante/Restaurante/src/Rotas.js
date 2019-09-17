@@ -64,8 +64,6 @@ export class RotaPaginas extends Component {
                                     <Route path={`${url}/login`} component={FormularioLogin} />
                                     <Route path={`${url}/bem-vindo`} component={FormularioBemVindo} />
 
-                                   
-
                                     <Route path={`${url}/produtos`} component={CorpoListagemProdutos} />
                                     <Rodape />
 
