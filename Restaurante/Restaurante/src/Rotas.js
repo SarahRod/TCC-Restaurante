@@ -22,26 +22,20 @@ import CabecalhoPaginaRestaurante from './componentes/cabecalho/restaurante/Cabe
 import { MenuRestaurante } from './componentes/menu/Menu';
 import { CorpoIndex } from './componentes/corpo/index/Corpo';
 
-export const estaAutenticado = () => localStorage.getItem("token") != null;
+export const estaAutenticado = () => localStorage.getItem("token") != null || sessionStorage.getItem("dados");
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
-      {...rest}
-      render={props =>
-        estaAutenticado() ? (
-          <Component {...props} />
-        ) : (
-          <Redirect to={{ pathname: "/", state: { from: props.location } }} />
-        )
-      }
+        {...rest}
+        render={props =>
+            estaAutenticado() ? (
+                <Component {...props} />
+            ) : (
+                    <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+                )
+        }
     />
-  );
-
-/*PROPRIEDADES DO CABEÇALHO*/
-const teste = {
-    nome: "Sarah"
-}
-
+);
 
 export class RotaPaginas extends Component {
 
@@ -50,40 +44,38 @@ export class RotaPaginas extends Component {
             <Fragment>
                 <BrowserRouter>
                     <Switch>
-                        
-                        {/*Só p testar pág de Listagem de produtos */}
-                            <Route path="/" exact component={PaginaLogin} /> 
-                        
+
+
+                        {
+                            /*Só p testar pág de Listagem de produtos */ }
+                            <Route path="/" exact component={PaginaLogin} />
+                       
 
                         <Route
                             path="/cadastro" render={({ match: { url } }) => (
                                 <Fragment>
                                     <Route path={`${url}/`} component={FormularioDados} exact />
-                                    <Route path={`${url}/endereco`} component={FormularioEndereco} />
-                                    <Route path={`${url}/login`} component={FormularioLogin} />
-                                    <Route path={`${url}/bem-vindo`} component={FormularioBemVindo} />
-
-                                   
-
-                                    <Route path={`${url}/produtos`} component={CorpoListagemProdutos} />
+                                    <PrivateRoute path={`${url}/endereco`} component={FormularioEndereco} />
+                                    <PrivateRoute path={`${url}/login`} component={FormularioLogin} />
+                                    <PrivateRoute path={`${url}/bem-vindo`} component={FormularioBemVindo} />
+                                    {/* <Route path={`${url}/lista`} component={ItensLista} /> */}
                                     <Rodape />
-
                                 </Fragment>
 
                             )}
                         />
                         <Route
-                            path='/cadastroProduto' render={({match:{url}}) =>(
-                              <Fragment>
-                                  <Route path={`${url}/`} component={PaginaCadastroProduto}/>
-                              </Fragment>  
+                            path='/cadastroProduto' render={({ match: { url } }) => (
+                                <Fragment>
+                                    <Route path={`${url}/`} component={PaginaCadastroProduto} />
+                                </Fragment>
                             )}
                         />
 
                         <Route path="/restaurante" render={({ match: { url } }) => (
                             <Fragment>
-                                <CabecalhoPaginaRestaurante/>
-                                <br/>
+                                <CabecalhoPaginaRestaurante />
+                                <br />
                                 <PrivateRoute path="/" component={CorpoIndex} />
                                 <Rodape />
                             </Fragment>
