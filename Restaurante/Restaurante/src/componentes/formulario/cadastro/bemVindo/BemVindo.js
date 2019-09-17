@@ -84,6 +84,7 @@ export class FormularioBemVindo extends Component {
         restaurante[e.target.name] = e.target.value
         this.setState({ restaurante })
 
+        //PREVIEW FOTO
         var file = this.refs.file.files[0];
         var reader = new FileReader();
         var url = reader.readAsDataURL(file);
@@ -102,7 +103,7 @@ export class FormularioBemVindo extends Component {
     renderForm() {
         return (
             <form className="form-group mt-4" method="POST" enctype="multipart/form-data" action="#">
-                <Label className="h1 mb-3" texto="Bem Vindo a GoDinner" /> <FaHome size={30} />
+                <Label className="h1 mb-3" texto="Bem Vindo a GoDinner" />
                 <div className="row mb-2  justify-content-center">
                     <img className=" img-login rounded-circle img-responsive" id="foto-restaurante" alt="Imagem Empresa" src={this.state.imgSrc} />
                 </div>
@@ -116,7 +117,7 @@ export class FormularioBemVindo extends Component {
                     <Label className="col col-sm col-md col-lg h2 text-center" id="nome-restaurante" name="nome-restaurante" texto={this.state.texto} />
                 </div>
                 <div className="row mt-3 justify-content-center">
-                    <BotaoLink to="/login" className="col-5 col-sm-4 col-md-5 col-lg-5 btn-orange ml-3 mr-3 " onClick={e => this.enviaFormulario(e)} texto="Finalizar" />
+                    <BotaoLink to="/" className="col-5 col-sm-4 col-md-5 col-lg-5 btn-orange ml-3 mr-3 " onClick={e => this.enviaFormulario(e)} texto="Finalizar" />
                 </div>
 
             </form>
