@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react';
 import Carne from '../../../../recursos/imgs/carne.jpg';
 import $ from 'jquery';
 import { DOMINIO } from '../../../../link_config';
-
+import '../../../../recursos/js/AddImagem';
 
 
 const initialState = {
@@ -21,9 +21,10 @@ const initialState = {
 
 export class CadastroImagem extends Component{
 
-
     state = { ...initialState }
 
+    
+   
     atualizaCampo(e) {
         const Imagem = { ...this.state.Imagem}
         Imagem[e.target.name] = e.target.value
@@ -39,10 +40,15 @@ export class CadastroImagem extends Component{
         //     })
         //   }.bind(this);  
 
+
+
     }
 
-    enviaImagem() {
 
+    
+    
+
+    enviaImagem() {
         
         // this.state.restaurante.id = json.id;
 
@@ -83,7 +89,7 @@ export class CadastroImagem extends Component{
                     <div class="row">
                         <div class="col-7 col-md-5">
                             <div class="card card-maior">
-                                <img src={Carne} class="card-img-top tamanho-imagem-produto" alt="..."/>
+                                <img src={this.state.imgSrc} class="card-img-top tamanho-imagem-produto" alt="..."/>
                                 <div class="card-body pb-0">
                                     <p>
                                         <div class="input-group input-group-sm ">
@@ -97,7 +103,7 @@ export class CadastroImagem extends Component{
                                             </div>
                                     <div className="row">
                                         <div className="col-md-6 col-12" >
-                                            <a class="btn btn-success btn-sm mb-2 btn-tamanho" id="addInput" onClick={e => this.enviaImagem(e)} >
+                                            <a class="btn btn-success  btn-sm tamanho-btn text-white " id="add-campo" >
                                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                                                 Add
                                             </a>
@@ -113,7 +119,9 @@ export class CadastroImagem extends Component{
                                     
                                 </div>
                             </div>
-                        </div>   
+                        </div> 
+                        <div class="row" id="imagens-secundarias">
+                        </div>  
                     </div>
                 </div>
             </Fragment>
