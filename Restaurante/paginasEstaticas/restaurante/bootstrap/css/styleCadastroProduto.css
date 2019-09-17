@@ -179,5 +179,26 @@ textarea:focus, input:focus, select:focus, a:focus{
 }
 
 
+.tamanho-btn{
+    width: 90%;
+    margin-left: 5%;
+}
+
+
+.div-transparente{
+    background-color: red;
+
+}
+
+.escondido{
+    display:none;
+
+}
+
+.btn-orange-2{
+    background-color: #F26B3A;
+    width: 20%
+}
+
 
 
