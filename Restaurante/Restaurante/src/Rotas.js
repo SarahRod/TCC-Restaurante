@@ -45,6 +45,7 @@ export class RotaPaginas extends Component {
                 <BrowserRouter>
                     <Switch>
 
+
                         {
                             /*Só p testar pág de Listagem de produtos */ }
                             <Route path="/" exact component={PaginaLogin} />
