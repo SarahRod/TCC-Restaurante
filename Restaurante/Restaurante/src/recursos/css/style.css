@@ -146,6 +146,12 @@ textarea:focus, input:focus, select:focus, a:focus{
 }
 
 
+.btn-orange-2{
+    background-color: #F26B3A;
+    width: 20%
+}
+
+
     
 .item-list-p{
     border-radius: 15px;
@@ -164,3 +170,6 @@ textarea:focus, input:focus, select:focus, a:focus{
     max-height: 125px;
 }
 
+.red{
+    background-color: #F26B3A;
+}

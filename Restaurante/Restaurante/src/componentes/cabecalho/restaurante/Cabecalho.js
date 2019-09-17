@@ -20,7 +20,6 @@ export class CabecalhoPaginaRestaurante extends Component {
         this.props.history.push("/cadastro/endereco");
     }
 
-
     componentDidMount() {
 
         let token = localStorage.getItem('token');
