@@ -2,42 +2,27 @@ import React, { Component } from 'react';
 import Imagem from '../../recursos/imgs/pizza.jpg';
 import { FaPencilAlt } from 'react-icons/fa';
 import $ from 'jquery';
+import Modal from '../modals/Modalproduto';
 
 class ItensLista extends Component{
 
     constructor(props){
         super();
-        this.state = {item: props.item}
-        console.log(this.state.item)
+        this.state = {item: props.item};
     }
-    // test(){
-    //     $(function(){
-    //         $('.visualizar').click(function(){
-    //             jQuery('#container').fadeIn(400);
-    //         }); 
-    //     });
 
-    //     $(idItem)
-    //     {
-    //         $.ajax({
-            
-    //         type:"GET",
-            
-    //         url:"modal.php",
-                
-    //             data:{codigo:idItem},
-                
-    //             success: function(dados){
-    //                 $('#modal').html(dados);
-                
-    //             }
-    //         });
-    //     }
-    // }
+    toggleModal = () => {
+
+        this.setState({isOpen: !(this.state.isOpen)})
+    }
 
     render() {
         return (
-            <div className="item-list-p list-group-item-action mb-3 p-2 w-100" >
+            <div className="item-list-p list-group-item-action mb-3 p-2 w-100" onClick={this.toggleModal}>
+
+                <Modal show={this.state.isOpen} onClose={this.toggleModal}>
+                    
+                </Modal>
                  <div className="row m-1">
                     <div className="col-3 p-2">
                         <figure className="figure">
@@ -63,10 +48,10 @@ class ItensLista extends Component{
                          <div className="row p-0 mb-1" >
                              <small className="text-muted">{this.state.item.preco}</small>
                          </div>
-                     </div>
-                 </div>
-             </div>
-        );
+                    </div>
+                </div>
+            </div>
+        )
     }
-};
+}
 export default ItensLista

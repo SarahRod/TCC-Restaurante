@@ -53,8 +53,10 @@ export class RotaPaginas extends Component {
                         
                         {
                             /*Só p testar pág de Listagem de produtos */
-                            /* <Route path="/" exact component={PaginaLogin} /> */
+                            /*  */
                         }
+
+                        <Route path="/" exact component={PaginaLogin} />
 
                         <Route
                             path="/cadastro" render={({ match: { url } }) => (

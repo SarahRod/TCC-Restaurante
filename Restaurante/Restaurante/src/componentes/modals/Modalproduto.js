@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MdBlock } from 'react-icons/md';
 
 class Modal extends React.Component {
     render() {
@@ -22,22 +21,30 @@ class Modal extends React.Component {
         const modalStyle = {
             backgroundColor: '#fff',
             borderRadius: 5,
-            maxWidth: 300,
-            maxHeight: 300,
-            margin: '0 auto',
+            // maxWidth: 700,
+            // maxHeight: 700,
+            // marginTop: '5%',
+            // marginLeft: '32%',
             padding: 30,
             display: 'block'
         };
     
         return (
             <div className="backdrop" style={backdropStyle}>
-                <div className="modal" style={modalStyle}>
-                    {this.props.children}
-        
-                    <div className="footer">
-                    <button onClick={this.props.onClose}>
-                        Close
-                    </button>
+                <div className="modal w-75 mx-auto my-auto" style={modalStyle}>
+                    <div className=" container">
+                        {this.props.children}
+
+                        <img src="" className="img-fluid rounded mx-auto" alt="Responsive image"/>
+                        <div >
+
+                        </div>
+                    
+                        <div className="footer">
+                            <button className="btn btn-primary" onClick={this.props.onClose}>
+                                Close
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

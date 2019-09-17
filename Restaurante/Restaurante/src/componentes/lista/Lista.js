@@ -16,11 +16,7 @@ class Lista extends Component{
 
     render() {
         return (
-            <div className="list-group p-1 w-100 container bg-danger mb-5 ">
-                {/* {this.state.itens.map(item => (
-                            <ItensLista item = {item}  />
-                        ))} */}
-                
+            <div className="list-group p-1 w-100 container mb-5 ">
                 
             </div>
         );
