@@ -47,6 +47,8 @@ export class FormularioBemVindo extends Component {
 
         const restaurante = { ...this.state.restaurante }
 
+        const foto = restaurante.foto;
+
         var dados = sessionStorage.getItem('dados');
 
         const json = JSON.parse(dados)
@@ -61,26 +63,33 @@ export class FormularioBemVindo extends Component {
         formData.append('foto', files);
         formData.append('id', this.state.restaurante.id);
 
-        $.ajax({
-            url: url,
-            type: 'post',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function (resposta) {
+        console.log(foto);
 
-                console.log('Sucesso');
+        if(foto != ''){
+            $.ajax({
+                url: url,
+                type: 'post',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (resposta) {
+    
+                    console.log('Sucesso');
+    
+                    //Limpa os storages
+                    localStorage.clear();
+                    sessionStorage.clear();
+    
+                }.bind(this),
+                error: function (data) {
+                    console.log('Erro:', data);
+    
+                }
+            });
+        }else{
 
-                //Limpa os storages
-                localStorage.clear();
-                sessionStorage.clear();
-
-            }.bind(this),
-            error: function (data) {
-                console.log('Erro:', data);
-
-            }
-        });
+        }
+       
     }
 
     //ATUALIZA AS INPUTS COM OS ESTADOS 

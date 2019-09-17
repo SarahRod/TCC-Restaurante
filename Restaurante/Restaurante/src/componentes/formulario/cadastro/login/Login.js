@@ -82,7 +82,6 @@ class FormularioLogin extends Component {
 
         const jsonRestaurante = sessionStorage.getItem('dados');
 
-        console.log(jsonRestaurante)
 
         const url = `${DOMINIO}/restaurante/novo`;
 
@@ -106,9 +105,6 @@ class FormularioLogin extends Component {
     }
 
     validaSenha(e) {
-
-        console.log(this.state.restaurante.confirmarSenha)
-
         
         if ( $('#senha').val() != '' && $('#confirmarSenha').val()
             && $('#senha').val().length >= 6 && $('#senha').val() === $('#confirmarSenha').val()
