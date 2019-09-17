@@ -22,7 +22,7 @@ import CabecalhoPaginaRestaurante from './componentes/cabecalho/restaurante/Cabe
 import { MenuRestaurante } from './componentes/menu/Menu';
 import { CorpoIndex } from './componentes/corpo/index/Corpo';
 
-export const estaAutenticado = () => localStorage.getItem("token") != null || sessionStorage.getItem("dados");
+export const estaAutenticado = () => localStorage.getItem("token") != null || sessionStorage.getItem("dados") != null;
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
