@@ -19,9 +19,10 @@ const initialState = {
     restaurante: {
         email: '',
         senha: '',
+        confirmarSenha: '',
     },
 
-    confirmarSenha: '',
+   
     classErro: '',
     textoErro: ''
 }
@@ -104,6 +105,20 @@ class FormularioLogin extends Component {
         });
     }
 
+    validaSenha(e) {
+
+        console.log(this.state.restaurante.confirmarSenha)
+
+        
+        if ( $('#senha').val() != '' && $('#confirmarSenha').val()
+            && $('#senha').val().length >= 6 && $('#senha').val() === $('#confirmarSenha').val()
+        ) {
+            this.enviaFormulario(e)
+        } else {
+            this.erroValidacao(e = 'senhaIncorreta')
+        }
+    }
+
     //ENVIA OS DADOS DO FORMULÁRIO PARA O SESSION STORAGE
     validaCampos(e) {
         e.preventDefault();
@@ -146,9 +161,9 @@ class FormularioLogin extends Component {
             type: 'GET',
             success: function (data) {
                 if (data === "true") {
-                    if ($('#senha').val() != '' && $('#confirmarSenha').val() != '' && $('#senha').val().length >= 6) {
-                        this.enviaFormulario(data)
-                    }
+
+                    this.validaSenha(e)
+
 
                 } else {
                     this.erroValidacao(e = 'emailIncorreto')

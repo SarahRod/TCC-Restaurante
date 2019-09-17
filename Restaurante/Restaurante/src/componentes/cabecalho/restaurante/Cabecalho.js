@@ -15,7 +15,9 @@ export class CabecalhoPaginaRestaurante extends Component {
 
     apagarLocalStorage() {
 
+        //Limpa os storages
         localStorage.clear();
+        sessionStorage.clear();
 
         this.props.history.push("/cadastro/endereco");
     }
@@ -53,7 +55,6 @@ export class CabecalhoPaginaRestaurante extends Component {
             }
         });
     }
-
 
     render() {
         return (

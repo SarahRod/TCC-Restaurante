@@ -9,7 +9,7 @@ import $ from 'jquery';
 
 /*PROPRIEDADES DO CABEÇALHO*/
 const propriedadesCabecalho = {
-    to: '/cadastro/login',
+    to: '/cadastro/bem-vindo',
     width: 'w-100',
 }
 
@@ -17,7 +17,7 @@ const propriedadesCabecalho = {
 const initialState = {
 
     restaurante: {
-        foto: '' ,
+        foto: '',
         id: ''
     },
 
@@ -33,7 +33,7 @@ export class FormularioBemVindo extends Component {
     //STATE ESTÁ RECEBENDO OS ESTADOS INICIAIS
     state = { ...initialState }
 
-    componentWillMount(){
+    componentWillMount() {
         var dados = sessionStorage.getItem('dados');
 
         const json = JSON.parse(dados)
@@ -42,7 +42,7 @@ export class FormularioBemVindo extends Component {
 
     }
 
-    
+
     enviaFormulario() {
 
         const restaurante = { ...this.state.restaurante }
@@ -70,6 +70,11 @@ export class FormularioBemVindo extends Component {
             success: function (resposta) {
 
                 console.log('Sucesso');
+
+                //Limpa os storages
+                localStorage.clear();
+                sessionStorage.clear();
+
             }.bind(this),
             error: function (data) {
                 console.log('Erro:', data);
@@ -88,16 +93,16 @@ export class FormularioBemVindo extends Component {
         var file = this.refs.file.files[0];
         var reader = new FileReader();
         var url = reader.readAsDataURL(file);
-      
-         reader.onloadend = function (e) {
+
+        reader.onloadend = function (e) {
             this.setState({
                 imgSrc: [reader.result],
             })
-          }.bind(this);  
+        }.bind(this);
 
     }
 
-     
+
 
     /* FORMULÁRIO DO ENDEREÇO */
     renderForm() {
@@ -110,7 +115,7 @@ export class FormularioBemVindo extends Component {
                 <div className=" row justify-content-center mb-3">
                     <div className="input-file">
                         <span>Anexar Imagem</span>
-                        <input ref="file" type="file" className="upload"  multiple="true" id="foto" name="foto" value={this.state.restaurante.foto}  onChange={e => this.atualizaCampo(e)}/>
+                        <input ref="file" type="file" className="upload" multiple="true" id="foto" name="foto" value={this.state.restaurante.foto} onChange={e => this.atualizaCampo(e)} />
                     </div>
                 </div>
                 <div className="row mb-5">
