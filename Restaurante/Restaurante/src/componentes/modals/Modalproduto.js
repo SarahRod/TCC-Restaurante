@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MdBlock } from 'react-icons/md';
 
-class Modal extends React.Component {
+class ModalProduto extends React.Component {
     render() {
         if(!this.props.show) {
             return null;
@@ -22,9 +21,10 @@ class Modal extends React.Component {
         const modalStyle = {
             backgroundColor: '#fff',
             borderRadius: 5,
-            maxWidth: 300,
-            maxHeight: 300,
-            margin: '0 auto',
+            maxWidth: 700,
+            maxHeight: 700,
+            marginLeft: '32%',
+            marginTop: '4%',
             padding: 30,
             display: 'block'
         };
@@ -33,22 +33,20 @@ class Modal extends React.Component {
             <div className="backdrop" style={backdropStyle}>
                 <div className="modal" style={modalStyle}>
                     {this.props.children}
-        
-                    <div className="footer">
-                    <button onClick={this.props.onClose}>
-                        Close
+
+                    <button onClick={this.props.onClose} type="button" className="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
                     </button>
-                    </div>
                 </div>
             </div>
         );
     }
 }
 
-Modal.propTypes = {
+ModalProduto.propTypes = {
     onClose: PropTypes.func.isRequired,
     show: PropTypes.bool,
     children: PropTypes.node
 };
   
-export default Modal;
+export default ModalProduto;

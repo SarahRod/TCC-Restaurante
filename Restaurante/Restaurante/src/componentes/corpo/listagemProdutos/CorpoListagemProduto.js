@@ -1,11 +1,12 @@
 import React, { Fragment, Component } from 'react';
 import Cabecalho from "../../cabecalho/restaurante/Cabecalho";
-import Lista from "../../lista/Lista";
 import '../../../recursos/css/style.css';
 import $ from 'jquery';
+import { FaSearch } from 'react-icons/fa';
 import {DOMINIO} from "../../../link_config"
-
 import ItensLista  from './../../lista/ItensLista';
+import { InputGroup, FormControl } from 'react-bootstrap';
+
 class CorpoListagemProduto extends Component{
 
     constructor(){
@@ -23,7 +24,7 @@ class CorpoListagemProduto extends Component{
         $.ajax({
             url: url,
             type: 'get',
-            data: { "token": 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbWFpbCIsImV4cCI6MTU2ODQxNTk2MCwiaWF0IjoxNTY4Mzk3OTYwfQ.wmYVdR823TkW7-7GICaQBy9INh-nyGvDL7MKizb3dbfe8ivbFVXuPBHyQwlAtTi_-JfYtxSNuojvr6qh93NR9Q'},
+            data: { "token": token},
             dataType: 'json',
             contentType: 'application/json',
             success: function (resposta) {
@@ -48,11 +49,24 @@ class CorpoListagemProduto extends Component{
 
         return(
             <Fragment>
-                <Cabecalho  />
-                <div className="list-group p-1 w-100 container bg-danger mb-5 ">
-                    {this.state.itens.map(item => (
-                        <ItensLista item = {item || ""} />
-                    ))}
+                <div class=" container p-2">
+                    <InputGroup className="mx-auto mt-5 mb-5 w-25">
+                        <InputGroup.Prepend>
+                            <InputGroup.Text id="btnGroupAddon"><FaSearch/></InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <FormControl
+                            type="text"
+                            placeholder="Search"
+                            aria-label="Search"
+                            aria-describedby="btnGroupAddon"
+                        />
+                    </InputGroup>
+                
+                    <div className="list-group p-1 w-75 mx-auto mb-5 ">
+                        {this.state.itens.map(item => (
+                            <ItensLista item = {item || ""} />
+                        ))}
+                    </div>
                 </div>
             </Fragment>
         )
