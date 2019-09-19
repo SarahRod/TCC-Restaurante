@@ -19,9 +19,10 @@ const initialState = {
     restaurante: {
         email: '',
         senha: '',
+        confirmarSenha: '',
     },
 
-    confirmarSenha: '',
+   
     classErro: '',
     textoErro: ''
 }
@@ -81,7 +82,6 @@ class FormularioLogin extends Component {
 
         const jsonRestaurante = sessionStorage.getItem('dados');
 
-        console.log(jsonRestaurante)
 
         const url = `${DOMINIO}/restaurante/novo`;
 
@@ -102,6 +102,17 @@ class FormularioLogin extends Component {
 
             }
         });
+    }
+
+    validaSenha(e) {
+        
+        if ( $('#senha').val() != '' && $('#confirmarSenha').val()
+            && $('#senha').val().length >= 6 && $('#senha').val() === $('#confirmarSenha').val()
+        ) {
+            this.enviaFormulario(e)
+        } else {
+            this.erroValidacao(e = 'senhaIncorreta')
+        }
     }
 
     //ENVIA OS DADOS DO FORMULÁRIO PARA O SESSION STORAGE
@@ -146,9 +157,9 @@ class FormularioLogin extends Component {
             type: 'GET',
             success: function (data) {
                 if (data === "true") {
-                    if ($('#senha').val() != '' && $('#confirmarSenha').val() != '' && $('#senha').val().length >= 6) {
-                        this.enviaFormulario(data)
-                    }
+
+                    this.validaSenha(e)
+
 
                 } else {
                     this.erroValidacao(e = 'emailIncorreto')

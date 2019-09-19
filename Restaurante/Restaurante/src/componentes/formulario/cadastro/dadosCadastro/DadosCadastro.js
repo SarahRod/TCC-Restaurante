@@ -11,7 +11,7 @@ import { DOMINIO } from '../../../../link_config';
 
 /*PROPRIEDADES DO CABEÇALHO*/
 const propriedadesCabecalho = {
-    to:  '/',
+    to: '/',
     width: 'w-25'
 }
 
@@ -29,7 +29,7 @@ const initialState = {
 
 class FormularioDados extends Component {
 
-     //STATE ESTÁ RECEBENDO OS ESTADOS INICIAIS
+    //STATE ESTÁ RECEBENDO OS ESTADOS INICIAIS
     state = { ...initialState }
 
     //PROPRIEDADES DO WITH ROUTER
@@ -41,12 +41,15 @@ class FormularioDados extends Component {
 
     //REDIRECIONA O COMPONENTE VALIDADO
     campoValidado(e) {
-
-        this.props.history.push("/cadastro/endereco");
-
         const restaurante = { ...this.state.restaurante }
-
         sessionStorage.setItem('dados', JSON.stringify(restaurante));
+
+        const dados = sessionStorage.getItem('dados')
+
+        if (dados != null) {
+            this.props.history.push("/cadastro/endereco");
+        }
+
     }
 
     //MENSAGEM DE ERRO DA VALIDAÇÃO
@@ -58,11 +61,11 @@ class FormularioDados extends Component {
             this.setState({
                 textoErro: `Preencha os campos corretamente`
             })
-        } else if(e == "nomeMinimo"){
+        } else if (e == "nomeMinimo") {
             this.setState({
                 textoErro: `O nome do restaurante deve conter no mínimo 3 caracteres`
-            })          
-        } else{
+            })
+        } else {
             this.setState({
                 textoErro: `Esse CNPJ já está cadastrado ou é inválido`
             })
@@ -94,8 +97,8 @@ class FormularioDados extends Component {
 
         if (!$('#cnpj').val() || !$('#razaoSocial').val() || !$('#telefone').val()) {
             this.erroValidacao(e = "campoVazio")
-        }else if($('#razaoSocial').val().length < 3){
-             this.erroValidacao(e = "nomeMinimo")
+        } else if ($('#razaoSocial').val().length < 3) {
+            this.erroValidacao(e = "nomeMinimo")
         }
 
 
@@ -177,7 +180,7 @@ class FormularioDados extends Component {
                 </div>
                 {/*LINHA DO  BOTÃO COM A ROTA PARA O PRÓXIMA PÁGINA  */}
                 <div className="row justify-content-end">
-                    <BotaoLink onClick={e => this.validaCampos(e)} to="cadastro/endereco" className="col-4 col-sm-4 col-md-4 col-lg-4 btn-orange mr-3" texto="Próximo" />
+                    <BotaoLink onClick={e => this.validaCampos(e)} to="/cadastro/endereco" className="col-4 col-sm-4 col-md-4 col-lg-4 btn-orange mr-3" texto="Próximo" />
                 </div>
             </form>
         )
