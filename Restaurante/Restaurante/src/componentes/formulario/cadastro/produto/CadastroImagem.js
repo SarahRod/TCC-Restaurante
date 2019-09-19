@@ -103,12 +103,6 @@ export class CadastroImagem extends Component{
                                             </div>
                                     <div className="row">
                                         <div className="col-md-6 col-12" >
-                                            <a class="btn btn-success  btn-sm tamanho-btn text-white " id="add-campo" >
-                                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                                                Add
-                                            </a>
-                                        </div>
-                                        <div className="col-md-6 col-12" >
                                             <a class="btn btn-success btn-sm mb-2 btn-tamanho" id="addInput" onClick={e => this.enviaImagem(e)} >
                                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                                                 Salvar
@@ -120,8 +114,6 @@ export class CadastroImagem extends Component{
                                 </div>
                             </div>
                         </div> 
-                        <div class="row" id="imagens-secundarias">
-                        </div>  
                     </div>
                 </div>
             </Fragment>

@@ -132,6 +132,7 @@ export class FormularioBemVindo extends Component {
             <Corpo {...propriedadesCabecalho}>{/*CABECALHO RECEBE AS PROPRIEDADES DA CONST*/}
                 {this.renderForm()}
 
+
             </Corpo>
         )
     }
