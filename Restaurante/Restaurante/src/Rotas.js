@@ -4,44 +4,29 @@ import FormularioEndereco from './componentes/formulario/cadastro/enderecoCadast
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import FormularioLogin from './componentes/formulario/cadastro/login/Login';
 import { FormularioBemVindo } from './componentes/formulario/cadastro/bemVindo/BemVindo'
-import { Lista } from './componentes/lista/Lista'
 import { PaginaLogin } from './paginas/login/PaginaLogin';
 import { PaginaCadastro } from './paginas/cadastro/paginaCadastro';
 import { Rodape } from './componentes/rodape/cadastro/rodape';
-
-import ItensLista from './componentes/lista/Lista';
-import $ from 'jquery';
-
-
 import CorpoListagemProdutos from "./componentes/corpo/listagemProdutos/CorpoListagemProduto";
-
-
 import { PaginaCadastroProduto } from './paginas/cadastroProduto/PaginaCadastroProduto';
-
 import CabecalhoPaginaRestaurante from './componentes/cabecalho/restaurante/Cabecalho';
 import { MenuRestaurante } from './componentes/menu/Menu';
 import { CorpoIndex } from './componentes/corpo/index/Corpo';
 
-export const estaAutenticado = () => localStorage.getItem("token") != null;
+export const estaAutenticado = () => localStorage.getItem("token") != null || sessionStorage.getItem("dados") != null;
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
-      {...rest}
-      render={props =>
-        estaAutenticado() ? (
-          <Component {...props} />
-        ) : (
-          <Redirect to={{ pathname: "/", state: { from: props.location } }} />
-        )
-      }
+        {...rest}
+        render={props =>
+            estaAutenticado() ? (
+                <Component {...props} />
+            ) : (
+                    <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+                )
+        }
     />
-  );
-
-/*PROPRIEDADES DO CABEÇALHO*/
-const teste = {
-    nome: "Sarah"
-}
-
+);
 
 export class RotaPaginas extends Component {
 
@@ -50,11 +35,6 @@ export class RotaPaginas extends Component {
             <Fragment>
                 <BrowserRouter>
                     <Switch>
-                        
-                        {
-                            /*Só p testar pág de Listagem de produtos */
-                            /*  */
-                        }
 
                         <Route path="/" exact component={PaginaLogin} />
 
@@ -62,30 +42,21 @@ export class RotaPaginas extends Component {
                             path="/cadastro" render={({ match: { url } }) => (
                                 <Fragment>
                                     <Route path={`${url}/`} component={FormularioDados} exact />
-                                    <Route path={`${url}/endereco`} component={FormularioEndereco} />
-                                    <Route path={`${url}/login`} component={FormularioLogin} />
-                                    <Route path={`${url}/bem-vindo`} component={FormularioBemVindo} />
-
-                                    <Route path={`${url}/produtos`} component={CorpoListagemProdutos} />
+                                    <PrivateRoute path={`${url}/endereco`} component={FormularioEndereco} />
+                                    <PrivateRoute path={`${url}/login`} component={FormularioLogin} />
+                                    <PrivateRoute path={`${url}/bem-vindo`} component={FormularioBemVindo} />
                                     <Rodape />
-
                                 </Fragment>
 
-                            )}
-                        />
-                        <Route
-                            path='/cadastroProduto' render={({match:{url}}) =>(
-                              <Fragment>
-                                  <Route path={`${url}/`} component={PaginaCadastroProduto}/>
-                              </Fragment>  
                             )}
                         />
 
                         <Route path="/restaurante" render={({ match: { url } }) => (
                             <Fragment>
-                                <CabecalhoPaginaRestaurante/>
-                                <br/>
-                                <PrivateRoute path="/" component={CorpoIndex} />
+                                <CabecalhoPaginaRestaurante />
+                                <PrivateRoute path={`${url}/`} component={CorpoIndex} exact />
+                                <PrivateRoute path={`${url}/cadastro-produto`} component={PaginaCadastroProduto} />
+                                <PrivateRoute path={`${url}/visualizar-produto`} component={CorpoListagemProdutos} />
                                 <Rodape />
                             </Fragment>
 

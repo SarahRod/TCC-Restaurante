@@ -9,7 +9,7 @@ import $ from 'jquery';
 
 /*PROPRIEDADES DO CABEÇALHO*/
 const propriedadesCabecalho = {
-    to: '/cadastro/login',
+    to: '/cadastro/bem-vindo',
     width: 'w-100',
 }
 
@@ -17,7 +17,7 @@ const propriedadesCabecalho = {
 const initialState = {
 
     restaurante: {
-        foto: '' ,
+        foto: '',
         id: ''
     },
 
@@ -33,7 +33,7 @@ export class FormularioBemVindo extends Component {
     //STATE ESTÁ RECEBENDO OS ESTADOS INICIAIS
     state = { ...initialState }
 
-    componentWillMount(){
+    componentWillMount() {
         var dados = sessionStorage.getItem('dados');
 
         const json = JSON.parse(dados)
@@ -42,10 +42,12 @@ export class FormularioBemVindo extends Component {
 
     }
 
-    
+
     enviaFormulario() {
 
         const restaurante = { ...this.state.restaurante }
+
+        const foto = restaurante.foto;
 
         var dados = sessionStorage.getItem('dados');
 
@@ -61,21 +63,33 @@ export class FormularioBemVindo extends Component {
         formData.append('foto', files);
         formData.append('id', this.state.restaurante.id);
 
-        $.ajax({
-            url: url,
-            type: 'post',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function (resposta) {
+        console.log(foto);
 
-                console.log('Sucesso');
-            }.bind(this),
-            error: function (data) {
-                console.log('Erro:', data);
+        if(foto != ''){
+            $.ajax({
+                url: url,
+                type: 'post',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (resposta) {
+    
+                    console.log('Sucesso');
+    
+                    //Limpa os storages
+                    localStorage.clear();
+                    sessionStorage.clear();
+    
+                }.bind(this),
+                error: function (data) {
+                    console.log('Erro:', data);
+    
+                }
+            });
+        }else{
 
-            }
-        });
+        }
+       
     }
 
     //ATUALIZA AS INPUTS COM OS ESTADOS 
@@ -84,39 +98,40 @@ export class FormularioBemVindo extends Component {
         restaurante[e.target.name] = e.target.value
         this.setState({ restaurante })
 
+        //PREVIEW FOTO
         var file = this.refs.file.files[0];
         var reader = new FileReader();
         var url = reader.readAsDataURL(file);
-      
-         reader.onloadend = function (e) {
+
+        reader.onloadend = function (e) {
             this.setState({
                 imgSrc: [reader.result],
             })
-          }.bind(this);  
+        }.bind(this);
 
     }
 
-     
+
 
     /* FORMULÁRIO DO ENDEREÇO */
     renderForm() {
         return (
             <form className="form-group mt-4" method="POST" enctype="multipart/form-data" action="#">
-                <Label className="h1 mb-3" texto="Bem Vindo a GoDinner" /> <FaHome size={30} />
+                <Label className="h1 mb-3" texto="Bem Vindo a GoDinner" />
                 <div className="row mb-2  justify-content-center">
                     <img className=" img-login rounded-circle img-responsive" id="foto-restaurante" alt="Imagem Empresa" src={this.state.imgSrc} />
                 </div>
                 <div className=" row justify-content-center mb-3">
                     <div className="input-file">
                         <span>Anexar Imagem</span>
-                        <input ref="file" type="file" className="upload"  multiple="true" id="foto" name="foto" value={this.state.restaurante.foto}  onChange={e => this.atualizaCampo(e)}/>
+                        <input ref="file" type="file" className="upload" multiple="true" id="foto" name="foto" value={this.state.restaurante.foto} onChange={e => this.atualizaCampo(e)} />
                     </div>
                 </div>
                 <div className="row mb-5">
                     <Label className="col col-sm col-md col-lg h2 text-center" id="nome-restaurante" name="nome-restaurante" texto={this.state.texto} />
                 </div>
                 <div className="row mt-3 justify-content-center">
-                    <BotaoLink to="/login" className="col-5 col-sm-4 col-md-5 col-lg-5 btn-orange ml-3 mr-3 " onClick={e => this.enviaFormulario(e)} texto="Finalizar" />
+                    <BotaoLink to="/" className="col-5 col-sm-4 col-md-5 col-lg-5 btn-orange ml-3 mr-3 " onClick={e => this.enviaFormulario(e)} texto="Finalizar" />
                 </div>
 
             </form>

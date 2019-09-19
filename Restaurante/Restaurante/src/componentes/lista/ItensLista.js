@@ -1,29 +1,28 @@
 import React, { Component } from 'react';
-import Imagem from '../../recursos/imgs/pizza.jpg';
 import { FaPencilAlt } from 'react-icons/fa';
-import $ from 'jquery';
-import Modal from '../modals/Modalproduto';
+import ModalProduto from '../modals/Modalproduto';
 
 class ItensLista extends Component{
 
     constructor(props){
         super();
-        this.state = {item: props.item};
+
+        this.state = {item: props.item}
+        // this.state = { isOpen: false }
     }
-
+    
     toggleModal = () => {
-
-        this.setState({isOpen: !(this.state.isOpen)})
+        this.setState({
+            isOpen: !this.state.isOpen
+        });
     }
 
     render() {
         return (
             <div className="item-list-p list-group-item-action mb-3 p-2 w-100" onClick={this.toggleModal}>
+                <ModalProduto show={this.state.isOpen} onClose={this.toggleModal}/>
 
-                <Modal show={this.state.isOpen} onClose={this.toggleModal}>
-                    
-                </Modal>
-                 <div className="row m-1">
+                <div className="row m-1">
                     <div className="col-3 p-2">
                         <figure className="figure">
                             <img src={this.state.item.foto} className="image-parent card-img rounded-circle"/>

@@ -19,9 +19,10 @@ const initialState = {
     restaurante: {
         email: '',
         senha: '',
+        confirmarSenha: '',
     },
 
-    confirmarSenha: '',
+   
     classErro: '',
     textoErro: ''
 }
@@ -57,7 +58,7 @@ class FormularioLogin extends Component {
             })
         } else if (e == 'senhaMinimo') {
             this.setState({
-                textoErro: `A senha deve conter no mínimo 8 caracteres`
+                textoErro: `A senha deve conter no mínimo 6 caracteres`
             })
         }
     }
@@ -74,17 +75,15 @@ class FormularioLogin extends Component {
 
         var novoDado = { ...json, ...restaurante };
 
+        //RETIRA O CONFIRMAR SENHA DO ARRAY
+        delete novoDado["confirmarSenha"];
+
         sessionStorage.setItem('dados', JSON.stringify(novoDado));
 
         const jsonRestaurante = sessionStorage.getItem('dados');
 
-        console.log(jsonRestaurante)
-
-        this.props.history.push("/bem-vindo");
 
         const url = `${DOMINIO}/restaurante/novo`;
-
-        this.props.history.push("cadastro/bem-vindo");
 
         $.ajax({
             url: url,
@@ -94,15 +93,26 @@ class FormularioLogin extends Component {
             contentType: 'application/json',
             success: function (resposta) {
 
-                alert('Gravou')
                 sessionStorage.setItem('dados', JSON.stringify(resposta))
+                this.props.history.push("/cadastro/bem-vindo");
 
             }.bind(this),
             error: function (data) {
                 console.log('Erro:', data);
-                alert('naõ gravou')
+
             }
         });
+    }
+
+    validaSenha(e) {
+        
+        if ( $('#senha').val() != '' && $('#confirmarSenha').val()
+            && $('#senha').val().length >= 6 && $('#senha').val() === $('#confirmarSenha').val()
+        ) {
+            this.enviaFormulario(e)
+        } else {
+            this.erroValidacao(e = 'senhaIncorreta')
+        }
     }
 
     //ENVIA OS DADOS DO FORMULÁRIO PARA O SESSION STORAGE
@@ -134,7 +144,7 @@ class FormularioLogin extends Component {
         //VERIFICA SE A SENHA FOI DIGITADA CORRETAMENTE
         if ($('#senha').val() != $('#confirmarSenha').val()) {
             this.erroValidacao(e = 'senhaIncorreta')
-        } else if ($('#senha').val().length < 8) {
+        } else if ($('#senha').val().length < 6) {
             this.erroValidacao(e = 'senhaMinimo')
         }
 
@@ -146,13 +156,14 @@ class FormularioLogin extends Component {
             dataType: "text",
             type: 'GET',
             success: function (data) {
-                if (data == "false") {
-                    if ($('#senha').val() != '' && $('#confirmarSenha').val() != '' && $('#senha').val().length >= 8) {
-                        this.enviaFormulario(data)
-                    }
+                if (data === "true") {
+
+                    this.validaSenha(e)
+
 
                 } else {
                     this.erroValidacao(e = 'emailIncorreto')
+
                 }
 
             }.bind(this),

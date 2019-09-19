@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class Modal extends React.Component {
+class ModalProduto extends React.Component {
     render() {
         if(!this.props.show) {
             return null;
@@ -21,41 +21,34 @@ class Modal extends React.Component {
         const modalStyle = {
             backgroundColor: '#fff',
             borderRadius: 5,
-            // maxWidth: 700,
-            // maxHeight: 700,
-            // marginTop: '5%',
-            // marginLeft: '32%',
+
+            maxWidth: 700,
+            maxHeight: 700,
+            marginLeft: '32%',
+            marginTop: '4%',
             padding: 30,
             display: 'block'
         };
     
         return (
             <div className="backdrop" style={backdropStyle}>
-                <div className="modal w-75 mx-auto my-auto" style={modalStyle}>
-                    <div className=" container">
-                        {this.props.children}
 
-                        <img src="" className="img-fluid rounded mx-auto" alt="Responsive image"/>
-                        <div >
+                <div className="modal" style={modalStyle}>
+                    {this.props.children}
 
-                        </div>
-                    
-                        <div className="footer">
-                            <button className="btn btn-primary" onClick={this.props.onClose}>
-                                Close
-                            </button>
-                        </div>
-                    </div>
+                    <button onClick={this.props.onClose} type="button" className="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
             </div>
         );
     }
 }
 
-Modal.propTypes = {
+ModalProduto.propTypes = {
     onClose: PropTypes.func.isRequired,
     show: PropTypes.bool,
     children: PropTypes.node
 };
   
-export default Modal;
+export default ModalProduto;

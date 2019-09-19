@@ -1,25 +1,26 @@
 import React, { Component } from 'react';
 import Seta from '../../../recursos/icons/seta-laranja.png';
-import { Link } from 'react-router-dom';
 import Logo from '../../../recursos/imgs/img-login.png';
 import { Label } from '../../globais/label/Label'
 import { MdArrowDropDown } from "react-icons/md";
 import Pizza from '../../../recursos/imgs/pizza.jpg'
-import { ImgRestaurante } from './styled';
+import { ImgRestaurante, OpcoesMenu } from './styled';
 import { DOMINIO } from '../../../link_config';
 import $ from 'jquery';
-import { BotaoLink} from '../../globais/botao/Botao';
-import { withRouter } from 'react-router-dom';
+import { BotaoLink } from '../../globais/botao/Botao';
+import { withRouter, Link } from 'react-router-dom';
+import { Navbar, Nav, Form, NavDropdown, FormControl, Button } from 'react-bootstrap';
 
 export class CabecalhoPaginaRestaurante extends Component {
 
-    apagarLocalStorage(){
+    apagarLocalStorage() {
 
+        //Limpa os storages
         localStorage.clear();
+        sessionStorage.clear();
 
         this.props.history.push("/cadastro/endereco");
     }
-
 
     componentDidMount() {
 
@@ -27,7 +28,7 @@ export class CabecalhoPaginaRestaurante extends Component {
         token = token.replace(/"/g, "");
         localStorage.setItem('token', token);
         sessionStorage.setItem('token', token);
-     
+
         const url = `${DOMINIO}/restaurante/este`;
 
 
@@ -41,7 +42,7 @@ export class CabecalhoPaginaRestaurante extends Component {
 
                 localStorage.setItem('id', JSON.stringify(resposta.id));
                 localStorage.setItem('nome', JSON.stringify(resposta.razaoSocial));
-               
+
                 // localStorage.setItem('id', JSON.stringify(resposta.id));
 
                 $(".foto-restaurante").attr("src", resposta.foto);
@@ -55,32 +56,33 @@ export class CabecalhoPaginaRestaurante extends Component {
         });
     }
 
-
     render() {
         return (
-            <nav className="navbar navbar-expand-lg navbar-light bg-light mb-2">
-                <a className="navbar-brand" href="#">
+            <Navbar bg="light" expand="lg">
+                <Link className="navbar-brand" to="/restaurante">
                     <img src={Logo} style={{ maxWidth: 180 + 'px' }} />
-                </a>
+                </Link>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <OpcoesMenu className="row w-100 align-items-center ml-auto bg-light mr-4">
+                        <div className="nav-item col col-sm col-md col-lg ">
+                            <Link className="nav-link text-secondary" to="/restaurante">Pedidos</Link>
+                        </div>
+                        <div className="nav-item col col-sm col-md col-lg">
+                            <Link className="nav-link text-secondary" to="/restaurante/cadastro-produto">Cadastrar Produto</Link>
+                        </div>
+                        <div className="nav-item col col-sm col-md col-lg">
+                            <Link className="nav-link text-secondary" to="/restaurante/visualizar-produto">Catálogo de Produtos</Link>
+                        </div>
 
-                <div className="row align-items-center ml-auto p-2 bg-light ">
-                    <div className="nav-item col col-sm col-md col-lg-2">
-                        <a className="nav-link text-secondary" href="#">Pedidos</a>
-                    </div>
-                    <div className="nav-item col col-sm col-md col-lg-6">
-                        <a className="nav-link text-secondary" href="#">Cadastrar Produto</a>
-                    </div>
+                        <img className="border rounded-circle foto-restaurante  mr-4" src='' style={{ width: 65 + 'px', height: 60 + 'px' }} />
 
-                    <a className="navbar-brand col col-sm col-md col-lg-3" href="#">
-                        <img className="border rounded-circle foto-restaurante" src='' style={{ width: 65 + 'px', height: 60 + 'px' }} />
-                    </a>
+                        <BotaoLink to="/" class="col col-sm col-md col-lg-3" texto="Logout" onClick={e => this.apagarLocalStorage(e)} />
 
-                   
-                </div>
+                    </OpcoesMenu>
 
-                <BotaoLink to="/" class="col col-sm col-md col-lg-3" texto="Logout" onClick={e => this.apagarLocalStorage(e)}/>
-
-            </nav>
+                </Navbar.Collapse>
+            </Navbar>
         )
     }
 }

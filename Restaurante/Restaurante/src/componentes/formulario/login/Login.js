@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Label } from '../../globais/label/Label';
 import LogoGoDinner from '../../../recursos/imgs/img-login.png';
 import { InputCadastro } from '../../globais/input/Input';
-import { BotaoGrande } from '../../globais/botao/styled';
+import { BotaoLink } from '../../globais/botao/Botao';
 import $ from 'jquery';
 import { DOMINIO } from '../../../link_config';
 import { withRouter } from 'react-router-dom';
@@ -78,7 +78,6 @@ class FormularioLogin extends Component {
                     this.erroValidacao(e = 'usuarioInvalido')
                 } else {
 
-
                    
                    
                     localStorage.setItem("token", JSON.stringify(resposta.token));
@@ -88,7 +87,6 @@ class FormularioLogin extends Component {
                     if(token != null){
                         this.props.history.push("/restaurante");
                     }
-
 
                 }
 
@@ -180,10 +178,10 @@ class FormularioLogin extends Component {
 
                 </div>
                 <div className="row mt-5 pl-5 pr-5">
-                    <BotaoGrande onClick={e => this.validaCampos(e)} to="/cadastro" className="btn form-control p-1">Entrar</BotaoGrande>
+                    <BotaoLink onClick={e => this.validaCampos(e)} to="/cadastro" className="btn form-control p-1" texto="Entrar"/>
                 </div>
                 <div className="row mt-3 pl-5 pr-5">
-                    <BotaoGrande to="/cadastro" className="btn form-control p-1">Cadastrar</BotaoGrande>
+                    <BotaoLink to="/cadastro" className="btn form-control p-1" texto="Cadastrar"/>
                 </div>
             </form>
         )
