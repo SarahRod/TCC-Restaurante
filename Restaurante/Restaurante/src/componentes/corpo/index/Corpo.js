@@ -9,6 +9,7 @@ import Pedido from '../../../recursos/icons/pedido.png';
 import Chat from '../../../recursos/icons/chat.png';
 import $ from 'jquery';
 import { DOMINIO } from '../../../link_config';
+import { Link } from 'react-router-dom';
 
 //COMPONENTE DO CORPO DA PÁGINA DE LOGIN
 export class CorpoIndex extends Component {
@@ -65,30 +66,30 @@ render() {
                 </div>
             </div>
             <div className="row mt-5">
-                <div className="col col-sm col-md col-lg h4">
+                <Link to="/restaurante" className="col col-sm col-md col-lg h4 nav-link text-dark">
                     < DivOpecoes theme={{ cor: 'marrom' }}>
                         <IconeOpcoes src={Pedido} />
                     </DivOpecoes>
                     <DivOpecoesTitulo className="pt-1" theme={{ cor: 'marrom' }}>
                         Pedido
                 </DivOpecoesTitulo>
-                </div>
-                <div className="col col-sm col-md col-lg h4">
+                </Link>
+                <Link to="/restaurante/cadastro-produto" className="col col-sm col-md col-lg h4 nav-link text-dark">
                     < DivOpecoes theme={{ cor: 'laranja' }}>
                         <IconeOpcoes src={Talher} />
                     </ DivOpecoes>
                     <DivOpecoesTitulo className="pt-1" theme={{ cor: 'laranja' }}>
                         Cadastrar
                 </DivOpecoesTitulo>
-                </div>
-                <div className="col col-sm col-md col-lg h4">
+                </Link>
+                <Link to="/restaurante" className="col col-sm col-md col-lg h4 nav-link text-dark">
                     <DivOpecoes theme={{ cor: 'verde' }}>
                         <IconeOpcoes src={Chat} />
                     </DivOpecoes>
                     <DivOpecoesTitulo className="pt-1" theme={{ cor: 'verde' }}>
                         Chat
                 </DivOpecoesTitulo>
-                </div>
+                </Link>
             </div>
             <div className="row mt-5">
                 <div className="col col-sm col-md col-lg h4">
