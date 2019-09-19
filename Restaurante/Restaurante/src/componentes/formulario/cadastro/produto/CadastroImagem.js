@@ -16,7 +16,9 @@ const initialState = {
 
     produto:{
         id_produto: '',
-    }
+    },
+
+    imgSrc: '',
 }
 
 export class CadastroImagem extends Component{
@@ -30,16 +32,16 @@ export class CadastroImagem extends Component{
         Imagem[e.target.name] = e.target.value
         this.setState({ Imagem })
 
-        // var file = this.refs.file.files[0];
-        // var reader = new FileReader();
-        // var url = reader.readAsDataURL(file);
-      
-        //  reader.onloadend = function (e) {
-        //     this.setState({
-        //         imgSrc: [reader.result],
-        //     })
-        //   }.bind(this);  
-
+         //PREVIEW FOTO
+         var file = this.refs.file.files[0];
+         var reader = new FileReader();
+         var url = reader.readAsDataURL(file);
+ 
+         reader.onloadend = function (e) {
+             this.setState({
+                 imgSrc: [reader.result],
+             })
+         }.bind(this);
 
 
     }
@@ -97,6 +99,7 @@ export class CadastroImagem extends Component{
                                             
                                         </div>
                                     </p>
+
                                     <div className="input-file btn btn-light mt-0 ml-4">
                                                 <span>Anexar Imagem</span>
                                                 <input ref="file" type="file" className="upload"  multiple="true" id="foto" name="foto" value={this.state.Imagem.foto}  onChange={e => this.atualizaCampo(e)}/>
