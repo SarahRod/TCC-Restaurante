@@ -118,7 +118,7 @@ export class CadastroProduto extends Component {
                                     </div>
                                 </div>
                                 <div className="row mt-5 ml-2">
-                                    <Link className="btn btn-success  btn-sm text-white  mt-4 col-5 col-lg-5" id="add-campo" onClick={e => this.enviaFormulario(e)} >
+                                    <Link className="btn btn-success  btn-sm text-white  mt-4 col-5 col-lg-5" id="prox-campo" onClick={e => this.enviaFormulario(e)} >
                                         <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
                                         Próximo Passo
                                     </Link>
