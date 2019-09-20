@@ -11,10 +11,6 @@ const initialState = {
         foto: '' ,
         index: '',
         legenda: '',
-        
-    },
-
-    produto:{
         id_produto: '',
     },
 
@@ -51,10 +47,12 @@ export class CadastroImagem extends Component{
     
 
     enviaImagem() {
+        const token = localStorage.getItem('token');
+
         
         // this.state.restaurante.id = json.id;
 
-        const url = `${DOMINIO}/foto/restaurante`;
+        const url = `${DOMINIO}/foto/produto`;
 
         //FAZ O UPLOAD DA FOTO
         var formData = new FormData();
@@ -62,12 +60,17 @@ export class CadastroImagem extends Component{
         formData.append('foto', files);
         formData.append('legenda', this.state.Imagem.legenda);
         formData.append('index', 1);
+        formData.append('id', 6);
 
+        
+
+        alert(JSON.stringify(formData));
 
         $.ajax({
             url: url,
             type: 'post',
             data: formData,
+            headers: { 'token': token },
             contentType: false,
             processData: false,
             success: function (resposta) {
