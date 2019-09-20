@@ -38,6 +38,8 @@ export class CadastroProduto extends Component {
 
         const produto = { ...this.state.produto };
 
+        this.state.restaurante.id = localStorage.getItem('id');
+
         var novoproduto = { ...produto, 'restaurante': this.state.restaurante };
 
         const url = `${DOMINIO}/produto/novo`;

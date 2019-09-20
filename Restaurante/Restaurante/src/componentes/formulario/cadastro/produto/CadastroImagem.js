@@ -3,6 +3,7 @@ import Carne from '../../../../recursos/imgs/carne.jpg';
 import $ from 'jquery';
 import { DOMINIO } from '../../../../link_config';
 import '../../../../recursos/js/AddImagem';
+import ImgProduto from '../../../../recursos/imgs/imagem-produto.png';
 
 
 const initialState = {
@@ -14,36 +15,67 @@ const initialState = {
         id_produto: '',
     },
 
-    imgSrc: '',
+    imgSrc: `${ImgProduto}`,
+
+    img1: `${ImgProduto}`
 }
 
 export class CadastroImagem extends Component{
 
     state = { ...initialState }
 
+    visualizarImgSalva(){
+
+        const token = localStorage.getItem('token');
+
+         const url = `${DOMINIO}/fotoproduto/todos/6`; 
+
+        $.ajax({
+            url: url,
+            type: 'get',
+            headers: { 'token': token },
+            success: function (resposta) {
+
+                var teste = this.state.img1 ;
+
+                
+
+                this.setState({ img1 : resposta[0].foto})
+            }.bind(this),
+            error: function (data) {
+                console.log('Erro:', data);
+
+            }
+        });
+       
+    }
+
     
    
     atualizaCampo(e) {
-        const Imagem = { ...this.state.Imagem}
+        const Imagem =  { ... this.state.Imagem}
         Imagem[e.target.name] = e.target.value
         this.setState({ Imagem })
 
          //PREVIEW FOTO
          var file = this.refs.file.files[0];
          var reader = new FileReader();
-         var url = reader.readAsDataURL(file);
- 
-         reader.onloadend = function (e) {
-             this.setState({
-                 imgSrc: [reader.result],
-             })
-         }.bind(this);
 
-
-    }
-
-
+         
+        //Verifica se a imagem foi alterada (Tratamento de erro)
+        if(file != '' && file != null){
+            reader.onloadend = function (e) {
+         
+                this.setState({
+                    imgSrc: [reader.result],
+                })
+             }.bind(this);
     
+             reader.readAsDataURL(file)
+        }
+         
+      
+    }    
     
 
     enviaImagem() {
@@ -75,7 +107,9 @@ export class CadastroImagem extends Component{
             processData: false,
             success: function (resposta) {
 
-                console.log('Sucesso');
+                this.setState({...initialState})
+
+                this.visualizarImgSalva()
             }.bind(this),
             error: function (data) {
                 console.log('Erro:', data);
@@ -119,6 +153,14 @@ export class CadastroImagem extends Component{
                                     
                                 </div>
                             </div>
+                        </div> 
+
+                    </div>
+                    <div className="row">
+                        <div className="col-3 col-md-3 " id="campo' + cont + '">
+                            <div className="card card-menor">
+                                <img name="img1" className="card-img-top tamanho-imagem-produto" alt="..." src={this.state.img1}/>
+                            </div> 
                         </div> 
                     </div>
                 </div>

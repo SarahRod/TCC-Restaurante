@@ -43,6 +43,8 @@ export class CabecalhoPaginaRestaurante extends Component {
                 localStorage.setItem('id', JSON.stringify(resposta.id));
                 localStorage.setItem('nome', JSON.stringify(resposta.razaoSocial));
 
+                console.log(resposta);
+
                 // localStorage.setItem('id', JSON.stringify(resposta.id));
 
                 $(".foto-restaurante").attr("src", resposta.foto);
