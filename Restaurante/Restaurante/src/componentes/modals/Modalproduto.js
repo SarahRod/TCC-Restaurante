@@ -15,7 +15,6 @@ class ModalProduto extends React.Component {
             left: 0,
             right: 0,
             backgroundColor: 'rgba(0,0,0,0.3)',
-            padding: 50,
             zIndex: 1000
             
         };
@@ -25,16 +24,14 @@ class ModalProduto extends React.Component {
             borderRadius: 5,
             maxWidth: 700,
             maxHeight: 700,
-            marginLeft: '32%',
-            marginTop: '4%',
             padding: 30,
             display: 'block'
         };
     
         return (
-            <div className="backdrop  " style={backdropStyle}>
+            <div className="backdrop d-flex justify-content-center" style={backdropStyle}>
 
-                <div className="modal " style={modalStyle}>
+                <div className="modal" style={modalStyle}>
                     {this.props.children}
                         
                     

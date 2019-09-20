@@ -17,14 +17,13 @@ class CorpoListagemProduto extends Component{
 
     componentDidMount() {
         let id = localStorage.getItem("id");
-        // let url = `${DOMINIO}/exibicao/${id}`;
-        let url = `${DOMINIO}/produto/todos/${id}`;
+        let url = `${DOMINIO}/produto/exibicao/${id}`;
         let token = localStorage.getItem("token");
         
         $.ajax({
             url: url,
             type: 'get',
-            data: { "token": token},
+            headers: { "token": token},
             dataType: 'json',
             contentType: 'application/json',
             success: function (resposta) {
