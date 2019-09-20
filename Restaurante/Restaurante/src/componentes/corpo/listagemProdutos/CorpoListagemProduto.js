@@ -46,7 +46,7 @@ class CorpoListagemProduto extends Component{
 
         return(
             <Fragment>
-                <Container p={2}>
+                <Container p='2'>
                     <InputGroup className="item-list-p p-1 mx-auto mt-5 mb-5 w-25">
                         <FormControl
                             className="border-light"

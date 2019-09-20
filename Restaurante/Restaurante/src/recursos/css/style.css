@@ -169,9 +169,9 @@ textarea:focus, input:focus, select:focus, a:focus{
     cursor: pointer;
 }
 
-.image-parent {
-    background-size: contain;
-    max-height: 125px;
+.imagem-produto {
+    /* max-width: 150px !important;  */
+    height: 140px !important;
 }
 
 .red{
