@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { InputGroup, FormControl, ListGroup, Container } from 'react-bootstrap';
 
 class ModalProduto extends React.Component {
     render() {
@@ -16,6 +17,7 @@ class ModalProduto extends React.Component {
             backgroundColor: 'rgba(0,0,0,0.3)',
             padding: 50,
             zIndex: 1000
+            
         };
         
         const modalStyle = {
@@ -30,13 +32,12 @@ class ModalProduto extends React.Component {
         };
     
         return (
-            <div className="backdrop" style={backdropStyle}>
-                <div className="modal" style={modalStyle}>
-                    {this.props.children}
+            <div className="backdrop  " style={backdropStyle}>
 
-                    <button onClick={this.props.onClose} type="button" className="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                <div className="modal " style={modalStyle}>
+                    {this.props.children}
+                        
+                    
                 </div>
             </div>
         );

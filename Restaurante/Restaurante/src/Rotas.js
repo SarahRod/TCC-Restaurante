@@ -5,12 +5,10 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import FormularioLogin from './componentes/formulario/cadastro/login/Login';
 import { FormularioBemVindo } from './componentes/formulario/cadastro/bemVindo/BemVindo'
 import { PaginaLogin } from './paginas/login/PaginaLogin';
-import { PaginaCadastro } from './paginas/cadastro/paginaCadastro';
 import { Rodape } from './componentes/rodape/cadastro/rodape';
 import CorpoListagemProdutos from "./componentes/corpo/listagemProdutos/CorpoListagemProduto";
 import { PaginaCadastroProduto } from './paginas/cadastroProduto/PaginaCadastroProduto';
 import CabecalhoPaginaRestaurante from './componentes/cabecalho/restaurante/Cabecalho';
-import { MenuRestaurante } from './componentes/menu/Menu';
 import { CorpoIndex } from './componentes/corpo/index/Corpo';
 
 export const estaAutenticado = () => localStorage.getItem("token") != null || sessionStorage.getItem("dados") != null;
@@ -37,7 +35,6 @@ export class RotaPaginas extends Component {
                     <Switch>
 
                         <Route path="/" exact component={PaginaLogin} />
-
 
                         <Route
                             path="/cadastro" render={({ match: { url } }) => (
