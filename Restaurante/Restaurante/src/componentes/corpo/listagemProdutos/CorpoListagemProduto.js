@@ -28,10 +28,9 @@ class CorpoListagemProduto extends Component{
             dataType: 'json',
             contentType: 'application/json',
             success: function (resposta) {
-                console.log(resposta)
+                console.table(resposta)
                 this.setState({itens: resposta})
-                console.table(this.state.itens);
-
+                
             }.bind(this),
             error: function (data) {
                 console.log('====================================');
@@ -49,14 +48,14 @@ class CorpoListagemProduto extends Component{
                 <Container className="p-2">
                     <InputGroup className="item-list-p p-1 mx-auto mt-5 mb-5 w-25" >
                         <FormControl
-                            className="border-light"
+                            className="border-0"
                             type="text"
                             placeholder="Search"
                             aria-label="Search"
                             aria-describedby="btnGroupAddon"
                         />
-                        <InputGroup.Prepend className="border-light">
-                            <InputGroup.Text className="border-light bg-transparent" id="btnGroupAddon"><FaSearch/></InputGroup.Text>
+                        <InputGroup.Prepend className="border-0">
+                            <InputGroup.Text className="border-0 bg-transparent" id="btnGroupAddon"><FaSearch/></InputGroup.Text>
                         </InputGroup.Prepend>
                     </InputGroup>
 

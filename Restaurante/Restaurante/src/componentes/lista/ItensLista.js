@@ -49,32 +49,33 @@ class ItensLista extends Component{
                 </ModalProduto>
 
                 <div className="row m-1 ">
-                    <div className="col-3 p-2">
+                    <div className="col-3 p-2 ">
                         <div className=" mx-auto my-auto" >
                             <figure className="figure p-0 m-0">
                                 <Image className="rounded-circle w-100" src={this.state.item.foto} alt="Imagem Produto" style={{ maxWidth: 150 + 'px' + '!important', height: 150 + 'px' }}/>
+                                {/* <img className="rounded-circle w-100" src="https://static.independent.co.uk/s3fs-public/thumbnails/image/2019/04/24/12/food-pineapple-pizza-1.jpg?w968h681" style={{ maxWidth: 150 + 'px' + '!important', height: 150 + 'px' }} alt="Imagem Produto"/> */}
                             </figure>
                         </div>
                     </div>
                      <div className="col-9">
                         
-                        <div className="row">
-                            <div className="col-11">
-                                <h5 className="h4 p-2">{this.state.item.nome}</h5>
+                        <div className="row ">
+                            <div className="col-11 p-0">
+                                <p className="h4 p-2 m-0">{this.state.item.nome}</p>
                             </div>
-                            <div className="col-1 ">
-                                <FaPencilAlt className="my-auto mx-auto pointer" />
+                            <div className="col-1">
+                                <FaPencilAlt className="m-0 pointer" />
                             </div>
                         </div>
 
-                        <div className="row h-50">
-                            <div className="col  text-truncate p-1 ">
+                        <div className="row ">
+                            <div className="col  p-1 ">
                                 <p className="text-muted text-break" >
                                     {this.state.item.descricao}
                                 </p>
                             </div>
                         </div>
-                        <div className="row" >
+                        <div className="row " >
                             <div className="col text-right">
                                 <small className="text-success">R$ {this.state.item.preco}</small>
                             </div>
