@@ -17,7 +17,8 @@ class CorpoListagemProduto extends Component{
 
     componentDidMount() {
         let id = localStorage.getItem("id");
-        let url = `${DOMINIO}/produto/exibicao/${id}`;
+        // let url = `${DOMINIO}/produto/exibicao/${id}`;
+        let url = `${DOMINIO}/produto/todos/${id}`;
         let token = localStorage.getItem("token");
         
         $.ajax({
@@ -45,8 +46,8 @@ class CorpoListagemProduto extends Component{
 
         return(
             <Fragment>
-                <Container p='2'>
-                    <InputGroup className="item-list-p p-1 mx-auto mt-5 mb-5 w-25">
+                <Container className="p-2">
+                    <InputGroup className="item-list-p p-1 mx-auto mt-5 mb-5 w-25" >
                         <FormControl
                             className="border-light"
                             type="text"
