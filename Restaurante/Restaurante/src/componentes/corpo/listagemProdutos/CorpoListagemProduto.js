@@ -17,8 +17,7 @@ class CorpoListagemProduto extends Component{
 
     componentDidMount() {
         let id = localStorage.getItem("id");
-        // let url = `${DOMINIO}/produto/exibicao/${id}`;
-        let url = `${DOMINIO}/produto/todos/${id}`;
+        let url = `${DOMINIO}/produto/exibicao/${id}`;
         let token = localStorage.getItem("token");
         
         $.ajax({
@@ -28,9 +27,11 @@ class CorpoListagemProduto extends Component{
             dataType: 'json',
             contentType: 'application/json',
             success: function (resposta) {
-                console.table(resposta)
+
                 this.setState({itens: resposta})
-                
+                let teste = JSON.parse(resposta[1])
+                console.log(teste)
+
             }.bind(this),
             error: function (data) {
                 console.log('====================================');

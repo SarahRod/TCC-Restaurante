@@ -10,6 +10,8 @@ class ItensLista extends Component{
         super();
 
         this.state = {item: props.item}
+        let des = this.state.item.descricao;
+        console.log(des);
     }
     
     toggleModal = () => {

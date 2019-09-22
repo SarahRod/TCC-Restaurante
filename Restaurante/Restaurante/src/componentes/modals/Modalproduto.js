@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './../../recursos/css/style.css';
-import { InputGroup, FormControl, ListGroup, Container } from 'react-bootstrap';
 
 class ModalProduto extends React.Component {
     render() {
