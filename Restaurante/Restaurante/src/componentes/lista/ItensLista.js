@@ -2,18 +2,17 @@ import React, { Component } from 'react';
 import { FaPencilAlt } from 'react-icons/fa';
 import { IoMdClose } from "react-icons/io";
 import ModalProduto from '../modals/Modalproduto';
+import {FOTOLANCHEPADRAO} from "../../link_config"
 import { Image } from 'react-bootstrap';
 
 class ItensLista extends Component{
-
+ 
     constructor(props){
         super();
 
         this.state = {item: props.item}
-        let des = this.state.item.descricao;
-        console.log(des);
     }
-    
+
     toggleModal = () => {
         this.setState({
             isOpen: !this.state.isOpen
@@ -21,6 +20,9 @@ class ItensLista extends Component{
     }
 
     render() {
+
+        let fotopadrao = FOTOLANCHEPADRAO;
+
         return (
             <div className="item-list-p list-group-item-action mb-3 w-100" onClick={this.toggleModal}>
                 <ModalProduto show={this.state.isOpen} onClose={this.toggleModal}>
@@ -54,8 +56,7 @@ class ItensLista extends Component{
                     <div className="col-3 p-2 ">
                         <div className=" mx-auto my-auto" >
                             <figure className="figure p-0 m-0">
-                                <Image className="rounded-circle w-100" src={this.state.item.foto} alt="Imagem Produto" style={{ maxWidth: 150 + 'px' + '!important', height: 150 + 'px' }}/>
-                                {/* <img className="rounded-circle w-100" src="https://static.independent.co.uk/s3fs-public/thumbnails/image/2019/04/24/12/food-pineapple-pizza-1.jpg?w968h681" style={{ maxWidth: 150 + 'px' + '!important', height: 150 + 'px' }} alt="Imagem Produto"/> */}
+                                <Image className="rounded-circle w-100" src={this.state.item.foto != []? fotopadrao : this.state.item.foto[0] } alt="Imagem Produto" style={{ maxWidth: 150 + 'px' + '!important', height: 150 + 'px' }}/>
                             </figure>
                         </div>
                     </div>
