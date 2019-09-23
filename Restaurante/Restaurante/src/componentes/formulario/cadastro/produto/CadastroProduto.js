@@ -23,8 +23,8 @@ const initialState = {
         nome: ''
     },
 
-    categoria:[]
-   
+    categoria: []
+
 }
 
 export class CadastroProduto extends Component {
@@ -38,6 +38,8 @@ export class CadastroProduto extends Component {
 
         const produto = { ...this.state.produto };
 
+        this.state.restaurante.id = localStorage.getItem('id');
+
         var novoproduto = { ...produto, 'restaurante': this.state.restaurante };
 
         const url = `${DOMINIO}/produto/novo`;
@@ -50,16 +52,18 @@ export class CadastroProduto extends Component {
             headers: { 'token': token },
             type: 'POST',
             data: JSON.stringify(novoproduto),
-            
+
 
             success: function (resposta) {
 
-                alert('Gravou')
-               
+                alert('Gravou');
+
+                sessionStorage.setItem("id_produto", resposta.id);
+
 
             }.bind(this),
             error: function (data) {
-                
+
                 alert('nao gravou')
             }
         });
@@ -88,7 +92,7 @@ export class CadastroProduto extends Component {
                         <div className="row">
                             <div className="col-12 col-md-5">
                                 <h4>1º Passo</h4>
-                                <hr/>
+                                <hr />
                                 <div className="row mb-4">
                                     <div className="col-12">
                                         <label className="h5">Nome do Produto</label>
@@ -108,12 +112,12 @@ export class CadastroProduto extends Component {
                                         <h5 className="simbolo-porcentagem">%</h5>
                                     </div>
                                 </div>
-                                
+
                                 <div className="row mb-4">
                                     <div className="col-10">
                                         <div className="form-group">
                                             <label for="exampleFormControlTextarea1" className="h5">Descrição do Produto</label>
-                                            <textarea className="form-control" id="exampleFormControlTextarea1" rows="4" name="descricao"   value={this.state.produto.descricao} onChange={e => this.atualizaCampo(e)}></textarea>
+                                            <textarea className="form-control" id="exampleFormControlTextarea1" rows="4" name="descricao" value={this.state.produto.descricao} onChange={e => this.atualizaCampo(e)}></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -126,7 +130,7 @@ export class CadastroProduto extends Component {
                             </div>
                             <CadastroImagem />
                         </div>
-                        <SessaoCategoria/>
+                        <SessaoCategoria />
                     </form>
                 </div>
             </Fragment>
