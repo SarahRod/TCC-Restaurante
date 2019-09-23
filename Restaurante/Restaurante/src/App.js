@@ -12,13 +12,18 @@ import 'bootstrap';
 import 'bootstrap/js/dist/util';
 import 'bootstrap/js/dist/alert';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 
+import reducers from './reducers';
 
+const store = createStore(reducers);
 
 function App() {
   return (
-    // <PaginaCadastro />
-    <RotaPaginas/>
+    <Provider store={store}>
+      <RotaPaginas />
+    </Provider>
   );
 }
 

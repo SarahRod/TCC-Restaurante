@@ -7,7 +7,8 @@ import { FormularioBemVindo } from './componentes/formulario/cadastro/bemVindo/B
 import { PaginaLogin } from './paginas/login/PaginaLogin';
 import { Rodape } from './componentes/rodape/cadastro/rodape';
 import CorpoListagemProdutos from "./componentes/corpo/listagemProdutos/CorpoListagemProduto";
-import { PaginaCadastroProduto } from './paginas/cadastroProduto/PaginaCadastroProduto';
+// import } from './paginas/cadastroProduto/PaginaCadastroProduto';
+import CadastroProduto from "./componentes/formulario/cadastro/produto/CadastroProduto"
 import CabecalhoPaginaRestaurante from './componentes/cabecalho/restaurante/Cabecalho';
 import { CorpoIndex } from './componentes/corpo/index/Corpo';
 
@@ -53,7 +54,7 @@ export class RotaPaginas extends Component {
                             <Fragment>
                                 <CabecalhoPaginaRestaurante />
                                 <PrivateRoute path={`${url}/`} component={CorpoIndex} exact />
-                                <PrivateRoute path={`${url}/cadastro-produto`} component={PaginaCadastroProduto} />
+                                <PrivateRoute path={`${url}/cadastro-produto`} component={CadastroProduto} />
                                 <PrivateRoute path={`${url}/visualizar-produto`} component={CorpoListagemProdutos} />
                                 <Rodape />
                             </Fragment>

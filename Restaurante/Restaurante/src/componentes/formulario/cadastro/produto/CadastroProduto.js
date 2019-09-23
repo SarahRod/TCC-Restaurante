@@ -4,6 +4,7 @@ import $ from 'jquery';
 import { Link } from 'react-router-dom';
 import { DOMINIO } from '../../../../link_config';
 import { SessaoCategoria } from './SessaoCategoria';
+import { connect } from 'react-redux';
 
 //ARMAZENA OS ESTADOS INICIAIS
 const initialState = {
@@ -27,7 +28,7 @@ const initialState = {
 
 }
 
-export class CadastroProduto extends Component {
+class CadastroProduto extends Component {
 
     //ARMAZENA OS ESTADOS INICIAIS
     state = { ...initialState }
@@ -82,6 +83,8 @@ export class CadastroProduto extends Component {
     }
 
     render() {
+
+        const { nome } = this.props.produto;
         return (
             <Fragment>
                 <div className="container">
@@ -96,7 +99,7 @@ export class CadastroProduto extends Component {
                                 <div className="row mb-4">
                                     <div className="col-12">
                                         <label className="h5">Nome do Produto</label>
-                                        <input className="form-control  mb-2 mr-sm-2" type="text" name="nome" id="nome" value={this.state.produto.nome} onChange={e => this.atualizaCampo(e)} />
+                                        <input className="form-control  mb-2 mr-sm-2" type="text" name="nome" id="nome" value={nome} onChange={e => this.atualizaCampo(e)} />
                                     </div>
                                 </div>
                                 <div className="row mb-3">
@@ -137,3 +140,6 @@ export class CadastroProduto extends Component {
         )
     }
 }
+
+const mapStateToProps = state => ({ produto: state.dashboard.produto })
+export default connect(mapStateToProps)(CadastroProduto)
