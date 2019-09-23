@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import { DOMINIO } from '../../../../link_config';
 import { SessaoCategoria } from './SessaoCategoria';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { getProduto } from './cadastroActions';
 
 //ARMAZENA OS ESTADOS INICIAIS
 const initialState = {
@@ -33,11 +36,15 @@ class CadastroProduto extends Component {
     //ARMAZENA OS ESTADOS INICIAIS
     state = { ...initialState }
 
+    componentWillMount(){
+        this.props.getProduto();
+    }
+
     enviaFormulario() {
 
         const token = localStorage.getItem('token');
 
-        const produto = { ...this.state.produto };
+        const produto = { ...this.props.produto };
 
         this.state.restaurante.id = localStorage.getItem('id');
 
@@ -72,7 +79,7 @@ class CadastroProduto extends Component {
 
     //ATUALIZA AS INPUTS COM OS ESTADOS 
     atualizaCampo(e) {
-        const produto = { ...this.state.produto }
+        const produto = { ...this.props.produto }
         produto[e.target.name] = e.target.value;
 
 
@@ -84,7 +91,8 @@ class CadastroProduto extends Component {
 
     render() {
 
-        const { nome } = this.props.produto;
+        const { nome, preco, desconto, descricao } = this.props.produto;
+
         return (
             <Fragment>
                 <div className="container">
@@ -105,11 +113,11 @@ class CadastroProduto extends Component {
                                 <div className="row mb-3">
                                     <div className="col-3 mb-4">
                                         <label className="h5">Preço</label>
-                                        <input className="form-control  mb-2 mr-sm-2" type="text" name="preco" id="preco" value={this.state.produto.preco} onChange={e => this.atualizaCampo(e)} />
+                                        <input className="form-control  mb-2 mr-sm-2" type="text" name="preco" id="preco" value={preco} onChange={e => this.atualizaCampo(e)} />
                                     </div>
                                     <div className="col-3 mb-4">
                                         <label className="h5">Promoção</label>
-                                        <input className="form-control  mb-2 mr-sm-2" type="text" name="desconto" id="desconto" value={this.state.produto.desconto} onChange={e => this.atualizaCampo(e)} />
+                                        <input className="form-control  mb-2 mr-sm-2" type="text" name="desconto" id="desconto" value={desconto} onChange={e => this.atualizaCampo(e)} />
                                     </div>
                                     <div className="col-6 mb-4">
                                         <h5 className="simbolo-porcentagem">%</h5>
@@ -120,7 +128,7 @@ class CadastroProduto extends Component {
                                     <div className="col-10">
                                         <div className="form-group">
                                             <label for="exampleFormControlTextarea1" className="h5">Descrição do Produto</label>
-                                            <textarea className="form-control" id="exampleFormControlTextarea1" rows="4" name="descricao" value={this.state.produto.descricao} onChange={e => this.atualizaCampo(e)}></textarea>
+                                            <textarea className="form-control" id="exampleFormControlTextarea1" rows="4" name="descricao" value={descricao} onChange={e => this.atualizaCampo(e)}></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -142,4 +150,5 @@ class CadastroProduto extends Component {
 }
 
 const mapStateToProps = state => ({ produto: state.dashboard.produto })
-export default connect(mapStateToProps)(CadastroProduto)
+const mapDispatchProps = dispatch => bindActionCreators({getProduto}, dispatch)
+export default connect(mapStateToProps, mapDispatchProps)(CadastroProduto)

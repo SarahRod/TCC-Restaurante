@@ -12,12 +12,14 @@ import 'bootstrap';
 import 'bootstrap/js/dist/util';
 import 'bootstrap/js/dist/alert';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
 
+
+import promise from 'redux-promise';
 import reducers from './reducers';
 
-const store = createStore(reducers);
+const store = applyMiddleware(promise)(createStore)(reducers);
 
 function App() {
   return (
