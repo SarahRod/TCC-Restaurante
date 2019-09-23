@@ -17,20 +17,20 @@ class CorpoListagemProduto extends Component{
 
     componentDidMount() {
         let id = localStorage.getItem("id");
-        // let url = `${DOMINIO}/exibicao/${id}`;
-        let url = `${DOMINIO}/produto/todos/${id}`;
+        let url = `${DOMINIO}/produto/exibicao/${id}`;
         let token = localStorage.getItem("token");
         
         $.ajax({
             url: url,
             type: 'get',
-            data: { "token": token},
+            headers: { "token": token},
             dataType: 'json',
             contentType: 'application/json',
             success: function (resposta) {
-                console.log(resposta)
+
                 this.setState({itens: resposta})
-                console.table(this.state.itens);
+                let teste = JSON.parse(resposta[1])
+                console.log(teste)
 
             }.bind(this),
             error: function (data) {
@@ -46,17 +46,17 @@ class CorpoListagemProduto extends Component{
 
         return(
             <Fragment>
-                <Container p='2'>
-                    <InputGroup className="item-list-p p-1 mx-auto mt-5 mb-5 w-25">
+                <Container className="p-2">
+                    <InputGroup className="item-list-p p-1 mx-auto mt-5 mb-5 w-25" >
                         <FormControl
-                            className="border-light"
+                            className="border-0"
                             type="text"
                             placeholder="Search"
                             aria-label="Search"
                             aria-describedby="btnGroupAddon"
                         />
-                        <InputGroup.Prepend className="border-light">
-                            <InputGroup.Text className="border-light bg-transparent" id="btnGroupAddon"><FaSearch/></InputGroup.Text>
+                        <InputGroup.Prepend className="border-0">
+                            <InputGroup.Text className="border-0 bg-transparent" id="btnGroupAddon"><FaSearch/></InputGroup.Text>
                         </InputGroup.Prepend>
                     </InputGroup>
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { FaPencilAlt } from 'react-icons/fa';
+import { IoMdClose } from "react-icons/io";
 import ModalProduto from '../modals/Modalproduto';
 import { Image } from 'react-bootstrap';
 
@@ -9,7 +10,8 @@ class ItensLista extends Component{
         super();
 
         this.state = {item: props.item}
-        // this.state = { isOpen: false }
+        let des = this.state.item.descricao;
+        console.log(des);
     }
     
     toggleModal = () => {
@@ -22,61 +24,60 @@ class ItensLista extends Component{
         return (
             <div className="item-list-p list-group-item-action mb-3 w-100" onClick={this.toggleModal}>
                 <ModalProduto show={this.state.isOpen} onClose={this.toggleModal}>
-                    <div className="container d-flex overflow-auto bg-dark">
-                    
-                        <div className="bd-highlight font-weight-normal bg-danger">                            
-                            <img className="img-fluid h-100 rounded mx-auto" src="https://d2ofpir5gh0cbr.cloudfront.net/files/lp_banner/530x420px-papel-lanche-banner2.jpg"/>
+                        <div className="d-flex flex-row-reverse bd-highlight mt-2 mb-2">
+                            <IoMdClose className="close"/>
+                        </div>   
+                        <div className="modal-header h-50 pt-0 ">                         
+                            <figure className="figure w-100 h-100">    
+                                <img className="mx-auto rounded w-100 h-100" src="" alt="Imagem Produto"/>
+                            </figure>
+
                         </div>
-                        <div className="bd-highlight flex-colunm bg-primary rounded">                            
-                            <div className="bd-highlight bg-success">
-                                {this.state.item.nome}
-                            </div>
-                            <div className="bd-highlight bg-secondary">
-                                {this.state.item.nome}
-                            </div>
-                            <div className="bd-highlight bg-secondary">
-                                {this.state.item.nome}
-                            </div>
-                        </div>    
-
-
-                        
-
-                    </div>
-                </ModalProduto>
-
-                <div className="row m-1 bg-success">
-                    <div className="col-3 p-2 bg-info">
-                    <div className=" rounded-circle imagem-produto overflow-hidden mx-auto my-auto bg-dark" style={{ maxWidth: 50 + 'px' + '!important', height: 50 + 'px' }}>
-                        <figure className="figure bg-danger">
-                                <img
-                                    src="https://img.stpu.com.br/?img=https://s3.amazonaws.com/pu-mgr/default/a0R0f00001071YMEAY/5beeb0b7e4b0778a74609716.jpg&w=710&h=462"
-                                    className=" mx-auto my-auto w-100"/>
-                                {/* <Image src={this.state.item.foto} /> */}
-                        </figure>
-                        </div>
-                    </div>
-                     <div className="col-9">
-                        
-                        <div className="row">
-                            <div className="col-11 bg-danger">
-                                <h5 className="h4">{this.state.item.nome}</h5>
-                            </div>
-                            <div className="col-1 bg-secondary">
-                                <i className="my mx pointer" ><FaPencilAlt/></i>
-                            </div>
-                        </div>
-
-                        <div className="row h-50">
-                            <div className="col  text-truncate p-1 bg-primary">
-                                <p className="text-muted text-break" >
-                                    rubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubens
-                                    rubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubensrubens
+                        <div className="modal-body ">
+                            <div className="modal-title">
+                                <h3>{this.state.item.nome}</h3>
+                            </div>                            
+                            <div className="w-100 hm-25" style={{overflow: 'auto', height: 150}}>
+                                <p className="text-break">
                                     {this.state.item.descricao}
                                 </p>
                             </div>
                         </div>
-                        <div className="row bg-warning" >
+                        <div className="modal-footer">
+                            <p className="text-success">
+                                R$ {this.state.item.preco}
+                            </p>
+                        </div>
+                </ModalProduto>
+
+                <div className="row m-1 ">
+                    <div className="col-3 p-2 ">
+                        <div className=" mx-auto my-auto" >
+                            <figure className="figure p-0 m-0">
+                                <Image className="rounded-circle w-100" src={this.state.item.foto} alt="Imagem Produto" style={{ maxWidth: 150 + 'px' + '!important', height: 150 + 'px' }}/>
+                                {/* <img className="rounded-circle w-100" src="https://static.independent.co.uk/s3fs-public/thumbnails/image/2019/04/24/12/food-pineapple-pizza-1.jpg?w968h681" style={{ maxWidth: 150 + 'px' + '!important', height: 150 + 'px' }} alt="Imagem Produto"/> */}
+                            </figure>
+                        </div>
+                    </div>
+                     <div className="col-9">
+                        
+                        <div className="row ">
+                            <div className="col-11 p-0">
+                                <p className="h4 p-2 m-0">{this.state.item.nome}</p>
+                            </div>
+                            <div className="col-1">
+                                <FaPencilAlt className="m-0 pointer" />
+                            </div>
+                        </div>
+
+                        <div className="row ">
+                            <div className="col  p-1 ">
+                                <p className="text-muted text-break" >
+                                    {this.state.item.descricao}
+                                </p>
+                            </div>
+                        </div>
+                        <div className="row " >
                             <div className="col text-right">
                                 <small className="text-success">R$ {this.state.item.preco}</small>
                             </div>

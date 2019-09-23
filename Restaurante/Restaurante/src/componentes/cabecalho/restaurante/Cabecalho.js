@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import Seta from '../../../recursos/icons/seta-laranja.png';
 import Logo from '../../../recursos/imgs/img-login.png';
-import { Label } from '../../globais/label/Label'
-import { MdArrowDropDown } from "react-icons/md";
-import Pizza from '../../../recursos/imgs/pizza.jpg'
 import { ImgRestaurante, OpcoesMenu } from './styled';
 import { DOMINIO } from '../../../link_config';
 import $ from 'jquery';
@@ -31,7 +27,6 @@ export class CabecalhoPaginaRestaurante extends Component {
 
         const url = `${DOMINIO}/restaurante/este`;
 
-
         $.ajax({
             url: url,
             type: 'get',
@@ -43,10 +38,7 @@ export class CabecalhoPaginaRestaurante extends Component {
                 localStorage.setItem('id', JSON.stringify(resposta.id));
                 localStorage.setItem('nome', JSON.stringify(resposta.razaoSocial));
 
-                // localStorage.setItem('id', JSON.stringify(resposta.id));
-
                 $(".foto-restaurante").attr("src", resposta.foto);
-
 
             }.bind(this),
             error: function (data) {
