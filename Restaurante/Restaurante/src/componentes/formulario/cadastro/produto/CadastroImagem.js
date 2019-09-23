@@ -18,6 +18,7 @@ const initialState = {
     imgSrc: `${ImgProduto}`,
 
     img1: `${ImgProduto}`
+
 }
 
 export class CadastroImagem extends Component{
@@ -38,9 +39,8 @@ export class CadastroImagem extends Component{
 
                 var teste = this.state.img1 ;
 
-                
-
                 this.setState({ img1 : resposta[0].foto})
+
             }.bind(this),
             error: function (data) {
                 console.log('Erro:', data);

@@ -19,12 +19,6 @@ const initialState = {
         id: 1
     },
 
-    categoria: {
-        nome: ''
-    },
-
-    categoria: []
-
 }
 
 export class CadastroProduto extends Component {
@@ -68,6 +62,8 @@ export class CadastroProduto extends Component {
             }
         });
     }
+
+
 
     //ATUALIZA AS INPUTS COM OS ESTADOS 
     atualizaCampo(e) {
@@ -128,9 +124,9 @@ export class CadastroProduto extends Component {
                                     </Link>
                                 </div>
                             </div>
-                            <CadastroImagem />
+                            <CadastroImagem/>
                         </div>
-                        <SessaoCategoria />
+                        <SessaoCategoria/>
                     </form>
                 </div>
             </Fragment>
