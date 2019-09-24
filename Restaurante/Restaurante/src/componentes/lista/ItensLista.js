@@ -12,6 +12,7 @@ class ItensLista extends Component{
         super();
 
         this.state = {item: props.item}
+        console.log(this.state)
     }
 
     toggleModal = () => {
@@ -60,7 +61,7 @@ class ItensLista extends Component{
                     <div className="col-3 p-2 ">
                         <div className=" mx-auto my-auto" >
                             <figure className="figure p-0 m-0">
-                                <Image className="rounded-circle w-100" src={this.state.item.foto != []? fotopadrao : this.state.item.foto[0] } alt="Imagem Produto" style={{ maxWidth: 150 + 'px' + '!important', height: 150 + 'px' }}/>
+                                <Image className="rounded-circle w-100" src={this.state.item.foto[0] == []? fotopadrao : this.state.item.foto[1] } alt="Imagem Produto" style={{ maxWidth: 150 + 'px' + '!important', height: 150 + 'px' }}/>
                             </figure>
                         </div>
                     </div>

@@ -17,7 +17,7 @@ class CorpoListagemProduto extends Component{
 
     componentDidMount() {
         let id = localStorage.getItem("id");
-        let url = `${DOMINIO}/produto/exibicao/${id}`;
+        let url = `${DOMINIO}/produto/exibicao/todos/${id}`;
         let token = localStorage.getItem("token");
         console.log('====================================');
         console.log(url);
@@ -31,6 +31,8 @@ class CorpoListagemProduto extends Component{
             success: function (resposta) {
 
                 this.setState({itens: resposta})
+                console.table(resposta)
+                console.log(resposta)
 
             }.bind(this),
             error: function (data) {
