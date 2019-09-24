@@ -4,6 +4,18 @@ import $ from 'jquery';
 import { Link } from 'react-router-dom';
 import { DOMINIO } from '../../../../link_config';
 import { SessaoCategoria } from './SessaoCategoria';
+import axios from 'axios';
+
+export function getProduto(id) {
+    const requisicao = axios.get(`http://localhost:8080/produto/${id}`)
+
+    return {
+        type: "EDITAR_PRODUTO",
+        payload: requisicao
+    }
+
+
+}
 
 //ARMAZENA OS ESTADOS INICIAIS
 const initialState = {
@@ -27,10 +39,45 @@ const initialState = {
 
 }
 
-export class CadastroProduto extends Component {
+class CadastroProduto extends Component {
 
     //ARMAZENA OS ESTADOS INICIAIS
     state = { ...initialState }
+
+
+    componentWillMount() {
+
+
+        const { id } = this.props.match.params;
+
+        const token = localStorage.getItem('token');
+
+        const url = `http://localhost:8080/produto/${id}`;
+
+        if (id != null) {
+            $.ajax({
+                url: url,
+                type: 'get',
+                headers: { 'token': token },
+                success: function (resposta) {
+
+                    $('#nome').val(resposta.nome);
+                    $('#preco').val(resposta.preco);
+                    $('#desconto').val(resposta.desconto);
+                    $('#descricao').val(resposta.descricao);
+
+                }.bind(this),
+                error: function (data) {
+                    console.log('Erro:', data);
+
+                }
+            });
+
+
+        } else {
+
+        }
+    }
 
     enviaFormulario() {
 
@@ -82,6 +129,9 @@ export class CadastroProduto extends Component {
     }
 
     render() {
+
+        const { nome, preco, desconto, descricao } = this.state.produto;
+
         return (
             <Fragment>
                 <div className="container">
@@ -96,17 +146,17 @@ export class CadastroProduto extends Component {
                                 <div className="row mb-4">
                                     <div className="col-12">
                                         <label className="h5">Nome do Produto</label>
-                                        <input className="form-control  mb-2 mr-sm-2" type="text" name="nome" id="nome" value={this.state.produto.nome} onChange={e => this.atualizaCampo(e)} />
+                                        <input className="form-control  mb-2 mr-sm-2" type="text" name="nome" id="nome" value={nome} onChange={e => this.atualizaCampo(e)} />
                                     </div>
                                 </div>
                                 <div className="row mb-3">
                                     <div className="col-3 mb-4">
                                         <label className="h5">Preço</label>
-                                        <input className="form-control  mb-2 mr-sm-2" type="text" name="preco" id="preco" value={this.state.produto.preco} onChange={e => this.atualizaCampo(e)} />
+                                        <input className="form-control  mb-2 mr-sm-2" type="text" name="preco" id="preco" value={preco} onChange={e => this.atualizaCampo(e)} />
                                     </div>
                                     <div className="col-3 mb-4">
                                         <label className="h5">Promoção</label>
-                                        <input className="form-control  mb-2 mr-sm-2" type="text" name="desconto" id="desconto" value={this.state.produto.desconto} onChange={e => this.atualizaCampo(e)} />
+                                        <input className="form-control  mb-2 mr-sm-2" type="text" name="desconto" id="desconto" value={desconto} onChange={e => this.atualizaCampo(e)} />
                                     </div>
                                     <div className="col-6 mb-4">
                                         <h5 className="simbolo-porcentagem">%</h5>
@@ -117,7 +167,7 @@ export class CadastroProduto extends Component {
                                     <div className="col-10">
                                         <div className="form-group">
                                             <label for="exampleFormControlTextarea1" className="h5">Descrição do Produto</label>
-                                            <textarea className="form-control" id="exampleFormControlTextarea1" rows="4" name="descricao" value={this.state.produto.descricao} onChange={e => this.atualizaCampo(e)}></textarea>
+                                            <textarea className="form-control" id="exampleFormControlTextarea1" rows="4" id="descricao" name="descricao" value={descricao} onChange={e => this.atualizaCampo(e)}></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -137,3 +187,5 @@ export class CadastroProduto extends Component {
         )
     }
 }
+
+export default CadastroProduto;
