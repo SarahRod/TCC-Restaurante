@@ -20,11 +20,14 @@ export class SessaoCategoria extends Component{
                 produto:{}
             },
 
-            categorias: []
+            categorias: [],
+            
+            listaCategoria: []
 
         }
     }
 
+   
 
     enviaCategoria() {
 
@@ -54,8 +57,18 @@ export class SessaoCategoria extends Component{
 
             success: function (resposta) {
 
-                alert('Gravou');
+                this.setState({listaCategoria: resposta});
 
+                console.log(resposta.length);
+                
+                if (resposta.length >= 5 ) {
+                    $("#salvar-categoria").prop('disabled', true);
+                } else {
+                    $("#salvar-categoria").prop('disabled', false);
+                }
+
+                console.log("Lista: ",resposta);
+                
 
             }.bind(this),
             error: function (data) {
@@ -114,16 +127,21 @@ export class SessaoCategoria extends Component{
                                 </option>
                             ))}
                         </select>
-                        <button type="button" id="add-campo"> + </button>
                     </div>   
+                    {this.state.listaCategoria.map(item => (
+                        <div className="col" key={item.id}>
+                                {item.categoria.nome}
+                        </div>
+                    ))}
+                    
                     
                       
                 </div>
             <div class="row col-3">
-                <Link className="btn btn-success  btn-sm text-white  mt-4 col-5 col-lg-5" id="salvar-produto" onClick={e => this.enviaCategoria(e)} >
-                    <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                    Salvar
-                </Link>
+                <input type="button" className="btn btn-success  btn-sm text-white  mt-4 col-5 col-lg-5" id="salvar-categoria" onClick={e => this.enviaCategoria(e)} value="Salvar"
+            
+                    
+                />
             </div>
             </Fragment>
            
