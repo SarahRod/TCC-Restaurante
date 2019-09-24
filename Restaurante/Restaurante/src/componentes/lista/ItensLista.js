@@ -4,6 +4,7 @@ import { IoMdClose } from "react-icons/io";
 import ModalProduto from '../modals/Modalproduto';
 import {FOTOLANCHEPADRAO} from "../../link_config"
 import { Image } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 class ItensLista extends Component{
  
@@ -19,7 +20,10 @@ class ItensLista extends Component{
         });
     }
 
+    
+
     render() {
+
 
         let fotopadrao = FOTOLANCHEPADRAO;
 
@@ -67,7 +71,9 @@ class ItensLista extends Component{
                                 <p className="h4 p-2 m-0">{this.state.item.nome}</p>
                             </div>
                             <div className="col-1">
-                                <FaPencilAlt className="m-0 pointer" />
+                            <Link to={`/restaurante/cadastro-produto/${this.props.item.id}`}>
+                                    <FaPencilAlt className="m-0 pointer"/>
+                                </Link>
                             </div>
                         </div>
 
@@ -89,4 +95,5 @@ class ItensLista extends Component{
         )
     }
 }
-export default ItensLista
+
+export default ItensLista;

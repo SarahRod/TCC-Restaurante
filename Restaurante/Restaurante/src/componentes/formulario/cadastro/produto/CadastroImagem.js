@@ -24,6 +24,8 @@ export class CadastroImagem extends Component{
 
     state = { ...initialState }
 
+    
+
     visualizarImgSalva(){
 
         const token = localStorage.getItem('token');
