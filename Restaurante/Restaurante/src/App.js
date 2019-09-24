@@ -12,20 +12,12 @@ import 'bootstrap';
 import 'bootstrap/js/dist/util';
 import 'bootstrap/js/dist/alert';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { applyMiddleware, createStore } from 'redux';
-import { Provider } from 'react-redux';
-
-
-import promise from 'redux-promise';
-import reducers from './reducers';
-
-const store = applyMiddleware(promise)(createStore)(reducers);
 
 function App() {
   return (
-    <Provider store={store}>
-      <RotaPaginas />
-    </Provider>
+
+    <RotaPaginas />
+
   );
 }
 

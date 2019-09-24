@@ -4,10 +4,18 @@ import $ from 'jquery';
 import { Link } from 'react-router-dom';
 import { DOMINIO } from '../../../../link_config';
 import { SessaoCategoria } from './SessaoCategoria';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import axios from 'axios';
 
-import { getProduto, postProduto } from './cadastroActions';
+export function getProduto(id) {
+    const requisicao = axios.get(`http://localhost:8080/produto/${id}`)
+
+    return {
+        type: "EDITAR_PRODUTO",
+        payload: requisicao
+    }
+
+
+}
 
 //ARMAZENA OS ESTADOS INICIAIS
 const initialState = {
@@ -36,15 +44,38 @@ class CadastroProduto extends Component {
     //ARMAZENA OS ESTADOS INICIAIS
     state = { ...initialState }
 
-    componentWillMount(){
-        
 
-        const { id } = this.props.match.params
+    componentWillMount() {
 
-        if(id != null){
-            this.props.getProduto(id);
-        }else{
-            this.props.postProduto();
+
+        const { id } = this.props.match.params;
+
+        const token = localStorage.getItem('token');
+
+        const url = `http://localhost:8080/produto/${id}`;
+
+        if (id != null) {
+            $.ajax({
+                url: url,
+                type: 'get',
+                headers: { 'token': token },
+                success: function (resposta) {
+
+                    $('#nome').val(resposta.nome);
+                    $('#preco').val(resposta.preco);
+                    $('#desconto').val(resposta.desconto);
+                    $('#descricao').val(resposta.descricao);
+
+                }.bind(this),
+                error: function (data) {
+                    console.log('Erro:', data);
+
+                }
+            });
+
+
+        } else {
+
         }
     }
 
@@ -52,7 +83,7 @@ class CadastroProduto extends Component {
 
         const token = localStorage.getItem('token');
 
-        const produto = { ...this.props.produto };
+        const produto = { ...this.state.produto };
 
         this.state.restaurante.id = localStorage.getItem('id');
 
@@ -87,7 +118,7 @@ class CadastroProduto extends Component {
 
     //ATUALIZA AS INPUTS COM OS ESTADOS 
     atualizaCampo(e) {
-        const produto = { ...this.props.produto }
+        const produto = { ...this.state.produto }
         produto[e.target.name] = e.target.value;
 
 
@@ -99,7 +130,7 @@ class CadastroProduto extends Component {
 
     render() {
 
-        const { nome, preco, desconto, descricao } = this.props.produto;
+        const { nome, preco, desconto, descricao } = this.state.produto;
 
         return (
             <Fragment>
@@ -136,7 +167,7 @@ class CadastroProduto extends Component {
                                     <div className="col-10">
                                         <div className="form-group">
                                             <label for="exampleFormControlTextarea1" className="h5">Descrição do Produto</label>
-                                            <textarea className="form-control" id="exampleFormControlTextarea1" rows="4" name="descricao" value={descricao} onChange={e => this.atualizaCampo(e)}></textarea>
+                                            <textarea className="form-control" id="exampleFormControlTextarea1" rows="4" id="descricao" name="descricao" value={descricao} onChange={e => this.atualizaCampo(e)}></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -157,6 +188,4 @@ class CadastroProduto extends Component {
     }
 }
 
-const mapStateToProps = state => ({ produto: state.dashboard.produto })
-const mapDispatchProps = dispatch => bindActionCreators({getProduto, postProduto}, dispatch)
-export default connect(mapStateToProps, mapDispatchProps)(CadastroProduto)
+export default CadastroProduto;
