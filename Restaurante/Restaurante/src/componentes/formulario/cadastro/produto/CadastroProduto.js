@@ -7,7 +7,7 @@ import { SessaoCategoria } from './SessaoCategoria';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { getProduto } from './cadastroActions';
+import { getProduto, postProduto } from './cadastroActions';
 
 //ARMAZENA OS ESTADOS INICIAIS
 const initialState = {
@@ -37,7 +37,15 @@ class CadastroProduto extends Component {
     state = { ...initialState }
 
     componentWillMount(){
-        this.props.getProduto();
+        
+
+        const { id } = this.props.match.params
+
+        if(id != null){
+            this.props.getProduto(id);
+        }else{
+            this.props.postProduto();
+        }
     }
 
     enviaFormulario() {
@@ -150,5 +158,5 @@ class CadastroProduto extends Component {
 }
 
 const mapStateToProps = state => ({ produto: state.dashboard.produto })
-const mapDispatchProps = dispatch => bindActionCreators({getProduto}, dispatch)
+const mapDispatchProps = dispatch => bindActionCreators({getProduto, postProduto}, dispatch)
 export default connect(mapStateToProps, mapDispatchProps)(CadastroProduto)

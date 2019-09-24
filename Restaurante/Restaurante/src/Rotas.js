@@ -54,7 +54,7 @@ export class RotaPaginas extends Component {
                             <Fragment>
                                 <CabecalhoPaginaRestaurante />
                                 <PrivateRoute path={`${url}/`} component={CorpoIndex} exact />
-                                <PrivateRoute path={`${url}/cadastro-produto`} component={CadastroProduto} />
+                                <PrivateRoute path={`${url}/cadastro-produto/:id?`} component={CadastroProduto} />
                                 <PrivateRoute path={`${url}/visualizar-produto`} component={CorpoListagemProdutos} />
                                 <Rodape />
                             </Fragment>
