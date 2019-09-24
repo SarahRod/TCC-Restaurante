@@ -12,7 +12,7 @@ const initialState = {
         foto: '' ,
         index: '',
         legenda: '',
-        id_produto: '',
+        idproduto: '',
     },
 
     imgSrc: `${ImgProduto}`,
@@ -25,11 +25,24 @@ export class CadastroImagem extends Component{
 
     state = { ...initialState }
 
+    componentWillMount(){
+
+        const { id } = this.props.match.params;
+
+        alert(id);
+    }
+
     visualizarImgSalva(){
 
+
+
+        var idProduto = sessionStorage.getItem('id_produto');
         const token = localStorage.getItem('token');
+        alert(idProduto);
 
          const url = `${DOMINIO}/fotoproduto/todos/6`; 
+
+         alert(url)
 
         $.ajax({
             url: url,
@@ -38,6 +51,9 @@ export class CadastroImagem extends Component{
             success: function (resposta) {
 
                 var teste = this.state.img1 ;
+
+                alert(JSON.stringify(resposta));
+                alert('entrou')
 
                 this.setState({ img1 : resposta[0].foto})
 
