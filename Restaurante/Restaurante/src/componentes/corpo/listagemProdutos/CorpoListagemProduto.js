@@ -19,23 +19,20 @@ class CorpoListagemProduto extends Component{
         let id = localStorage.getItem("id");
         let url = `${DOMINIO}/produto/exibicao/todos/${id}`;
         let token = localStorage.getItem("token");
-        
+
         $.ajax({
             url: url,
-            type: 'get',
+            method: 'get',
             headers: { "token": token},
             dataType: 'json',
             contentType: 'application/json',
             success: function (resposta) {
 
                 this.setState({itens: resposta})
-                // console.table(resposta)
 
             }.bind(this),
             error: function (data) {
-                console.log('====================================');
-                console.log(data);
-                console.log('====================================');
+                console.log(data)
             }
         });
     }

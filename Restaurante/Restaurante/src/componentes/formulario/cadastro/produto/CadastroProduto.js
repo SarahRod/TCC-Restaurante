@@ -109,9 +109,9 @@ class CadastroProduto extends Component {
 
 
             }.bind(this),
-            error: function (data) {
+            error: function () {
 
-                alert('nao gravou')
+                alert('Não gravou!')
             }
         });
     }
