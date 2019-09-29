@@ -4,18 +4,6 @@ import $ from 'jquery';
 import { Link } from 'react-router-dom';
 import { DOMINIO } from '../../../../link_config';
 import { SessaoCategoria } from './SessaoCategoria';
-import axios from 'axios';
-
-export function getProduto(id) {
-    const requisicao = axios.get(`http://localhost:8080/produto/${id}`)
-
-    return {
-        type: "EDITAR_PRODUTO",
-        payload: requisicao
-    }
-
-
-}
 
 //ARMAZENA OS ESTADOS INICIAIS
 const initialState = {
@@ -30,12 +18,6 @@ const initialState = {
     restaurante: {
         id: 1
     },
-
-    categoria: {
-        nome: ''
-    },
-
-    categoria: []
 
 }
 
@@ -116,6 +98,8 @@ class CadastroProduto extends Component {
         });
     }
 
+
+
     //ATUALIZA AS INPUTS COM OS ESTADOS 
     atualizaCampo(e) {
         const produto = { ...this.state.produto }
@@ -131,6 +115,8 @@ class CadastroProduto extends Component {
     render() {
 
         const { nome, preco, desconto, descricao } = this.state.produto;
+
+        const { id } = this.props.match.params;
 
         return (
             <Fragment>
@@ -178,9 +164,9 @@ class CadastroProduto extends Component {
                                     </Link>
                                 </div>
                             </div>
-                            <CadastroImagem />
+                            <CadastroImagem/>
                         </div>
-                        <SessaoCategoria />
+                        <SessaoCategoria/>
                     </form>
                 </div>
             </Fragment>
