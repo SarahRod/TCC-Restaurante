@@ -188,9 +188,6 @@ export class CadastroImagem extends Component {
                                     <img key={item.id} name="img1" className="card-img-top tamanho-imagem-produto" alt="..." src={item.foto} />
                                 </div>
 
-                                {/* <div className="card card-menor">
-                                <img name="img1" className="card-img-top tamanho-imagem-produto" alt="..." src={this.state.img1}/>
-                            </div>  */}
                             </div>
                         ))}
                     </div>
