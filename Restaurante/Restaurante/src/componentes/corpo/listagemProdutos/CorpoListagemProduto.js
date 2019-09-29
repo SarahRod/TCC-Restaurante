@@ -17,14 +17,12 @@ class CorpoListagemProduto extends Component{
 
     componentDidMount() {
         let id = localStorage.getItem("id");
-        let url = `${DOMINIO}/produto/exibicao/${id}`;
+        let url = `${DOMINIO}/produto/exibicao/todos/${id}`;
         let token = localStorage.getItem("token");
-        console.log('====================================');
-        console.log(url);
-        console.log('====================================');
+
         $.ajax({
             url: url,
-            type: 'get',
+            method: 'get',
             headers: { "token": token},
             dataType: 'json',
             contentType: 'application/json',
@@ -34,7 +32,7 @@ class CorpoListagemProduto extends Component{
 
             }.bind(this),
             error: function (data) {
-                
+                console.log(data)
             }
         });
     }

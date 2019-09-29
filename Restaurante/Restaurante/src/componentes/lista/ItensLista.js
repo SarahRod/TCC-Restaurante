@@ -23,10 +23,6 @@ class ItensLista extends Component{
     
 
     render() {
-
-
-        let fotopadrao = FOTOLANCHEPADRAO;
-
         return (
             <div className="item-list-p list-group-item-action mb-3 w-100" onClick={this.toggleModal}>
                 <ModalProduto show={this.state.isOpen} onClose={this.toggleModal}>
@@ -35,7 +31,9 @@ class ItensLista extends Component{
                         </div>   
                         <div className="modal-header h-50 pt-0 ">                         
                             <figure className="figure w-100 h-100">    
-                                <img className="mx-auto rounded w-100 h-100" src="" alt="Imagem Produto"/>
+                                <img className="mx-auto rounded w-100 h-100"
+                                    src={this.state.item.foto[0].foto}
+                                    alt={this.state.item.foto[0].legenda}/>
                             </figure>
 
                         </div>
@@ -60,7 +58,12 @@ class ItensLista extends Component{
                     <div className="col-3 p-2 ">
                         <div className=" mx-auto my-auto" >
                             <figure className="figure p-0 m-0">
-                                <Image className="rounded-circle w-100" src={this.state.item.foto != []? fotopadrao : this.state.item.foto[0] } alt="Imagem Produto" style={{ maxWidth: 150 + 'px' + '!important', height: 150 + 'px' }}/>
+                                <Image 
+                                    className="rounded-circle w-100" 
+                                    src={this.state.item.foto[0].foto == []? FOTOLANCHEPADRAO : this.state.item.foto[0].foto } 
+                                    alt={this.state.item.foto[0].legenda} 
+                                    style={{ maxWidth: 150 + 'px' + '!important', height: 150 + 'px' }}/>
+                            
                             </figure>
                         </div>
                     </div>
@@ -71,7 +74,7 @@ class ItensLista extends Component{
                                 <p className="h4 p-2 m-0">{this.state.item.nome}</p>
                             </div>
                             <div className="col-1">
-                            <Link to={`/restaurante/cadastro-produto/${this.props.item.id}`}>
+                                <Link to={`/restaurante/cadastro-produto/${this.props.item.id}`} className="text-muted">
                                     <FaPencilAlt className="m-0 pointer"/>
                                 </Link>
                             </div>
@@ -79,7 +82,7 @@ class ItensLista extends Component{
 
                         <div className="row ">
                             <div className="col  p-1 ">
-                                <p className="text-muted text-break" >
+                                <p className="text-muted text-break pr-3" >
                                     {this.state.item.descricao}
                                 </p>
                             </div>
