@@ -95,7 +95,6 @@ export class SessaoCategoria extends Component{
             success: function(resposta) {
                 console.log(resposta[0].nome)
                 console.log(this.setState({categorias: resposta}));
-
                 console.log(this.state.categorias);
            
             }.bind(this),
@@ -106,6 +105,7 @@ export class SessaoCategoria extends Component{
     }
 
 
+
    
 
 
@@ -113,36 +113,41 @@ export class SessaoCategoria extends Component{
         return(
             <Fragment>
                 <div className="row mt-5">
-                    <div className="col-12">
-                        <h4>3º Passo</h4>
-                        <hr/>
+                    <div className="col-12 ">
+                        <h4 >3º Passo</h4>
+                        <hr />
                     </div>
-                    <div className="col-4">
-                        <label className="h5">Categoria do Produto</label>
-                        <select name="categoria" id="sql_categoria"  className="custom-select">
-                            <option value="" selected >Selecione a categoria para este produto... </option>
-                            {this.state.categorias.map(item => (
-                                <option key={item.id} value={item.id}>
-                                    {item.nome}
-                                </option>
-                            ))}
-                        </select>
-                    </div>   
-                    {this.state.listaCategoria.map(item => (
-                        <div className="col" key={item.id}>
-                                {item.categoria.nome}
+                    <div className="row col-12">
+                        <div className="col-12">
+                            <label className="h5">Categoria do Produto</label>
                         </div>
-                    ))}
-                    
-                    
-                      
+                        <div className="col-3">
+                            <select name="categoria" id="sql_categoria"  className="custom-select">
+                                <option value="" selected >Selecione a categoria para este produto... </option>
+                                {this.state.categorias.map(item => (
+                                    <option key={item.id} value={item.id}>
+                                        {item.nome}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="col-1">
+                            <input type="button" className="btn btn btn-outline-success btn-sm  mt-1" id="salvar-categoria" onClick={e => this.enviaCategoria(e)} value="ok" />
+                        </div>
+                        {this.state.listaCategoria.map(item => (
+                        <div className="col-2 border rounded ml-1 mt-1"> 
+                            <div className="row mt-1" key={item.id}>
+                                <div className="col-9">
+                                {item.categoria.nome}
+                                </div>
+                                <div className="col align-self-end">
+                                    <span className=" cor-cinza">x</span>
+                                </div>
+                            </div>
+                        </div>
+                        ))}
+                    </div> 
                 </div>
-            <div class="row col-3">
-                <input type="button" className="btn btn-success  btn-sm text-white  mt-4 col-5 col-lg-5" id="salvar-categoria" onClick={e => this.enviaCategoria(e)} value="Salvar"
-            
-                    
-                />
-            </div>
             </Fragment>
            
             
