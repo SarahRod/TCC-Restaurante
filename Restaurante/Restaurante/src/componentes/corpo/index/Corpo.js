@@ -25,31 +25,32 @@ componentDidMount() {
     let token = localStorage.getItem('token');
     token = token.replace(/"/g, "");
     localStorage.setItem('token', token);
-    sessionStorage.setItem('token', token);
 
     const url = `${DOMINIO}/restaurante/este`;
 
-
-    $.ajax({
-        url: url,
-        type: 'get',
-        headers: { 'token': token },
-        dataType: 'json',
-        contentType: "application/json",
-        success: function (resposta) {
-
-            const nome = resposta.razaoSocial
-
-            $(".nome-restaurante").text(nome)
-            $(".painel-nome-restaurante").text("Painel Administrativo - " + nome)
-
-
-        }.bind(this),
-        error: function (data) {
-            console.log(data);
-
-        }
-    });
+    if(token != null){
+        $.ajax({
+            url: url,
+            method: "GET",
+            dataType: "application/json",
+            header: {"token": token},
+            success: function (resposta) {
+    
+                const nome = resposta.razaoSocial
+    
+                $(".nome-restaurante").text(nome)
+                $(".painel-nome-restaurante").text("Painel Administrativo - " + nome)
+    
+    
+            }.bind(this),
+            error: function (data) {
+                console.log(data);
+    
+            }
+        });
+    }
+    
+    
 }
 
 

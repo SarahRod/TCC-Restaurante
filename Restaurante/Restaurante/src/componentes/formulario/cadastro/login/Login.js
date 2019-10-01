@@ -83,7 +83,7 @@ class FormularioLogin extends Component {
         const jsonRestaurante = sessionStorage.getItem('dados');
 
 
-        const url = `${DOMINIO}/restaurante/novo`;
+        const url = `${DOMINIO}/restaurante`;
 
         $.ajax({
             url: url,
@@ -156,16 +156,11 @@ class FormularioLogin extends Component {
             dataType: "text",
             type: 'GET',
             success: function (data) {
-                if (data === "true") {
-
+                if (data) {
                     this.validaSenha(e)
-
-
                 } else {
                     this.erroValidacao(e = 'emailIncorreto')
-
                 }
-
             }.bind(this),
             error: function (data) {
 

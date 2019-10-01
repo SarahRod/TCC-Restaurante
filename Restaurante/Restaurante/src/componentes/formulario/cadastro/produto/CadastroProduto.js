@@ -71,7 +71,7 @@ class CadastroProduto extends Component {
 
         var novoproduto = { ...produto, 'restaurante': this.state.restaurante };
 
-        const url = `${DOMINIO}/produto/novo`;
+        const url = `${DOMINIO}/produto`;
 
         $.ajax({
 

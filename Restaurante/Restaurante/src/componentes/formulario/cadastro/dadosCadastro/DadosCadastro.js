@@ -107,11 +107,12 @@ class FormularioDados extends Component {
 
         $.ajax({
             url: URL_CNPJ,
-            dataType: "text",
+            dataType: "json",
             type: 'GET',
             success: function (data) {
-                if (data == "true") {
+                if (data) {
                     this.campoValidado(data)
+                    console.log('true');
 
                 } else {
                     this.erroValidacao(e = "cnpjJaCadastrado")
