@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import Carne from '../../../../recursos/imgs/carne.jpg';
 import $ from 'jquery';
-import { DOMINIO, TOKEN } from '../../../../link_config';
+import { DOMINIO, TOKEN, DOMINIO_IMG } from '../../../../link_config';
 import '../../../../recursos/js/AddImagem';
 import ImgProduto from '../../../../recursos/imgs/imagem-produto.png';
 
@@ -104,11 +104,6 @@ export class CadastroImagem extends Component {
     enviaImagem(e) {
         var idProduto = sessionStorage.getItem('id_produto');
 
-        alert(idProduto)
-
-
-        // this.state.restaurante.id = json.id;
-
         const url = `${DOMINIO}/foto/produto`;
 
         //FAZ O UPLOAD DA FOTO
@@ -184,7 +179,7 @@ export class CadastroImagem extends Component {
                             <div className="col-3 col-md-4 mx-auto" id="campo">
                                 <div className="card card-menor ">
                                     <span className="col-1 align-self-end cor-cinza">x</span>
-                                    <img key={item.id} name="img1" className="card-img-top tamanho-imagem-produto border-top" alt="..." title={item.legenda} src={item.foto} />
+                                    <img key={item.id} name="img1" className="card-img-top tamanho-imagem-produto border-top" alt="..." title={item.legenda} src={ DOMINIO_IMG + item.foto } />
                                 </div>
 
                             </div>
