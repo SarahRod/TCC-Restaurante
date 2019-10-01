@@ -42,7 +42,7 @@ export class SessaoCategoria extends Component{
 
 
 
-        const url = `${DOMINIO}/categoriaproduto/novo`;
+        const url = `${DOMINIO}/categoriaproduto`;
 
         $.ajax({
 
@@ -83,7 +83,7 @@ export class SessaoCategoria extends Component{
 
     componentDidMount() {
         let id = localStorage.getItem("id");
-        const url = `${DOMINIO}/categoria/todos`;
+        const url = `${DOMINIO}/categoria`;
         const token = localStorage.getItem('token');
 
         $.ajax({

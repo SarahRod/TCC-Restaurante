@@ -43,7 +43,7 @@ export class CadastroImagem extends Component {
         const token = localStorage.getItem('token');
 
 
-        const url = `${DOMINIO}/fotoproduto/todos/${idProduto}`;
+        const url = `${DOMINIO}/fotoproduto/${idProduto}`;
 
 
 

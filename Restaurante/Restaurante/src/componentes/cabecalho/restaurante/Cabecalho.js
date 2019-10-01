@@ -23,7 +23,6 @@ export class CabecalhoPaginaRestaurante extends Component {
         let token = localStorage.getItem('token');
         token = token.replace(/"/g, "");
         localStorage.setItem('token', token);
-        sessionStorage.setItem('token', token);
 
         const url = `${DOMINIO}/restaurante/este`;
 
