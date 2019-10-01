@@ -2,7 +2,7 @@ import React, { Fragment, Component } from 'react';
 import '../../../recursos/css/style.css';
 import $ from 'jquery';
 import { FaSearch } from 'react-icons/fa';
-import {DOMINIO} from "../../../link_config"
+import {DOMINIO, TOKEN} from "../../../link_config"
 import ItensLista  from './../../lista/ItensLista';
 import { InputGroup, FormControl, ListGroup, Container } from 'react-bootstrap';
 
@@ -17,13 +17,15 @@ class CorpoListagemProduto extends Component{
 
     componentDidMount() {
         let id = localStorage.getItem("id");
-        let url = `${DOMINIO}/produto/restaurante/${id}`;
-        let token = localStorage.getItem("token");
+      
+        let url = `${DOMINIO}/produto/exibicao/${id}`;
+      
+
 
         $.ajax({
             url: url,
             method: 'get',
-            headers: { "token": token},
+            headers: {"token": TOKEN},
             dataType: 'json',
             contentType: 'application/json',
             success: function (resposta) {

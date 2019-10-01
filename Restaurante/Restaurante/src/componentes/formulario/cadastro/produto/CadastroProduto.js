@@ -2,15 +2,15 @@ import React, { Component, Fragment } from 'react';
 import { CadastroImagem } from './CadastroImagem';
 import $ from 'jquery';
 import { Link } from 'react-router-dom';
-import { DOMINIO } from '../../../../link_config';
+import { DOMINIO, TOKEN } from '../../../../link_config';
 import { SessaoCategoria } from './SessaoCategoria';
 
 //ARMAZENA OS ESTADOS INICIAIS
 const initialState = {
     produto: {
         nome: '',
-        preco: 0,
-        desconto: "0",
+        preco: '',
+        desconto: '',
         descricao: '',
         vendidos: 0
     },
@@ -26,13 +26,15 @@ class CadastroProduto extends Component {
     //ARMAZENA OS ESTADOS INICIAIS
     state = { ...initialState }
 
+    apagarIdProduto(){
+        sessionStorage.removeItem("id_produto");
+    }
+
 
     componentWillMount() {
 
 
         const { id } = this.props.match.params;
-
-        const token = localStorage.getItem('token');
 
         const url = `http://localhost:8080/produto/${id}`;
 
@@ -40,7 +42,7 @@ class CadastroProduto extends Component {
             $.ajax({
                 url: url,
                 type: 'get',
-                headers: { 'token': token },
+                headers: { 'token': TOKEN},
                 success: function (resposta) {
 
                     $('#nome').val(resposta.nome);
@@ -63,22 +65,20 @@ class CadastroProduto extends Component {
 
     enviaFormulario() {
 
-        const token = localStorage.getItem('token');
-
         const produto = { ...this.state.produto };
 
         this.state.restaurante.id = localStorage.getItem('id');
 
         var novoproduto = { ...produto, 'restaurante': this.state.restaurante };
 
-        const url = `${DOMINIO}/produto/novo`;
+        const url = `${DOMINIO}/produto`;
 
         $.ajax({
 
             url: url,
             contentType: "application/json",
             dataType: 'json',
-            headers: { 'token': token },
+            headers: { 'token': TOKEN},
             type: 'POST',
             data: JSON.stringify(novoproduto),
 
@@ -119,8 +119,7 @@ class CadastroProduto extends Component {
         const { id } = this.props.match.params;
 
         return (
-            <Fragment>
-                <div className="container">
+                <div className="container mb-3">
                     <div className="row mt-3 mb-5">
                         <h1 className="mx-auto">Cadastro de Produtos</h1>
                     </div>
@@ -158,7 +157,7 @@ class CadastroProduto extends Component {
                                     </div>
                                 </div>
                                 <div className="row mt-5 ml-2">
-                                    <Link className="btn btn-success  btn-sm text-white  mt-4 col-5 col-lg-5" id="prox-campo" onClick={e => this.enviaFormulario(e)} >
+                                    <Link className="btn btn-outline-success  btn-sm   mt-4 col-5 col-lg-5" id="prox-campo" onClick={e => this.enviaFormulario(e)} >
                                         <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
                                         Próximo Passo
                                     </Link>
@@ -167,9 +166,13 @@ class CadastroProduto extends Component {
                             <CadastroImagem/>
                         </div>
                         <SessaoCategoria/>
+                        <div className="row mt-5 justify-content-end">
+                            <div className="col-1 ">
+                                <Link class="btn btn-outline-success" to="/restaurante/visualizar-produto" onClick={this.apagarIdProduto()}>Finalizar</Link>
+                            </div>
+                        </div>
                     </form>
                 </div>
-            </Fragment>
         )
     }
 }

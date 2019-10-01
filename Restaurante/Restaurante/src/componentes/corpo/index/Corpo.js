@@ -8,7 +8,7 @@ import Talher from '../../../recursos/icons/talher.png';
 import Pedido from '../../../recursos/icons/pedido.png';
 import Chat from '../../../recursos/icons/chat.png';
 import $ from 'jquery';
-import { DOMINIO } from '../../../link_config';
+import { DOMINIO, TOKEN } from '../../../link_config';
 import { Link } from 'react-router-dom';
 
 //COMPONENTE DO CORPO DA PÁGINA DE LOGIN
@@ -22,34 +22,30 @@ export class CorpoIndex extends Component {
 
 componentDidMount() {
 
-    let token = localStorage.getItem('token');
-    token = token.replace(/"/g, "");
-    localStorage.setItem('token', token);
-    sessionStorage.setItem('token', token);
-
     const url = `${DOMINIO}/restaurante/este`;
 
-
-    $.ajax({
-        url: url,
-        type: 'get',
-        headers: { 'token': token },
-        dataType: 'json',
-        contentType: "application/json",
-        success: function (resposta) {
-
-            const nome = resposta.razaoSocial
-
-            $(".nome-restaurante").text(nome)
-            $(".painel-nome-restaurante").text("Painel Administrativo - " + nome)
-
-
-        }.bind(this),
-        error: function (data) {
-            console.log(data);
-
-        }
-    });
+    if(TOKEN != null){
+        $.ajax({
+            url: url,
+            method: "GET",
+            headers: {"token": TOKEN},
+            success: function (resposta) {
+    
+                const nome = resposta.razaoSocial
+    
+                $(".nome-restaurante").text(nome)
+                $(".painel-nome-restaurante").text("Painel Administrativo - " + nome)
+    
+    
+            }.bind(this),
+            error: function (data) {
+                console.log(data);
+    
+            }
+        });
+    }
+    
+    
 }
 
 
