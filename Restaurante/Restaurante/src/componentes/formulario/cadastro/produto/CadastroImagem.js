@@ -150,8 +150,8 @@ export class CadastroImagem extends Component {
                     <hr />
                     <div class="row">
                         <div class="col-7 col-md-5 mx-auto">
-                            <div class="card card-maior">
-                                <img src={this.state.imgSrc} class="card-img-top tamanho-imagem-produto" alt="..." />
+                            <div class="card card-maior ">
+                                <img src={this.state.imgSrc} class="card-img-top tamanho-imagem-produto border-bottom" alt="..." />
                                 <div class="card-body pb-0">
                                     <p>
                                         <div class="input-group input-group-sm ">
