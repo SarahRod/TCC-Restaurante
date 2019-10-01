@@ -1,6 +1,6 @@
 import React,{Component, Fragment} from 'react';
 import $ from 'jquery';
-import { DOMINIO, TOKEN } from '../../../../link_config';
+import { DOMINIO, TOKEN, ID_PRODUTO } from '../../../../link_config';
 import { Link } from 'react-router-dom';
 
 
@@ -33,9 +33,8 @@ export class SessaoCategoria extends Component{
 
         const idCategoria = document.getElementById("sql_categoria").value
         var categoriaNome = { ...this.state.categoriaproduto};
-        var idProduto = sessionStorage.getItem('id_produto');
         categoriaNome.categoria = {"id": idCategoria}
-        categoriaNome.produto = {"id": idProduto}
+        categoriaNome.produto = {"id": ID_PRODUTO}
 
        alert(JSON.stringify(categoriaNome));
 
@@ -83,13 +82,12 @@ export class SessaoCategoria extends Component{
     componentDidMount() {
         let id = localStorage.getItem("id");
         const url = `${DOMINIO}/categoria`;
-        const token = localStorage.getItem('token');
 
         $.ajax({
             url: url,
             contentType: "application/json",
             
-            data: {'token': token},
+            data: { 'token': TOKEN },
             type: 'GET',
             success: function(resposta) {
                 console.log(resposta[0].nome)
