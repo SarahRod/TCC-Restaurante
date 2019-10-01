@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import Carne from '../../../../recursos/imgs/carne.jpg';
 import $ from 'jquery';
-import { DOMINIO } from '../../../../link_config';
+import { DOMINIO, TOKEN } from '../../../../link_config';
 import '../../../../recursos/js/AddImagem';
 import ImgProduto from '../../../../recursos/imgs/imagem-produto.png';
 
@@ -40,7 +40,6 @@ export class CadastroImagem extends Component {
 
 
         var idProduto = sessionStorage.getItem('id_produto');
-        const token = localStorage.getItem('token');
 
 
         const url = `${DOMINIO}/fotoproduto/${idProduto}`;
@@ -50,7 +49,7 @@ export class CadastroImagem extends Component {
         $.ajax({
             url: url,
             type: 'get',
-            headers: { 'token': token },
+            headers: { 'token': TOKEN},
             success: function (resposta) {
 
               
@@ -103,8 +102,6 @@ export class CadastroImagem extends Component {
 
 
     enviaImagem(e) {
-
-        const token = localStorage.getItem('token');
         var idProduto = sessionStorage.getItem('id_produto');
 
 
@@ -125,7 +122,7 @@ export class CadastroImagem extends Component {
             url: url,
             type: 'post',
             data: formData,
-            headers: { 'token': token },
+            headers: { 'token': TOKEN},
             contentType: false,
             processData: false,
             success: function (resposta) {

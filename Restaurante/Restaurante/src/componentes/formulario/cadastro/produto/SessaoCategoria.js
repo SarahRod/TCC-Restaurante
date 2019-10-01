@@ -1,6 +1,6 @@
 import React,{Component, Fragment} from 'react';
 import $ from 'jquery';
-import { DOMINIO } from '../../../../link_config';
+import { DOMINIO, TOKEN } from '../../../../link_config';
 import { Link } from 'react-router-dom';
 
 
@@ -31,7 +31,6 @@ export class SessaoCategoria extends Component{
 
     enviaCategoria() {
 
-        const token = localStorage.getItem('token');
         const idCategoria = document.getElementById("sql_categoria").value
         var categoriaNome = { ...this.state.categoriaproduto};
         var idProduto = sessionStorage.getItem('id_produto');
@@ -49,7 +48,7 @@ export class SessaoCategoria extends Component{
             url: url,
             contentType: "application/json",
             dataType: 'json',
-            headers: { 'token': token },
+            headers: { 'token': TOKEN},
             type: 'POST',
             data: JSON.stringify(categoriaNome),
 

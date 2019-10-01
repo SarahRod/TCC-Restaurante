@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Logo from '../../../recursos/imgs/img-login.png';
 import { ImgRestaurante, OpcoesMenu } from './styled';
-import { DOMINIO } from '../../../link_config';
+import { DOMINIO, TOKEN } from '../../../link_config';
 import $ from 'jquery';
 import { BotaoLink } from '../../globais/botao/Botao';
 import { withRouter, Link } from 'react-router-dom';
@@ -20,31 +20,30 @@ export class CabecalhoPaginaRestaurante extends Component {
 
     componentDidMount() {
 
-        let token = localStorage.getItem('token');
-        token = token.replace(/"/g, "");
-        localStorage.setItem('token', token);
+       
 
         const url = `${DOMINIO}/restaurante/este`;
 
-        $.ajax({
-            url: url,
-            type: 'get',
-            headers: { 'token': token },
-            dataType: 'json',
-            contentType: "application/json",
-            success: function (resposta) {
+        if (TOKEN != null) {
+            $.ajax({
+                url: url,
+                type: 'GET',
+                headers: {"token": TOKEN},
+                success: function (resposta) {
 
-                localStorage.setItem('id', JSON.stringify(resposta.id));
-                localStorage.setItem('nome', JSON.stringify(resposta.razaoSocial));
+                    localStorage.setItem('id', JSON.stringify(resposta.id));
+                    localStorage.setItem('nome', JSON.stringify(resposta.razaoSocial));
 
-                $(".foto-restaurante").attr("src", resposta.foto);
+                    $(".foto-restaurante").attr("src", resposta.foto);
 
-            }.bind(this),
-            error: function (data) {
-                console.log(data);
+                }.bind(this),
+                error: function (data) {
+                    console.log(data);
 
-            }
-        });
+                }
+            });
+        }
+
     }
 
     render() {
