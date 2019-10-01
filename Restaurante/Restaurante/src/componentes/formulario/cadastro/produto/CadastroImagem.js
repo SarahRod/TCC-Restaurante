@@ -104,6 +104,8 @@ export class CadastroImagem extends Component {
     enviaImagem(e) {
         var idProduto = sessionStorage.getItem('id_produto');
 
+        alert(idProduto)
+
 
         // this.state.restaurante.id = json.id;
 
