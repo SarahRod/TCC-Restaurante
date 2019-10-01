@@ -9,8 +9,8 @@ import { SessaoCategoria } from './SessaoCategoria';
 const initialState = {
     produto: {
         nome: '',
-        preco: 0,
-        desconto: "0",
+        preco: '',
+        desconto: '',
         descricao: '',
         vendidos: 0
     },
@@ -25,6 +25,10 @@ class CadastroProduto extends Component {
 
     //ARMAZENA OS ESTADOS INICIAIS
     state = { ...initialState }
+
+    apagarIdProduto(){
+        sessionStorage.removeItem("id_produto");
+    }
 
 
     componentWillMount() {
@@ -119,8 +123,7 @@ class CadastroProduto extends Component {
         const { id } = this.props.match.params;
 
         return (
-            <Fragment>
-                <div className="container">
+                <div className="container mb-3">
                     <div className="row mt-3 mb-5">
                         <h1 className="mx-auto">Cadastro de Produtos</h1>
                     </div>
@@ -158,7 +161,7 @@ class CadastroProduto extends Component {
                                     </div>
                                 </div>
                                 <div className="row mt-5 ml-2">
-                                    <Link className="btn btn-success  btn-sm text-white  mt-4 col-5 col-lg-5" id="prox-campo" onClick={e => this.enviaFormulario(e)} >
+                                    <Link className="btn btn-outline-success  btn-sm   mt-4 col-5 col-lg-5" id="prox-campo" onClick={e => this.enviaFormulario(e)} >
                                         <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
                                         Próximo Passo
                                     </Link>
@@ -167,9 +170,13 @@ class CadastroProduto extends Component {
                             <CadastroImagem/>
                         </div>
                         <SessaoCategoria/>
+                        <div className="row mt-5 justify-content-end">
+                            <div className="col-1 ">
+                                <Link class="btn btn-outline-success" to="/restaurante/visualizar-produto" onClick={this.apagarIdProduto()}>Finalizar</Link>
+                            </div>
+                        </div>
                     </form>
                 </div>
-            </Fragment>
         )
     }
 }
