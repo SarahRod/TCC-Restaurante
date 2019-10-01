@@ -11,7 +11,8 @@ class ItensLista extends Component{
     constructor(props){
         super();
 
-        this.state = {item: props.item}
+        this.state = {item: props.item || [] }
+
     }
 
     toggleModal = () => {
@@ -32,8 +33,8 @@ class ItensLista extends Component{
                         <div className="modal-header h-50 pt-0 ">                         
                             <figure className="figure w-100 h-100">    
                                 <img className="mx-auto rounded w-100 h-100"
-                                    src={this.state.item.foto[0].foto}
-                                    alt={this.state.item.foto[0].legenda}/>
+                                    src={this.state.item.foto.length == 0? FOTOLANCHEPADRAO : this.state.item.foto[0].foto } 
+                                    alt={this.state.item.foto.length == 0? FOTOLANCHEPADRAO : this.state.item.foto[0].legenda }/>
                             </figure>
 
                         </div>
@@ -60,8 +61,8 @@ class ItensLista extends Component{
                             <figure className="figure p-0 m-0">
                                 <Image 
                                     className="rounded-circle w-100" 
-                                    src={this.state.item.foto[0].foto == []? FOTOLANCHEPADRAO : this.state.item.foto[0].foto } 
-                                    alt={this.state.item.foto[0].legenda} 
+                                    src={this.state.item.foto.length == 0? FOTOLANCHEPADRAO : this.state.item.foto[0].foto } 
+                                    alt={this.state.item.foto.length == 0? FOTOLANCHEPADRAO : this.state.item.foto[0].legenda }
                                     style={{ maxWidth: 150 + 'px' + '!important', height: 150 + 'px' }}/>
                             
                             </figure>

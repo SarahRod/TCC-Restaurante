@@ -17,8 +17,10 @@ class CorpoListagemProduto extends Component{
 
     componentDidMount() {
         let id = localStorage.getItem("id");
+      
         let url = `${DOMINIO}/produto/exibicao/${id}`;
       
+
 
         $.ajax({
             url: url,
@@ -32,6 +34,7 @@ class CorpoListagemProduto extends Component{
 
             }.bind(this),
             error: function (data) {
+                
                 console.log(data)
             }
         });
