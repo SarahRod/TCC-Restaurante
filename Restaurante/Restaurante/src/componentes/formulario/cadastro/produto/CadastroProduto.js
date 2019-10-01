@@ -135,17 +135,17 @@ class CadastroProduto extends Component {
                                 <div className="row mb-4">
                                     <div className="col-12">
                                         <label className="h5">Nome do Produto</label>
-                                        <input className="form-control  mb-2 mr-sm-2" type="text" name="nome" id="nome" value={nome} onChange={e => this.atualizaCampo(e)} />
+                                        <input className="form-control  mb-2 mr-sm-2" type="text" name="nome" id="nome" value={nome}placeholder="Digite o nome do produto.." onChange={e => this.atualizaCampo(e)} />
                                     </div>
                                 </div>
                                 <div className="row mb-3">
                                     <div className="col-3 mb-4">
                                         <label className="h5">Preço</label>
-                                        <input className="form-control  mb-2 mr-sm-2" type="text" name="preco" id="preco" value={preco} onChange={e => this.atualizaCampo(e)} />
+                                        <input className="form-control  mb-2 mr-sm-2" type="text" name="preco" id="preco"  value={preco} onChange={e => this.atualizaCampo(e)} />
                                     </div>
                                     <div className="col-3 mb-4">
                                         <label className="h5">Promoção</label>
-                                        <input className="form-control  mb-2 mr-sm-2" type="text" name="desconto" id="desconto" value={desconto} onChange={e => this.atualizaCampo(e)} />
+                                        <input className="form-control  mb-2 mr-sm-2" type="text" name="desconto"  id="desconto" value={desconto} onChange={e => this.atualizaCampo(e)} />
                                     </div>
                                     <div className="col-6 mb-4">
                                         <h5 className="simbolo-porcentagem">%</h5>
