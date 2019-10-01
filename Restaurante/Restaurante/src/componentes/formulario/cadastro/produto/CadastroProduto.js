@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { CadastroImagem } from './CadastroImagem';
 import $ from 'jquery';
 import { Link } from 'react-router-dom';
-import { DOMINIO } from '../../../../link_config';
+import { DOMINIO, TOKEN } from '../../../../link_config';
 import { SessaoCategoria } from './SessaoCategoria';
 
 //ARMAZENA OS ESTADOS INICIAIS
@@ -36,15 +36,13 @@ class CadastroProduto extends Component {
 
         const { id } = this.props.match.params;
 
-        const token = localStorage.getItem('token');
-
         const url = `http://localhost:8080/produto/${id}`;
 
         if (id != null) {
             $.ajax({
                 url: url,
                 type: 'get',
-                headers: { 'token': token },
+                headers: { 'token': TOKEN},
                 success: function (resposta) {
 
                     $('#nome').val(resposta.nome);
@@ -67,8 +65,6 @@ class CadastroProduto extends Component {
 
     enviaFormulario() {
 
-        const token = localStorage.getItem('token');
-
         const produto = { ...this.state.produto };
 
         this.state.restaurante.id = localStorage.getItem('id');
@@ -82,7 +78,7 @@ class CadastroProduto extends Component {
             url: url,
             contentType: "application/json",
             dataType: 'json',
-            headers: { 'token': token },
+            headers: { 'token': TOKEN},
             type: 'POST',
             data: JSON.stringify(novoproduto),
 
