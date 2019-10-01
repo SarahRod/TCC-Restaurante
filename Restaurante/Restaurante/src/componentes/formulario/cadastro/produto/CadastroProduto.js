@@ -4,6 +4,8 @@ import $ from 'jquery';
 import { Link } from 'react-router-dom';
 import { DOMINIO, TOKEN } from '../../../../link_config';
 import { SessaoCategoria } from './SessaoCategoria';
+import { withRouter } from 'react-router-dom';
+import PropTypes from "prop-types";
 
 //ARMAZENA OS ESTADOS INICIAIS
 const initialState = {
@@ -26,19 +28,35 @@ class CadastroProduto extends Component {
     //ARMAZENA OS ESTADOS INICIAIS
     state = { ...initialState }
 
+    //PROPRIEDADES DO WITH ROUTER
+    static propTypes = {
+        match: PropTypes.object.isRequired,
+        location: PropTypes.object.isRequired,
+        history: PropTypes.object.isRequired
+    };
+
     apagarIdProduto(){
         sessionStorage.removeItem("id_produto");
     }
 
+    componentDidMount(){
+        // $("#cadastro-imagem").hide();
+
+      
+    }
 
     componentWillMount() {
 
 
         const { id } = this.props.match.params;
 
+       
+
         const url = `http://localhost:8080/produto/${id}`;
 
         if (id != null) {
+        
+            
             $.ajax({
                 url: url,
                 type: 'get',
@@ -85,15 +103,12 @@ class CadastroProduto extends Component {
 
             success: function (resposta) {
 
-                alert('Gravou');
-
-                sessionStorage.setItem("id_produto", resposta.id);
+                this.props.history.push(`/restaurante/cadastro-produto/${resposta.id}`);
 
 
             }.bind(this),
             error: function () {
 
-                alert('Não gravou!')
             }
         });
     }
@@ -163,9 +178,9 @@ class CadastroProduto extends Component {
                                     </Link>
                                 </div>
                             </div>
-                            <CadastroImagem/>
+                            <CadastroImagem className="disabilita-elemento" idProduto={id}/>
                         </div>
-                        <SessaoCategoria/>
+                        <SessaoCategoria className="disabilita-elemento" id="categoria-produto" idProduto={id}/>
                         <div className="row mt-5 justify-content-end">
                             <div className="col-1 ">
                                 <Link class="btn btn-outline-success" to="/restaurante/visualizar-produto" onClick={this.apagarIdProduto()}>Finalizar</Link>
@@ -177,4 +192,4 @@ class CadastroProduto extends Component {
     }
 }
 
-export default CadastroProduto;
+export default withRouter(CadastroProduto);

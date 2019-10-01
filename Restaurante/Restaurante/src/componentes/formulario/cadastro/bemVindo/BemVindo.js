@@ -72,8 +72,6 @@ export class FormularioBemVindo extends Component {
                 processData: false,
                 success: function (resposta) {
     
-                    console.log('Sucesso');
-    
                     //Limpa os storages
                     localStorage.clear();
                     sessionStorage.clear();

@@ -214,3 +214,8 @@ textarea:focus, input:focus, select:focus, a:focus{
 .blue{
     background-color: black;
 }
+
+.disabilita-elemento {
+    pointer-events: none;
+    opacity: 0.4;
+}

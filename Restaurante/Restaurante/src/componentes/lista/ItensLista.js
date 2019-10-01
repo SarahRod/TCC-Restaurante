@@ -12,7 +12,7 @@ class ItensLista extends Component{
         super();
 
         this.state = {item: props.item || [] }
-        console.log(props)
+
     }
 
     toggleModal = () => {
