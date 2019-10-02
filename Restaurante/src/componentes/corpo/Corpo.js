@@ -1,16 +1,18 @@
 import React, { Fragment } from 'react';
 import { Cabecalho } from '../cabecalho/cadastro/Cabecalho';
 import './style.css'
+import { CorpoCemVh } from './styled';
+
 
 export default (props) => (
 
     <Fragment>
         <Cabecalho {...props} />
-        <main className="container d-flex flex-column align-items-center mb-5">
+        <CorpoCemVh className="d-flex flex-column align-items-center mb-5">
 
             {props.children}
 
-        </main>
+        </CorpoCemVh>
     </Fragment>
 
 )
