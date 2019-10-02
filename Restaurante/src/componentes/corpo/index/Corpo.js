@@ -10,6 +10,7 @@ import Chat from '../../../recursos/icons/chat.png';
 import $ from 'jquery';
 import { DOMINIO, TOKEN } from '../../../link_config';
 import { Link } from 'react-router-dom';
+import { CorpoCemVh } from '../styled';
 
 //COMPONENTE DO CORPO DA PÁGINA DE LOGIN
 export class CorpoIndex extends Component {
@@ -51,7 +52,7 @@ export class CorpoIndex extends Component {
 
     render() {
         return (
-            <div className="container mt-5">
+            <CorpoCemVh className="mx-auto">
                 <div className="row text-center mt-3">
                 <h1 className="mx-auto nome-restaurante"></h1>
                 </div>
@@ -98,7 +99,7 @@ export class CorpoIndex extends Component {
                     </div>
                 </div>
 
-            </div>
+            </CorpoCemVh>
         )
     }
 
