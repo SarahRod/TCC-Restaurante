@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Logo from '../../../recursos/imgs/img-login.png';
 import { ImgRestaurante, OpcoesMenu } from './styled';
-import { DOMINIO, TOKEN } from '../../../link_config';
+import { DOMINIO, TOKEN, DOMINIO_IMG } from '../../../link_config';
 import $ from 'jquery';
 import { BotaoLink } from '../../globais/botao/Botao';
 import { withRouter, Link } from 'react-router-dom';
@@ -34,7 +34,7 @@ export class CabecalhoPaginaRestaurante extends Component {
                     localStorage.setItem('id', JSON.stringify(resposta.id));
                     localStorage.setItem('nome', JSON.stringify(resposta.razaoSocial));
 
-                    $(".foto-restaurante").attr("src", resposta.foto);
+                    $(".foto-restaurante").attr("src", DOMINIO_IMG + resposta.foto);
 
                 }.bind(this),
                 error: function (data) {

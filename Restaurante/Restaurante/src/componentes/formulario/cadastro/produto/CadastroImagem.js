@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import Carne from '../../../../recursos/imgs/carne.jpg';
 import $ from 'jquery';
-import { DOMINIO, TOKEN } from '../../../../link_config';
+import { DOMINIO, TOKEN, DOMINIO_IMG, ID_PRODUTO } from '../../../../link_config';
 import '../../../../recursos/js/AddImagem';
 import ImgProduto from '../../../../recursos/imgs/imagem-produto.png';
 
@@ -28,10 +28,18 @@ export class CadastroImagem extends Component {
 
     state = { ...initialState }
 
+    componentDidUpdate(){
+        const idProduto = this.props.idProduto;
+
+        if(idProduto != null){
+            $("#cadastro-imagem").removeClass("disabilita-elemento");
+        }
+    }
+
     componentWillMount() {
 
         this.visualizarImgSalva()
-        // const  = localStorage.getItem('token');
+       
     }
 
 
@@ -39,16 +47,15 @@ export class CadastroImagem extends Component {
 
 
 
-        var idProduto = sessionStorage.getItem('id_produto');
+        const idProduto = this.props.idProduto;
 
-
-        const url = `${DOMINIO}/fotoproduto/${idProduto}`;
+        const url = `${DOMINIO}/fotoproduto/${ idProduto}`;
 
 
 
         $.ajax({
             url: url,
-            type: 'get',
+            type: 'GET',
             headers: { 'token': TOKEN},
             success: function (resposta) {
 
@@ -102,10 +109,8 @@ export class CadastroImagem extends Component {
 
 
     enviaImagem(e) {
-        var idProduto = sessionStorage.getItem('id_produto');
 
-
-        // this.state.restaurante.id = json.id;
+        const idProduto = this.props.idProduto;
 
         const url = `${DOMINIO}/foto/produto`;
 
@@ -144,18 +149,18 @@ export class CadastroImagem extends Component {
 
     render() {
         return (
-            <Fragment>
-                <div class="col-12 col-md-7" id="cadastro-imagem">
+            
+                <div className={`col-12 col-md-7 ${this.props.className}`} id="cadastro-imagem">
                     <h4>2º Passo</h4>
                     <hr />
-                    <div class="row">
-                        <div class="col-7 col-md-5 mx-auto">
-                            <div class="card card-maior">
-                                <img src={this.state.imgSrc} class="card-img-top tamanho-imagem-produto" alt="..." />
-                                <div class="card-body pb-0">
+                    <div className="row">
+                        <div className="col-7 col-md-5 mx-auto">
+                            <div className="card card-maior ">
+                                <img src={this.state.imgSrc} className="card-img-top tamanho-imagem-produto border-bottom" alt="..." />
+                                <div className="card-body pb-0">
                                     <p>
-                                        <div class="input-group input-group-sm ">
-                                            <input type="text" class="form-control mt-0" aria-label="" id="legenda" name="legenda" placeholder="Escreva uma legenda.." value={this.state.Imagem.legenda} onChange={e => this.atualizaCampo(e)} />
+                                        <div className="input-group input-group-sm ">
+                                            <input type="text" className="form-control mt-0" aria-label="" id="legenda" name="legenda" placeholder="Escreva uma legenda.." value={this.state.Imagem.legenda} onChange={e => this.atualizaCampo(e)} />
 
                                         </div>
                                     </p>
@@ -166,7 +171,7 @@ export class CadastroImagem extends Component {
                                     </div>
                                     <div className="row">
                                         <div className="col-md-12 col-12" >
-                                            <input type="button" class="btn btn-outline-success btn-sm mb-2 btn-tamanho" id="addInput" onClick={e => this.enviaImagem(e)} value="Salvar"
+                                            <input type="button" className="btn btn-outline-success btn-sm mb-2 btn-tamanho" id="addInput" onClick={e => this.enviaImagem(e)} value="Salvar"
                                             />
                                         </div>
                                     </div>
@@ -182,14 +187,14 @@ export class CadastroImagem extends Component {
                             <div className="col-3 col-md-4 mx-auto" id="campo">
                                 <div className="card card-menor ">
                                     <span className="col-1 align-self-end cor-cinza">x</span>
-                                    <img key={item.id} name="img1" className="card-img-top tamanho-imagem-produto border-top" alt="..." title={item.legenda} src={item.foto} />
+                                    <img key={item.id} name="img1" className="card-img-top tamanho-imagem-produto border-top" alt="..." title={item.legenda} src={ DOMINIO_IMG + item.foto } />
                                 </div>
 
                             </div>
                         ))}
                     </div>
                 </div>
-            </Fragment>
+           
         )
     }
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FaPencilAlt } from 'react-icons/fa';
 import { IoMdClose } from "react-icons/io";
 import ModalProduto from '../modals/Modalproduto';
-import {FOTOLANCHEPADRAO} from "../../link_config"
+import {FOTOLANCHEPADRAO, DOMINIO, DOMINIO_IMG   } from "../../link_config"
 import { Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
@@ -33,8 +33,8 @@ class ItensLista extends Component{
                         <div className="modal-header h-50 pt-0 ">                         
                             <figure className="figure w-100 h-100">    
                                 <img className="mx-auto rounded w-100 h-100"
-                                    src={this.state.item.foto.length == 0? FOTOLANCHEPADRAO : this.state.item.foto[0].foto } 
-                                    alt={this.state.item.foto.length == 0? FOTOLANCHEPADRAO : this.state.item.foto[0].legenda }/>
+                                    src={this.state.item.foto.length == 0? FOTOLANCHEPADRAO : DOMINIO +"/"+ this.state.item.foto[0].foto } 
+                                    alt={this.state.item.foto.length == 0? "foto produto" : this.state.item.foto[0].legenda }/>
                             </figure>
 
                         </div>
@@ -61,7 +61,7 @@ class ItensLista extends Component{
                             <figure className="figure p-0 m-0">
                                 <Image 
                                     className="rounded-circle w-100" 
-                                    src={this.state.item.foto.length == 0? FOTOLANCHEPADRAO : this.state.item.foto[0].foto } 
+                                    src={this.state.item.foto.length == 0? FOTOLANCHEPADRAO : DOMINIO_IMG + this.state.item.foto[0].foto }
                                     alt={this.state.item.foto.length == 0? FOTOLANCHEPADRAO : this.state.item.foto[0].legenda }
                                     style={{ maxWidth: 150 + 'px' + '!important', height: 150 + 'px' }}/>
                             
@@ -74,9 +74,9 @@ class ItensLista extends Component{
                             <div className="col-11 p-0">
                                 <p className="h4 p-2 m-0">{this.state.item.nome}</p>
                             </div>
-                            <div className="col-1">
+                            <div className="col-1 mt-2">
                                 <Link to={`/restaurante/cadastro-produto/${this.props.item.id}`} className="text-muted">
-                                    <FaPencilAlt className="m-0 pointer"/>
+                                    <FaPencilAlt className="m-0 pointer" size={25}/>
                                 </Link>
                             </div>
                         </div>
