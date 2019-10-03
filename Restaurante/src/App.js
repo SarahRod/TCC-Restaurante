@@ -1,6 +1,4 @@
 import React from 'react';
-import { PaginaCadastro } from "./paginas/cadastro/paginaCadastro";
-import { PaginaLogin } from './paginas/login/PaginaLogin';
 import 'jquery/dist/jquery.min.js';
 import './recursos/css/style.css';
 import 'jquery/dist/jquery.js';

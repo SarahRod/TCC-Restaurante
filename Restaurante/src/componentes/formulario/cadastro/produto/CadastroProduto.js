@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { CadastroImagem } from './CadastroImagem';
 import $ from 'jquery';
 import { Link } from 'react-router-dom';
@@ -6,6 +6,7 @@ import { DOMINIO, TOKEN } from '../../../../link_config';
 import { SessaoCategoria } from './SessaoCategoria';
 import { withRouter } from 'react-router-dom';
 import PropTypes from "prop-types";
+import { CorpoCemVh } from '../../../corpo/styled';
 
 //ARMAZENA OS ESTADOS INICIAIS
 const initialState = {
@@ -35,14 +36,14 @@ class CadastroProduto extends Component {
         history: PropTypes.object.isRequired
     };
 
-    apagarIdProduto(){
+    apagarIdProduto() {
         sessionStorage.removeItem("id_produto");
     }
 
-    componentDidMount(){
+    componentDidMount() {
         // $("#cadastro-imagem").hide();
 
-      
+
     }
 
     componentWillMount() {
@@ -50,17 +51,17 @@ class CadastroProduto extends Component {
 
         const { id } = this.props.match.params;
 
-       
+
 
         const url = `http://localhost:8080/produto/${id}`;
 
         if (id != null) {
-        
-            
+
+
             $.ajax({
                 url: url,
                 type: 'get',
-                headers: { 'token': TOKEN},
+                headers: { 'token': TOKEN },
                 success: function (resposta) {
 
                     $('#nome').val(resposta.nome);
@@ -96,7 +97,7 @@ class CadastroProduto extends Component {
             url: url,
             contentType: "application/json",
             dataType: 'json',
-            headers: { 'token': TOKEN},
+            headers: { 'token': TOKEN },
             type: 'POST',
             data: JSON.stringify(novoproduto),
 
@@ -134,60 +135,70 @@ class CadastroProduto extends Component {
         const { id } = this.props.match.params;
 
         return (
-                <div className="container mb-3">
-                    <div className="row mt-3 mb-5">
-                        <h1 className="mx-auto">Cadastro de Produtos</h1>
-                    </div>
-                    <form>
-                        <div className="row">
-                            <div className="col-12 col-md-5">
-                                <h4>1º Passo</h4>
-                                <hr />
-                                <div className="row mb-4">
-                                    <div className="col-12">
-                                        <label className="h5">Nome do Produto</label>
-                                        <input className="form-control  mb-2 mr-sm-2" type="text" name="nome" id="nome" value={nome}placeholder="Digite o nome do produto.." onChange={e => this.atualizaCampo(e)} />
-                                    </div>
-                                </div>
-                                <div className="row mb-3">
-                                    <div className="col-3 mb-4">
-                                        <label className="h5">Preço</label>
-                                        <input className="form-control  mb-2 mr-sm-2" type="text" name="preco" id="preco"  value={preco} onChange={e => this.atualizaCampo(e)} />
-                                    </div>
-                                    <div className="col-3 mb-4">
-                                        <label className="h5">Promoção</label>
-                                        <input className="form-control  mb-2 mr-sm-2" type="text" name="desconto"  id="desconto" value={desconto} onChange={e => this.atualizaCampo(e)} />
-                                    </div>
-                                    <div className="col-6 mb-4">
-                                        <h5 className="simbolo-porcentagem">%</h5>
-                                    </div>
-                                </div>
-
-                                <div className="row mb-4">
-                                    <div className="col-10">
-                                        <div className="form-group">
-                                            <label for="exampleFormControlTextarea1" className="h5">Descrição do Produto</label>
-                                            <textarea className="form-control" id="exampleFormControlTextarea1" rows="4" id="descricao" name="descricao" value={descricao} onChange={e => this.atualizaCampo(e)}></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="row mt-5 ml-2">
-                                    <Link className="btn btn-outline-success  btn-sm   mt-4 col-5 col-lg-5" id="prox-campo" onClick={e => this.enviaFormulario(e)} >
-                                        <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                                        Próximo Passo
-                                    </Link>
-                                </div>
-                            </div>
-                            <CadastroImagem className="disabilita-elemento" idProduto={id}/>
-                        </div>
-                        <SessaoCategoria className="disabilita-elemento" id="categoria-produto" idProduto={id}/>
-                        <div className="row mt-5 justify-content-end">
-                            <div className="col-1 ">
-                                <Link class="btn btn-outline-success" to="/restaurante/visualizar-produto" onClick={this.apagarIdProduto()}>Finalizar</Link>
-                            </div>
-                        </div>
-                    </form>
+            <CorpoCemVh className="mx-auto">
+                <div className="row mt-3 mb-5">
+                    <h1 className="mx-auto">Cadastro de Produtos</h1>
                 </div>
+                <form className="row mx-auto" style={{ maxWidth: 50 + '%' }}>
+                    <div className="row">
+                        <div className="col col-sm col-md col-lg">
+                            <h4>1º Passo</h4>
+                            <hr />
+                            <div className="row mb-4">
+                                <div className="col-12">
+                                    <label className="h5">Nome do Produto</label>
+                                    <input className="form-control  mb-2 mr-sm-2" type="text" name="nome" id="nome" value={nome} placeholder="Digite o nome do produto.." onChange={e => this.atualizaCampo(e)} />
+                                </div>
+                            </div>
+                            <div className="row mb-3">
+                                <div className="col-3 mb-4">
+                                    <label className="h5">Preço</label>
+                                    <input className="form-control  mb-2 mr-sm-2" type="text" name="preco" id="preco" value={preco} onChange={e => this.atualizaCampo(e)} />
+                                </div>
+                                <div className="col-3 mb-4">
+                                    <label className="h5">Promoção</label>
+                                    <input className="form-control  mb-2 mr-sm-2" type="text" name="desconto" id="desconto" value={desconto} onChange={e => this.atualizaCampo(e)} />
+                                </div>
+                                <div className="col-6 mb-4">
+                                    <h5 className="simbolo-porcentagem">%</h5>
+                                </div>
+                            </div>
+
+                            <div className="row mb-4">
+                                <div className="col-10">
+                                    <div className="form-group">
+                                        <label for="exampleFormControlTextarea1" className="h5">Descrição do Produto</label>
+                                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="4" id="descricao" name="descricao" value={descricao} onChange={e => this.atualizaCampo(e)}></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row mt-5 ml-2">
+                                <Link className="btn btn-outline-success  btn-sm   mt-4 col-5 col-lg-5" id="prox-campo" onClick={e => this.enviaFormulario(e)} >
+                                    <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                    Próximo Passo
+                                    </Link>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div className="row">
+                        <div className="col col-sm col-md col-lg">
+                            <CadastroImagem className="disabilita-elemento" idProduto={id} />
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="col col-sm col-md col-lg">
+                            <SessaoCategoria className="disabilita-elemento" id="categoria-produto" idProduto={id} />
+                        </div>
+                    </div>
+                    <div className="row justify-content-end">
+                        <div className="col col-sm col-md col-lg">
+                            <Link class="btn btn-outline-success" to="/restaurante/visualizar-produto" onClick={this.apagarIdProduto()}>Finalizar</Link>
+                        </div>
+                    </div>
+                </form>
+            </CorpoCemVh>
         )
     }
 }

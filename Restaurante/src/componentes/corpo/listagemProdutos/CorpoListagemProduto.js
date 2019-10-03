@@ -45,7 +45,6 @@ class CorpoListagemProduto extends Component{
 
 
         return(
-            <Fragment>
                 <CorpoCemVh className="mx-auto" style={{ maxWidth: 80 + '%'}}>
                     <InputGroup className="item-list-p p-1 mx-auto mt-5 mb-5 w-25" >
                         <FormControl
@@ -66,7 +65,6 @@ class CorpoListagemProduto extends Component{
                         ))}
                     </ListGroup>
                 </CorpoCemVh>
-            </Fragment>
         )
     }
     
