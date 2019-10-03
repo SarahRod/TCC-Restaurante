@@ -3,10 +3,12 @@ import { CadastroImagem } from './CadastroImagem';
 import $ from 'jquery';
 import { Link } from 'react-router-dom';
 import { DOMINIO, TOKEN } from '../../../../link_config';
+import { BotaoRadioSwitch } from "../../../globais/botao/Botao";
 import { SessaoCategoria } from './SessaoCategoria';
 import { withRouter } from 'react-router-dom';
 import PropTypes from "prop-types";
 import { CorpoCemVh } from '../../../corpo/styled';
+import { FaTrashAlt } from "react-icons/fa";
 
 //ARMAZENA OS ESTADOS INICIAIS
 const initialState = {
@@ -68,6 +70,9 @@ class CadastroProduto extends Component {
                     $('#preco').val(resposta.preco);
                     $('#desconto').val(resposta.desconto);
                     $('#descricao').val(resposta.descricao);
+
+                    $('#btn-switch').removeClass("d-none");
+                    $('#btn-lixeira').removeClass("d-none");
 
                 }.bind(this),
                 error: function (data) {
@@ -136,8 +141,10 @@ class CadastroProduto extends Component {
 
         return (
             <CorpoCemVh className="mx-auto">
-                <div className="row mt-3 mb-5">
-                    <h1 className="mx-auto">Cadastro de Produtos</h1>
+                <div className="row mt-5 mb-5 mr-5 justify-content-center ">
+                    <h1>Cadastro de Produtos</h1>
+                    <BotaoRadioSwitch id="btn-switch" className="ml-5 mt-2 d-none" />
+                    <FaTrashAlt id="btn-lixeira" className="ml-5 mt-3 d-none" size={25}/>
                 </div>
                 <form className="row mx-auto" style={{ maxWidth: 50 + '%' }}>
                     <div className="row">
