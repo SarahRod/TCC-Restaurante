@@ -77,7 +77,7 @@ export class SessaoCategoria extends Component {
     }
 
     componentDidMount() {
-        let id = localStorage.getItem("id");
+        const idProduto = this.props.idProduto;
         const url = `${DOMINIO}/categoria`;
 
         $.ajax({

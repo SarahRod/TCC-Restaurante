@@ -42,18 +42,62 @@ class CadastroProduto extends Component {
         sessionStorage.removeItem("id_produto");
     }
 
-    componentDidMount() {
-        // $("#cadastro-imagem").hide();
+    desativarProduto(e) {
 
+        const { id } = this.props.match.params;
 
+        
+        if(e == "true"){
+            
+            const url = `${DOMINIO}/produto/ativa/${id}`;
+
+            $.ajax({
+                url: url,
+                type: 'PUT',
+                headers: { 'token': TOKEN },
+                success: function(data) {
+                 
+                }
+            });
+
+        }else{
+            const url = `${DOMINIO}/produto/desativa/${id}`;
+
+            $.ajax({
+                url: url,
+                type: 'PUT',
+                headers: { 'token': TOKEN },
+                success: function(data) {
+                 
+                }
+            });
+        }
+    }
+
+    excluirProduto() {
+
+        const { id } = this.props.match.params;
+
+        alert(id);
+
+        const url = `${DOMINIO}/produto/${id}`;
+        $.ajax({
+            url: url,
+            type: 'DELETE',
+            headers: { 'token': TOKEN },
+            success: (result) => {
+
+                this.props.history.push("/restaurante/visualizar-produto");
+
+            }, error: (result) => {
+                alert("erro");
+            }
+        });
     }
 
     componentWillMount() {
 
-
         const { id } = this.props.match.params;
-
-
 
         const url = `http://localhost:8080/produto/${id}`;
 
@@ -66,13 +110,10 @@ class CadastroProduto extends Component {
                 headers: { 'token': TOKEN },
                 success: function (resposta) {
 
-                    $('#nome').val(resposta.nome);
-                    $('#preco').val(resposta.preco);
-                    $('#desconto').val(resposta.desconto);
-                    $('#descricao').val(resposta.descricao);
+                    this.setState({ produto: resposta })
 
-                    $('#btn-switch').removeClass("d-none");
-                    $('#btn-lixeira').removeClass("d-none");
+                    $("#btn-switch").removeClass("d-none");
+                    $("#btn-lixeira").removeClass("d-none");
 
                 }.bind(this),
                 error: function (data) {
@@ -126,7 +167,6 @@ class CadastroProduto extends Component {
         const produto = { ...this.state.produto }
         produto[e.target.name] = e.target.value;
 
-
         this.setState({
             produto
         })
@@ -143,8 +183,11 @@ class CadastroProduto extends Component {
             <CorpoCemVh className="mx-auto">
                 <div className="row mt-5 mb-5 mr-5 justify-content-center ">
                     <h1>Cadastro de Produtos</h1>
-                    <BotaoRadioSwitch id="btn-switch" className="ml-5 mt-2 d-none" />
-                    <FaTrashAlt id="btn-lixeira" className="ml-5 mt-3 d-none" size={25}/>
+                    <BotaoRadioSwitch status={this.props.children} id="btn-switch" className="ml-5 mt-2 d-none" onChange={e => this.desativarProduto(e)} />
+                    <Link onClick={id => this.excluirProduto()}>
+                        <FaTrashAlt id="btn-lixeira" className="ml-5 mt-3 d-none" size={25} />
+                    </Link>
+
                 </div>
                 <form className="row mx-auto" style={{ maxWidth: 50 + '%' }}>
                     <div className="row">
