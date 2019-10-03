@@ -66,13 +66,8 @@ class CadastroProduto extends Component {
                 headers: { 'token': TOKEN },
                 success: function (resposta) {
 
-                    $('#nome').val(resposta.nome);
-                    $('#preco').val(resposta.preco);
-                    $('#desconto').val(resposta.desconto);
-                    $('#descricao').val(resposta.descricao);
+                    this.setState({ produto: resposta })
 
-                    $('#btn-switch').removeClass("d-none");
-                    $('#btn-lixeira').removeClass("d-none");
 
                 }.bind(this),
                 error: function (data) {
@@ -125,7 +120,6 @@ class CadastroProduto extends Component {
     atualizaCampo(e) {
         const produto = { ...this.state.produto }
         produto[e.target.name] = e.target.value;
-
 
         this.setState({
             produto
