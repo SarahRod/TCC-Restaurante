@@ -4,6 +4,7 @@ import { ImgRestaurante, OpcoesMenu } from './styled';
 import { DOMINIO, TOKEN, DOMINIO_IMG } from '../../../link_config';
 import $ from 'jquery';
 import { BotaoLink } from '../../globais/botao/Botao';
+import { LinksMenu } from '../../globais/botao/styled';
 import { withRouter, Link } from 'react-router-dom';
 import { Navbar, Nav, Form, NavDropdown, FormControl, Button } from 'react-bootstrap';
 
@@ -56,7 +57,7 @@ export class CabecalhoPaginaRestaurante extends Component {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <OpcoesMenu className="row w-100 align-items-center ml-auto bg-light mr-4">
                         <div className="nav-item col col-sm col-md col-lg ">
-                            <Link className="nav-link text-secondary" to="/restaurante">Pedidos</Link>
+                            <LinksMenu className="nav-link text-secondary" to="/restaurante">Pedidos</LinksMenu>
                         </div>
                         <div className="nav-item col col-sm col-md col-lg">
                             <Link className="nav-link text-secondary" to="/restaurante/cadastro-produto">Cadastrar Produto</Link>

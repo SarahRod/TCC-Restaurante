@@ -112,6 +112,20 @@ class CadastroProduto extends Component {
 
                     this.setState({ produto: resposta })
 
+                    // alert(JSON.stringify(resposta))
+
+                    alert(resposta.status);
+
+                    switch (resposta.status) {
+                        case 0:
+                          alert(resposta.status)
+                          break;
+                        case 1:
+                        case 'Papayas':
+                            alert(resposta.status)
+                          break;
+                    }
+
                     $("#btn-switch").removeClass("d-none");
                     $("#btn-lixeira").removeClass("d-none");
 
