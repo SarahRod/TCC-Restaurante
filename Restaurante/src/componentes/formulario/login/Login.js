@@ -159,7 +159,7 @@ class FormularioLogin extends Component {
                     <img src={LogoGoDinner} className="img-fluid icone-img" style={{ maxWidth: 300 + 'px' }} />
                 </div>
                 <div className="row mb-4">
-                    <div className="mx-auto text-dark h3">Bem-vindo(a) a GoDinner</div>
+                    <div className="mx-auto text-dark h3">Bem-vindo(a) GoDinner</div>
                 </div>
                 <div className="row pl-5 pr-5">
                     <span className={` ${this.state.classErro}`} >{this.state.textoErro}</span>
