@@ -71,7 +71,7 @@ export class SessaoCategoria extends Component {
             error: function (data) {
 
                 console.log(JSON.stringify(categoriaNome));
-    
+
             }
         });
     }
@@ -104,45 +104,41 @@ export class SessaoCategoria extends Component {
     render() {
         return (
 
-            <div className={`row mt-5 ${this.props.className}`} id="cadastro-categoria">
-                <div className="col-12 ">
-                    <h4 >3º Passo</h4>
-                    <hr />
+            <div className={`${this.props.className}`} id="cadastro-categoria">
+
+                <h4 >3º Passo</h4>
+                <hr />
+
+
+                <div className="row">
+                    <label className="col col-sm col-md col-lg h5">Categoria do Produto</label>
                 </div>
-                <div className="row col-12">
-                    <div className="col-12">
-                        <label className="h5">Categoria do Produto</label>
-                    </div>
-                    <div className="col-3">
-                        <select name="categoria" id="sql_categoria" className="custom-select">
-                            <option value="" selected >Selecione a categoria para este produto... </option>
-                            {this.state.categorias.map(item => (
-                                <option key={item.id} value={item.id}>
-                                    {item.nome}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                    <div className="col-1">
-                        <input type="button" className="btn btn btn-outline-success btn-sm  mt-1" id="salvar-categoria" onClick={e => this.enviaCategoria(e)} value="ok" />
-                    </div>
-                    {this.state.listaCategoria.map(item => (
-                        <div className="col-2 border rounded ml-1 mt-1">
-                            <div className="row mt-1" key={item.id}>
-                                <div className="col-9">
-                                    {item.categoria.nome}
-                                </div>
-                                <div className="col align-self-end">
-                                    <span className=" cor-cinza">x</span>
-                                </div>
+                <div className="row">
+                    <select name="categoria" id="sql_categoria" className="custom-select col col-sm col-md col-lg">
+                        <option value="" selected >Selecione a categoria para este produto... </option>
+                        {this.state.categorias.map(item => (
+                            <option key={item.id} value={item.id}>
+                                {item.nome}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <div className="col-1">
+                    <input type="button" className="btn btn btn-outline-success btn-sm  mt-1" id="salvar-categoria" onClick={e => this.enviaCategoria(e)} value="ok" />
+                </div>
+                {this.state.listaCategoria.map(item => (
+                    <div className="col-2 border rounded ml-1 mt-1">
+                        <div className="row mt-1" key={item.id}>
+                            <div className="col-9">
+                                {item.categoria.nome}
+                            </div>
+                            <div className="col align-self-end">
+                                <span className=" cor-cinza">x</span>
                             </div>
                         </div>
-                    ))}
-                </div>
+                    </div>
+                ))}
             </div>
-
-
-
         )
     }
 }

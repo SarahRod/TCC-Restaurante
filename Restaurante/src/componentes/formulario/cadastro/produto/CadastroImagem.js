@@ -28,10 +28,10 @@ export class CadastroImagem extends Component {
 
     state = { ...initialState }
 
-    componentDidUpdate(){
+    componentDidUpdate() {
         const idProduto = this.props.idProduto;
 
-        if(idProduto != null){
+        if (idProduto != null) {
             $("#cadastro-imagem").removeClass("disabilita-elemento");
         }
     }
@@ -39,7 +39,7 @@ export class CadastroImagem extends Component {
     componentWillMount() {
 
         this.visualizarImgSalva()
-       
+
     }
 
 
@@ -49,19 +49,19 @@ export class CadastroImagem extends Component {
 
         const idProduto = this.props.idProduto;
 
-        const url = `${DOMINIO}/fotoproduto/${ idProduto}`;
+        const url = `${DOMINIO}/fotoproduto/${idProduto}`;
 
 
 
         $.ajax({
             url: url,
             type: 'GET',
-            headers: { 'token': TOKEN},
+            headers: { 'token': TOKEN },
             success: function (resposta) {
 
-              
 
-                if (resposta.length >= 3 ) {
+
+                if (resposta.length >= 3) {
                     $("#addInput").prop('disabled', true);
                 } else {
                     $("#addInput").prop('disabled', false);
@@ -127,7 +127,7 @@ export class CadastroImagem extends Component {
             url: url,
             type: 'post',
             data: formData,
-            headers: { 'token': TOKEN},
+            headers: { 'token': TOKEN },
             contentType: false,
             processData: false,
             success: function (resposta) {
@@ -149,52 +149,52 @@ export class CadastroImagem extends Component {
 
     render() {
         return (
-            
-                <div className={`col-12 col-md-7 ${this.props.className}`} id="cadastro-imagem">
-                    <h4>2º Passo</h4>
+            <div className={` ${this.props.className}`} id="cadastro-imagem">
+               
+                    <h4 >2º Passo</h4>
                     <hr />
-                    <div className="row">
-                        <div className="col-7 col-md-5 mx-auto">
-                            <div className="card card-maior ">
-                                <img src={this.state.imgSrc} className="card-img-top tamanho-imagem-produto border-bottom" alt="..." />
-                                <div className="card-body pb-0">
-                                    <p>
-                                        <div className="input-group input-group-sm ">
-                                            <input type="text" className="form-control mt-0" aria-label="" id="legenda" name="legenda" placeholder="Escreva uma legenda.." value={this.state.Imagem.legenda} onChange={e => this.atualizaCampo(e)} />
+                              
+                <div className="row mx-auto">
+                    <div className="mx-auto">
+                        <div className="card card-maior">
+                            <img src={this.state.imgSrc} className="card-img-top tamanho-imagem-produto border-bottom" alt="..." />
+                            <div className="card-body pb-0">
+                                <p>
+                                    <div className="input-group input-group-sm ">
+                                        <input type="text" className="form-control mt-0" aria-label="" id="legenda" name="legenda" placeholder="Escreva uma legenda.." value={this.state.Imagem.legenda} onChange={e => this.atualizaCampo(e)} />
 
-                                        </div>
-                                    </p>
-
-                                    <div className="input-file btn-success mt-0 ml-2">
-                                        <span>Anexar Imagem</span>
-                                        <input ref="file" type="file" className="upload" multiple="true" id="foto" name="foto" value={this.state.Imagem.foto} onChange={e => this.atualizaCampo(e)} />
                                     </div>
-                                    <div className="row">
-                                        <div className="col-md-12 col-12" >
-                                            <input type="button" className="btn btn-outline-success btn-sm mb-2 btn-tamanho" id="addInput" onClick={e => this.enviaImagem(e)} value="Salvar"
-                                            />
-                                        </div>
-                                    </div>
+                                </p>
 
-
+                                <div className="input-file btn-success mt-0 ml-2">
+                                    <span>Anexar Imagem</span>
+                                    <input ref="file" type="file" className="upload" multiple="true" id="foto" name="foto" value={this.state.Imagem.foto} onChange={e => this.atualizaCampo(e)} />
                                 </div>
+                                <div className="row">
+                                    <div className="col-md-12 col-12" >
+                                        <input type="button" className="btn btn-outline-success btn-sm mb-2 btn-tamanho" id="addInput" onClick={e => this.enviaImagem(e)} value="Salvar"
+                                        />
+                                    </div>
+                                </div>
+
+
                             </div>
                         </div>
-
                     </div>
-                    <div className="row mt-4">
-                        {this.state.imagens.map(item => (
-                            <div className="col-3 col-md-4 mx-auto" id="campo">
-                                <div className="card card-menor ">
-                                    <span className="col-1 align-self-end cor-cinza">x</span>
-                                    <img key={item.id} name="img1" className="card-img-top tamanho-imagem-produto border-top" alt="..." title={item.legenda} src={ DOMINIO_IMG + item.foto } />
-                                </div>
 
-                            </div>
-                        ))}
-                    </div>
                 </div>
-           
+                <div className="row mt-4">
+                    {this.state.imagens.map(item => (
+                        <div className="col-3 col-md-4 col-sm-4 col-lg-4 mx-auto" id="campo">
+                            <div className="card card-menor ">
+                                <span className="col-1 align-self-end cor-cinza">x</span>
+                                <img key={item.id} name="img1" className="card-img-top tamanho-imagem-produto border-top" alt="..." title={item.legenda} src={DOMINIO_IMG + item.foto} />
+                            </div>
+
+                        </div>
+                    ))}
+                </div>
+            </div>
         )
     }
 }
