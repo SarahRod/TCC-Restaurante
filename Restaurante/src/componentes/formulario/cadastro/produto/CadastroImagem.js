@@ -33,13 +33,13 @@ export class CadastroImagem extends Component {
 
         if (idProduto != null) {
             $("#cadastro-imagem").removeClass("disabilita-elemento");
+
+           
         }
     }
 
-    componentWillMount() {
-
-        this.visualizarImgSalva()
-
+    componentWillMount(){
+        this.visualizarImgSalva();
     }
 
 

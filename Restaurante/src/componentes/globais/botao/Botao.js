@@ -21,7 +21,7 @@ export class BotaoRadioSwitch extends React.Component {
     }
     render () {
       return (
-        <label className={`switch ${this.props.className}`} id={this.props.id}>
+        <label className={`switch ${this.props.className}`} id={this.props.id} onChange={this.props.onChange(this.state.isChecked)}>
           <input type="checkbox" value={this.state.isChecked} onChange={this.handleChange} />
           <div className="slider"></div>
         </label>
