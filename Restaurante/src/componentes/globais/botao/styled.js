@@ -13,6 +13,15 @@ border: 2px solid #F26B3A !important;
 }
 `;
 
+export const LinksMenu = styled(Link)`
+
+&:visited, &:link{
+  
+    
+}
+
+`;
+
 
 
 export const BotaoBrancoLaranja = styled.button`
