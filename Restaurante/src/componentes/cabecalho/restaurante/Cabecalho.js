@@ -25,6 +25,10 @@ export class CabecalhoPaginaRestaurante extends Component {
             $('a').removeClass('border-bottom-laranja');
             $(this).addClass('border-bottom-laranja');
         });
+
+        const nome = localStorage.getItem("nome");
+        $(".nome-restaurante").text(nome);
+
     }
 
     componentDidMount() {
@@ -40,10 +44,14 @@ export class CabecalhoPaginaRestaurante extends Component {
                 headers: {"token": TOKEN},
                 success: function (resposta) {
 
+                    let nome = JSON.stringify(resposta.razaoSocial);
+                    nome = nome.replace(/"/g, " ")
+
                     localStorage.setItem('id', JSON.stringify(resposta.id));
-                    localStorage.setItem('nome', JSON.stringify(resposta.razaoSocial));
+                    localStorage.setItem('nome', nome);
 
                     $(".foto-restaurante").attr("src", DOMINIO_IMG + resposta.foto);
+                    $(".nome-restaurante").text(nome);
 
                 }.bind(this),
                 error: function (data) {

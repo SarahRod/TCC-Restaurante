@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import {
     DivOpecoes, DivOpecoesTitulo, CabecalhoGraficos,
     CorpoGraficos, IconeOpcoes
@@ -12,53 +12,36 @@ import { DOMINIO, TOKEN } from '../../../link_config';
 import { Link } from 'react-router-dom';
 import { CorpoCemVh } from '../styled';
 
+let Card = React.memo(props => (
+    <Fragment>
+        <div className="row text-center mt-3">
+            <h1 className="mx-auto">{props.nome}</h1>
+        </div>
+        <div className="row text-center mt-2 border-bottom">
+            <div className="col col-sm col-md col-lg h4 painel-nome-restaurante">
+                Painel Administrativo {props.nome}
+            </div>
+        </div>
+    </Fragment>
+
+))
+
 //COMPONENTE DO CORPO DA PÁGINA DE LOGIN
-export class CorpoIndex extends Component {
+export const CorpoIndex = React.memo(class CorpoIndex extends Component {
 
     state = {
         nome: ''
     }
 
-
-
-    componentDidMount() {
-
-        const url = `${DOMINIO}/restaurante/este`;
-
-        if (TOKEN != null) {
-            $.ajax({
-                url: url,
-                method: "GET",
-                headers: { "token": TOKEN },
-                success: function (resposta) {
-
-                    const nome = resposta.razaoSocial
-
-                    $(".nome-restaurante").text(nome)
-                    $(".painel-nome-restaurante").text("Painel Administrativo - " + nome)
-
-
-                }.bind(this),
-                error: function (data) {
-                    console.log(data);
-
-                }
-            });
-        }
-
-
-    }
-
-
     render() {
         return (
             <CorpoCemVh className="mx-auto">
                 <div className="row text-center mt-3">
-                <h1 className="mx-auto nome-restaurante"></h1>
+                    <h1 className="mx-auto nome-restaurante"></h1>
                 </div>
                 <div className="row text-center mt-2 border-bottom">
-                    <div className="col col-sm col-md col-lg h4 painel-nome-restaurante">
-
+                    <div className="col col-sm col-md col-lg h4">
+                        Painel Administrativo <span className="nome-restaurante"></span>
                     </div>
                 </div>
                 <div className="row mt-5">
@@ -103,4 +86,4 @@ export class CorpoIndex extends Component {
         )
     }
 
-}
+});

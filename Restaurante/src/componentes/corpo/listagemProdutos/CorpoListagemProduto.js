@@ -14,6 +14,14 @@ class CorpoListagemProduto extends Component{
         this.state = {
             itens:[]
         }
+        
+    }
+
+    componentDidUpdate(){
+        $('span').click(function(){
+            $('span').addClass('text-secondary');
+            $(this).removeClass('text-secondary');
+        });
     }
 
     componentDidMount() {
@@ -58,9 +66,9 @@ class CorpoListagemProduto extends Component{
                             <InputGroup.Text className="border-0 bg-transparent" id="btnGroupAddon"><FaSearch/></InputGroup.Text>
                         </InputGroup.Prepend>
                     </InputGroup>
-                    <div  className="row border-bottom mx-auto mb-4 pl-3 w-75 pb-2" style={{ maxWidth: 80 + '%'}}>
-                        <div className="col-6 col-sm-6 col-md-6 col-lg-3">Em exposição</div>
-                        <div className="col-6 col-sm-6 col-md-6 col-lg-3" >Arquivados</div>
+                    <div  className="row border-bottom mx-auto mb-4 pl-3 w-75 pb-2" style={{ maxWidth: 80 + '%', cursor: 'pointer'}}>
+                        <span className="col-6 col-sm-6 col-md-6 col-lg-3 text-sencodary" onClick={e => this.componentDidMount()}>Em exposição</span>
+                        <span className="col-6 col-sm-6 col-md-6 col-lg-3 text-secondary" >Arquivados</span>
                     </div>
                     <ListGroup className="p-1 w-75 mx-auto mb-5 ">
                         {this.state.itens.map(item => (
