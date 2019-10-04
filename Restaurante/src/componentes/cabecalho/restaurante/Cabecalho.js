@@ -21,8 +21,8 @@ export class CabecalhoPaginaRestaurante extends Component {
     }
 
     componentDidUpdate(){
-        $('a').click(function(){
-            $('a').removeClass('border-bottom-laranja');
+        $('.menu').click(function(){
+            $('.menu').removeClass('border-bottom-laranja');
             $(this).addClass('border-bottom-laranja');
         });
 
@@ -71,13 +71,13 @@ export class CabecalhoPaginaRestaurante extends Component {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <OpcoesMenu className="row w-100 align-items-center ml-auto bg-light mr-4">
                         <div className="nav-item col col-sm col-md col-lg ">
-                            <LinksMenu className="nav-link text-secondary text-center" to="/restaurante">Pedidos</LinksMenu>
+                            <LinksMenu className="nav-link text-secondary text-center menu" to="/restaurante">Pedidos</LinksMenu>
                         </div>
                         <div className="nav-item col col-sm col-md col-lg">
-                            <Link className="nav-link text-secondary text-center" to="/restaurante/cadastro-produto">Cadastrar Produto</Link>
+                            <Link className="nav-link text-secondary text-center menu" to="/restaurante/cadastro-produto">Cadastrar Produto</Link>
                         </div>
                         <div className="nav-item col col-sm col-md col-lg">
-                            <Link className="nav-link text-secondary text-center" to="/restaurante/visualizar-produto">Catálogo de Produtos</Link>
+                            <Link className="nav-link text-secondary text-center menu" to="/restaurante/visualizar-produto">Catálogo de Produtos</Link>
                         </div>
 
                         <img className="border rounded-circle foto-restaurante  mr-4" src='' style={{ width: 65 + 'px', height: 60 + 'px' }} />

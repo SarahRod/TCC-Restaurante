@@ -118,12 +118,11 @@ class CadastroProduto extends Component {
 
                     switch (resposta.status) {
                         case 0:
-                          alert(resposta.status)
-                          break;
+                            $("#btn-switch").val("false");
+                            break;
                         case 1:
-                        case 'Papayas':
-                            alert(resposta.status)
-                          break;
+                            $("#btn-switch").val("true");
+                        break;
                     }
 
                     $("#btn-switch").removeClass("d-none");
@@ -197,7 +196,7 @@ class CadastroProduto extends Component {
             <CorpoCemVh className="mx-auto">
                 <div className="row mt-5 mb-5 mr-5 justify-content-center ">
                     <h1>Cadastro de Produtos</h1>
-                    <BotaoRadioSwitch status={this.props.children} id="btn-switch" className="ml-5 mt-2 d-none" onChange={e => this.desativarProduto(e)} />
+                    <BotaoRadioSwitch status={this.props.children} id="btn-switch" className="ml-5 mt-2 d-none" onChange={e => this.desativarProduto(e)} value="" />
                     <Link onClick={id => this.excluirProduto()}>
                         <FaTrashAlt id="btn-lixeira" className="ml-5 mt-3 d-none" size={25} />
                     </Link>
