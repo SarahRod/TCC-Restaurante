@@ -6,6 +6,7 @@ import { DOMINIO, TOKEN } from "../../../link_config"
 import ItensLista from './../../lista/ItensLista';
 import { InputGroup, FormControl, ListGroup, Container } from 'react-bootstrap';
 import { CorpoCemVh } from '../styled';
+import {  } from '../styled';
 
 class CorpoListagemProduto extends Component {
 
