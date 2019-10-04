@@ -2,82 +2,94 @@ import React, { Fragment, Component } from 'react';
 import '../../../recursos/css/style.css';
 import $ from 'jquery';
 import { FaSearch } from 'react-icons/fa';
-import {DOMINIO, TOKEN} from "../../../link_config"
-import ItensLista  from './../../lista/ItensLista';
+import { DOMINIO, TOKEN } from "../../../link_config"
+import ItensLista from './../../lista/ItensLista';
 import { InputGroup, FormControl, ListGroup, Container } from 'react-bootstrap';
 import { CorpoCemVh } from '../styled';
 
-class CorpoListagemProduto extends Component{
+class CorpoListagemProduto extends Component {
 
-    constructor(){
+    constructor() {
         super();
         this.state = {
-            itens:[]
+            itens: []
         }
-        
+
     }
 
-    componentDidUpdate(){
-        $('span').click(function(){
+    componentDidUpdate() {
+        $('span').click(function () {
             $('span').addClass('text-secondary');
             $(this).removeClass('text-secondary');
         });
     }
 
-    componentDidMount() {
+    componentDidMount(e) {
         let id = localStorage.getItem("id");
-      
-        let url = `${DOMINIO}/produto/exibicao/${id}`;
-      
+
+        let url;
+
+
+        switch (e) {
+            case "ativo":
+                url = `${DOMINIO}/produto/exibicao/${id}`
+                break;
+            case "desativo":
+                url = `${DOMINIO}/produto/desativados/${id}`
+                break;
+            default:
+                url = `${DOMINIO}/produto/exibicao/${id}`
+        }
+
 
 
         $.ajax({
             url: url,
             method: 'get',
-            headers: {"token": TOKEN},
+            headers: { "token": TOKEN },
             dataType: 'json',
             contentType: 'application/json',
             success: function (resposta) {
 
-                this.setState({itens: resposta})
+                this.setState({ itens: resposta })
 
             }.bind(this),
             error: function (data) {
-                
+
                 console.log(data)
             }
         });
     }
 
-    render(){
+    render() {
 
 
-        return(
-                <CorpoCemVh className="mx-auto" style={{ maxWidth: 80 + '%'}}>
-                    <InputGroup className="item-list-p p-1 mx-auto mt-5 mb-5 w-25">
-                        <FormControl
-                            className="border-0  shadow-none"
-                            type="text"
-                            placeholder="Search"
-                            aria-label="Search"
-                            aria-describedby="btnGroupAddon"
-                        />
-                        <InputGroup.Prepend className="border-0">
-                            <InputGroup.Text className="border-0 bg-transparent" id="btnGroupAddon"><FaSearch/></InputGroup.Text>
-                        </InputGroup.Prepend>
-                    </InputGroup>
-                    <div  className="row border-bottom mx-auto mb-4 pl-3 w-75 pb-2" style={{ maxWidth: 80 + '%', cursor: 'pointer'}}>
-                        <span className="col-6 col-sm-6 col-md-6 col-lg-3 text-sencodary" onClick={e => this.componentDidMount()}>Em exposição</span>
-                        <span className="col-6 col-sm-6 col-md-6 col-lg-3 text-secondary" >Arquivados</span>
-                    </div>
-                    <ListGroup className="p-1 w-75 mx-auto mb-5 ">
-                        {this.state.itens.map(item => (
-                            <ItensLista item = {item || ""} />
-                        ))}
-                    </ListGroup>
-                </CorpoCemVh>
+        return (
+            <CorpoCemVh className="mx-auto" style={{ maxWidth: 80 + '%' }}>
+                <InputGroup className="item-list-p p-1 mx-auto mt-5 mb-5 w-25">
+                    <FormControl
+                        className="border-0  shadow-none"
+                        type="text"
+                        placeholder="Search"
+                        aria-label="Search"
+                        aria-describedby="btnGroupAddon"
+                    />
+                    <InputGroup.Prepend className="border-0">
+                        <InputGroup.Text className="border-0 bg-transparent" id="btnGroupAddon"><FaSearch /></InputGroup.Text>
+                    </InputGroup.Prepend>
+                </InputGroup>
+                <div className="row border-bottom mx-auto mb-4 pl-3 w-75 pb-2" style={{ maxWidth: 80 + '%', cursor: 'pointer' }}>
+                    <span className="col-6 col-sm-6 col-md-6 col-lg-3 text-sencodary" onClick={e => this.componentDidMount(e = "ativo")}>Em exposição</span>
+                    <span className="col-6 col-sm-6 col-md-6 col-lg-3 text-secondary" onClick={e => this.componentDidMount(e = "desativo")} > Arquivados</span>
+                </div>
+                <ListGroup className="p-1 w-75 mx-auto mb-5 ">
+                    {this.state.itens.map(item => (
+                        <ItensLista item={item || ""} />
+                    ))}
+                </ListGroup>
+            </CorpoCemVh>
         )
     }
-    
+
 }
 export default CorpoListagemProduto;

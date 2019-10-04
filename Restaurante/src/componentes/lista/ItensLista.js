@@ -33,7 +33,7 @@ class ItensLista extends Component{
                         <div className="modal-header h-50 pt-0 ">                         
                             <figure className="figure w-100 h-100">    
                                 <img className="mx-auto rounded w-100 h-100"
-                                    src={this.state.item.foto.length == 0? FOTOLANCHEPADRAO : DOMINIO +"/"+ this.state.item.foto[0].foto } 
+                                    src={this.state.item.foto.length == 0? FOTOLANCHEPADRAO :  DOMINIO_IMG + this.state.item.foto[0].foto } 
                                     alt={this.state.item.foto.length == 0? "foto produto" : this.state.item.foto[0].legenda }/>
                             </figure>
 
