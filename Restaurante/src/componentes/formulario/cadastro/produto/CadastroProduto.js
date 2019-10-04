@@ -194,7 +194,7 @@ class CadastroProduto extends Component {
         const { id } = this.props.match.params;
 
         return (
-            <CorpoCemVh className="mx-auto">
+            <CorpoCemVh className="table mx-auto">
                 <div className="row mt-5 mb-5 mr-5 justify-content-center ">
                     <h1>Cadastro de Produtos</h1>
                     <BotaoRadioSwitch status={this.props.children} id="btn-switch" className="ml-5 mt-2 d-none" onChange={e => this.desativarProduto(e)} />
@@ -240,7 +240,7 @@ class CadastroProduto extends Component {
                                 <Link className="btn btn-outline-success  btn-sm   mt-4 col-5 col-lg-5" id="prox-campo" onClick={e => this.enviaFormulario(e)} >
                                     <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
                                     Próximo Passo
-                                    </Link>
+                                </Link>
                             </div>
                         </div>
 
@@ -248,7 +248,7 @@ class CadastroProduto extends Component {
                     <div className="row">
                         <div className="col col-sm col-md col-lg">
                             <CadastroImagem className="disabilita-elemento" idProduto={id} />
-                        </div>
+                        </div>  
                     </div>
 
                     <div className="row">

@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import { FaPencilAlt } from 'react-icons/fa';
 import { IoMdClose } from "react-icons/io";
@@ -33,7 +34,8 @@ class ItensLista extends Component{
                         <div className="modal-header h-50 pt-0 ">                         
                             <figure className="figure w-100 h-100">    
                                 <img className="mx-auto rounded w-100 h-100"
-                                    src={this.state.item.foto.length == 0? FOTOLANCHEPADRAO :  DOMINIO_IMG + this.state.item.foto[0].foto } 
+                                    // src={this.state.item.foto.length == 0? FOTOLANCHEPADRAO : DOMINIO_IMG + this.state.item.foto[0].foto } 
+                                    src={this.state.item.foto.length == 0? FOTOLANCHEPADRAO : this.state.item.foto[0].foto }
                                     alt={this.state.item.foto.length == 0? "foto produto" : this.state.item.foto[0].legenda }/>
                             </figure>
 
@@ -61,7 +63,8 @@ class ItensLista extends Component{
                             <figure className="figure p-0 m-0">
                                 <Image 
                                     className="rounded-circle w-100" 
-                                    src={this.state.item.foto.length == 0? FOTOLANCHEPADRAO : DOMINIO_IMG + this.state.item.foto[0].foto }
+                                    // src={this.state.item.foto.length == 0? FOTOLANCHEPADRAO : DOMINIO_IMG + this.state.item.foto[0].foto }
+                                    src={this.state.item.foto.length == 0? FOTOLANCHEPADRAO : this.state.item.foto[0].foto }
                                     alt={this.state.item.foto.length == 0? FOTOLANCHEPADRAO : this.state.item.foto[0].legenda }
                                     style={{ maxWidth: 150 + 'px' + '!important', height: 150 + 'px' }}/>
                             
