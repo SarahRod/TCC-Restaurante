@@ -33,8 +33,6 @@ export class CabecalhoPaginaRestaurante extends Component {
 
     componentDidMount() {
 
-       
-
         const url = `${DOMINIO}/restaurante/este`;
 
         if (TOKEN != null) {
