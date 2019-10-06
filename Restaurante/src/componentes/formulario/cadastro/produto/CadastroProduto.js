@@ -46,29 +46,28 @@ class CadastroProduto extends Component {
 
         const { id } = this.props.match.params;
 
-        
-        if(e == "true"){
-            
+        if (e) {
+
             const url = `${DOMINIO}/produto/ativa/${id}`;
 
             $.ajax({
                 url: url,
                 type: 'PUT',
                 headers: { 'token': TOKEN },
-                success: function(data) {
-                 
+                success: function (data) {
+
                 }
             });
 
-        }else{
+        } else {
             const url = `${DOMINIO}/produto/desativa/${id}`;
 
             $.ajax({
                 url: url,
                 type: 'PUT',
                 headers: { 'token': TOKEN },
-                success: function(data) {
-                 
+                success: function (data) {
+
                 }
             });
         }
@@ -95,7 +94,7 @@ class CadastroProduto extends Component {
         });
     }
 
-    componentWillMount() {
+    componentDidMount() {
 
         const { id } = this.props.match.params;
 
@@ -103,6 +102,7 @@ class CadastroProduto extends Component {
 
         if (id != null) {
 
+            let teste;
 
             $.ajax({
                 url: url,
@@ -112,17 +112,22 @@ class CadastroProduto extends Component {
 
                     this.setState({ produto: resposta })
 
-                    // alert(JSON.stringify(resposta))
-
-                    alert(resposta.status);
-
                     switch (resposta.status) {
-                        case 0:
-                            $("#btn-switch").val("false");
+                        case "0":
+
                             break;
-                        case 1:
+                        case "1":
+
+
+                            $('#btn-status').attr("checked", "checked");
+
+                            let e;
+
+                            this.desativarProduto(e = true);
+
+                            break;
+                        default:
                             $("#btn-switch").val("true");
-                        break;
                     }
 
                     $("#btn-switch").removeClass("d-none");
@@ -196,7 +201,7 @@ class CadastroProduto extends Component {
             <CorpoCemVh className="table mx-auto">
                 <div className="row mt-5 mb-5 mr-5 justify-content-center ">
                     <h1>Cadastro de Produtos</h1>
-                    <BotaoRadioSwitch status={this.props.children} id="btn-switch" className="ml-5 mt-2 d-none" onChange={e => this.desativarProduto(e)} value="" />
+                    <BotaoRadioSwitch id="btn-switch" className="ml-5 mt-2 d-none" onChange={e => this.desativarProduto(e)} />
                     <Link onClick={id => this.excluirProduto()}>
                         <FaTrashAlt id="btn-lixeira" className="ml-5 mt-3 d-none" size={25} />
                     </Link>
@@ -247,7 +252,7 @@ class CadastroProduto extends Component {
                     <div className="row">
                         <div className="col col-sm col-md col-lg">
                             <CadastroImagem className="disabilita-elemento" idProduto={id} />
-                        </div>  
+                        </div>
                     </div>
 
                     <div className="row">
