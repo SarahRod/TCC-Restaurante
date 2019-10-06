@@ -150,11 +150,25 @@ class CadastroProduto extends Component {
 
         const produto = { ...this.state.produto };
 
-        this.state.restaurante.id = localStorage.getItem('id');
+        const { id } = this.props.match.params;
 
-        var novoproduto = { ...produto, 'restaurante': this.state.restaurante };
+        let url;
 
-        const url = `${DOMINIO}/produto`;
+        let novoproduto;
+
+        const method = id ? 'put' : 'post';
+
+        if (id) {
+            
+            novoproduto = { ...produto};
+            url = `${DOMINIO}/produto`;
+
+            alert(JSON.stringify(novoproduto))
+            console.log((novoproduto))
+        } else {
+            novoproduto = { ...produto, 'restaurante': this.state.restaurante };
+            url = `${DOMINIO}/produto`;
+        }
 
         $.ajax({
 
@@ -162,7 +176,7 @@ class CadastroProduto extends Component {
             contentType: "application/json",
             dataType: 'json',
             headers: { 'token': TOKEN },
-            type: 'POST',
+            type: method,
             data: JSON.stringify(novoproduto),
 
 
