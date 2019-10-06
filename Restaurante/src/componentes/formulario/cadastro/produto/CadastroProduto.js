@@ -159,8 +159,8 @@ class CadastroProduto extends Component {
         const method = id ? 'put' : 'post';
 
         if (id) {
-            
-            novoproduto = { ...produto};
+
+            novoproduto = { ...produto };
             url = `${DOMINIO}/produto`;
 
             alert(JSON.stringify(novoproduto))

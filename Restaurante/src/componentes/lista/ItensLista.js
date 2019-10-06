@@ -78,7 +78,7 @@ class ItensLista extends Component{
                                 <p className="h4 p-2 m-0">{this.state.item.nome}</p>
                             </div>
                             <div className="col-1 mt-2">
-                                <Link to={`/restaurante/cadastro-produto/${this.props.item.id}`} className="text-muted">
+                                <Link to={`/restaurante/cadastro-produto/${this.state.item.id}`} className="text-muted">
                                     <FaPencilAlt className="m-0 pointer" size={25}/>
                                 </Link>
                             </div>

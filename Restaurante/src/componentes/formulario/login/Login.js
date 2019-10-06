@@ -84,8 +84,6 @@ class FormularioLogin extends Component {
                    
                     const token = localStorage.getItem("token");
 
-                    
-
                     if(token != null){
                         this.props.history.push("/restaurante");
                     }
