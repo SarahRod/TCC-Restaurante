@@ -9,6 +9,7 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from "prop-types";
 import { CorpoCemVh } from '../../../corpo/styled';
 import { FaTrashAlt } from "react-icons/fa";
+import { exportDefaultSpecifier } from '@babel/types';
 
 //ARMAZENA OS ESTADOS INICIAIS
 const initialState = {
@@ -46,7 +47,7 @@ class CadastroProduto extends Component {
 
         const { id } = this.props.match.params;
 
-        if (e) {
+        if (e && id != null) {
 
             const url = `${DOMINIO}/produto/ativa/${id}`;
 
@@ -59,7 +60,7 @@ class CadastroProduto extends Component {
                 }
             });
 
-        } else {
+        } else if (!e && id != null) {
             const url = `${DOMINIO}/produto/desativa/${id}`;
 
             $.ajax({
@@ -156,7 +157,15 @@ class CadastroProduto extends Component {
 
         let novoproduto;
 
-        const method = id ? 'put' : 'post';
+        let method;
+
+        alert(id);
+
+        if(id != null){
+            method ='put';
+        }else{
+            method = 'post';
+        }
 
         if (id) {
 
