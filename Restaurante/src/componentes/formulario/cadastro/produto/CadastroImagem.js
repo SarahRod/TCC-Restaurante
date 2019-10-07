@@ -42,6 +42,32 @@ export class CadastroImagem extends Component {
         this.visualizarImgSalva();
     }
 
+    apagaFoto(id){
+
+        const url = `${DOMINIO}/fotoproduto/${id}`;
+
+        alert(id)
+
+        $.ajax({
+            url: url,
+            type: 'DELETE',
+            headers: { 'token': TOKEN },
+            success: function (resposta) {
+
+                    alert("apagado");
+
+                    this.visualizarImgSalva();
+
+            }.bind(this),
+            error: function (data) {
+                console.log('Erro:', data);
+
+            }
+        });
+
+
+    }
+
 
     visualizarImgSalva() {
 
@@ -187,7 +213,7 @@ export class CadastroImagem extends Component {
                     {this.state.imagens.map(item => (
                         <div className="col-3 col-md-4 col-sm-4 col-lg-4 mx-auto" id="campo">
                             <div className="card card-menor ">
-                                <span className="col-1 align-self-end cor-cinza">x</span>
+                                <span className="col-1 align-self-end cor-cinza" onClick={e => this.apagaFoto(item.id)}>x</span>
                                 <img key={item.id} name="img1" className="card-img-top tamanho-imagem-produto border-top" alt="..." title={item.legenda} src={DOMINIO_IMG + item.foto} />
                             </div>
 

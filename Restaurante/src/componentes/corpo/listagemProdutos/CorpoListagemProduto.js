@@ -18,11 +18,13 @@ class CorpoListagemProduto extends Component {
 
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(resposta) {
         $('span').click(function () {
             $('span').addClass('text-secondary');
             $(this).removeClass('text-secondary');
         });
+        
+
     }
 
     componentDidMount(e) {
@@ -41,8 +43,6 @@ class CorpoListagemProduto extends Component {
             default:
                 url = `${DOMINIO}/produto/exibicao/${id}`
         }
-
-
 
         $.ajax({
             url: url,

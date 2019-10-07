@@ -9,6 +9,7 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from "prop-types";
 import { CorpoCemVh } from '../../../corpo/styled';
 import { FaTrashAlt } from "react-icons/fa";
+import { exportDefaultSpecifier } from '@babel/types';
 
 //ARMAZENA OS ESTADOS INICIAIS
 const initialState = {
@@ -46,29 +47,28 @@ class CadastroProduto extends Component {
 
         const { id } = this.props.match.params;
 
-        
-        if(e == "true"){
-            
+        if (e && id != null) {
+
             const url = `${DOMINIO}/produto/ativa/${id}`;
 
             $.ajax({
                 url: url,
                 type: 'PUT',
                 headers: { 'token': TOKEN },
-                success: function(data) {
-                 
+                success: function (data) {
+
                 }
             });
 
-        }else{
+        } else if (!e && id != null) {
             const url = `${DOMINIO}/produto/desativa/${id}`;
 
             $.ajax({
                 url: url,
                 type: 'PUT',
                 headers: { 'token': TOKEN },
-                success: function(data) {
-                 
+                success: function (data) {
+
                 }
             });
         }
@@ -95,7 +95,7 @@ class CadastroProduto extends Component {
         });
     }
 
-    componentWillMount() {
+    componentDidMount() {
 
         const { id } = this.props.match.params;
 
@@ -103,6 +103,7 @@ class CadastroProduto extends Component {
 
         if (id != null) {
 
+            let teste;
 
             $.ajax({
                 url: url,
@@ -112,17 +113,22 @@ class CadastroProduto extends Component {
 
                     this.setState({ produto: resposta })
 
-                    // alert(JSON.stringify(resposta))
-
-                    alert(resposta.status);
-
                     switch (resposta.status) {
-                        case 0:
-                            $("#btn-switch").val("false");
+                        case "0":
+
                             break;
-                        case 1:
+                        case "1":
+
+
+                            $('#btn-status').attr("checked", "checked");
+
+                            let e;
+
+                            this.desativarProduto(e = true);
+
+                            break;
+                        default:
                             $("#btn-switch").val("true");
-                        break;
                     }
 
                     $("#btn-switch").removeClass("d-none");
@@ -145,11 +151,33 @@ class CadastroProduto extends Component {
 
         const produto = { ...this.state.produto };
 
-        this.state.restaurante.id = localStorage.getItem('id');
+        const { id } = this.props.match.params;
 
-        var novoproduto = { ...produto, 'restaurante': this.state.restaurante };
+        let url;
 
-        const url = `${DOMINIO}/produto`;
+        let novoproduto;
+
+        let method;
+
+        alert(id);
+
+        if(id != null){
+            method ='put';
+        }else{
+            method = 'post';
+        }
+
+        if (id) {
+
+            novoproduto = { ...produto };
+            url = `${DOMINIO}/produto`;
+
+            alert(JSON.stringify(novoproduto))
+            console.log((novoproduto))
+        } else {
+            novoproduto = { ...produto, 'restaurante': this.state.restaurante };
+            url = `${DOMINIO}/produto`;
+        }
 
         $.ajax({
 
@@ -157,7 +185,7 @@ class CadastroProduto extends Component {
             contentType: "application/json",
             dataType: 'json',
             headers: { 'token': TOKEN },
-            type: 'POST',
+            type: method,
             data: JSON.stringify(novoproduto),
 
 
@@ -196,7 +224,7 @@ class CadastroProduto extends Component {
             <CorpoCemVh className="table mx-auto">
                 <div className="row mt-5 mb-5 mr-5 justify-content-center ">
                     <h1>Cadastro de Produtos</h1>
-                    <BotaoRadioSwitch status={this.props.children} id="btn-switch" className="ml-5 mt-2 d-none" onChange={e => this.desativarProduto(e)} value="" />
+                    <BotaoRadioSwitch id="btn-switch" className="ml-5 mt-2 d-none" onChange={e => this.desativarProduto(e)} />
                     <Link onClick={id => this.excluirProduto()}>
                         <FaTrashAlt id="btn-lixeira" className="ml-5 mt-3 d-none" size={25} />
                     </Link>
@@ -247,7 +275,7 @@ class CadastroProduto extends Component {
                     <div className="row">
                         <div className="col col-sm col-md col-lg">
                             <CadastroImagem className="disabilita-elemento" idProduto={id} />
-                        </div>  
+                        </div>
                     </div>
 
                     <div className="row">
