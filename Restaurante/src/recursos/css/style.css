@@ -41,7 +41,8 @@ textarea {
 
 
 .cor-cinza{
-    color: #6c757d
+    color: #6c757d;
+    cursor: pointer;
 }
 select {
     box-sizing: border-box;

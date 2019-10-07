@@ -33,10 +33,12 @@ export const IconeOpcoes = styled.img`
 export const CabecalhoGraficos = styled.div`
     height: 30px;
     font-size: 0.8em;
+    border-radius: 10px 10px 0 0;
 `
 
 //ESTILIZAÇÃO CORPO DA PARTE DE GRÁFICOS
 export const CorpoGraficos = styled.div`
     height: 200px;
+    border-radius: 0 0 10px 10px;
 `
 

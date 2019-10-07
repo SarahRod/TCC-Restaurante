@@ -95,15 +95,18 @@ class CadastroProduto extends Component {
         });
     }
 
-    componentDidMount() {
+    componentDidMount(){
+
+        this.verificaStatus()
+    }
+
+    verificaStatus() {
 
         const { id } = this.props.match.params;
 
         const url = `http://localhost:8080/produto/${id}`;
 
         if (id != null) {
-
-            let teste;
 
             $.ajax({
                 url: url,
@@ -159,13 +162,17 @@ class CadastroProduto extends Component {
 
         let method;
 
-        alert(id);
+        let e;
 
         if(id != null){
             method ='put';
 
             novoproduto = { ...produto };
             url = `${DOMINIO}/produto`;
+
+          
+
+            
         }else{
             method = 'post';
 
@@ -188,6 +195,11 @@ class CadastroProduto extends Component {
             success: function (resposta) {
 
                 this.props.history.push(`/restaurante/cadastro-produto/${resposta.id}`);
+
+                if($('#btn-status').is(':checked') ){
+                    alert('fucinou');
+                    this.desativarProduto(e = true);
+               }
 
 
             }.bind(this),

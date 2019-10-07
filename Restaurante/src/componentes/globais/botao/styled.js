@@ -22,6 +22,11 @@ export const LinksMenu = styled(Link)`
 
 `;
 
+export const BotaoLaranja = styled(Link)`
+    background-color: #F26B3A !important;
+    color: #ffffff !important;
+`;
+
 
 
 export const BotaoBrancoLaranja = styled.button`

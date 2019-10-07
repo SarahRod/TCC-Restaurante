@@ -4,12 +4,17 @@ import { ImgRestaurante, OpcoesMenu } from './styled';
 import { DOMINIO, TOKEN, DOMINIO_IMG } from '../../../link_config';
 import $ from 'jquery';
 import { BotaoLink } from '../../globais/botao/Botao';
-import { LinksMenu } from '../../globais/botao/styled';
+import { LinksMenu, BotaoLaranja } from '../../globais/botao/styled';
 import { withRouter, Link } from 'react-router-dom';
 import { Navbar, Nav, Form, NavDropdown, FormControl, Button } from 'react-bootstrap';
 import './style.css';
 
 export class CabecalhoPaginaRestaurante extends Component {
+
+    constructor() {
+        super();
+        this.state = { isLoading: true }
+    }
 
     apagarLocalStorage() {
 
@@ -20,8 +25,8 @@ export class CabecalhoPaginaRestaurante extends Component {
         this.props.history.push("/cadastro/endereco");
     }
 
-    componentDidUpdate(){
-        $('.menu').click(function(){
+    componentDidUpdate() {
+        $('.menu').click(function () {
             $('.menu').removeClass('border-bottom-laranja');
             $(this).addClass('border-bottom-laranja');
         });
@@ -33,13 +38,15 @@ export class CabecalhoPaginaRestaurante extends Component {
 
     componentDidMount() {
 
-        const url = `${DOMINIO}/restaurante/este`;
+    const url = `${DOMINIO}/restaurante/este`;
 
-        if (TOKEN != null) {
+    let token = localStorage.getItem('token');
+
+        if (token != null) {
             $.ajax({
                 url: url,
                 type: 'GET',
-                headers: {"token": TOKEN},
+                headers: { "token": token },
                 success: function (resposta) {
 
                     let nome = JSON.stringify(resposta.razaoSocial);
@@ -51,6 +58,8 @@ export class CabecalhoPaginaRestaurante extends Component {
                     $(".foto-restaurante").attr("src", DOMINIO_IMG + resposta.foto);
                     $(".nome-restaurante").text(nome);
 
+                    this.setState({ isLoading: false })
+
                 }.bind(this),
                 error: function (data) {
                     console.log(data);
@@ -61,7 +70,7 @@ export class CabecalhoPaginaRestaurante extends Component {
 
     }
 
-    render() {
+    renderCabecalho() {
         return (
             <Navbar bg="light" expand="lg">
                 <Link className="navbar-brand" to="/restaurante">
@@ -82,12 +91,27 @@ export class CabecalhoPaginaRestaurante extends Component {
 
                         <img className="border rounded-circle foto-restaurante  mr-4" src='' style={{ width: 65 + 'px', height: 60 + 'px' }} />
 
-                        <BotaoLink to="/" class="col col-sm col-md col-lg-3" texto="Logout" onClick={e => this.apagarLocalStorage(e)} />
+                        <BotaoLaranja to="/" className="btn" onClick={e => this.apagarLocalStorage(e)}>Logout</BotaoLaranja>
 
                     </OpcoesMenu>
 
                 </Navbar.Collapse>
             </Navbar>
+        )
+    }
+
+    renderLoading() {
+        return (
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        )
+
+    }
+
+    render() {
+        return (
+            this.state.isLoading ? this.renderLoading() : this.renderCabecalho()
         )
     }
 }
