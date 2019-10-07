@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Tamplete Restaurante</title>
+        <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+        <script type="text/javascript" src="jquery/jquery.js"></script>
+        <script type="text/javascript" src="./bootstrap/js/bootstrap.min.js"></script>
+        <style>
+            .bg-image-container1{
+                background-image: url("http://www.wordwallpapers.com/wp-content/uploads/2015/11/100-Amazing-Mixed-Wallpapers-10-5.jpg");
+                background-size: 100% 100%;
+                background-repeat: repeat;
+            }
+
+            .navbarColor{
+                background-color: rgba(0, 0, 0, 0.8)
+            }
+
+            .bg-image-container2{
+                background-image: url("https://img.freepik.com/fotos-gratis/textura-de-lousa-de-estilo-grunge_1048-10295.jpg?size=626&ext=jpg");
+                background-size: 100% 100%;
+                background-repeat: repeat;
+            }
+            
+            /* Setas Carousel */
+
+            .carousel-control-prev-icon,
+            .carousel-control-next-icon {
+            height: 100px;
+            width: 100px; 
+            outline: black;
+            text-align: center;
+            line-height: 0.9;
+            background-image: none;
+            }
+
+            .carousel-control-next-icon:after
+            {
+            content: '>';
+            font-family: monospace, 'Courier New', Courier;
+            font-size: 100px;
+            color:rgb(80, 80, 80);
+            }
+
+            .carousel-control-prev-icon:after {
+            content: '<';
+            font-family: monospace, 'Courier New', Courier;
+            font-size: 100px;
+            color:rgb(80, 80, 80);
+            }
+
+        </style>
+    </head>
+
+
+
+    <body class="w-75 mx-auto">
+        <!-- container-inicial -->
+        <div class="container-fluid bg-image-container1 p-0" style="min-height: 500px" background>
+
+            <!-- navbar -->
+            <nav class="navbar navbarColor justify-content-around">
+                <a class="navbar-brand" href="#">
+                    <img src="https://purepng.com/public/uploads/large/burger-king-logo-xua.png" class=" rounded float-left" style="max-width: 55px" alt=""/>
+                </a>
+                <ul class="nav justify-content-end w-50">
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#">Galeria</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#">Sobre o Restaurante</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="container-fluid bg-image-container2" style="min-height: 250px" back>
+            <h1 class="pt-2 pb-2 text-center text-light">
+                Burger Classic
+            </h1>
+            <div class="d-block">
+                <p class="h5 text-center text-light">
+                    Lorem ipsum dolor sit amet, consectetur dipisicing elit, sed do eiusmod Incididunt ut labore et dolore magna aliqua.
+                    Lorem ipsum dolor sit amet, consectetur dipisicing elit, sed do eiusmod Incididunt ut labore et dolore magna aliqua. 
+                    Ut enim ad minim veniam quis nostrud exercitation ullamco.
+                    Lorem ipsum dolor sit amet, consectetur dipisicing elit, sed do eiusmod Incididunt ut labore et dolore magna aliqua.
+                    Lorem ipsum dolor sit amet, consectetur dipisicing elit, sed do eiusmod Incididunt ut labore et dolore magna aliqua. 
+                    Ut enim ad minim veniam quis nostrud exercitation ullamco               
+                </p>
+            </div>
+        </div>
+        <div class="container-fluid" style="min-height: 700px" back>
+            <h1 class="text-center pt-2">MENU</h1>
+            <div class="container">
+                <hr>
+                <div class="d-flex justify-content-center">
+                    <figure class=" ">
+                        <img class="m-1 bg-info" src="" alt="Icone Hambúguer" style="max-width: 60px; min-height: 60px"/>
+                    </figure>
+                    <figure class="">
+                        <img class="m-1 bg-success" src="" alt="Icone Pizza" style="max-width: 60px; min-height: 60px"/>
+                    </figure>
+                    <figure class="">
+                        <img class="m-1 bg-warning" src="" alt="Icone Refrigerante" style="max-width: 60px; min-height: 60px"/>
+                    </figure>
+                </div>
+
+            </div>
+            <div id="ProdutosRestaurante" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#ProdutosRestaurante" data-slide-to="0" class="active"></li>
+                    <li data-target="#ProdutosRestaurante" data-slide-to="1"></li>
+                    <li data-target="#ProdutosRestaurante" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="d-flex justify-content-around p-3">
+                            <div class="card mb-2 float-left" style="width: 18rem;">
+                                <img class="card-img-top" src="https://png.pngtree.com/element_pic/17/07/26/eb63d3b8ae4d2a1de45ba95e6d5b53ae.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title text-center">Burguer</h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                            <div class="card mb-2 float-left" style="width: 18rem;">
+                                <img class="card-img-top" src="https://png.pngtree.com/element_pic/17/07/26/eb63d3b8ae4d2a1de45ba95e6d5b53ae.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title text-center">Burguer</h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                            <div class="card mb-2 float-left" style="width: 18rem;">
+                                <img class="card-img-top" src="https://png.pngtree.com/element_pic/17/07/26/eb63d3b8ae4d2a1de45ba95e6d5b53ae.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title text-center">Burguer</h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="d-flex justify-content-around p-3">
+                            <div class="card mb-2 float-left" style="width: 18rem;">
+                                <img class="card-img-top" src="https://png.pngtree.com/element_pic/17/07/26/eb63d3b8ae4d2a1de45ba95e6d5b53ae.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title text-center">Burguer</h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                            <div class="card mb-2 float-left" style="width: 18rem;">
+                                <img class="card-img-top" src="https://png.pngtree.com/element_pic/17/07/26/eb63d3b8ae4d2a1de45ba95e6d5b53ae.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title text-center">Burguer</h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                            <div class="card mb-2 float-left" style="width: 18rem;">
+                                <img class="card-img-top" src="https://png.pngtree.com/element_pic/17/07/26/eb63d3b8ae4d2a1de45ba95e6d5b53ae.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title text-center">Burguer</h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="d-flex justify-content-around p-3">
+                            <div class="card mb-2 float-left" style="width: 18rem;">
+                                <img class="card-img-top" src="https://png.pngtree.com/element_pic/17/07/26/eb63d3b8ae4d2a1de45ba95e6d5b53ae.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title text-center">Burguer</h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                            <div class="card mb-2 float-left" style="width: 18rem;">
+                                <img class="card-img-top" src="https://png.pngtree.com/element_pic/17/07/26/eb63d3b8ae4d2a1de45ba95e6d5b53ae.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title text-center">Burguer</h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                            <div class="card mb-2 float-left" style="width: 18rem;">
+                                <img class="card-img-top" src="https://png.pngtree.com/element_pic/17/07/26/eb63d3b8ae4d2a1de45ba95e6d5b53ae.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title text-center">Burguer</h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+                <!-- SETAS -->
+                <a class="carousel-control-prev" href="#ProdutosRestaurante" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#ProdutosRestaurante" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </body>
+</html>
