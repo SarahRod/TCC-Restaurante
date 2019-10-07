@@ -4,7 +4,7 @@ import { ImgRestaurante, OpcoesMenu } from './styled';
 import { DOMINIO, TOKEN, DOMINIO_IMG } from '../../../link_config';
 import $ from 'jquery';
 import { BotaoLink } from '../../globais/botao/Botao';
-import { LinksMenu } from '../../globais/botao/styled';
+import { LinksMenu, BotaoLaranja } from '../../globais/botao/styled';
 import { withRouter, Link } from 'react-router-dom';
 import { Navbar, Nav, Form, NavDropdown, FormControl, Button } from 'react-bootstrap';
 import './style.css';
@@ -91,7 +91,7 @@ export class CabecalhoPaginaRestaurante extends Component {
 
                         <img className="border rounded-circle foto-restaurante  mr-4" src='' style={{ width: 65 + 'px', height: 60 + 'px' }} />
 
-                        <BotaoLink to="/" class="col col-sm col-md col-lg-3" texto="Logout" onClick={e => this.apagarLocalStorage(e)} />
+                        <BotaoLaranja to="/" className="btn" onClick={e => this.apagarLocalStorage(e)}>Logout</BotaoLaranja>
 
                     </OpcoesMenu>
 
