@@ -177,39 +177,31 @@ export class CadastroImagem extends Component {
         return (
             <div className={` ${this.props.className}`} id="cadastro-imagem">
                
-                    <h4 >2º Passo</h4>
-                    <hr />
+                <h4 >2º Passo</h4>
+                <hr/>
                               
-                <div className="row mx-auto">
-                    <div className="mx-auto">
-                        <div className="card card-maior">
-                            <img src={this.state.imgSrc} className="card-img-top tamanho-imagem-produto border-bottom" alt="..." />
-                            <div className="card-body pb-0">
-                                <p>
-                                    <div className="input-group input-group-sm ">
-                                        <input type="text" className="form-control mt-0" aria-label="" id="legenda" name="legenda" placeholder="Escreva uma legenda.." value={this.state.Imagem.legenda} onChange={e => this.atualizaCampo(e)} />
+                <div className="row mx-auto w-75">
+                    <div className="card card-maior mx-auto">
+                        <img src={this.state.imgSrc} className="card-img-top tamanho-imagem-produto border-bottom" alt="..." />
+                        <div className="card-body pb-0">
+                            <div className="input-group input-group-sm mx-auto mb-2">
+                                <input type="text" className="form-control" aria-label="" id="legenda" name="legenda" placeholder="Escreva uma legenda.." value={this.state.Imagem.legenda} onChange={e => this.atualizaCampo(e)} />
+                            </div>
 
-                                    </div>
-                                </p>
-
-                                <div className="input-file btn-success mt-0 ml-2">
-                                    <span>Anexar Imagem</span>
-                                    <input ref="file" type="file" className="upload" multiple="true" id="foto" name="foto" value={this.state.Imagem.foto} onChange={e => this.atualizaCampo(e)} />
+                            <div className="input-file btn-success rounded mx-auto">
+                                <span>Anexar Imagem</span>
+                                <input ref="file" type="file" className="upload" multiple="true" id="foto" name="foto" value={this.state.Imagem.foto} onChange={e => this.atualizaCampo(e)} />
+                            </div>
+                            <div className="row">
+                                <div className="col-md-12 col-12" >
+                                    <input type="button" className="btn btn-outline-success btn-sm col-12 mb-2 mx-auto" id="addInput" onClick={e => this.enviaImagem(e)} value="Salvar"
+                                    />
                                 </div>
-                                <div className="row">
-                                    <div className="col-md-12 col-12" >
-                                        <input type="button" className="btn btn-outline-success btn-sm mb-2 btn-tamanho" id="addInput" onClick={e => this.enviaImagem(e)} value="Salvar"
-                                        />
-                                    </div>
-                                </div>
-
-
                             </div>
                         </div>
                     </div>
-
                 </div>
-                <div className="row mt-4">
+                <div className="row w-75 mx-auto mt-4">
                     {this.state.imagens.map(item => (
                         <div className="col-3 col-md-4 col-sm-4 col-lg-4 mx-auto" id="campo">
                             <div className="card card-menor ">
