@@ -22,7 +22,7 @@ const initialState = {
     },
 
     restaurante: {
-        id: 1
+        id: localStorage.getItem("id")
     },
 
 }
@@ -163,20 +163,16 @@ class CadastroProduto extends Component {
 
         if(id != null){
             method ='put';
-        }else{
-            method = 'post';
-        }
-
-        if (id) {
 
             novoproduto = { ...produto };
             url = `${DOMINIO}/produto`;
+        }else{
+            method = 'post';
 
-            alert(JSON.stringify(novoproduto))
-            console.log((novoproduto))
-        } else {
             novoproduto = { ...produto, 'restaurante': this.state.restaurante };
             url = `${DOMINIO}/produto`;
+
+            alert(JSON.stringify(novoproduto));
         }
 
         $.ajax({
