@@ -18,7 +18,7 @@ class CorpoListagemProduto extends Component {
 
     }
 
-    componentDidUpdate(resposta) {
+    componentDidUpdate() {
         $('span').click(function () {
             $('span').addClass('text-secondary');
             $(this).removeClass('text-secondary');
@@ -27,7 +27,12 @@ class CorpoListagemProduto extends Component {
 
     }
 
-    componentDidMount(e) {
+
+
+    visualizarProduto(e){
+
+        this.setState({ itens: [] });
+
         let id = localStorage.getItem("id");
 
         let url;
@@ -35,13 +40,15 @@ class CorpoListagemProduto extends Component {
 
         switch (e) {
             case "ativo":
-                url = `${DOMINIO}/produto/exibicao/${id}`
+                url = `${DOMINIO}/produto/exibicao/${id}`;
+               
                 break;
             case "desativo":
-                url = `${DOMINIO}/produto/desativados/${id}`
+                url = `${DOMINIO}/produto/desativados/${id}`;
+
                 break;
             default:
-                url = `${DOMINIO}/produto/exibicao/${id}`
+                url = `${DOMINIO}/produto/exibicao/${id}`;
         }
 
         $.ajax({
@@ -52,7 +59,7 @@ class CorpoListagemProduto extends Component {
             contentType: 'application/json',
             success: function (resposta) {
 
-                this.setState({ itens: resposta })
+                this.setState({ itens: resposta });
 
             }.bind(this),
             error: function (data) {
@@ -60,6 +67,11 @@ class CorpoListagemProduto extends Component {
                 console.log(data)
             }
         });
+    }
+
+    componentDidMount() {
+       
+        this.visualizarProduto();
     }
 
     render() {
@@ -80,8 +92,8 @@ class CorpoListagemProduto extends Component {
                     </InputGroup.Prepend>
                 </InputGroup>
                 <div className="row border-bottom mx-auto mb-4 pl-3 w-75 pb-2" style={{ maxWidth: 80 + '%', cursor: 'pointer' }}>
-                    <span className="col-6 col-sm-6 col-md-6 col-lg-3 text-sencodary" onClick={e => this.componentDidMount(e = "ativo")}>Em exposição</span>
-                    <span className="col-6 col-sm-6 col-md-6 col-lg-3 text-secondary" onClick={e => this.componentDidMount(e = "desativo")} > Arquivados</span>
+                    <span className="col-6 col-sm-6 col-md-6 col-lg-3 text-sencodary" onClick={e => this.visualizarProduto(e = "ativo")}>Em exposição</span>
+                    <span className="col-6 col-sm-6 col-md-6 col-lg-3 text-secondary" onClick={e => this.visualizarProduto(e = "desativo")} > Arquivados</span>
                 </div>
                 <ListGroup className="p-1 w-75 mx-auto mb-5 ">
                     {this.state.itens.map(item => (
