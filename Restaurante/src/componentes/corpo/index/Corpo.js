@@ -12,20 +12,6 @@ import { DOMINIO, TOKEN } from '../../../link_config';
 import { Link } from 'react-router-dom';
 import { CorpoCemVh } from '../styled';
 
-let Card = React.memo(props => (
-    <Fragment>
-        <div className="row text-center mt-3">
-            <h1 className="mx-auto">{props.nome}</h1>
-        </div>
-        <div className="row text-center mt-2 border-bottom">
-            <div className="col col-sm col-md col-lg h4 painel-nome-restaurante">
-                Painel Administrativo {props.nome}
-            </div>
-        </div>
-    </Fragment>
-
-))
-
 //COMPONENTE DO CORPO DA PÁGINA DE LOGIN
 export const CorpoIndex = React.memo(class CorpoIndex extends Component {
 
@@ -40,9 +26,7 @@ export const CorpoIndex = React.memo(class CorpoIndex extends Component {
                     <h1 className="mx-auto nome-restaurante"></h1>
                 </div>
                 <div className="row text-center mt-2 border-bottom">
-                    <div className="col col-sm col-md col-lg h4">
-                        Painel Administrativo <span className="nome-restaurante"></span>
-                    </div>
+                        <h3 className="mx-auto">Painel Administrativo <span className="nome-restaurante"></span></h3>
                 </div>
                 <div className="row mt-5">
                     <Link to="/restaurante" className="col col-sm col-md col-lg h4 nav-link text-dark">

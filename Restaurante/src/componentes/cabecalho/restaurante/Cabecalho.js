@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
 import Logo from '../../../recursos/imgs/img-login.png';
-import { ImgRestaurante, OpcoesMenu } from './styled';
-import { DOMINIO, TOKEN, DOMINIO_IMG } from '../../../link_config';
+import { ImgRestaurante, OpcoesMenu, Li } from './styled';
+import { DOMINIO, TOKEN, DOMINIO_IMG, FOTORESTAURANTEPADRAO } from '../../../link_config';
 import $ from 'jquery';
 import { BotaoLink } from '../../globais/botao/Botao';
 import { LinksMenu, BotaoLaranja } from '../../globais/botao/styled';
 import { withRouter, Link } from 'react-router-dom';
 import { Navbar, Nav, Form, NavDropdown, FormControl, Button } from 'react-bootstrap';
 import './style.css';
+import { MdArrowDropDown } from "react-icons/md";
 
 export class CabecalhoPaginaRestaurante extends Component {
 
-    constructor() {
-        super();
-        this.state = { isLoading: true }
-    }
 
     apagarLocalStorage() {
 
@@ -26,9 +23,16 @@ export class CabecalhoPaginaRestaurante extends Component {
     }
 
     componentDidUpdate() {
+
+        //RETIRA A MARCAÇÃO AO CLICAR EM PUTRA OPÇÃO
         $('.menu').click(function () {
             $('.menu').removeClass('border-bottom-laranja');
             $(this).addClass('border-bottom-laranja');
+        });
+
+        //RETIRA A MARCAÇÃO AO CLICAR NO LOGO
+        $('.logo').click(function () {
+            $('.menu').removeClass('border-bottom-laranja');
         });
 
         const nome = localStorage.getItem("nome");
@@ -38,9 +42,9 @@ export class CabecalhoPaginaRestaurante extends Component {
 
     componentDidMount() {
 
-    const url = `${DOMINIO}/restaurante/este`;
+        const url = `${DOMINIO}/restaurante/este`;
 
-    let token = localStorage.getItem('token');
+        let token = localStorage.getItem('token');
 
         if (token != null) {
             $.ajax({
@@ -54,11 +58,14 @@ export class CabecalhoPaginaRestaurante extends Component {
 
                     localStorage.setItem('id', JSON.stringify(resposta.id));
                     localStorage.setItem('nome', nome);
+                    
+                    if (resposta.foto.length == 0) {
+                        $(".foto-restaurante").attr("src", FOTORESTAURANTEPADRAO);
+                    } else {
+                        $(".foto-restaurante").attr("src", DOMINIO_IMG + resposta.foto);
+                    }
 
-                    $(".foto-restaurante").attr("src", DOMINIO_IMG + resposta.foto);
                     $(".nome-restaurante").text(nome);
-
-                    this.setState({ isLoading: false })
 
                 }.bind(this),
                 error: function (data) {
@@ -70,48 +77,47 @@ export class CabecalhoPaginaRestaurante extends Component {
 
     }
 
-    renderCabecalho() {
-        return (
-            <Navbar bg="light" expand="lg">
-                <Link className="navbar-brand" to="/restaurante">
-                    <img src={Logo} style={{ maxWidth: 180 + 'px' }} />
-                </Link>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <OpcoesMenu className="row w-100 align-items-center ml-auto bg-light mr-4">
-                        <div className="nav-item col col-sm col-md col-lg ">
-                            <LinksMenu className="nav-link text-secondary text-center menu" to="/restaurante">Pedidos</LinksMenu>
-                        </div>
-                        <div className="nav-item col col-sm col-md col-lg">
-                            <Link className="nav-link text-secondary text-center menu" to="/restaurante/cadastro-produto">Cadastrar Produto</Link>
-                        </div>
-                        <div className="nav-item col col-sm col-md col-lg">
-                            <Link className="nav-link text-secondary text-center menu" to="/restaurante/visualizar-produto">Catálogo de Produtos</Link>
-                        </div>
-
-                        <img className="border rounded-circle foto-restaurante  mr-4" src='' style={{ width: 65 + 'px', height: 60 + 'px' }} />
-
-                        <BotaoLaranja to="/" className="btn" onClick={e => this.apagarLocalStorage(e)}>Logout</BotaoLaranja>
-
-                    </OpcoesMenu>
-
-                </Navbar.Collapse>
-            </Navbar>
-        )
-    }
-
-    renderLoading() {
-        return (
-            <div class="spinner-border" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        )
-
-    }
-
     render() {
         return (
-            this.state.isLoading ? this.renderLoading() : this.renderCabecalho()
+            <nav class="navbar navbar-expand-lg navbar-light bg-light" style={{ zIndex: '1' }}>
+                <Link className="navbar-brand logo" to="/restaurante">
+                    <img src={Logo} style={{ maxWidth: '200px', marginTop: '-5px' }} />
+                </Link>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+
+                <div className="collapse navbar-collapse bg-light" id="conteudoNavbarSuportado">
+                    <ul className="navbar-nav ml-auto bg-light">
+                        <Li className="nav-item menu" maxWidth="80px">
+                            <Link className="nav-link text-secondary menu" to="/restaurante" >Pedidos</Link>
+                        </Li>
+                        <Li className="nav-item menu" maxWidth="150px">
+                            <Link className="nav-link text-secondary menu" to="/restaurante/cadastro-produto">Cadastrar Produto</Link>
+
+                        </Li>
+                        <Li className="nav-item menu" maxWidth="180px">
+                            <Link className="nav-link text-secondary menu" to="/restaurante/visualizar-produto">Catálogo de Produtos</Link>
+                        </Li>
+
+                    </ul>
+
+                    <form className="form-inline bg-light">
+                        <div className="nav-item dropdown">
+                            <Link className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{ color: 'rgb(76, 76, 76)' }}>
+                                <img className="border rounded-circle foto-restaurante  mr-1" src='' style={{ width: 65 + 'px', height: 60 + 'px' }} />
+                            </Link>
+                            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <Link className="dropdown-item" >Editar Perfil</Link>
+                                <Link className="dropdown-item" >Configurações</Link>
+                                <div className="dropdown-divider"></div>
+                                <Link className="dropdown-item" >Outros</Link>
+                            </div>
+                        </div>
+                        <BotaoLaranja to="/" className="btn" onClick={e => this.apagarLocalStorage(e)}>Logout</BotaoLaranja>
+                    </form>
+                </div>
+            </nav>
         )
     }
 }

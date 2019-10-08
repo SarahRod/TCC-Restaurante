@@ -52,14 +52,6 @@ class FormularioLogin extends Component {
 
     }
 
-    // verificaToken(){
-    //       alert(TOKEN)
-    //       if(TOKEN != null){
-    //         this.props.history.push("/restaurante");
-    //       }
-         
-    // }
-
     async enviaFormulario() {
 
         const restaurante = { ...this.state.restaurante }
@@ -103,26 +95,7 @@ class FormularioLogin extends Component {
             }
         });
     }
-
-    // enviaFormulario = async e => {
-    //     e.preventDefault();
-    //     const { email, senha } = this.state.restaurante;
-    //     if (!email || !senha) {
-    //       this.setState({ error: "Preencha e-mail e senha para continuar!" });
-    //     } else {
-    //       try {
-    //         const response = await api.post(`${DOMINIO}/login/restaurante`, { email, senha });
-    //         login(response.data.token);
-    //         this.props.history.push("/restaurante");
-    //       } catch (err) {
-    //         this.setState({
-    //           error:
-    //             "Houve um problema com o login, verifique suas credenciais. T.T"
-    //         });
-    //       }
-    //     }
-    //   };
-
+    
     //ENVIA OS DADOS DO FORMULÁRIO PARA O SESSION STORAGE
     validaCampos(e) {
         e.preventDefault();

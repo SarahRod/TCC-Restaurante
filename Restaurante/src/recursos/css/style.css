@@ -228,3 +228,54 @@ textarea:focus, input:focus, select:focus, a:focus{
     pointer-events: none;
     opacity: 0.4;
 }
+
+/* _________________________________________________________ */
+.bg-image-container1{
+    background-image: url("http://www.wordwallpapers.com/wp-content/uploads/2015/11/100-Amazing-Mixed-Wallpapers-10-5.jpg");
+    background-size: 100% 100%;
+    background-repeat: repeat;
+    /* position: absolute; */
+}
+
+.navbarColor{
+    background-color: rgba(0, 0, 0, 0.8)
+}
+
+.bg-image-container2{
+    background-image: url("https://img.freepik.com/fotos-gratis/textura-de-lousa-de-estilo-grunge_1048-10295.jpg?size=626&ext=jpg");
+    background-size: 100% 100%;
+    background-repeat: repeat;
+}
+
+/* Setas Carousel */
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    height: 100px;
+    width: 100px; 
+    outline: black;
+    text-align: center;
+    line-height: 0.9;
+    background-image: none;
+}
+
+.carousel-control-next-icon:after
+{
+    content: '>';
+    font-family: monospace, 'Courier New', Courier;
+    font-size: 100px;
+    color:rgb(80, 80, 80);
+}
+
+.carousel-control-prev-icon:after {
+    content: '<';
+    font-family: monospace, 'Courier New', Courier;
+    font-size: 100px;
+    color:rgb(80, 80, 80);
+}
+
+.bg-image-container3{
+    background: url("https://voyage-onirique.com/wp-content/uploads/2018/04/WallpaperStudio10-86066.jpg");
+    background-size: 100% 100%;
+    background-repeat: repeat;
+}
