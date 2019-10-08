@@ -309,7 +309,7 @@ atualizaCampo(e) {
 
                     <div className="table mx-auto w-75 justify-content-end">
                         <div className="col col-sm col-md col-lg">
-                            <Link class="btn btn-outline-success" to="/restaurante/visualizar-produto" onClick={this.apagarIdProduto()}>Finalizar</Link>
+                            <Link class="btn btn-success" to="/restaurante/visualizar-produto" onClick={this.apagarIdProduto()}>Finalizar</Link>
                         </div>
                     </div>
 
