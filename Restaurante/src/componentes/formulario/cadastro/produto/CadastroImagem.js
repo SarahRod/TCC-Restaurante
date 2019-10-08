@@ -177,9 +177,9 @@ export class CadastroImagem extends Component {
                 <h4 >2º Passo</h4>
                 <hr />
 
-                <div className="row mx-auto w-75">
+                <div className="row mx-auto w-100">
                     <div className="card card-maior mx-auto">
-                        <img src={this.state.imgSrc} className="card-img-top tamanho-imagem-produto border-bottom" alt="..." />
+                        <img src={this.state.imgSrc} className="card-img-top tamanho-imagem-produto border-bottom" style={{maxWidth: 230 + 'px'}} alt="..." />
                         <div className="card-body pb-0">
                             <div className="input-group input-group-sm mx-auto mb-2">
                                 <input type="text" className="form-control" aria-label="" id="legenda" name="legenda" placeholder="Escreva uma legenda.." value={this.state.Imagem.legenda} onChange={e => this.atualizaCampo(e)} />
