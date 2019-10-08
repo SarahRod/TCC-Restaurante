@@ -208,6 +208,7 @@ atualizaCampo(e) {
         const { id } = this.props.match.params;
         return (
             <CorpoCemVh className="container mx-auto">
+
                 <div className="row mt-5 mb-5 mr-5 justify-content-center ">
                     <h1>Cadastro de Produtos</h1>
                     <BotaoRadioSwitch id="btn-switch" className="ml-5 mt-2 d-none" onChange={e => this.desativarProduto(e)} />
@@ -216,6 +217,7 @@ atualizaCampo(e) {
                     </Link>
 
                 </div>
+
                 <form className="container p-0 mx-auto" onSubmit={e => this.enviaFormulario(e)} style={{ maxWidth: 75 + '%' }}>
 
                     <h4>1º Passo</h4>
@@ -267,12 +269,11 @@ atualizaCampo(e) {
                         </div>
 
                         {/* Segundo Passo */}
+                    </div>
+                    <div className="table mt-5">
 
-                        <div className="table mt-5">
+                        <CadastroImagem className="disabilita-elemento" idProduto={id} />
 
-                            <CadastroImagem className="disabilita-elemento" idProduto={id} />
-
-                        </div>
                     </div>
                     <div className="table mt-5">
                         <div className="col col-sm col-md col-lg">
