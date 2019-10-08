@@ -59,33 +59,6 @@ class CadastroProduto extends Component {
 
             }
         });
-    
-
-    // if (e && id != null) {
-
-    //     const url = `${DOMINIO}/produto/ativa/${id}`;
-
-    //     $.ajax({
-    //         url: url,
-    //         type: 'PUT',
-    //         headers: { 'token': TOKEN },
-    //         success: function (data) {
-
-    //         }
-    //     });
-
-    // } else if (!e && id != null) {
-    //     const url = `${DOMINIO}/produto/desativa/${id}`;
-
-    //     $.ajax({
-    //         url: url,
-    //         type: 'PUT',
-    //         headers: { 'token': TOKEN },
-    //         success: function (data) {
-
-    //         }
-    //     });
-    // }
 }
 
 excluirProduto() {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Logo from '../../../recursos/imgs/img-login.png';
 import { ImgRestaurante, OpcoesMenu } from './styled';
-import { DOMINIO, TOKEN, DOMINIO_IMG } from '../../../link_config';
+import { DOMINIO, TOKEN, DOMINIO_IMG, FOTORESTAURANTEPADRAO } from '../../../link_config';
 import $ from 'jquery';
 import { BotaoLink } from '../../globais/botao/Botao';
 import { LinksMenu, BotaoLaranja } from '../../globais/botao/styled';
@@ -25,11 +25,14 @@ export class CabecalhoPaginaRestaurante extends Component {
     }
 
     componentDidUpdate() {
+
+        //RETIRA A MARCAÇÃO AO CLICAR EM PUTRA OPÇÃO
         $('.menu').click(function () {
             $('.menu').removeClass('border-bottom-laranja');
             $(this).addClass('border-bottom-laranja');
         });
 
+        //RETIRA A MARCAÇÃO AO CLICAR NO LOGO
         $('.logo').click(function () {
             $('.menu').removeClass('border-bottom-laranja');
         });
@@ -58,7 +61,12 @@ export class CabecalhoPaginaRestaurante extends Component {
                     localStorage.setItem('id', JSON.stringify(resposta.id));
                     localStorage.setItem('nome', nome);
 
-                    $(".foto-restaurante").attr("src", DOMINIO_IMG + resposta.foto);
+                    if(resposta.foto.length == 0){
+                        $(".foto-restaurante").attr("src", FOTORESTAURANTEPADRAO);
+                    }else{
+                        $(".foto-restaurante").attr("src", DOMINIO_IMG + resposta.foto);
+                    }
+                   
                     $(".nome-restaurante").text(nome);
 
 
@@ -76,7 +84,7 @@ export class CabecalhoPaginaRestaurante extends Component {
         return (
             <nav class="navbar navbar-expand-lg navbar-light bg-light" style={{ zIndex: '1' }}>
                 <Link className="navbar-brand logo" to="/restaurante">
-                    <img src={Logo} style={{ maxWidth: 180 + 'px' }} />
+                    <img src={Logo} style={{ maxWidth: '200px', marginTop: '-5px' }} />
                 </Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
                     <span className="navbar-toggler-icon"></span>
