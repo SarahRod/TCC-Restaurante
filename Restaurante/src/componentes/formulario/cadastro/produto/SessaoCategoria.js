@@ -31,6 +31,55 @@ export class SessaoCategoria extends Component {
         }
     }
 
+    componentWillMount() {
+        this.visualizarCategoriaSalva();
+    }
+
+    apagaCategoria(id) {
+
+        const url = `${DOMINIO}/categoriaproduto/${id}`;
+
+        $.ajax({
+            url: url,
+            type: 'DELETE',
+            headers: { 'token': TOKEN },
+            success: function (resposta) {
+
+                this.visualizarCategoriaSalva();
+
+            }.bind(this),
+            error: function (data) {
+                console.log('Erro:', data);
+
+            }
+        });
+
+
+    }
+
+    visualizarCategoriaSalva() {
+
+        const idProduto = this.props.idProduto;
+
+        const url = `${DOMINIO}/categoriaproduto/${idProduto}`;
+
+        $.ajax({
+            url: url,
+            type: 'GET',
+            headers: { 'token': TOKEN },
+            success: function (resposta) {
+
+                this.setState({ listaCategoria: resposta });
+
+            }.bind(this),
+            error: function (data) {
+                console.log('Erro:', data);
+
+            }
+        });
+
+    }
+
     enviaCategoria() {
 
         const idProduto = this.props.idProduto;
@@ -54,9 +103,6 @@ export class SessaoCategoria extends Component {
 
             success: function (resposta) {
 
-                this.setState({ listaCategoria: resposta });
-
-                console.log(resposta.length);
 
                 if (resposta.length >= 5) {
                     $("#salvar-categoria").prop('disabled', true);
@@ -64,7 +110,7 @@ export class SessaoCategoria extends Component {
                     $("#salvar-categoria").prop('disabled', false);
                 }
 
-                console.log("Lista: ", resposta);
+               this.visualizarCategoriaSalva();
 
 
             }.bind(this),
@@ -133,7 +179,7 @@ export class SessaoCategoria extends Component {
                                 {item.categoria.nome}
                             </div>
                             <div className="col align-self-end">
-                                <span className=" cor-cinza">x</span>
+                                <span className=" cor-cinza" onClick={e => this.apagaCategoria(item.id)}>x</span>
                             </div>
                         </div>
                     </div>
