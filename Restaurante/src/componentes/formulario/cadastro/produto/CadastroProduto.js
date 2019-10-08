@@ -227,6 +227,12 @@ atualizaCampo(e) {
         produto
     })
 
+}
+
+
+
+    render() {
+        const { nome, id, preco, desconto, descricao } = this.state.produto;
         return (
             <CorpoCemVh className="container mx-auto">
                 <div className="row mt-5 mb-5 mr-5 justify-content-center ">
@@ -241,9 +247,9 @@ atualizaCampo(e) {
 
                     <h4>1º Passo</h4>
                     <hr />
-                    
+
                     <div className="table mx-auto w-75">
-                        
+
                         <div className="row p-2 mb-3">
                             <div className="col-12">
                                 <label className="h5">Nome do Produto</label>
@@ -280,17 +286,17 @@ atualizaCampo(e) {
                                     <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
                                     Próximo Passo
                                 </Link>
+                            </div>
+                        </div>
+
+                        {/* Segundo Passo */}
+
+                        <div className="table mt-5">
+
+                            <CadastroImagem className="disabilita-elemento" idProduto={id} />
+
                         </div>
                     </div>
-
-                    {/* Segundo Passo */}
-
-                    <div className="table mt-5">
-                        
-                        <CadastroImagem className="disabilita-elemento" idProduto={id} />
-                
-                    </div>
-                </div>
                     <div className="table mt-5">
                         <div className="col col-sm col-md col-lg">
                             <SessaoCategoria className="disabilita-elemento" id="categoria-produto" idProduto={id} />
@@ -302,11 +308,12 @@ atualizaCampo(e) {
                             <Link class="btn btn-outline-success" to="/restaurante/visualizar-produto" onClick={this.apagarIdProduto()}>Finalizar</Link>
                         </div>
                     </div>
-                </div>
-            </form>
-        </CorpoCemVh>
-    )
-}
+
+                </form>
+            </CorpoCemVh>
+        )
+    }
+
 }
 
 export default withRouter(CadastroProduto);
