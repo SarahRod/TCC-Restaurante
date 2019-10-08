@@ -162,7 +162,8 @@ verificaStatus() {
     }
 }
 
-enviaFormulario() {
+enviaFormulario(e) {
+    e.preventDefault(); 
 
     const produto = { ...this.state.produto };
 
@@ -173,8 +174,6 @@ enviaFormulario() {
     let novoproduto;
 
     let method;
-
-    let e;
 
     if (id != null) {
         method = 'put';
@@ -244,7 +243,7 @@ atualizaCampo(e) {
                     </Link>
 
                 </div>
-                <form className="container p-0 mx-auto" style={{ maxWidth: 75 + '%' }}>
+                <form className="container p-0 mx-auto" onSubmit={e => this.enviaFormulario(e)} style={{ maxWidth: 75 + '%' }}>
 
                     <h4>1º Passo</h4>
                     <hr />
@@ -254,18 +253,18 @@ atualizaCampo(e) {
                         <div className="row p-2 mb-3">
                             <div className="col-12">
                                 <label className="h5">Nome do Produto</label>
-                                <input className="form-control" type="text" name="nome" id="nome" value={nome} placeholder="Digite o nome do produto.." onChange={e => this.atualizaCampo(e)} />
+                                <input className="form-control" type="text" name="nome" id="nome" value={nome} placeholder="Digite o nome do produto.." onChange={e => this.atualizaCampo(e)} required />
                             </div>
                         </div>
 
                         <div className="row p-2 mb-3">
                             <div className="col-3">
                                 <label className="h5">Preço</label>
-                                <input className="form-control" type="text" name="preco" id="preco" value={preco} onChange={e => this.atualizaCampo(e)} />
+                                <input className="form-control" type="text" name="preco" id="preco" value={preco} onChange={e => this.atualizaCampo(e)} required/>
                             </div>
                             <div className="col-3">
                                 <label className="h5">Promoção</label>
-                                <input className="form-control" type="text" name="desconto" id="desconto" value={desconto} onChange={e => this.atualizaCampo(e)} />
+                                <input className="form-control" type="text" name="desconto" id="desconto" value={desconto} onChange={e => this.atualizaCampo(e)} required />
                             </div>
                             <div className="col-4">
                                 <h5 className="simbolo-porcentagem">%</h5>
@@ -276,17 +275,21 @@ atualizaCampo(e) {
                             <div className="col-12">
                                 <div className="form-group">
                                     <label for="exampleFormControlTextarea1" className="h5">Descrição do Produto</label>
-                                    <textarea className="form-control" id="exampleFormControlTextarea1" rows="4" id="descricao" name="descricao" value={descricao} onChange={e => this.atualizaCampo(e)}></textarea>
+                                    <textarea className="form-control" id="exampleFormControlTextarea1" rows="4" id="descricao" name="descricao" value={descricao} onChange={e => this.atualizaCampo(e)} required ></textarea>
                                 </div>
                             </div>
                         </div>
 
                         <div className="row p-2 mb-3">
                             <div className="col-12">
-                                <Link className="btn btn-outline-success btn-sm col-lg-5" id="prox-campo" onClick={e => this.enviaFormulario(e)} >
+                                {/* <Link className="btn btn-outline-success btn-sm col-lg-5" id="prox-campo" onClick={e => this.enviaFormulario(e)} >
                                     <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
                                     Próximo Passo
-                                </Link>
+                                </Link> */}
+                                <button type="submit" className="btn btn-outline-success btn-sm col-lg-5" id="prox-campo" >
+                                    <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                    Próximo Passo
+                                </button>
                             </div>
                         </div>
 
