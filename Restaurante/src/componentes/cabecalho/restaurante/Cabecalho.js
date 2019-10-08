@@ -11,10 +11,6 @@ import './style.css';
 
 export class CabecalhoPaginaRestaurante extends Component {
 
-    constructor() {
-        super();
-        this.state = { isLoading: true }
-    }
 
     apagarLocalStorage() {
 
@@ -58,8 +54,7 @@ export class CabecalhoPaginaRestaurante extends Component {
                     $(".foto-restaurante").attr("src", DOMINIO_IMG + resposta.foto);
                     $(".nome-restaurante").text(nome);
 
-                    this.setState({ isLoading: false })
-
+                 
                 }.bind(this),
                 error: function (data) {
                     console.log(data);
@@ -70,7 +65,7 @@ export class CabecalhoPaginaRestaurante extends Component {
 
     }
 
-    renderCabecalho() {
+    render() {
         return (
             <Navbar bg="light" expand="lg">
                 <Link className="navbar-brand" to="/restaurante">
@@ -100,20 +95,6 @@ export class CabecalhoPaginaRestaurante extends Component {
         )
     }
 
-    renderLoading() {
-        return (
-            <div class="spinner-border" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        )
-
-    }
-
-    render() {
-        return (
-            this.state.isLoading ? this.renderLoading() : this.renderCabecalho()
-        )
-    }
 }
 
 export default withRouter(CabecalhoPaginaRestaurante);
