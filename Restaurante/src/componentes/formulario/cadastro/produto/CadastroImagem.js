@@ -34,19 +34,17 @@ export class CadastroImagem extends Component {
         if (idProduto != null) {
             $("#cadastro-imagem").removeClass("disabilita-elemento");
 
-           
+
         }
     }
 
-    componentWillMount(){
+    componentWillMount() {
         this.visualizarImgSalva();
     }
 
-    apagaFoto(id){
+    apagaFoto(id) {
 
         const url = `${DOMINIO}/fotoproduto/${id}`;
-
-        alert(id)
 
         $.ajax({
             url: url,
@@ -54,9 +52,7 @@ export class CadastroImagem extends Component {
             headers: { 'token': TOKEN },
             success: function (resposta) {
 
-                    alert("apagado");
-
-                    this.visualizarImgSalva();
+                this.visualizarImgSalva();
 
             }.bind(this),
             error: function (data) {
@@ -176,10 +172,10 @@ export class CadastroImagem extends Component {
     render() {
         return (
             <div className={` ${this.props.className}`} id="cadastro-imagem">
-               
-                    <h4 >2º Passo</h4>
-                    <hr />
-                              
+
+                <h4 >2º Passo</h4>
+                <hr />
+
                 <div className="row mx-auto">
                     <div className="mx-auto">
                         <div className="card card-maior">
