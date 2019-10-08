@@ -227,80 +227,80 @@ atualizaCampo(e) {
         produto
     })
 
-}
+        return (
+            <CorpoCemVh className="container mx-auto">
+                <div className="row mt-5 mb-5 mr-5 justify-content-center ">
+                    <h1>Cadastro de Produtos</h1>
+                    <BotaoRadioSwitch id="btn-switch" className="ml-5 mt-2 d-none" onChange={e => this.desativarProduto(e)} />
+                    <Link onClick={id => this.excluirProduto()}>
+                        <FaTrashAlt id="btn-lixeira" className="ml-5 mt-3 d-none" size={25} />
+                    </Link>
 
-render() {
+                </div>
+                <form className="container p-0 mx-auto" style={{ maxWidth: 75 + '%' }}>
 
-    const { nome, preco, desconto, descricao } = this.state.produto;
-
-    const { id } = this.props.match.params;
-
-    return (
-        <CorpoCemVh className="table mx-auto">
-            <div className="row mt-5 mb-5 mr-5 justify-content-center ">
-                <h1>Cadastro de Produtos</h1>
-                <BotaoRadioSwitch id="btn-switch" className="ml-5 mt-2 d-none" onChange={e => this.desativarProduto(e)} />
-                <Link onClick={id => this.excluirProduto()}>
-                    <FaTrashAlt id="btn-lixeira" className="ml-5 mt-3 d-none" size={25} />
-                </Link>
-
-            </div>
-            <form className="row mx-auto" style={{ maxWidth: 50 + '%' }}>
-                <div className="row">
-                    <div className="col col-sm col-md col-lg">
-                        <h4>1º Passo</h4>
-                        <hr />
-                        <div className="row mb-4">
+                    <h4>1º Passo</h4>
+                    <hr />
+                    
+                    <div className="table mx-auto w-75">
+                        
+                        <div className="row p-2 mb-3">
                             <div className="col-12">
                                 <label className="h5">Nome do Produto</label>
-                                <input className="form-control  mb-2 mr-sm-2" type="text" name="nome" id="nome" value={nome} placeholder="Digite o nome do produto.." onChange={e => this.atualizaCampo(e)} />
+                                <input className="form-control" type="text" name="nome" id="nome" value={nome} placeholder="Digite o nome do produto.." onChange={e => this.atualizaCampo(e)} />
                             </div>
                         </div>
-                        <div className="row mb-3">
-                            <div className="col-3 mb-4">
+
+                        <div className="row p-2 mb-3">
+                            <div className="col-3">
                                 <label className="h5">Preço</label>
-                                <input className="form-control  mb-2 mr-sm-2" type="text" name="preco" id="preco" value={preco} onChange={e => this.atualizaCampo(e)} />
+                                <input className="form-control" type="text" name="preco" id="preco" value={preco} onChange={e => this.atualizaCampo(e)} />
                             </div>
-                            <div className="col-3 mb-4">
+                            <div className="col-3">
                                 <label className="h5">Promoção</label>
-                                <input className="form-control  mb-2 mr-sm-2" type="text" name="desconto" id="desconto" value={desconto} onChange={e => this.atualizaCampo(e)} />
+                                <input className="form-control" type="text" name="desconto" id="desconto" value={desconto} onChange={e => this.atualizaCampo(e)} />
                             </div>
-                            <div className="col-6 mb-4">
+                            <div className="col-4">
                                 <h5 className="simbolo-porcentagem">%</h5>
                             </div>
                         </div>
 
-                        <div className="row mb-4">
-                            <div className="col-10">
+                        <div className="row p-2 mb-3">
+                            <div className="col-12">
                                 <div className="form-group">
                                     <label for="exampleFormControlTextarea1" className="h5">Descrição do Produto</label>
                                     <textarea className="form-control" id="exampleFormControlTextarea1" rows="4" id="descricao" name="descricao" value={descricao} onChange={e => this.atualizaCampo(e)}></textarea>
                                 </div>
                             </div>
                         </div>
-                        <div className="row mt-5 ml-2">
-                            <Link className="btn btn-outline-success  btn-sm   mt-4 col-5 col-lg-5" id="prox-campo" onClick={e => this.enviaFormulario(e)} >
-                                <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                                Próximo Passo
+
+                        <div className="row p-2 mb-3">
+                            <div className="col-12">
+                                <Link className="btn btn-outline-success btn-sm col-lg-5" id="prox-campo" onClick={e => this.enviaFormulario(e)} >
+                                    <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                    Próximo Passo
                                 </Link>
                         </div>
                     </div>
 
-                </div>
-                <div className="row">
-                    <div className="col col-sm col-md col-lg">
-                        <CadastroImagem className="disabilita-elemento" idProduto={id} />
-                    </div>
-                </div>
+                    {/* Segundo Passo */}
 
-                <div className="row">
-                    <div className="col col-sm col-md col-lg">
-                        <SessaoCategoria className="disabilita-elemento" id="categoria-produto" idProduto={id} />
+                    <div className="table mt-5">
+                        
+                        <CadastroImagem className="disabilita-elemento" idProduto={id} />
+                
                     </div>
                 </div>
-                <div className="row justify-content-end">
-                    <div className="col col-sm col-md col-lg">
-                        <Link class="btn btn-outline-success" to="/restaurante/visualizar-produto" onClick={this.apagarIdProduto()}>Finalizar</Link>
+                    <div className="table mt-5">
+                        <div className="col col-sm col-md col-lg">
+                            <SessaoCategoria className="disabilita-elemento" id="categoria-produto" idProduto={id} />
+                        </div>
+                    </div>
+
+                    <div className="table mx-auto w-75 justify-content-end">
+                        <div className="col col-sm col-md col-lg">
+                            <Link class="btn btn-outline-success" to="/restaurante/visualizar-produto" onClick={this.apagarIdProduto()}>Finalizar</Link>
+                        </div>
                     </div>
                 </div>
             </form>
