@@ -10,6 +10,7 @@ import CorpoListagemProdutos from "./componentes/corpo/listagemProdutos/CorpoLis
 import CadastroProduto from "./componentes/formulario/cadastro/produto/CadastroProduto";
 import CabecalhoPaginaRestaurante from './componentes/cabecalho/restaurante/Cabecalho';
 import { CorpoIndex } from './componentes/corpo/index/Corpo';
+import TemplateRestaurante from './componentes/corpo/template/TemplateRestaurante';
 
 export const estaAutenticado = () => localStorage.getItem("token") != null || sessionStorage.getItem("dados") != null;
 
@@ -60,6 +61,12 @@ export class RotaPaginas extends Component {
 
                         )}
                         />
+                        
+                        <Route path="/corpo" render={({ match: { url } }) => (
+
+                            <Route path={`${url}/TemplateRestaurante`} component={TemplateRestaurante} />
+
+                        )}/>
 
                     </Switch>
                 </ BrowserRouter>
