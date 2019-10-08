@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Logo from '../../../recursos/imgs/img-login.png';
-import { ImgRestaurante, OpcoesMenu } from './styled';
+import { ImgRestaurante, OpcoesMenu, Li } from './styled';
 import { DOMINIO, TOKEN, DOMINIO_IMG, FOTORESTAURANTEPADRAO } from '../../../link_config';
 import $ from 'jquery';
 import { BotaoLink } from '../../globais/botao/Botao';
@@ -61,12 +61,12 @@ export class CabecalhoPaginaRestaurante extends Component {
                     localStorage.setItem('id', JSON.stringify(resposta.id));
                     localStorage.setItem('nome', nome);
 
-                    if(resposta.foto.length == 0){
+                    if (resposta.foto.length == 0) {
                         $(".foto-restaurante").attr("src", FOTORESTAURANTEPADRAO);
-                    }else{
+                    } else {
                         $(".foto-restaurante").attr("src", DOMINIO_IMG + resposta.foto);
                     }
-                   
+
                     $(".nome-restaurante").text(nome);
 
 
@@ -92,16 +92,16 @@ export class CabecalhoPaginaRestaurante extends Component {
 
                 <div className="collapse navbar-collapse bg-light" id="conteudoNavbarSuportado">
                     <ul className="navbar-nav ml-auto bg-light">
-                        <li className="nav-item menu">
-                            <Link className="nav-link text-secondary menu" to="/restaurante">Pedidos</Link>
-                        </li>
-                        <li className="nav-item menu">
+                        <Li className="nav-item menu" maxWidth="80px">
+                            <Link className="nav-link text-secondary menu" to="/restaurante" >Pedidos</Link>
+                        </Li>
+                        <Li className="nav-item menu" maxWidth="150px">
                             <Link className="nav-link text-secondary menu" to="/restaurante/cadastro-produto">Cadastrar Produto</Link>
 
-                        </li>
-                        <li className="nav-item menu">
+                        </Li>
+                        <Li className="nav-item menu" maxWidth="180px">
                             <Link className="nav-link text-secondary menu" to="/restaurante/visualizar-produto">Catálogo de Produtos</Link>
-                        </li>
+                        </Li>
 
                     </ul>
 

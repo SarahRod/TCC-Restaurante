@@ -10,3 +10,7 @@ export const ImgRestaurante = styled.img`
 export const OpcoesMenu = styled.div`
     max-width: 820px !important; 
 `
+//ESTILIZAÇÃO DIV DE OPÇÕES DO MENU
+export const Li = styled.li`
+    max-width: ${props => props.maxWidth}; 
+`
