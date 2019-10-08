@@ -232,7 +232,8 @@ atualizaCampo(e) {
 
 
     render() {
-        const { nome, id, preco, desconto, descricao } = this.state.produto;
+        const { nome, preco, desconto, descricao } = this.state.produto;
+        const { id } = this.props.match.params;
         return (
             <CorpoCemVh className="container mx-auto">
                 <div className="row mt-5 mb-5 mr-5 justify-content-center ">
