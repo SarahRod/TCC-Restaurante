@@ -47,174 +47,185 @@ class CadastroProduto extends Component {
 
         const { id } = this.props.match.params;
 
-        if (e && id != null) {
+        const url = `${DOMINIO}/produto/status/${id}`;
 
-            const url = `${DOMINIO}/produto/ativa/${id}`;
-
-            $.ajax({
-                url: url,
-                type: 'PUT',
-                headers: { 'token': TOKEN },
-                success: function (data) {
-
-                }
-            });
-
-        } else if (!e && id != null) {
-            const url = `${DOMINIO}/produto/desativa/${id}`;
-
-            $.ajax({
-                url: url,
-                type: 'PUT',
-                headers: { 'token': TOKEN },
-                success: function (data) {
-
-                }
-            });
-        }
-    }
-
-    excluirProduto() {
-
-        const { id } = this.props.match.params;
-
-        alert(id);
-
-        const url = `${DOMINIO}/produto/${id}`;
         $.ajax({
             url: url,
-            type: 'DELETE',
+            type: 'PUT',
             headers: { 'token': TOKEN },
-            success: (result) => {
+            success: function (data) {
 
-                this.props.history.push("/restaurante/visualizar-produto");
+                
 
-            }, error: (result) => {
-                alert("erro");
             }
         });
-    }
+    
 
-    componentDidMount() {
+    // if (e && id != null) {
 
-        const { id } = this.props.match.params;
+    //     const url = `${DOMINIO}/produto/ativa/${id}`;
 
-        const url = `http://localhost:8080/produto/${id}`;
+    //     $.ajax({
+    //         url: url,
+    //         type: 'PUT',
+    //         headers: { 'token': TOKEN },
+    //         success: function (data) {
 
-        if (id != null) {
+    //         }
+    //     });
 
-            let teste;
+    // } else if (!e && id != null) {
+    //     const url = `${DOMINIO}/produto/desativa/${id}`;
 
-            $.ajax({
-                url: url,
-                type: 'get',
-                headers: { 'token': TOKEN },
-                success: function (resposta) {
+    //     $.ajax({
+    //         url: url,
+    //         type: 'PUT',
+    //         headers: { 'token': TOKEN },
+    //         success: function (data) {
 
-                    this.setState({ produto: resposta })
+    //         }
+    //     });
+    // }
+}
 
-                    switch (resposta.status) {
-                        case "0":
+excluirProduto() {
 
-                            break;
-                        case "1":
+    const { id } = this.props.match.params;
 
+    const url = `${DOMINIO}/produto/${id}`;
+    $.ajax({
+        url: url,
+        type: 'DELETE',
+        headers: { 'token': TOKEN },
+        success: (result) => {
 
-                            $('#btn-status').attr("checked", "checked");
+            this.props.history.push("/restaurante/visualizar-produto");
 
-                            let e;
-
-                            this.desativarProduto(e = true);
-
-                            break;
-                        default:
-                            $("#btn-switch").val("true");
-                    }
-
-                    $("#btn-switch").removeClass("d-none");
-                    $("#btn-lixeira").removeClass("d-none");
-
-                }.bind(this),
-                error: function (data) {
-                    console.log('Erro:', data);
-
-                }
-            });
-
-
-        } else {
-
+        }, error: (result) => {
+            console.log(result);
         }
-    }
+    });
+}
 
-    enviaFormulario() {
+componentDidMount(){
 
-        const produto = { ...this.state.produto };
+    this.verificaStatus()
+}
 
-        const { id } = this.props.match.params;
+verificaStatus() {
 
-        let url;
+    const { id } = this.props.match.params;
 
-        let novoproduto;
+    const url = `http://localhost:8080/produto/${id}`;
 
-        let method;
-
-        alert(id);
-
-        if(id != null){
-            method ='put';
-
-            novoproduto = { ...produto };
-            url = `${DOMINIO}/produto`;
-        }else{
-            method = 'post';
-
-            novoproduto = { ...produto, 'restaurante': this.state.restaurante };
-            url = `${DOMINIO}/produto`;
-
-            alert(JSON.stringify(novoproduto));
-        }
+    if (id != null) {
 
         $.ajax({
-
             url: url,
-            contentType: "application/json",
-            dataType: 'json',
+            type: 'get',
             headers: { 'token': TOKEN },
-            type: method,
-            data: JSON.stringify(novoproduto),
-
-
             success: function (resposta) {
 
-                this.props.history.push(`/restaurante/cadastro-produto/${resposta.id}`);
+                this.setState({ produto: resposta })
 
+                switch (resposta.status) {
+                    case "0":
+
+                        break;
+                    case "1":
+
+
+                        $('#btn-status').attr("checked", "checked");
+
+                        let e;
+
+                        this.desativarProduto(e = true);
+
+                        break;
+                    default:
+                        $("#btn-switch").val("true");
+                }
+
+                $("#btn-switch").removeClass("d-none");
+                $("#btn-lixeira").removeClass("d-none");
 
             }.bind(this),
-            error: function () {
+            error: function (data) {
+                console.log('Erro:', data);
 
             }
         });
-    }
 
 
-
-    //ATUALIZA AS INPUTS COM OS ESTADOS 
-    atualizaCampo(e) {
-        const produto = { ...this.state.produto }
-        produto[e.target.name] = e.target.value;
-
-        this.setState({
-            produto
-        })
+    } else {
 
     }
+}
 
-    render() {
+enviaFormulario() {
 
-        const { nome, preco, desconto, descricao } = this.state.produto;
+    const produto = { ...this.state.produto };
 
-        const { id } = this.props.match.params;
+    const { id } = this.props.match.params;
+
+    let url;
+
+    let novoproduto;
+
+    let method;
+
+    let e;
+
+    if (id != null) {
+        method = 'put';
+
+        novoproduto = { ...produto };
+        url = `${DOMINIO}/produto`;
+
+    } else {
+        method = 'post';
+
+        novoproduto = { ...produto, 'restaurante': this.state.restaurante };
+        url = `${DOMINIO}/produto`;
+    }
+
+    $.ajax({
+
+        url: url,
+        contentType: "application/json",
+        dataType: 'json',
+        headers: { 'token': TOKEN },
+        type: method,
+        data: JSON.stringify(novoproduto),
+
+
+        success: function (resposta) {
+
+            this.props.history.push(`/restaurante/cadastro-produto/${resposta.id}`);
+
+            if ($('#btn-status').is(':checked')) {
+              
+                this.desativarProduto(e = true);
+            }
+
+
+        }.bind(this),
+        error: function () {
+
+        }
+    });
+}
+
+
+
+//ATUALIZA AS INPUTS COM OS ESTADOS 
+atualizaCampo(e) {
+    const produto = { ...this.state.produto }
+    produto[e.target.name] = e.target.value;
+
+    this.setState({
+        produto
+    })
 
         return (
             <CorpoCemVh className="container mx-auto">
@@ -269,7 +280,6 @@ class CadastroProduto extends Component {
                                     <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
                                     Próximo Passo
                                 </Link>
-                            </div>
                         </div>
                     </div>
 
@@ -278,9 +288,9 @@ class CadastroProduto extends Component {
                     <div className="table mt-5">
                         
                         <CadastroImagem className="disabilita-elemento" idProduto={id} />
-                        
+                
                     </div>
-
+                </div>
                     <div className="table mt-5">
                         <div className="col col-sm col-md col-lg">
                             <SessaoCategoria className="disabilita-elemento" id="categoria-produto" idProduto={id} />
@@ -292,10 +302,11 @@ class CadastroProduto extends Component {
                             <Link class="btn btn-outline-success" to="/restaurante/visualizar-produto" onClick={this.apagarIdProduto()}>Finalizar</Link>
                         </div>
                     </div>
-                </form>
-            </CorpoCemVh>
-        )
-    }
+                </div>
+            </form>
+        </CorpoCemVh>
+    )
+}
 }
 
 export default withRouter(CadastroProduto);

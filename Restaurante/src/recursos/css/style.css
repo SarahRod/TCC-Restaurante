@@ -41,7 +41,8 @@ textarea {
 
 
 .cor-cinza{
-    color: #6c757d
+    color: #6c757d;
+    cursor: pointer;
 }
 select {
     box-sizing: border-box;
@@ -87,18 +88,13 @@ textarea {
     margin-left: 5%;
 }
 
-
-
 .icone-img {
     width: 600px !important;
 }
+
 .imagem-logo-menor{
     height: 45px;
 }
-
-
-
-
 
 .simbolo-porcentagem{
     margin-top: 39px;
@@ -155,6 +151,12 @@ textarea:focus, input:focus, select:focus, a:focus{
     background-repeat: no-repeat;
 }
 
+.bg-login{
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
 
 .btn-orange-2{
     background-color: #F26B3A;

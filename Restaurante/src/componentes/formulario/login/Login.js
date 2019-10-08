@@ -4,7 +4,7 @@ import LogoGoDinner from '../../../recursos/imgs/img-login.png';
 import { InputCadastro } from '../../globais/input/Input';
 import { BotaoLink } from '../../globais/botao/Botao';
 import $ from 'jquery';
-import { DOMINIO } from '../../../link_config';
+import { DOMINIO, TOKEN } from '../../../link_config';
 import { withRouter } from 'react-router-dom';
 import PropTypes from "prop-types";
 
@@ -19,6 +19,9 @@ const initialState = {
     classErro: '',
     textoErro: ''
 }
+
+export const TOKEN_KEY = "token";
+
 
 class FormularioLogin extends Component {
 
@@ -49,7 +52,7 @@ class FormularioLogin extends Component {
 
     }
 
-    enviaFormulario() {
+    async enviaFormulario() {
 
         const restaurante = { ...this.state.restaurante }
 
@@ -67,8 +70,6 @@ class FormularioLogin extends Component {
             contentType: "application/json",
             success: function (resposta) {
 
-                console.log(JSON.stringify(resposta));
-
                 const respostaJson = JSON.stringify(resposta)
 
                 if (respostaJson == '{"error":"Usuario não cadastrado"}') {
@@ -78,16 +79,12 @@ class FormularioLogin extends Component {
                     this.erroValidacao(e = 'usuarioInvalido')
                 } else {
 
-                   var respostaToken = JSON.stringify(resposta.token);
-                   respostaToken = respostaToken.replace(/"/g, "")
-                   localStorage.setItem("token", respostaToken);
-                   
-                    const token = localStorage.getItem("token");
+                  console.log(resposta.token);
 
-                    if(token != null){
-                        this.props.history.push("/restaurante");
-                    }
+                   localStorage.setItem(TOKEN_KEY, resposta.token);
 
+                   this.props.history.push("/restaurante");
+                
                 }
 
 
