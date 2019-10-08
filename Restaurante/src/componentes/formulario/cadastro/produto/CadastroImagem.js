@@ -173,10 +173,10 @@ export class CadastroImagem extends Component {
         return (
             <div className={` ${this.props.className}`} id="cadastro-imagem">
 
-               
+
                 <h4 >2º Passo</h4>
-                <hr/>
-                              
+                <hr />
+
                 <div className="row mx-auto w-75">
                     <div className="card card-maior mx-auto">
                         <img src={this.state.imgSrc} className="card-img-top tamanho-imagem-produto border-bottom" alt="..." />
@@ -184,18 +184,6 @@ export class CadastroImagem extends Component {
                             <div className="input-group input-group-sm mx-auto mb-2">
                                 <input type="text" className="form-control" aria-label="" id="legenda" name="legenda" placeholder="Escreva uma legenda.." value={this.state.Imagem.legenda} onChange={e => this.atualizaCampo(e)} />
                             </div>
-                                <div className="input-file btn-success mt-0 ml-2">
-                                    <span>Anexar Imagem</span>
-                                    <input ref="file" type="file" className="upload" multiple="true" id="foto" name="foto" value={this.state.Imagem.foto} onChange={e => this.atualizaCampo(e)} />
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-12 col-12" >
-                                        <input type="button" className="btn btn-outline-success btn-sm mb-2 btn-tamanho" id="addInput" onClick={e => this.enviaImagem(e)} value="Salvar"
-                                        />
-                                    </div>
-                                </div>
-
-
 
                             <div className="input-file btn-success rounded mx-auto">
                                 <span>Anexar Imagem</span>
