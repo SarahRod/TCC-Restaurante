@@ -95,11 +95,11 @@ export class Carousel extends Component{
                 </div>
                 {/* SETAS */}
                 <a className="carousel-control-prev" href="#ProdutosRestaurante" role="button" data-slide="prev">
-                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span className="carousel-control-prev-icon h-25 w-25 text-center" style={{backgroundImage: 'none', outline:'black', lineHeight: 0.9}} aria-hidden="true"></span>
                     <span className="sr-only">Previous</span>
                 </a>
                 <a className="carousel-control-next" href="#ProdutosRestaurante" role="button" data-slide="next">
-                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span className="carousel-control-next-icon h-25 w-25 text-center" style={{backgroundImage: 'none', outline:'black', lineHeight: 0.9}} aria-hidden="true"></span>
                     <span className="sr-only">Next</span>
                 </a>
             </div>
