@@ -95,7 +95,7 @@ class FormularioLogin extends Component {
             }
         });
     }
-
+    
     //ENVIA OS DADOS DO FORMULÁRIO PARA O SESSION STORAGE
     validaCampos(e) {
         e.preventDefault();

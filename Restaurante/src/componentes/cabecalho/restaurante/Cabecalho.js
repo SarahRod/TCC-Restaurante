@@ -10,8 +10,6 @@ import { Navbar, Nav, Form, NavDropdown, FormControl, Button } from 'react-boots
 import './style.css';
 import { MdArrowDropDown } from "react-icons/md";
 
-
-
 export class CabecalhoPaginaRestaurante extends Component {
 
 
@@ -60,7 +58,7 @@ export class CabecalhoPaginaRestaurante extends Component {
 
                     localStorage.setItem('id', JSON.stringify(resposta.id));
                     localStorage.setItem('nome', nome);
-
+                    
                     if (resposta.foto.length == 0) {
                         $(".foto-restaurante").attr("src", FOTORESTAURANTEPADRAO);
                     } else {
@@ -68,7 +66,6 @@ export class CabecalhoPaginaRestaurante extends Component {
                     }
 
                     $(".nome-restaurante").text(nome);
-
 
                 }.bind(this),
                 error: function (data) {
@@ -123,7 +120,6 @@ export class CabecalhoPaginaRestaurante extends Component {
             </nav>
         )
     }
-
 }
 
 export default withRouter(CabecalhoPaginaRestaurante);

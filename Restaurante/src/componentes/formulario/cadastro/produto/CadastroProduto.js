@@ -46,7 +46,6 @@ class CadastroProduto extends Component {
     desativarProduto(e) {
 
         const { id } = this.props.match.params;
-
         const url = `${DOMINIO}/produto/status/${id}`;
 
         $.ajax({
@@ -208,7 +207,6 @@ atualizaCampo(e) {
         const { id } = this.props.match.params;
         return (
             <CorpoCemVh className="container mx-auto">
-
                 <div className="row mt-5 mb-5 mr-5 justify-content-center ">
                     <h1>Cadastro de Produtos</h1>
                     <BotaoRadioSwitch id="btn-switch" className="ml-5 mt-2 d-none" onChange={e => this.desativarProduto(e)} />
@@ -280,18 +278,15 @@ atualizaCampo(e) {
                             <SessaoCategoria className="disabilita-elemento" id="categoria-produto" idProduto={id} />
                         </div>
                     </div>
-
                     <div className="table mx-auto w-75 justify-content-end">
                         <div className="col col-sm col-md col-lg">
                             <Link class="btn btn-success" to="/restaurante/visualizar-produto" onClick={this.apagarIdProduto()}>Finalizar</Link>
                         </div>
                     </div>
-
                 </form>
             </CorpoCemVh>
         )
     }
-
 }
 
 export default withRouter(CadastroProduto);

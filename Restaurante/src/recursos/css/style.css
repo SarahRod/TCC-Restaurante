@@ -276,6 +276,7 @@ textarea:focus, input:focus, select:focus, a:focus{
 
 .bg-image-container3{
     background: url("https://voyage-onirique.com/wp-content/uploads/2018/04/WallpaperStudio10-86066.jpg");
-    background-size: 100% 100%;
+    background-size: cover;
+    background-position: center;
     background-repeat: repeat;
 }

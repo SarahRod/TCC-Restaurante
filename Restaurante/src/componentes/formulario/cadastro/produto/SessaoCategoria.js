@@ -103,7 +103,6 @@ export class SessaoCategoria extends Component {
 
             success: function (resposta) {
 
-
                 if (resposta.length >= 5) {
                     $("#salvar-categoria").prop('disabled', true);
                 } else {
@@ -111,7 +110,6 @@ export class SessaoCategoria extends Component {
                 }
 
                this.visualizarCategoriaSalva();
-
 
             }.bind(this),
             error: function (data) {

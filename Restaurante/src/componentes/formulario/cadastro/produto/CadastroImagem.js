@@ -33,8 +33,6 @@ export class CadastroImagem extends Component {
 
         if (idProduto != null) {
             $("#cadastro-imagem").removeClass("disabilita-elemento");
-
-
         }
     }
 
@@ -45,7 +43,6 @@ export class CadastroImagem extends Component {
     apagaFoto(id) {
 
         const url = `${DOMINIO}/fotoproduto/${id}`;
-
         $.ajax({
             url: url,
             type: 'DELETE',
@@ -172,7 +169,6 @@ export class CadastroImagem extends Component {
     render() {
         return (
             <div className={` ${this.props.className}`} id="cadastro-imagem">
-
 
                 <h4 >2º Passo</h4>
                 <hr />
