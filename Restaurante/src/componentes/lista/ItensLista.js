@@ -16,6 +16,8 @@ class ItensLista extends Component{
 
     }
 
+    // status modal
+
     toggleModal = () => {
         this.setState({
             isOpen: !this.state.isOpen
@@ -65,8 +67,8 @@ class ItensLista extends Component{
                                     className="rounded-circle w-100" 
                                     // src={this.state.item.foto.length == 0? FOTOLANCHEPADRAO : DOMINIO_IMG + this.state.item.foto[0].foto }
                                     src={this.state.item.foto.length == 0? FOTOLANCHEPADRAO : this.state.item.foto[0].foto }
-                                    alt={this.state.item.foto.length == 0? FOTOLANCHEPADRAO : this.state.item.foto[0].legenda }
-                                    style={{ maxWidth: 150 + 'px' + '!important', height: 150 + 'px' }}/>
+                                    alt={this.state.item.foto.length == 0? "Foto Produto" : this.state.item.foto[0].legenda }
+                                    style={{ maxWidth: '150px !important', height: '150px' }}/>
                             
                             </figure>
                         </div>
