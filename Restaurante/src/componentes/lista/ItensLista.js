@@ -12,7 +12,7 @@ class ItensLista extends Component{
     constructor(props){
         super();
 
-        this.state = {item: props.item || [] }
+        this.state = {item: props.item}
 
     }
 

@@ -1,19 +1,50 @@
 import React, {Component} from 'react';
 import { MenuTemplate } from '../../menu/MenuTemplate';
 import { Carousel } from '../../carousel/Carousel';
+import $ from 'jquery';
+import { DOMINIO, TOKEN } from "../../../link_config"
 import './../../../recursos/css/style.css'
 import { Link } from 'react-router-dom';
 
-// componentDidMount() {
-    
-// }
-
-const menu = {
-    to: '/',
-    width: 'w-25'
-}
-
 class TemplateRestaurante extends Component{
+
+    constructor() {
+        super();
+        this.state = {
+            produtos: []
+        }
+    }
+
+    carregarCarousel(e){
+
+        this.setState({produtos:[]});
+
+        let id = localStorage.getItem("id");
+
+        const url = `${DOMINIO}/categorias/${id}`;
+
+        $.ajax({
+            url: url,
+            method: 'get',
+            headers: { "token": TOKEN },
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (resposta) {
+
+                this.setState({ itens: resposta });
+
+            }.bind(this),
+            error: function (data) {
+
+                console.log(data)
+            }
+        });
+    }
+
+    componentDidMount(){
+        this.carregarCarousel();
+    }
+
     render(){
         return(
             <body className="w-75 mx-auto">
