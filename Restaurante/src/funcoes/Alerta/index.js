@@ -1,14 +1,25 @@
-import React, { Component } from 'react';
-import { ToastContainer, toast, Zoom } from 'react-toastify';
-import { Slide, Flip, Bounce } from 'react-toastify';
+import React from 'react';
+import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { cssTransition } from 'react-toastify';
 
-export const ERRO = "Erro";
 
-export const  Notify = (type, mensagem) => {
+//FaExclamationCircle
+//CONSTANTES DOS TIPOS DE NOTIFICAÇÃO  
+export const SUCESSO = "success";
+export const INFO = "info";
+export const AVISO = "warning";
+export const ERRO = "error";
+export const PADRAO = "default";
+
+//CONSTANTES DE MENSAGENS GENÉRICAS
+export const CAMPO_VAZIO = "Preencha todos os campos";
+export const ERRO_CONEXAO = "Erro de conexão";
+
+//FUNÇÃO DE NOTIFICAÇÃO
+export const Notificacao = (tipo, mensagem) => {
 
     const parametros = {
+
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -17,29 +28,38 @@ export const  Notify = (type, mensagem) => {
         draggable: true,
     }
 
-    
+    const msgBraca = (<font className="text-light">{mensagem} </font>)
+    const msgPreta = (<font className="text-dark">{mensagem} </font>)
 
-    switch (type) {
+
+    switch (tipo) {
         case 'info':
-            toast.info(`🦄 ${mensagem}`, {
+            toast.info(msgBraca, {
                 parametros
             });
             break;
         case 'success':
-            toast.success('Sucesso', {
+            toast.success(msgBraca, {
                 parametros
             });
             break;
         case 'warning':
-            toast.warn('Warning message', {
+            toast.warn(msgPreta, {
                 parametros
             });
             break;
         case 'error':
-            toast.error('Error message', {
+            toast.error(msgBraca, {
                 parametros
             });
             break;
+        case 'default':
+            toast(msgPreta, {
+                parametros
+            });
+            break;
+        default:
+
     }
 
 }

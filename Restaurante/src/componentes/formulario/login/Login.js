@@ -7,8 +7,8 @@ import $ from 'jquery';
 import { DOMINIO, TOKEN } from '../../../link_config';
 import { withRouter } from 'react-router-dom';
 import PropTypes from "prop-types";
-import Alertas, { ERRO, Notify} from '../../../funcoes/Alerta';
-import { ToastContainer, toast, Zoom } from 'react-toastify';
+import { ERRO, Notificacao, INFO, AVISO, PADRAO} from '../../../funcoes/Alerta';
+import { ToastContainer} from 'react-toastify';
 
 
 //ARMAZENA OS ESTADOS INICIAIS
@@ -101,8 +101,6 @@ class FormularioLogin extends Component {
     //ENVIA OS DADOS DO FORMULÁRIO PARA O SESSION STORAGE
     validaCampos(e) {
         e.preventDefault();
-
-        // Notify('info', ERRO);
 
         const bordasCampoVazio = 'border border-danger';
 
