@@ -7,6 +7,8 @@ import $ from 'jquery';
 import { DOMINIO, TOKEN } from '../../../link_config';
 import { withRouter } from 'react-router-dom';
 import PropTypes from "prop-types";
+import { ERRO, Notificacao, INFO, AVISO, PADRAO} from '../../../funcoes/Alerta';
+import { ToastContainer} from 'react-toastify';
 
 
 //ARMAZENA OS ESTADOS INICIAIS
@@ -180,6 +182,7 @@ class FormularioLogin extends Component {
                 <div className="row mt-3 pl-5 pr-5">
                     <BotaoLink to="/cadastro" className="btn form-control p-1" texto="Cadastrar"/>
                 </div>
+                <ToastContainer />
             </form>
         )
     }
