@@ -24,7 +24,7 @@ export class CabecalhoPaginaRestaurante extends Component {
 
     componentDidUpdate() {
 
-        //RETIRA A MARCAÇÃO AO CLICAR EM PUTRA OPÇÃO
+        //RETIRA A MARCAÇÃO AO CLICAR EM OUTRA OPÇÃO
         $('.menu').click(function () {
             $('.menu').removeClass('border-bottom-laranja');
             $(this).addClass('border-bottom-laranja');

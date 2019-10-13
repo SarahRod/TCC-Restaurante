@@ -1,9 +1,50 @@
 import React, {Component} from 'react';
 import { MenuTemplate } from '../../menu/MenuTemplate';
 import { Carousel } from '../../carousel/Carousel';
+import $ from 'jquery';
+import { DOMINIO, TOKEN } from "../../../link_config"
 import './../../../recursos/css/style.css'
+import { Link } from 'react-router-dom';
 
 class TemplateRestaurante extends Component{
+
+    constructor() {
+        super();
+        this.state = {
+            produtos: []
+        }
+    }
+
+    carregarCarousel(e){
+
+        this.setState({produtos:[]});
+
+        let id = localStorage.getItem("id");
+
+        const url = `${DOMINIO}/categorias/${id}`;
+
+        $.ajax({
+            url: url,
+            method: 'get',
+            headers: { "token": TOKEN },
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (resposta) {
+
+                this.setState({ itens: resposta });
+
+            }.bind(this),
+            error: function (data) {
+
+                console.log(data)
+            }
+        });
+    }
+
+    componentDidMount(){
+        this.carregarCarousel();
+    }
+
     render(){
         return(
             <body className="w-75 mx-auto">
@@ -97,7 +138,7 @@ class TemplateRestaurante extends Component{
 
                 {/* <!-- Container sobre nós --> */}
                 
-                <div className="container-fluid" style={{minHeight: "300px"}}>
+                <div id="sobre" className="container-fluid" style={{minHeight: "300px"}}>
                     <h1 className="text-center p-3">Sobre Nós</h1>
                     <p className="text-center w-75 text-wrap mx-auto" style={{maxHeight: "300rem"}}>
                         Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos,
@@ -118,45 +159,45 @@ class TemplateRestaurante extends Component{
                 </div>
 
                 {/* <!-- Container Galeira --> */}
-                <div className="container-fluid">
+                <div id="galeria" className="container-fluid">
                     <h1 className="text-center p-3">Galeria de fotos</h1>
                     <div className="row">
                         <div className="col-md-12">
                         
                             <figure className="col-md-4 float-left">
-                                <a href="" data-size="1600x1067">
+                                <Link to="" data-size="1600x1067">
                                     <img className="img-fluid" alt="picture" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(145).jpg"/>
-                                </a>
+                                </Link>
                             </figure>
                         
                             <figure className="col-md-4 float-left">
-                                <a href="" data-size="1600x1067">
+                                <Link to="" data-size="1600x1067">
                                     <img className="img-fluid" alt="picture" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(150).jpg" />
-                                </a>
+                                </Link>
                             </figure>
                         
                             <figure className="col-md-4 float-left">
-                                <a href="" data-size="1600x1067">
+                                <Link to="" data-size="1600x1067">
                                     <img className="img-fluid" alt="picture" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(152).jpg" />
-                                </a>
+                                </Link>
                             </figure>
                         
                             <figure className="col-md-4 float-left">
-                                <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(42).jpg" data-size="1600x1067">
+                                <Link to="" data-size="1600x1067">
                                     <img className="img-fluid" alt="picture" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(42).jpg" />
-                                </a>
+                                </Link>
                             </figure>
                         
                             <figure className="col-md-4 float-left">
-                                <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(151).jpg" data-size="1600x1067">
+                                <Link to="" data-size="1600x1067">
                                     <img className="img-fluid" alt="picture" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(151).jpg"  />
-                                </a>
+                                </Link>
                             </figure>
                         
                             <figure className="col-md-4 float-left">
-                                <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(40).jpg" data-size="1600x1067">
+                                <Link to="" data-size="1600x1067">
                                     <img className="img-fluid" alt="picture" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(40).jpg"  />
-                                </a>
+                                </Link>
                             </figure>
 
                         </div>
