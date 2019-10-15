@@ -48,9 +48,9 @@ class TemplateRestaurante extends Component{
     render(){
         return(
             <body className="w-75 mx-auto">
-                <MenuTemplate>
-
-                </MenuTemplate>
+                <div className="container-fluid bg-image-container1 p-0" style={{minHeight: '700px'}}>
+                    
+                </div>
                 <div className="container-fluid bg-image-container2" style={{minHeight: '250px'}}>
                     <h1 className="pt-2 pb-2 text-center text-light">
                         Burger Classic
