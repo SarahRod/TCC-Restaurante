@@ -232,13 +232,13 @@ textarea:focus, input:focus, select:focus, a:focus{
  /* Template Restaurante */
 
 .bg-image-container1{
-    background-image: url("../imgs/imagem.jpg");
     background-size: 100% 100%;
     background-repeat: repeat;
 }
 
 .navbarColor{
-    background-color: rgba(0, 0, 0, 0.8)
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index:100;
 }
 
 .bg-image-container2{

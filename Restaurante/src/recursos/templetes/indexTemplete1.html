@@ -12,35 +12,36 @@
 
 
     <body class="w-75 mx-auto">
+        <!-- navbar -->
+        <nav class="position-fixed navbar navbarColor justify-content-around w-75">
+            <a class="navbar-brand" href="#">
+                <img class=" rounded float-left" style="max-width: 55px" src="https://purepng.com/public/uploads/large/burger-king-logo-xua.png" alt=""/>
+            </a>
+            <ul class="nav justify-content-end w-50">
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="#">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="#">Galeria</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="#">Sobre o Restaurante</a>
+                </li>
+            </ul>
+        </nav>
         <!-- container-inicial -->
-        <div class="container-fluid bg-image-container1 p-0" style="min-height: 700px" background>
-
-            <!-- navbar -->
-            <nav class="navbar navbarColor justify-content-around">
-                <a class="navbar-brand" href="#">
-                    <img src="https://purepng.com/public/uploads/large/burger-king-logo-xua.png" class=" rounded float-left" style="max-width: 55px" alt=""/>
-                </a>
-                <ul class="nav justify-content-end w-50">
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="#">Menu</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="#">Galeria</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="#">Sobre o Restaurante</a>
-                    </li>
-                </ul>
-            </nav>
+        <div class="container-fluid p-0" style="min-height: 700px">
+            <img class="w-100" src="../imgs/imagem.jpg" alt=""/>
         </div>
 
         <!-- Container Sla -->
         <div class="container-fluid bg-image-container2" style="min-height: 250px" back>
-            <h1 class="pt-2 pb-2 text-center text-light">
-                Burger Classic
+            
+            <h1 id="titleRes" class="pt-2 pb-2 text-center text-light">
             </h1>
+
             <div class="d-block">
-                <p class="h5 text-center text-light">
+                <p id="desId" class="h5 text-center text-light">
                     Lorem ipsum dolor sit amet, consectetur dipisicing elit, sed do eiusmod Incididunt ut labore et dolore magna aliqua.
                     Lorem ipsum dolor sit amet, consectetur dipisicing elit, sed do eiusmod Incididunt ut labore et dolore magna aliqua. 
                     Ut enim ad minim veniam quis nostrud exercitation ullamco.
@@ -283,5 +284,41 @@
                 </div>
             </div>
         </div>
+        <script>
+            $(document).ready(function(){
+
+                let idRestaurante = localStorage.getItem("id");
+
+                let idCategoria = localStorage.getItem("idCategoria");
+
+                let url;
+
+                url = `http://localhost:8080/categoriaproduto/restaurantes/${idRestaurante}/categorias/${idCategoria}`;
+
+                function produto(){
+
+                }
+
+                $.ajax({
+                    
+                    url: url,
+                    method: 'get',
+                    headers: { "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYXJkb21vZXNAb3V0bG9vay5jb20iLCJleHAiOjE1NzEzNTMxMjAsImlhdCI6MTU3MTMzNTEyMH0.bkJoMLt7AKCwY-IEDGAHGcoHBRl9l7cRGbUOgbSQ4yAzPN5N2SMtrLvJnWH4XU3HROTLm72f6MeAuM1KgapcRg" },
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    success: function (resposta) {
+                        
+                        $("#titleRes").text(resposta[0].descricao);
+                        
+                        console.log(resposta)
+
+                    }.bind(this),
+                    error: function (data) {
+
+                        console.log(data)
+                    }
+                });
+            });
+        </script>
     </body>
 </html>

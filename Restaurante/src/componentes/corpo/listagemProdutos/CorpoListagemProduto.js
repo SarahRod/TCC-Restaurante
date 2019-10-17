@@ -15,7 +15,6 @@ class CorpoListagemProduto extends Component {
         this.state = {
             itens: []
         }
-
     }
 
     componentDidUpdate() {
@@ -91,7 +90,7 @@ class CorpoListagemProduto extends Component {
                     <span className="col-6 col-sm-6 col-md-6 col-lg-3 text-secondary" onClick={e => this.visualizarProduto(e = "desativo")} > Arquivados</span>
                 </div>
                 <ListGroup className="p-1 w-75 mx-auto mb-5 ">
-                    {this.state.itens.map(item => (
+                    {this.state.itens.map(item => ( 
                         <ItensLista item={item || ""} />
                     ))}
                 </ListGroup>
