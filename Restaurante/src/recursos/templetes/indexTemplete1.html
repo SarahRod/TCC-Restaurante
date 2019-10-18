@@ -30,24 +30,20 @@
             </ul>
         </nav>
         <!-- container-inicial -->
-        <div class="container-fluid p-0" style="min-height: 700px">
+        <div class="container-fluid p-0 bg-danger" style="max-height: 700px">
             <img class="w-100" src="../imgs/imagem.jpg" alt=""/>
         </div>
 
         <!-- Container Sla -->
         <div class="container-fluid bg-image-container2" style="min-height: 250px" back>
             
-            <h1 id="titleRes" class="pt-2 pb-2 text-center text-light">
+            <h1 id="nomeRes" class="pt-2 pb-2 text-center text-light">
+                <!-- Nome Restaurante -->
             </h1>
 
             <div class="d-block">
-                <p id="desId" class="h5 text-center text-light">
-                    Lorem ipsum dolor sit amet, consectetur dipisicing elit, sed do eiusmod Incididunt ut labore et dolore magna aliqua.
-                    Lorem ipsum dolor sit amet, consectetur dipisicing elit, sed do eiusmod Incididunt ut labore et dolore magna aliqua. 
-                    Ut enim ad minim veniam quis nostrud exercitation ullamco.
-                    Lorem ipsum dolor sit amet, consectetur dipisicing elit, sed do eiusmod Incididunt ut labore et dolore magna aliqua.
-                    Lorem ipsum dolor sit amet, consectetur dipisicing elit, sed do eiusmod Incididunt ut labore et dolore magna aliqua. 
-                    Ut enim ad minim veniam quis nostrud exercitation ullamco               
+                <p id="desRes" class="h5 text-center text-light">
+                    <!-- Descrição Restaurante   -->
                 </p>
             </div>
         </div>
@@ -82,25 +78,16 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="d-flex justify-content-around p-3">
+
                             <div class="card mb-2 float-left" style="width: 18rem;">
                                 <img class="card-img-top" src="https://png.pngtree.com/element_pic/17/07/26/eb63d3b8ae4d2a1de45ba95e6d5b53ae.jpg" alt="Card image cap">
                                 <div class="card-body">
-                                        <h5 class="card-title text-center">Burguer</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-                            </div>
-                            <div class="card mb-2 float-left" style="width: 18rem;">
-                                <img class="card-img-top" src="https://png.pngtree.com/element_pic/17/07/26/eb63d3b8ae4d2a1de45ba95e6d5b53ae.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                        <h5 class="card-title text-center">Burguer</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-                            </div>
-                            <div class="card mb-2 float-left" style="width: 18rem;">
-                                <img class="card-img-top" src="https://png.pngtree.com/element_pic/17/07/26/eb63d3b8ae4d2a1de45ba95e6d5b53ae.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                        <h5 class="card-title text-center">Burguer</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        <h5 id="nomeProduto" class="card-title text-center">
+                                            <!-- Nome Produto -->
+                                        </h5>
+                                        <p id="desProduto" class="card-text">
+                                            <!-- Descrição Produto     -->
+                                        </p>
                                 </div>
                             </div>
                         </div>
@@ -181,56 +168,29 @@
 
                     <div class="d-flex flex-row justify-content-between pt-3 mb-3" style="border-bottom: 3px solid white; border-bottom-style:dotted;">
                         <div class="d-flex flex-column text-white">
-                            <h3>Burguer 1</h3>
+                            <h3 id="prodMaisVen" >
+                                <!-- Nome do Produto Mais Vendidos -->
+                            </h3>
                         </div>
                         <div class="d-flex flex-column text-white">
-                            <h3>15,00</h3>
+                            <h3 id="precoProd">
+                                <!-- Preço Produto -->
+                            </h3>
                         </div>
                     </div>
 
-                    <div class="d-flex flex-row justify-content-between pt-3 mb-3" style="border-bottom: 3px solid white; border-bottom-style:dotted;">
-                        <div class="d-flex flex-column text-white">
-                            <h3>Burguer 2</h3>
-                        </div>
-                        <div class="d-flex flex-column text-white">
-                            <h3>15,00</h3>
-                        </div>
-                    </div>
-
-                    <div class="d-flex flex-row justify-content-between pt-3 mb-3" style="border-bottom: 3px solid white; border-bottom-style:dotted;">
-                        <div class="d-flex flex-column text-white">
-                            <h3>Burguer 3</h3>
-                        </div>
-                        <div class="d-flex flex-column text-white">
-                            <h3>15,00</h3>
-                        </div>
-                    </div>
-
-                    <div class="d-flex flex-row justify-content-between pt-3 mb-3" style="border-bottom: 3px solid white; border-bottom-style:dotted;">
-                        <div class="d-flex flex-column text-white">
-                            <h3>Burguer 4</h3>
-                        </div>
-                        <div class="d-flex flex-column text-white">
-                            <h3>15,00</h3>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Container sobre nós -->
         <div class="container-fluid" style="min-height: 300px">
-            <h1 class="text-center p-3">Sobre Nós</h1>
-            <p class="text-center w-75 text-wrap mx-auto" style="max-height: 300rem">
-                Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos,
-                e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja
-                de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não
-                Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos,
-                e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja
-                de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não
+            <h1 id="titleSobre" class="text-center p-3">Sobre Nós</h1>
+            <p id="sobreGodinner" class="text-center w-75 text-wrap mx-auto" style="max-height: 300rem">
+                <!-- Sobre a Godinne -->
             </p>
             <div class="d-flex flex-row w-75 mx-auto mt-5 justify-content-around">
-                <div class="d-flex flex-column">
+                <div id="enderecoRes" class="d-flex flex-column">
                     Burguer Classic - Barueri
                 </div>
                 <div class="d-flex flex-column">
@@ -287,37 +247,67 @@
         <script>
             $(document).ready(function(){
 
-                let idRestaurante = localStorage.getItem("id");
+                var idRestaurante = 120;
+                const DOMAIN = "http://localhost:8080";
 
-                let idCategoria = localStorage.getItem("idCategoria");
+                // Mano não da pra ver se ta ficando bom!!! estamos com problemas para acessar as informações da api
 
-                let url;
+                function buscarRestaurante(){
+                    // url = DOMAIN + `/restaurante/${idRestaurante}`;
+                    url = DOMAIN + `/restaurante/exibicao/${idRestaurante}`;
 
-                url = `http://localhost:8080/categoriaproduto/restaurantes/${idRestaurante}/categorias/${idCategoria}`;
+                    $.ajax({
+                        
+                        url: url,
+                        method: 'get',
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        success: function (resposta) {
+                            
+                            $("#desRes").text(resposta.descricao);
+                            $("#nomeRes").text(resposta.nome);
+                            $("#titleRes").text(resposta.razaoSocial);
+                            
+                            console.log(resposta)
 
-                function produto(){
+                        }.bind(this),
+                        error: function (data) {
 
+                            console.log(data)
+                        }
+                    });
                 }
 
-                $.ajax({
-                    
-                    url: url,
-                    method: 'get',
-                    headers: { "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYXJkb21vZXNAb3V0bG9vay5jb20iLCJleHAiOjE1NzEzNTMxMjAsImlhdCI6MTU3MTMzNTEyMH0.bkJoMLt7AKCwY-IEDGAHGcoHBRl9l7cRGbUOgbSQ4yAzPN5N2SMtrLvJnWH4XU3HROTLm72f6MeAuM1KgapcRg" },
-                    dataType: 'json',
-                    contentType: 'application/json',
-                    success: function (resposta) {
-                        
-                        $("#titleRes").text(resposta[0].descricao);
-                        
-                        console.log(resposta)
+                // function buscarCategoriasRestaurante(){
+                //     buscarProdutosCategoria(id);
+                //     //id do que?
+                // }
 
-                    }.bind(this),
-                    error: function (data) {
+                // function buscarProdutosCategoria(idCategoria){
+                //     let url;
 
-                        console.log(data)
-                    }
-                });
+                //     url = DOMAIN + `/categoriaproduto/restaurantes/${idRestaurante}/categorias/${idCategoria}`;
+
+                //     $.ajax({
+                        
+                //         url: url,
+                //         method: 'get',
+                //         dataType: 'json',
+                //         contentType: 'application/json',
+                //         success: function (resposta) {
+                            
+                //             console.log(resposta)
+
+                //         }.bind(this),
+                //         error: function (data) {
+
+                //             console.log(data)
+                //         }
+                //     });
+                // }
+
+                // buscarRestaurante();
+                // buscarCategoriasRestaurante();
             });
         </script>
     </body>
