@@ -228,16 +228,17 @@ textarea:focus, input:focus, select:focus, a:focus{
     pointer-events: none;
     opacity: 0.4;
 }
+
  /* Template Restaurante */
 
 .bg-image-container1{
-    background-image: url("http://www.wordwallpapers.com/wp-content/uploads/2015/11/100-Amazing-Mixed-Wallpapers-10-5.jpg");
     background-size: 100% 100%;
     background-repeat: repeat;
 }
 
 .navbarColor{
-    background-color: rgba(0, 0, 0, 0.8)
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index:100;
 }
 
 .bg-image-container2{
