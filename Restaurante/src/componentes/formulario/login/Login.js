@@ -7,8 +7,8 @@ import $ from 'jquery';
 import { DOMINIO, TOKEN } from '../../../link_config';
 import { withRouter } from 'react-router-dom';
 import PropTypes from "prop-types";
-import { ERRO, Notificacao, INFO, AVISO, PADRAO} from '../../../funcoes/Alerta';
-import { ToastContainer} from 'react-toastify';
+import { ERRO, Notificacao, INFO, AVISO, PADRAO, CAMPO_VAZIO} from '../../../funcoes/Alerta';
+
 
 
 //ARMAZENA OS ESTADOS INICIAIS
@@ -76,6 +76,8 @@ class FormularioLogin extends Component {
 
                 if (respostaJson == '{"error":"Usuario não cadastrado"}') {
 
+                    //Notificacao(ERRO, CAMPO_VAZIO)
+
                     var e;
 
                     this.erroValidacao(e = 'usuarioInvalido')
@@ -93,7 +95,7 @@ class FormularioLogin extends Component {
             }.bind(this),
             error: function (data) {
                 console.log(data);
-
+               
             }
         });
     }
@@ -182,7 +184,7 @@ class FormularioLogin extends Component {
                 <div className="row mt-3 pl-5 pr-5">
                     <BotaoLink to="/cadastro" className="btn form-control p-1" texto="Cadastrar"/>
                 </div>
-                <ToastContainer />
+                
             </form>
         )
     }
