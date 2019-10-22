@@ -31,46 +31,46 @@ export class RotaPaginas extends Component {
 
     render() {
         return (
-            <Fragment>
-                <BrowserRouter>
-                    <Switch>
 
-                        <Route path="/" exact component={PaginaLogin} />
+            <BrowserRouter>
+                <Switch>
 
-                        <Route
-                            path="/cadastro" render={({ match: { url } }) => (
-                                <Fragment>
-                                    <Route path={`${url}/`} component={FormularioDados} exact />
-                                    <PrivateRoute path={`${url}/endereco`} component={FormularioEndereco} />
-                                    <PrivateRoute path={`${url}/login`} component={FormularioLogin} />
-                                    <PrivateRoute path={`${url}/bem-vindo`} component={FormularioBemVindo} />
-                                    <Rodape />
-                                </Fragment>
+                    <Route path="/" exact component={PaginaLogin} />
 
-                            )}
-                        />
-
-                        <Route path="/restaurante" render={({ match: { url } }) => (
+                    <Route
+                        path="/cadastro" render={({ match: { url } }) => (
                             <Fragment>
-                                <CabecalhoPaginaRestaurante />
-                                <PrivateRoute path={`${url}/`} component={CorpoIndex} exact />
-                                <PrivateRoute path={`${url}/cadastro-produto/:id?`} component={CadastroProduto} />
-                                <PrivateRoute path={`${url}/visualizar-produto`} component={CorpoListagemProdutos} />
+                                <Route path={`${url}/`} component={FormularioDados} exact />
+                                <PrivateRoute path={`${url}/endereco`} component={FormularioEndereco} />
+                                <PrivateRoute path={`${url}/login`} component={FormularioLogin} />
+                                <PrivateRoute path={`${url}/bem-vindo`} component={FormularioBemVindo} />
                                 <Rodape />
                             </Fragment>
 
                         )}
-                        />
-                        
-                        <Route path="/corpo" render={({ match: { url } }) => (
+                    />
 
-                            <Route path={`${url}/TemplateRestaurante`} component={TemplateRestaurante} />
+                    <Route path="/restaurante" render={({ match: { url } }) => (
+                        <Fragment>
+                            <CabecalhoPaginaRestaurante />
+                            <PrivateRoute path={`${url}/`} component={CorpoIndex} exact />
+                            <PrivateRoute path={`${url}/cadastro-produto/:id?`} component={CadastroProduto} />
+                            <PrivateRoute path={`${url}/visualizar-produto`} component={CorpoListagemProdutos} />
+                            <Rodape />
+                        </Fragment>
 
-                        )}/>
+                    )}
+                    />
 
-                    </Switch>
-                </ BrowserRouter>
-            </Fragment>
+                    <Route path="/corpo" render={({ match: { url } }) => (
+
+                        <Route path={`${url}/TemplateRestaurante`} component={TemplateRestaurante} />
+
+                    )} />
+
+                </Switch>
+            </ BrowserRouter>
+
         )
     }
 }

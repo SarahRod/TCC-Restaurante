@@ -2,11 +2,11 @@ import React from 'react';
 import { Botao } from './styled';
 import "./style.css";
 import $ from 'jquery';
+import { DOMINIO, TOKEN } from '../../../link_config';
 
 export const BotaoLink = (props) => (
   <Botao onClick={props.onClick} to={props.to} className={`btn ${props.className}`}>{props.texto}</Botao>
 )
-
 
 export class BotaoRadioSwitch extends React.Component {
   constructor(props) {
@@ -19,14 +19,98 @@ export class BotaoRadioSwitch extends React.Component {
   }
 
 
-  handleChange() {
+  handleChange(e) {
+
+    this.desativarProduto(e);
     this.setState({ isChecked: !this.state.isChecked })
 
   }
+
+  componentWillMount() {
+
+    const { id } = this.props;
+
+
+    if (id != null || id != '') {
+      this.verificaStatus();
+    }
+
+  }
+
+  verificaStatus() {
+
+    const { id } = this.props;
+
+    const url = `http://localhost:8080/produto/${id}`;
+
+    if (id != null) {
+
+      $.ajax({
+        url: url,
+        type: 'get',
+        headers: { 'token': TOKEN },
+        success: function (resposta) {
+
+          switch (resposta.status) {
+            case "0":
+
+
+              break;
+            case "1":
+
+              //this.setState({ isChecked: true })
+
+              $('#btn-status').attr("checked", "checked");
+
+              break;
+            default:
+
+          }
+
+
+
+        }.bind(this),
+        error: function (data) {
+          console.log('Erro:', data);
+
+        }
+      });
+
+
+    } else {
+
+    }
+  }
+
+  desativarProduto() {
+
+    const { id } = this.props;
+
+    alert(id);
+
+   
+      const url = `${DOMINIO}/produto/status/${id}`;
+
+      alert('entrou');
+
+      $.ajax({
+        url: url,
+        type: 'PUT',
+        headers: { 'token': TOKEN },
+        success: function (data) {
+
+
+
+        }
+      });
+    
+  }
+
+
   render() {
     return (
-      <label className={`switch ${this.props.className}`} id={this.props.id} onChange={this.props.onChange(this.state.isChecked)}>
-        <input id="btn-status" type="checkbox" value={this.state.isChecked} onChange={this.handleChange}/>
+      <label className={`switch ${this.props.className}`} id={this.props.id}>
+        <input id="btn-status" type="checkbox" value={this.state.isChecked} onChange={e => this.handleChange(e)} />
         <div className="slider"></div>
       </label>
     );

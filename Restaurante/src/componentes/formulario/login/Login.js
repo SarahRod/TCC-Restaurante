@@ -7,7 +7,7 @@ import $ from 'jquery';
 import { DOMINIO, TOKEN } from '../../../link_config';
 import { withRouter } from 'react-router-dom';
 import PropTypes from "prop-types";
-import { ERRO, Notificacao, INFO, AVISO, PADRAO} from '../../../funcoes/Alerta';
+import { ERRO, Notificacao, INFO, AVISO, PADRAO, CAMPO_VAZIO} from '../../../funcoes/Alerta';
 import { ToastContainer} from 'react-toastify';
 
 
@@ -78,6 +78,8 @@ class FormularioLogin extends Component {
 
                     var e;
 
+                   
+
                     this.erroValidacao(e = 'usuarioInvalido')
                 } else {
 
@@ -114,7 +116,7 @@ class FormularioLogin extends Component {
         }
 
         if (!$('#email').val() || !$('#senha').val()) {
-            this.erroValidacao(e = "campoVazio")
+            Notificacao(ERRO, CAMPO_VAZIO);
         }else{
             this.enviaFormulario(e);
         } 
