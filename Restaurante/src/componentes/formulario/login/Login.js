@@ -7,9 +7,7 @@ import $ from 'jquery';
 import { DOMINIO, TOKEN } from '../../../link_config';
 import { withRouter } from 'react-router-dom';
 import PropTypes from "prop-types";
-import { ERRO, Notificacao, INFO, AVISO, PADRAO, CAMPO_VAZIO } from '../../../funcoes/Alerta';
-import { ToastContainer } from 'react-toastify';
-
+import { ERRO, Notificacao, INFO, AVISO, PADRAO, CAMPO_VAZIO, ERRO_CONEXAO, USUARIO_INVALIDO } from '../../../funcoes/Alerta';
 
 //ARMAZENA OS ESTADOS INICIAIS
 const initialState = {
@@ -17,9 +15,6 @@ const initialState = {
         email: '',
         senha: '',
     },
-
-    classErro: '',
-    textoErro: ''
 }
 
 export const TOKEN_KEY = "token";
@@ -36,23 +31,6 @@ class FormularioLogin extends Component {
         location: PropTypes.object.isRequired,
         history: PropTypes.object.isRequired
     };
-
-    //MENSAGEM DE ERRO DA VALIDAÇÃO
-    erroValidacao(e) {
-
-        this.setState({ classErro: 'alert show alert-danger', })
-
-        if (e == "campoVazio") {
-            this.setState({
-                textoErro: `Preencha os campos corretamente`
-            })
-        } else if (e == "usuarioInvalido") {
-            this.setState({
-                textoErro: `Email ou senha incorretos`
-            })
-        }
-
-    }
 
     async enviaFormulario() {
 
@@ -76,14 +54,8 @@ class FormularioLogin extends Component {
 
                 if (respostaJson == '{"error":"Usuario não cadastrado"}') {
 
-                    var e;
-
-
-
-                    this.erroValidacao(e = 'usuarioInvalido')
+                   Notificacao(ERRO, USUARIO_INVALIDO);
                 } else {
-
-                    console.log(resposta.token);
 
                     localStorage.setItem(TOKEN_KEY, resposta.token);
 
@@ -94,8 +66,7 @@ class FormularioLogin extends Component {
 
             }.bind(this),
             error: function (data) {
-                console.log(data);
-
+                Notificacao(ERRO, ERRO_CONEXAO);
             }
         });
     }
@@ -140,14 +111,6 @@ class FormularioLogin extends Component {
             $('#senha').removeClass(bordasCampoVazio);
         }
 
-
-
-        this.setState({
-            restaurante,
-            textoErro: initialState.textoErro,
-            classErro: initialState.classErro
-        })
-
     }
 
     /* FORMULÁRIO DO LOGIN */
@@ -159,9 +122,6 @@ class FormularioLogin extends Component {
                 </div>
                 <div className="row mb-4">
                     <div className="mx-auto text-dark h3">Bem-vindo(a) GoDinner</div>
-                </div>
-                <div className="row pl-5 pr-5">
-                    <span className={` ${this.state.classErro}`} >{this.state.textoErro}</span>
                 </div>
                 <div className="row mb-4 pl-5 pr-5 ">
 
@@ -184,7 +144,6 @@ class FormularioLogin extends Component {
                 <div className="row mt-3 pl-5 pr-5">
                     <BotaoLink to="/cadastro" className="btn form-control p-1" texto="Cadastrar" />
                 </div>
-                <ToastContainer />
             </form>
         )
     }

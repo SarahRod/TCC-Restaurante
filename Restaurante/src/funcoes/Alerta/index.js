@@ -14,6 +14,7 @@ export const PADRAO = "default";
 //CONSTANTES DE MENSAGENS GENÉRICAS
 export const CAMPO_VAZIO = "Preencha todos os campos";
 export const ERRO_CONEXAO = "Erro de conexão";
+export const USUARIO_INVALIDO = "Email ou senha incorretos";
 
 //FUNÇÃO DE NOTIFICAÇÃO
 export const Notificacao = (tipo, mensagem) => {
