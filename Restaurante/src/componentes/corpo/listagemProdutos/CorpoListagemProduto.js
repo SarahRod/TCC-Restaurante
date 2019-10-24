@@ -78,7 +78,7 @@ class CorpoListagemProduto extends Component {
                     <FormControl
                         className="border-0  shadow-none"
                         type="text"
-                        placeholder="Search"
+                        placeholder="Buscar"
                         aria-label="Search"
                         aria-describedby="btnGroupAddon"
                     />

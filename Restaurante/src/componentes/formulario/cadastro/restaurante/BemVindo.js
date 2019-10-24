@@ -64,7 +64,7 @@ export class FormularioBemVindo extends Component {
         formData.append('foto', files);
         formData.append('id', this.state.restaurante.id);
 
-        if(foto != ''){
+        if (foto != '') {
             $.ajax({
                 url: url,
                 type: 'post',
@@ -72,21 +72,21 @@ export class FormularioBemVindo extends Component {
                 contentType: false,
                 processData: false,
                 success: function (resposta) {
-    
+
                     //Limpa os storages
                     localStorage.clear();
                     sessionStorage.clear();
-    
+
                 }.bind(this),
                 error: function (data) {
                     console.log('Erro:', data);
-    
+
                 }
             });
-        }else{
+        } else {
 
         }
-       
+
     }
 
     //ATUALIZA AS INPUTS COM OS ESTADOS 

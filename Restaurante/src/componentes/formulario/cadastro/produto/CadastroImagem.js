@@ -4,6 +4,7 @@ import $ from 'jquery';
 import { DOMINIO, TOKEN, DOMINIO_IMG, ID_PRODUTO } from '../../../../link_config';
 import '../../../../recursos/js/AddImagem';
 import ImgProduto from '../../../../recursos/imgs/imagem-produto.png';
+import './style.css'
 
 
 const initialState = {
@@ -175,15 +176,15 @@ export class CadastroImagem extends Component {
 
                 <div className="row mx-auto w-100">
                     <div className="card card-maior mx-auto">
-                        <img src={this.state.imgSrc} className="card-img-top tamanho-imagem-produto border-bottom" style={{maxWidth: 230 + 'px'}} alt="..." />
+                        <img src={this.state.imgSrc} className="card-img-top tamanho-imagem-produto border-bottom" style={{ maxWidth: 230 + 'px' }} alt="..." />
                         <div className="card-body pb-0">
                             <div className="input-group input-group-sm mx-auto mb-2">
                                 <input type="text" className="form-control" aria-label="" id="legenda" name="legenda" placeholder="Escreva uma legenda.." value={this.state.Imagem.legenda} onChange={e => this.atualizaCampo(e)} />
                             </div>
 
-                            <div className="input-file btn-success rounded mx-auto">
-                                <span>Anexar Imagem</span>
-                                <input ref="file" type="file" className="upload" multiple="true" id="foto" name="foto" value={this.state.Imagem.foto} onChange={e => this.atualizaCampo(e)} />
+                            <div className="input-file-produto btn-success rounded mx-auto">
+                                <span className="anexar-imagem text-light font-weight-bold">Anexar Imagem</span>
+                                <input ref="file" type="file" className="upload-image" multiple="true" id="foto" name="foto" value={this.state.Imagem.foto} onChange={e => this.atualizaCampo(e)} />
                             </div>
                             <div className="row">
                                 <div className="col-md-12 col-12" >

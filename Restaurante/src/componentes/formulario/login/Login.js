@@ -7,8 +7,8 @@ import $ from 'jquery';
 import { DOMINIO, TOKEN } from '../../../link_config';
 import { withRouter } from 'react-router-dom';
 import PropTypes from "prop-types";
-import { ERRO, Notificacao, INFO, AVISO, PADRAO, CAMPO_VAZIO} from '../../../funcoes/Alerta';
-import { ToastContainer} from 'react-toastify';
+import { ERRO, Notificacao, INFO, AVISO, PADRAO, CAMPO_VAZIO } from '../../../funcoes/Alerta';
+import { ToastContainer } from 'react-toastify';
 
 
 //ARMAZENA OS ESTADOS INICIAIS
@@ -78,17 +78,17 @@ class FormularioLogin extends Component {
 
                     var e;
 
-                   
+
 
                     this.erroValidacao(e = 'usuarioInvalido')
                 } else {
 
-                  console.log(resposta.token);
+                    console.log(resposta.token);
 
-                   localStorage.setItem(TOKEN_KEY, resposta.token);
+                    localStorage.setItem(TOKEN_KEY, resposta.token);
 
-                   this.props.history.push("/restaurante");
-                
+                    this.props.history.push("/restaurante");
+
                 }
 
 
@@ -99,7 +99,7 @@ class FormularioLogin extends Component {
             }
         });
     }
-    
+
     //ENVIA OS DADOS DO FORMULÁRIO PARA O SESSION STORAGE
     validaCampos(e) {
         e.preventDefault();
@@ -117,9 +117,9 @@ class FormularioLogin extends Component {
 
         if (!$('#email').val() || !$('#senha').val()) {
             Notificacao(ERRO, CAMPO_VAZIO);
-        }else{
+        } else {
             this.enviaFormulario(e);
-        } 
+        }
 
     }
 
@@ -167,7 +167,7 @@ class FormularioLogin extends Component {
 
                     <Label className="h6 text-secondary" texto="Email" />
                     <InputCadastro className="form-control p-1" type="email" id="email" name="email" maxWidth={100}
-                    value={this.state.restaurante.email} onChange={e => this.atualizaCampo(e)} />
+                        value={this.state.restaurante.email} onChange={e => this.atualizaCampo(e)} />
 
                 </div>
 
@@ -175,14 +175,14 @@ class FormularioLogin extends Component {
 
                     <Label className="h6 text-secondary" texto="Senha" />
                     <InputCadastro className="form-control p-1" type="password" id="senha" name="senha"
-                    value={this.state.restaurante.senha} onChange={e => this.atualizaCampo(e)} />
+                        value={this.state.restaurante.senha} onChange={e => this.atualizaCampo(e)} />
 
                 </div>
                 <div className="row mt-5 pl-5 pr-5">
-                    <BotaoLink onClick={e => this.validaCampos(e)} to="/cadastro" className="btn form-control p-1" texto="Entrar"/>
+                    <BotaoLink onClick={e => this.validaCampos(e)} to="/cadastro" className="btn form-control p-1" texto="Entrar" />
                 </div>
                 <div className="row mt-3 pl-5 pr-5">
-                    <BotaoLink to="/cadastro" className="btn form-control p-1" texto="Cadastrar"/>
+                    <BotaoLink to="/cadastro" className="btn form-control p-1" texto="Cadastrar" />
                 </div>
                 <ToastContainer />
             </form>

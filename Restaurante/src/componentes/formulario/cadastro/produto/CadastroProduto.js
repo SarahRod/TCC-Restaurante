@@ -67,34 +67,34 @@ class CadastroProduto extends Component {
 
     verificaStatus() {
 
-    const { id } = this.props.match.params;
+        const { id } = this.props.match.params;
 
-    const url = `http://localhost:8080/produto/${id}`;
+        const url = `http://localhost:8080/produto/${id}`;
 
-    if (id != null) {
+        if (id != null) {
 
-        $.ajax({
-            url: url,
-            type: 'get',
-            headers: { 'token': TOKEN },
-            success: function (resposta) {
+            $.ajax({
+                url: url,
+                type: 'get',
+                headers: { 'token': TOKEN },
+                success: function (resposta) {
 
-                this.setState({ produto: resposta })
+                    this.setState({ produto: resposta })
 
-                $("#btn-lixeira").removeClass("d-none");
+                    $("#btn-lixeira").removeClass("d-none");
 
-            }.bind(this),
-            error: function (data) {
-                console.log('Erro:', data);
+                }.bind(this),
+                error: function (data) {
+                    console.log('Erro:', data);
 
-            }
-        });
+                }
+            });
 
 
-    } else {
+        } else {
 
+        }
     }
-}
 
     componentDidMount() {
 
@@ -177,7 +177,7 @@ class CadastroProduto extends Component {
             <CorpoCemVh className="container mx-auto">
                 <div className="row mt-5 mb-5 mr-5 justify-content-center ">
                     <h1>Cadastro de Produtos</h1>
-                    <BotaoRadioSwitch id="btn-switch" className="ml-5 mt-2" id={id}/>
+                    <BotaoRadioSwitch id="btn-switch" className="ml-5 mt-2" id={id} />
                     <Link onClick={id => this.excluirProduto()}>
                         <FaTrashAlt id="btn-lixeira" className="ml-5 mt-3 d-none" size={25} />
                     </Link>
@@ -194,7 +194,7 @@ class CadastroProduto extends Component {
                         <div className="row p-2 mb-3">
                             <div className="col-12">
                                 <label className="h5">Nome do Produto</label>
-                                <input className="form-control" type="text" name="nome" id="nome" value={nome} placeholder="Digite o nome do produto.." onChange={e => this.atualizaCampo(e)} required />
+                                <input className="form-control" type="text" name="nome" id="nome" value={nome} onChange={e => this.atualizaCampo(e)} required />
                             </div>
                         </div>
 
@@ -223,10 +223,6 @@ class CadastroProduto extends Component {
 
                         <div className="row p-2 mb-3">
                             <div className="col-12">
-                                {/* <Link className="btn btn-outline-success btn-sm col-lg-5" id="prox-campo" onClick={e => this.enviaFormulario(e)} >
-                                    <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                                    Próximo Passo
-                                </Link> */}
                                 <button type="submit" className="btn btn-outline-success btn-sm col-lg-5" id="prox-campo" >
                                     <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
                                     Próximo Passo
@@ -246,9 +242,9 @@ class CadastroProduto extends Component {
                             <SessaoCategoria className="disabilita-elemento" id="categoria-produto" idProduto={id} />
                         </div>
                     </div>
-                    <div className="table mx-auto w-75 justify-content-end">
-                        <div className="col col-sm col-md col-lg">
-                            <Link class="btn btn-success" to="/restaurante/visualizar-produto" onClick={this.apagarIdProduto()}>Finalizar</Link>
+                    <div className="row mx-auto w-100 mt-2 justify-content-end">
+                        <div className="col-4 col-sm-4 col-md-3 col-lg-2">
+                            <Link class="btn btn-success" to="/restaurante/visualizar-produto">Finalizar</Link>
                         </div>
                     </div>
                 </form>
