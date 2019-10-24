@@ -134,7 +134,7 @@ class FormularioBemVindo extends Component {
                 <div className=" row justify-content-center mb-3">
                     <div className="input-file">
                         <span className="font-weight-bold text-light text-upload">Anexar Imagem</span>
-                        <input ref="file" type="file" className="upload" multiple="true" id="foto" name="foto" value={this.state.restaurante.foto} onChange={e => this.atualizaCampo(e)} />
+                        <input ref="file" type="file" accept=".jpg, .png, .svg, .jpeg" className="upload" multiple="true" id="foto" name="foto" value={this.state.restaurante.foto} onChange={e => this.atualizaCampo(e)} />
                     </div>
                 </div>
                 <div className="row mb-5">

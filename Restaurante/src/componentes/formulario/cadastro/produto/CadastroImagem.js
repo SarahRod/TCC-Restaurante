@@ -54,7 +54,7 @@ export class CadastroImagem extends Component {
 
             }.bind(this),
             error: function (data) {
-                alert('erro');
+               
                 console.log('Erro:', data);
 
             }
@@ -185,7 +185,7 @@ export class CadastroImagem extends Component {
 
                             <div className="input-file-produto btn-success rounded mx-auto">
                                 <span className="anexar-imagem text-light font-weight-bold">Anexar Imagem</span>
-                                <input ref="file" type="file" className="upload-image" multiple="true" id="foto" name="foto" value={this.state.Imagem.foto} onChange={e => this.atualizaCampo(e)} />
+                                <input ref="file" accept=".jpg, .png, .svg, .jpeg"  type="file" className="upload-image" multiple="true" id="foto" name="foto" value={this.state.Imagem.foto} onChange={e => this.atualizaCampo(e)} />
                             </div>
                             <div className="row">
                                 <div className="col-md-12 col-12" >

@@ -69,6 +69,12 @@ export class SessaoCategoria extends Component {
             headers: { 'token': TOKEN },
             success: function (resposta) {
 
+                if (resposta.length >= 5) {
+                    $("#salvar-categoria").prop('disabled', true);
+                } else {
+                    $("#salvar-categoria").prop('disabled', false);
+                }
+
                 this.setState({ listaCategoria: resposta });
 
             }.bind(this),
@@ -102,12 +108,6 @@ export class SessaoCategoria extends Component {
 
 
             success: function (resposta) {
-
-                if (resposta.length >= 5) {
-                    $("#salvar-categoria").prop('disabled', true);
-                } else {
-                    $("#salvar-categoria").prop('disabled', false);
-                }
 
                 this.visualizarCategoriaSalva();
 
