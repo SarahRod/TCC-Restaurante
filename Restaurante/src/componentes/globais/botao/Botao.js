@@ -85,13 +85,8 @@ export class BotaoRadioSwitch extends React.Component {
   desativarProduto() {
 
     const { id } = this.props;
-
-    alert(id);
-
    
       const url = `${DOMINIO}/produto/status/${id}`;
-
-      alert('entrou');
 
       $.ajax({
         url: url,

@@ -6,6 +6,7 @@ import ImgPizza from '../../../../recursos/imgs/pizza.jpg';
 import { FaHome } from 'react-icons/fa';
 import { DOMINIO } from '../../../../link_config';
 import $ from 'jquery';
+import './style.css';
 
 /*PROPRIEDADES DO CABEÇALHO*/
 const propriedadesCabecalho = {
@@ -113,13 +114,13 @@ export class FormularioBemVindo extends Component {
     renderForm() {
         return (
             <form className="form-group mt-4" method="POST" enctype="multipart/form-data" action="#">
-                <Label className="h1 mb-3" texto="Bem Vindo a GoDinner" />
+                <Label className="h1 mb-3" texto="Bem-vindo à GoDinner" />
                 <div className="row mb-2  justify-content-center">
                     <img className=" img-login rounded-circle img-responsive" id="foto-restaurante" alt="Imagem Empresa" src={this.state.imgSrc} />
                 </div>
                 <div className=" row justify-content-center mb-3">
                     <div className="input-file">
-                        <span>Anexar Imagem</span>
+                        <span className="font-weight-bold text-light text-upload">Anexar Imagem</span>
                         <input ref="file" type="file" className="upload" multiple="true" id="foto" name="foto" value={this.state.restaurante.foto} onChange={e => this.atualizaCampo(e)} />
                     </div>
                 </div>

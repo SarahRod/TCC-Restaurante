@@ -167,7 +167,7 @@ class FormularioLogin extends Component {
 
                     <Label className="h6 text-secondary" texto="Email" />
                     <InputCadastro className="form-control p-1" type="email" id="email" name="email" maxWidth={100}
-                        placeholder="Digite a seu email .." value={this.state.restaurante.email} onChange={e => this.atualizaCampo(e)} />
+                    value={this.state.restaurante.email} onChange={e => this.atualizaCampo(e)} />
 
                 </div>
 
@@ -175,7 +175,7 @@ class FormularioLogin extends Component {
 
                     <Label className="h6 text-secondary" texto="Senha" />
                     <InputCadastro className="form-control p-1" type="password" id="senha" name="senha"
-                        placeholder="Digite a sua senha .." value={this.state.restaurante.senha} onChange={e => this.atualizaCampo(e)} />
+                    value={this.state.restaurante.senha} onChange={e => this.atualizaCampo(e)} />
 
                 </div>
                 <div className="row mt-5 pl-5 pr-5">

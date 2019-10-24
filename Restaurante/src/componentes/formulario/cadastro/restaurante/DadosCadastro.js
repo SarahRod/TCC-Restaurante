@@ -171,13 +171,13 @@ class FormularioDados extends Component {
                 <Label className="h2 mb-4" texto="Dados do Restaurante" />
                 <div className="row mb-4">
                     <InputCadastro className="col col-sm col-md col-lg p-1 ml-3 mr-3" id="razaoSocial" name="razaoSocial" type="text"
-                        placeholder="Nome do restaurante" value={this.state.restaurante.razaoSocial} onChange={e => this.atualizaCampo(e)} />
+                        placeholder="Nome" value={this.state.restaurante.razaoSocial} onChange={e => this.atualizaCampo(e)} />
                 </div>
                 <div className="row mb-5">
                     <InputCadastro className="col col-sm col-md col-lg p-1 ml-3 mr-3" id="cnpj" name="cnpj" type="text"
-                        placeholder="CNPJ do restaurante" value={this.state.restaurante.cnpj} onChange={e => this.atualizaCampo(e)} />
+                        placeholder="CNPJ" value={this.state.restaurante.cnpj} onChange={e => this.atualizaCampo(e)} />
                     <InputCadastro className="col col-sm col-md col-lg p-1 mr-3" id="telefone" name="telefone" type="text"
-                        placeholder="Telefone do restaurante" value={this.state.restaurante.telefone} onChange={e => this.atualizaCampo(e)} />
+                        placeholder="Telefone" value={this.state.restaurante.telefone} onChange={e => this.atualizaCampo(e)} />
                 </div>
                 {/*LINHA DO  BOTÃO COM A ROTA PARA O PRÓXIMA PÁGINA  */}
                 <div className="row justify-content-end">
