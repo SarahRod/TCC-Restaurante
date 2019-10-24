@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
+import { withRouter } from 'react-router-dom';
+
 import { Label } from '../../../globais/label/Label';
 import { BotaoLink } from '../../../globais/botao/Botao';
 import Corpo from '../../../corpo/Corpo';
@@ -29,10 +32,18 @@ const initialState = {
 }
 
 
-export class FormularioBemVindo extends Component {
+class FormularioBemVindo extends Component {
 
     //STATE ESTÁ RECEBENDO OS ESTADOS INICIAIS
     state = { ...initialState }
+
+    
+    //PROPRIEDADES DO WITH ROUTER
+    static propTypes = {
+        match: PropTypes.object.isRequired,
+        location: PropTypes.object.isRequired,
+        history: PropTypes.object.isRequired
+    };
 
     componentWillMount() {
         var dados = sessionStorage.getItem('dados');
@@ -76,6 +87,8 @@ export class FormularioBemVindo extends Component {
                     //Limpa os storages
                     localStorage.clear();
                     sessionStorage.clear();
+
+                    this.props.history.push("/");
 
                 }.bind(this),
                 error: function (data) {
@@ -148,3 +161,5 @@ export class FormularioBemVindo extends Component {
         )
     }
 }
+
+export default withRouter(FormularioBemVindo);

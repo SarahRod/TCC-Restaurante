@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import FormularioDados from './componentes/formulario/cadastro/restaurante/DadosCadastro';
 import FormularioEndereco from './componentes/formulario/cadastro/restaurante/EnderecoCadastro';
 import FormularioLogin from './componentes/formulario/cadastro/restaurante/Login';
-import { FormularioBemVindo } from './componentes/formulario/cadastro/restaurante/BemVindo'
+import FormularioBemVindo from './componentes/formulario/cadastro/restaurante/BemVindo'
 
 import { PaginaLogin } from './paginas/login/PaginaLogin';
 import { Rodape } from './componentes/rodape/cadastro/rodape';

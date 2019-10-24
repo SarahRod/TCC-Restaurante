@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
+import { withRouter } from 'react-router-dom';
+
 import { InputCadastro } from '../../../globais/input/Input';
 import { Label } from '../../../globais/label/Label';
 import { BotaoLink } from '../../../globais/botao/Botao';
 import Corpo from '../../../corpo/Corpo';
-import { withRouter } from 'react-router-dom';
-import PropTypes from "prop-types";
 import $ from 'jquery';
 import { DOMINIO } from '../../../../link_config';
 
