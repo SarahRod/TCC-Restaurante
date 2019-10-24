@@ -8,6 +8,7 @@ import { BotaoLink } from '../../../globais/botao/Botao';
 import Corpo from '../../../corpo/Corpo';
 import $ from 'jquery';
 import { DOMINIO } from '../../../../link_config';
+import { ERRO, Notificacao, CAMPO_VAZIO, ERRO_CONEXAO, USUARIO_INVALIDO, NOME_MINIMO, ERRO_CNPJ } from '../../../../funcoes/Alerta';
 
 
 /*PROPRIEDADES DO CABEÇALHO*/
@@ -53,27 +54,6 @@ class FormularioDados extends Component {
 
     }
 
-    //MENSAGEM DE ERRO DA VALIDAÇÃO
-    erroValidacao(e) {
-
-        this.setState({ classErro: 'alert show alert-danger', })
-
-        if (e == "campoVazio") {
-            this.setState({
-                textoErro: `Preencha os campos corretamente`
-            })
-        } else if (e == "nomeMinimo") {
-            this.setState({
-                textoErro: `O nome do restaurante deve conter no mínimo 3 caracteres`
-            })
-        } else {
-            this.setState({
-                textoErro: `Esse CNPJ já está cadastrado ou é inválido`
-            })
-        }
-
-    }
-
     //ENVIA OS DADOS DO FORMULÁRIO PARA O SESSION STORAGE
     validaCampos(e) {
         e.preventDefault();
@@ -97,9 +77,9 @@ class FormularioDados extends Component {
         }
 
         if (!$('#cnpj').val() || !$('#razaoSocial').val() || !$('#telefone').val()) {
-            this.erroValidacao(e = "campoVazio")
+            Notificacao(ERRO, CAMPO_VAZIO);
         } else if ($('#razaoSocial').val().length < 3) {
-            this.erroValidacao(e = "nomeMinimo")
+            Notificacao(ERRO, NOME_MINIMO);
         }
 
 
@@ -112,17 +92,16 @@ class FormularioDados extends Component {
             type: 'GET',
             success: function (data) {
                 if (data) {
-                    this.campoValidado(data)
-                    console.log('true');
+                    this.campoValidado(data);
 
                 } else {
-                    this.erroValidacao(e = "cnpjJaCadastrado")
+                    Notificacao(ERRO, ERRO_CNPJ);
                 }
 
             }.bind(this),
             error: function (data) {
 
-                console.log('Erro:', data);
+                Notificacao(ERRO, ERRO_CONEXAO);
 
             }
         });
@@ -178,7 +157,7 @@ class FormularioDados extends Component {
                     <InputCadastro className="col col-sm col-md col-lg p-1 ml-3 mr-3" id="cnpj" name="cnpj" type="text"
                         placeholder="CNPJ" value={this.state.restaurante.cnpj} onChange={e => this.atualizaCampo(e)} />
                     <InputCadastro className="col col-sm col-md col-lg p-1 mr-3" id="telefone" name="telefone" type="text"
-                        placeholder="Telefone" value={this.state.restaurante.telefone} onChange={e => this.atualizaCampo(e)} />
+                        placeholder="Telefone" value={this.state.restaurante.telefone} only-these-char="0123456789" onChange={e => this.atualizaCampo(e)} />
                 </div>
                 {/*LINHA DO  BOTÃO COM A ROTA PARA O PRÓXIMA PÁGINA  */}
                 <div className="row justify-content-end">

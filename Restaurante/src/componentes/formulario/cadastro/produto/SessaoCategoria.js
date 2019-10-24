@@ -168,7 +168,7 @@ export class SessaoCategoria extends Component {
                 </div>
                 <div className="row mx-auto w-75 pb-3">
                     {this.state.listaCategoria.map(item => (
-                        <div className="col-2 float-left border rounded ml-1 mt-1">
+                        <div className="col-8 col-sm-6 col-md-6 col-lg-3 float-left border rounded ml-1 mt-1">
                             <div className="row mt-1" key={item.id}>
                                 <div className="col-9">
                                     {item.categoria.nome}

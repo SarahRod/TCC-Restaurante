@@ -7,7 +7,7 @@ import $ from 'jquery';
 import { DOMINIO, TOKEN } from '../../../link_config';
 import { withRouter } from 'react-router-dom';
 import PropTypes from "prop-types";
-import { ERRO, Notificacao, INFO, AVISO, PADRAO, CAMPO_VAZIO, ERRO_CONEXAO, USUARIO_INVALIDO } from '../../../funcoes/Alerta';
+import { ERRO, Notificacao, CAMPO_VAZIO, ERRO_CONEXAO, USUARIO_INVALIDO } from '../../../funcoes/Alerta';
 
 //ARMAZENA OS ESTADOS INICIAIS
 const initialState = {
@@ -98,6 +98,8 @@ class FormularioLogin extends Component {
     atualizaCampo(e) {
         const restaurante = { ...this.state.restaurante }
         restaurante[e.target.name] = e.target.value;
+
+        this.setState({restaurante});
 
         const bordasCampoVazio = 'border border-danger';
 

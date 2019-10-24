@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { CadastroImagem } from './CadastroImagem';
 import $ from 'jquery';
-import { Link } from 'react-router-dom';
-import { DOMINIO, TOKEN } from '../../../../link_config';
-import { BotaoRadioSwitch } from "../../../globais/botao/Botao";
-import { SessaoCategoria } from './SessaoCategoria';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import PropTypes from "prop-types";
-import { CorpoCemVh } from '../../../corpo/styled';
+
 import { FaTrashAlt } from "react-icons/fa";
-import { exportDefaultSpecifier } from '@babel/types';
+
+import { CadastroImagem } from './CadastroImagem';
+import { DOMINIO, TOKEN } from '../../../../link_config';
+import { SessaoCategoria } from './SessaoCategoria';
+import { CorpoCemVh } from '../../../corpo/styled';
+
 
 //ARMAZENA OS ESTADOS INICIAIS
 const initialState = {
@@ -99,6 +99,7 @@ class CadastroProduto extends Component {
                             break;
                     }
                     $("#btn-lixeira").removeClass("d-none");
+                    $("#btn-switch").removeClass("d-none");
 
                 }.bind(this),
                 error: function (data) {
@@ -137,8 +138,6 @@ class CadastroProduto extends Component {
         let method;
 
         const token = localStorage.getItem('token');
-
-        alert(token);
 
         if (id != null) {
             method = 'put';
@@ -225,7 +224,7 @@ class CadastroProduto extends Component {
             <CorpoCemVh className="container mx-auto">
                 <div className="row mt-5 mb-5 mr-5 justify-content-center ">
                     <h1>Cadastro de Produtos</h1>
-                    <label className="switch btn-switch ml-5 mt-2">
+                    <label className="switch ml-5 mt-2 d-none" id="btn-switch">
                         <input id="btn-status" type="checkbox" value={isChecked} onChange={e => this.atualizaCampo} onClick={e => this.desativarProduto(e)} />
                         <div className="slider"></div>
                     </label>

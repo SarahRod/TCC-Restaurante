@@ -54,6 +54,7 @@ export class CadastroImagem extends Component {
 
             }.bind(this),
             error: function (data) {
+                alert('erro');
                 console.log('Erro:', data);
 
             }
@@ -197,7 +198,7 @@ export class CadastroImagem extends Component {
                 </div>
                 <div className="row w-75 mx-auto mt-4">
                     {this.state.imagens.map(item => (
-                        <div className="col-3 col-md-4 col-sm-4 col-lg-4 mx-auto" id="campo">
+                        <div className="col-10 col-sm-9 col-md-8  col-lg-4 mb-3 mx-auto" id="campo">
                             <div className="card card-menor ">
                                 <span className="col-1 align-self-end cor-cinza" onClick={e => this.apagaFoto(item.id)}>x</span>
                                 <img key={item.id} name="img1" className="card-img-top tamanho-imagem-produto border-top" alt="..." title={item.legenda} src={DOMINIO_IMG + item.foto} />
