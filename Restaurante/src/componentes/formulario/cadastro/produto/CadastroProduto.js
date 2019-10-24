@@ -21,8 +21,10 @@ const initialState = {
         vendidos: 0
     },
 
+    isChecked: true || false,
+
     restaurante: {
-        id: localStorage.getItem("id")
+        id: ''
     },
 
 }
@@ -73,6 +75,8 @@ class CadastroProduto extends Component {
 
         if (id != null) {
 
+
+
             $.ajax({
                 url: url,
                 type: 'get',
@@ -81,6 +85,19 @@ class CadastroProduto extends Component {
 
                     this.setState({ produto: resposta })
 
+                    switch (resposta.status) {
+                        case "0":
+
+
+                            break;
+                        case "1":
+
+
+
+                            $('#btn-status').attr("checked", "checked");
+
+                            break;
+                    }
                     $("#btn-lixeira").removeClass("d-none");
 
                 }.bind(this),
@@ -119,6 +136,10 @@ class CadastroProduto extends Component {
 
         let method;
 
+        const token = localStorage.getItem('token');
+
+        alert(token);
+
         if (id != null) {
             method = 'put';
 
@@ -128,8 +149,12 @@ class CadastroProduto extends Component {
         } else {
             method = 'post';
 
+            this.state.restaurante.id = localStorage.getItem("id");
+
             novoproduto = { ...produto, 'restaurante': this.state.restaurante };
             url = `${DOMINIO}/produto`;
+
+
         }
 
         $.ajax({
@@ -137,7 +162,7 @@ class CadastroProduto extends Component {
             url: url,
             contentType: "application/json",
             dataType: 'json',
-            headers: { 'token': TOKEN },
+            headers: { 'token': token },
             type: method,
             data: JSON.stringify(novoproduto),
 
@@ -155,12 +180,34 @@ class CadastroProduto extends Component {
         });
     }
 
+    //ATIVA E DESATIVA O PRODUTO
+    desativarProduto() {
+
+        const { id } = this.props.match.params;
+
+        const url = `${DOMINIO}/produto/status/${id}`;
+
+        $.ajax({
+            url: url,
+            type: 'PUT',
+            headers: { 'token': TOKEN },
+            success: function (data) {
+
+
+
+            }
+        });
+
+    }
+
 
 
     //ATUALIZA AS INPUTS COM OS ESTADOS 
     atualizaCampo(e) {
         const produto = { ...this.state.produto }
         produto[e.target.name] = e.target.value;
+
+        this.setState({ isChecked: !this.state.isChecked });
 
         this.setState({
             produto
@@ -172,12 +219,16 @@ class CadastroProduto extends Component {
 
     render() {
         const { nome, preco, desconto, descricao } = this.state.produto;
+        const { isChecked } = this.state.isChecked;
         const { id } = this.props.match.params;
         return (
             <CorpoCemVh className="container mx-auto">
                 <div className="row mt-5 mb-5 mr-5 justify-content-center ">
                     <h1>Cadastro de Produtos</h1>
-                    <BotaoRadioSwitch id="btn-switch" className="ml-5 mt-2" id={id} />
+                    <label className="switch btn-switch ml-5 mt-2">
+                        <input id="btn-status" type="checkbox" value={isChecked} onChange={e => this.atualizaCampo} onClick={e => this.desativarProduto(e)} />
+                        <div className="slider"></div>
+                    </label>
                     <Link onClick={id => this.excluirProduto()}>
                         <FaTrashAlt id="btn-lixeira" className="ml-5 mt-3 d-none" size={25} />
                     </Link>
