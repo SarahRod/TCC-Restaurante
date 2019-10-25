@@ -1,9 +1,11 @@
 import React, { Component, Fragment } from 'react';
-import FormularioDados from './componentes/formulario/cadastro/dadosCadastro/DadosCadastro';
-import FormularioEndereco from './componentes/formulario/cadastro/enderecoCadastro/EnderecoCadastro';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import FormularioLogin from './componentes/formulario/cadastro/login/Login';
-import { FormularioBemVindo } from './componentes/formulario/cadastro/bemVindo/BemVindo'
+
+import FormularioDados from './componentes/formulario/cadastro/restaurante/DadosCadastro';
+import FormularioEndereco from './componentes/formulario/cadastro/restaurante/EnderecoCadastro';
+import FormularioLogin from './componentes/formulario/cadastro/restaurante/Login';
+import FormularioBemVindo from './componentes/formulario/cadastro/restaurante/BemVindo'
+
 import { PaginaLogin } from './paginas/login/PaginaLogin';
 import { Rodape } from './componentes/rodape/cadastro/rodape';
 import CorpoListagemProdutos from "./componentes/corpo/listagemProdutos/CorpoListagemProduto";

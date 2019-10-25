@@ -22,7 +22,7 @@ const initialState = {
         confirmarSenha: '',
     },
 
-   
+
     classErro: '',
     textoErro: ''
 }
@@ -105,8 +105,8 @@ class FormularioLogin extends Component {
     }
 
     validaSenha(e) {
-        
-        if ( $('#senha').val() != '' && $('#confirmarSenha').val()
+
+        if ($('#senha').val() != '' && $('#confirmarSenha').val()
             && $('#senha').val().length >= 6 && $('#senha').val() === $('#confirmarSenha').val()
         ) {
             this.enviaFormulario(e)

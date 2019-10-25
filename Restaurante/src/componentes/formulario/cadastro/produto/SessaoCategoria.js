@@ -69,6 +69,12 @@ export class SessaoCategoria extends Component {
             headers: { 'token': TOKEN },
             success: function (resposta) {
 
+                if (resposta.length >= 5) {
+                    $("#salvar-categoria").prop('disabled', true);
+                } else {
+                    $("#salvar-categoria").prop('disabled', false);
+                }
+
                 this.setState({ listaCategoria: resposta });
 
             }.bind(this),
@@ -103,13 +109,7 @@ export class SessaoCategoria extends Component {
 
             success: function (resposta) {
 
-                if (resposta.length >= 5) {
-                    $("#salvar-categoria").prop('disabled', true);
-                } else {
-                    $("#salvar-categoria").prop('disabled', false);
-                }
-
-               this.visualizarCategoriaSalva();
+                this.visualizarCategoriaSalva();
 
             }.bind(this),
             error: function (data) {
@@ -143,45 +143,45 @@ export class SessaoCategoria extends Component {
     render() {
         return (
 
-        <div className={`${this.props.className}`} id="cadastro-categoria">
+            <div className={`${this.props.className}`} id="cadastro-categoria">
 
-            <h4 >3º Passo</h4>
-            <hr />
+                <h4 >3º Passo</h4>
+                <hr />
 
-            <div className="row mx-auto w-75 pb-2">
-                <label className="col col-sm col-md col-lg h5">Categoria do Produto</label>
-            </div>
-            <div className="row mx-auto w-75 pb-3">
-                <div class="col-11">
-                    <select name="categoria" id="sql_categoria" className="custom-select">
-                        <option value="" selected >Selecione a categoria para este produto... </option>
-                        {this.state.categorias.map(item => (
-                            <option key={item.id} value={item.id}>
-                                {item.nome}
-                            </option>
-                        ))}
-                    </select>
+                <div className="row mx-auto w-75 pb-2">
+                    <label className="col col-sm col-md col-lg h5">Categoria do Produto</label>
                 </div>
-                <div className="col-1 p-0">
-                    <input type="button" className="btn btn-outline-success" id="salvar-categoria" onClick={e => this.enviaCategoria(e)} value="ok" />
+                <div className="row mx-auto w-75 pb-3">
+                    <div class="col-11">
+                        <select name="categoria" id="sql_categoria" className="custom-select">
+                            <option value="" selected >Selecione uma categoria</option>
+                            {this.state.categorias.map(item => (
+                                <option key={item.id} value={item.id}>
+                                    {item.nome}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="col-1 p-0">
+                        <input type="button" className="btn btn-outline-success" id="salvar-categoria" onClick={e => this.enviaCategoria(e)} value="ok" />
+                    </div>
                 </div>
-            </div>
-            <div className="row mx-auto w-75 pb-3">
-                {this.state.listaCategoria.map(item => (
-                    <div className="col-2 float-left border rounded ml-1 mt-1">
-                        <div className="row mt-1" key={item.id}>
-                            <div className="col-9">
-                                {item.categoria.nome}
-                            </div>
-                            <div className="col-1 align-self-end">
-                                <span className=" cor-cinza" onClick={e => this.apagaCategoria(item.id)}>x</span>
+                <div className="row mx-auto w-75 pb-3">
+                    {this.state.listaCategoria.map(item => (
+                        <div className="col-8 col-sm-6 col-md-6 col-lg-3 float-left border rounded ml-1 mt-1">
+                            <div className="row mt-1" key={item.id}>
+                                <div className="col-9">
+                                    {item.categoria.nome}
+                                </div>
+                                <div className="col-1 align-self-end">
+                                    <span className=" cor-cinza" onClick={e => this.apagaCategoria(item.id)}>x</span>
 
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
-        </div>
         )
     }
 }
