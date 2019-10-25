@@ -70,8 +70,9 @@ class CadastroProduto extends Component {
     verificaStatus() {
 
         const { id } = this.props.match.params;
+        const token = localStorage.getItem('token');
 
-        const url = `http://localhost:8080/produto/${id}`;
+        const url = `${DOMINIO}/produto/${id}`;
 
         if (id != null) {
 
@@ -80,7 +81,7 @@ class CadastroProduto extends Component {
             $.ajax({
                 url: url,
                 type: 'get',
-                headers: { 'token': TOKEN },
+                headers: { 'token': token },
                 success: function (resposta) {
 
                     this.setState({ produto: resposta })

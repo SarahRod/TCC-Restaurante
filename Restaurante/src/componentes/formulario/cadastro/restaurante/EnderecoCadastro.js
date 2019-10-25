@@ -164,7 +164,7 @@ class FormularioEndereco extends Component {
         this.setState({ restaurante })
 
         //Máscaras do campos
-        $("#cep").mask("99.999-999");
+        $("#cep").mask("99999-999");
 
         const bordasCampoVazio = 'border border-danger';
 
