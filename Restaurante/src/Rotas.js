@@ -13,6 +13,7 @@ import CadastroProduto from "./componentes/formulario/cadastro/produto/CadastroP
 import CabecalhoPaginaRestaurante from './componentes/cabecalho/restaurante/Cabecalho';
 import { CorpoIndex } from './componentes/corpo/index/Corpo';
 import TemplateRestaurante from './componentes/corpo/template/TemplateRestaurante';
+import ErrorNotFound from './componentes/error';
 
 export const estaAutenticado = () => localStorage.getItem("token") != null || sessionStorage.getItem("dados") != null;
 
@@ -38,6 +39,8 @@ export class RotaPaginas extends Component {
                 <Switch>
 
                     <Route path="/" exact component={PaginaLogin} />
+
+                    <Route path="*" component={ErrorNotFound} />
 
                     <Route
                         path="/cadastro" render={({ match: { url } }) => (
