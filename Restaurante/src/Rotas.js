@@ -13,6 +13,7 @@ import CadastroProduto from "./componentes/formulario/cadastro/produto/CadastroP
 import CabecalhoPaginaRestaurante from './componentes/cabecalho/restaurante/Cabecalho';
 import { CorpoIndex } from './componentes/corpo/index/Corpo';
 import TemplateRestaurante from './componentes/corpo/template/TemplateRestaurante';
+import ErrorNotFound from './componentes/error';
 
 export const estaAutenticado = () => localStorage.getItem("token") != null || sessionStorage.getItem("dados") != null;
 
@@ -39,11 +40,13 @@ export class RotaPaginas extends Component {
 
                     <Route path="/" exact component={PaginaLogin} />
 
+
+
                     <Route
                         path="/cadastro" render={({ match: { url } }) => (
                             <Fragment>
-                                <Route path={`${url}/`} component={FormularioDados} exact />
-                                <PrivateRoute path={`${url}/endereco`} component={FormularioEndereco} />
+                                <Route path={`${url}/`} component={FormularioDados} />
+                                <PrivateRoute path={`${url}/endereco`} component={FormularioEndereco} exact />
                                 <PrivateRoute path={`${url}/login`} component={FormularioLogin} />
                                 <PrivateRoute path={`${url}/bem-vindo`} component={FormularioBemVindo} />
                                 <Rodape />
@@ -69,6 +72,8 @@ export class RotaPaginas extends Component {
                         <Route path={`${url}/TemplateRestaurante`} component={TemplateRestaurante} />
 
                     )} />
+
+                    <Route path='*' component={ErrorNotFound} />
 
                 </Switch>
             </ BrowserRouter>
