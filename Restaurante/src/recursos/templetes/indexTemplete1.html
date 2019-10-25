@@ -206,16 +206,15 @@
                     const produto = [`
                             <div class="d-flex flex-column text-white">
                                 <h3 id="nomeProduto">
-                                    ${produto.nome}    
+                                    
                                 </h3>
                             </div>
                             <div class="d-flex flex-column text-white">
                                 <h3 id="precoProd">
-                                    ${produto.preco}
+                                    
                                 </h3>
                             </div>`
                         ];
-
                 </script>
                 </div>
             </div>
@@ -270,14 +269,14 @@
                 </figure>
 
                 <figure class="col-md-4 float-left">
-                    <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(42).jpg" data-size="1600x1067">
+                    <a href="" data-size="1600x1067">
                         <img alt="picture" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(42).jpg"
                             class="img-fluid" />
                     </a>
                 </figure>
 
                 <figure class="col-md-4 float-left">
-                    <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(151).jpg"
+                    <a href=""
                         data-size="1600x1067">
                         <img alt="picture" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(151).jpg"
                             class="img-fluid" />
@@ -285,7 +284,7 @@
                 </figure>
 
                 <figure class="col-md-4 float-left">
-                    <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(40).jpg" data-size="1600x1067">
+                    <a href="" data-size="1600x1067">
                         <img alt="picture" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(40).jpg"
                             class="img-fluid" />
                     </a>
@@ -298,24 +297,28 @@
     <script>
         $(document).ready(function () {
 
-            const idRestaurante = null;
+            const idRestaurante = 153;
             const DOMAIN = "http://localhost:8080";
+            const TOKEN = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJydWJ1cmd1ZXJAZ21haWwuY29tIiwiZXhwIjoxNTcyMDM5MDkzLCJpYXQiOjE1NzIwMjEwOTN9.E2OMUBYRwwNHtoWn9pI3_-FQ_DQ0zX_apYeeCC1FJggzoeBSRkx73uVI71F7lPiel-uaTwWS_pK52dp7L8TCZw"; 
 
             function buscarRestaurante() {
-                url = DOMAIN + `/templates/restaurantes/${idRestaurante}`;
+
+                // url = DOMAIN + `/templates/restaurantes/${idRestaurante}`;
+                url = DOMAIN + `/restaurante/${idRestaurante}`;
 
                 $.ajax({
 
                     url: url,
                     method: 'get',
+                    headers:{ token: TOKEN},
                     dataType: 'json',
                     contentType: 'application/json',
                     success: function (resposta) {
 
-                        $(".sobreRes").text(resposta.sobre);
-                        $(".nomeRes").text(resposta.restaurante.razaoSocial);
-                        $("#cityRes").text(resposta.restaurante.endereco.cidade.cidade);
-                        $(".logo").attr("src", resposta.restaurante.foto);
+                        // $(".sobreRes").text(resposta.sobre);
+                        // $(".nomeRes").text(resposta.restaurante.razaoSocial);
+                        // $("#cityRes").text(resposta.restaurante.endereco.cidade.cidade);
+                        // $(".logo").attr("src", resposta.restaurante.foto);
 
                     }.bind(this),
                     error: function (data) {
@@ -327,7 +330,38 @@
 
             function maisVendidos(){
 
-                url = DOMAIN + ``;//Fazer!!!
+                // url = DOMAIN + `/templates/restaurantes/maisvendidos`;
+                url = DOMAIN + `/restaurante/${idRestaurante}`;
+                
+                $.ajax({
+
+                    url: url,
+                    method: 'get',
+                    headers:{ token: TOKEN},
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    success:function test(resposta) {
+
+                        const obj = [resposta]
+                        
+                        console.log(obj)
+                        return obj
+
+                    }.bind(this),
+                    error: function (data) {
+
+                        console.log(data);
+                    }
+                });
+
+                $("#test").html(produto);
+            }
+
+            function buscarCategoriasRestaurante() {
+
+                let url;
+
+                url = DOMAIN + `/categoriaproduto/categorias/${idRestaurante}`;
 
                 $.ajax({
 
@@ -337,7 +371,14 @@
                     contentType: 'application/json',
                     success: function (resposta) {
 
+                        const idCategoria = JSON.stringify(resposta)
 
+                        console.log(resposta[0].id);
+
+                        // console.log(idCategoria)
+
+                        buscarProdutosCategoria(idCategoria)
+                        // return idCategoria
 
                     }.bind(this),
                     error: function (data) {
@@ -345,71 +386,40 @@
                         console.log(data)
                     }
                 });
-
-                $("#test").html();
             }
 
-            maisVendidos();
+            function buscarProdutosCategoria(idCategoria) {
+                let url;
 
-            // function buscarCategoriasRestaurante() {
+                url = DOMAIN + `/categoriaproduto/restaurantes/${idRestaurante}/categorias/${idCategoria}`;
 
-            //     let url;
+                $.ajax({
 
-            //     url = DOMAIN + `/categoriaproduto/categorias/${idRestaurante}`;
+                    url: url,
+                    method: 'get',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    success: function (resposta) {
 
-            //     $.ajax({
+                        console.log(resposta)
 
-            //         url: url,
-            //         method: 'get',
-            //         dataType: 'json',
-            //         contentType: 'application/json',
-            //         success: function (resposta) {
+                    }.bind(this),
+                    error: function (data) {
 
-            //             // const idCategoria = JSON.stringify(resposta)
-
-            //             console.log(resposta)
-            //             // console.log(idCategoria)
-
-            //             // buscarProdutosCategoria(idCategoria)
-            //             // return idCategoria
-
-            //         }.bind(this),
-            //         error: function (data) {
-
-            //             console.log(data)
-            //         }
-            //     });
-            // }
-
-            // function buscarProdutosCategoria(idCategoria) {
-            //     let url;
-
-            //     url = DOMAIN + `/categoriaproduto/restaurantes/${idRestaurante}/categorias/${idCategoria}`;
-
-            //     $.ajax({
-
-            //         url: url,
-            //         method: 'get',
-            //         dataType: 'json',
-            //         contentType: 'application/json',
-            //         success: function (resposta) {
-
-            //             console.log(resposta)
-
-            //         }.bind(this),
-            //         error: function (data) {
-
-            //             console.log(data)
-            //         }
-            //     });
-            // }
+                        console.log(data)
+                    }
+                });
+            }
 
             function galeria(){
 
+
+
             }
 
+            maisVendidos();
             buscarRestaurante();
-            // buscarCategoriasRestaurante();
+            buscarCategoriasRestaurante();
         });
     </script>
 </body>
