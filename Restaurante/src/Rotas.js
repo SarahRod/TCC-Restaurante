@@ -40,13 +40,13 @@ export class RotaPaginas extends Component {
 
                     <Route path="/" exact component={PaginaLogin} />
 
-                    <Route path="*" component={ErrorNotFound} />
+
 
                     <Route
                         path="/cadastro" render={({ match: { url } }) => (
                             <Fragment>
-                                <Route path={`${url}/`} component={FormularioDados} exact />
-                                <PrivateRoute path={`${url}/endereco`} component={FormularioEndereco} />
+                                <Route path={`${url}/`} component={FormularioDados} />
+                                <PrivateRoute path={`${url}/endereco`} component={FormularioEndereco} exact />
                                 <PrivateRoute path={`${url}/login`} component={FormularioLogin} />
                                 <PrivateRoute path={`${url}/bem-vindo`} component={FormularioBemVindo} />
                                 <Rodape />
@@ -72,6 +72,8 @@ export class RotaPaginas extends Component {
                         <Route path={`${url}/TemplateRestaurante`} component={TemplateRestaurante} />
 
                     )} />
+
+                    <Route path='*' component={ErrorNotFound} />
 
                 </Switch>
             </ BrowserRouter>
