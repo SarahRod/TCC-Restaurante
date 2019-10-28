@@ -7,6 +7,7 @@ import { DOMINIO } from '../../../../link_config';
 import $ from 'jquery';
 import { withRouter } from 'react-router-dom';
 import PropTypes from "prop-types";
+import { ERRO, Notificacao, CAMPO_VAZIO, SENHA_MINIMA, ERRO_SENHA, ERRO_EMAIL } from '../../../../funcoes/Alerta';
 
 /*PROPRIEDADES DO CABEÇALHO*/
 const propriedadesCabecalho = {
@@ -111,7 +112,8 @@ class FormularioLogin extends Component {
         ) {
             this.enviaFormulario(e)
         } else {
-            this.erroValidacao(e = 'senhaIncorreta')
+
+            Notificacao(ERRO, ERRO_SENHA);
         }
     }
 
@@ -138,14 +140,14 @@ class FormularioLogin extends Component {
         }
 
         if (!$('#email').val() || !$('#senha').val() || !$('#confirmarSenha').val()) {
-            this.erroValidacao(e = 'campoVazio')
+            Notificacao(ERRO, CAMPO_VAZIO);
         }
 
         //VERIFICA SE A SENHA FOI DIGITADA CORRETAMENTE
         if ($('#senha').val() != $('#confirmarSenha').val()) {
-            this.erroValidacao(e = 'senhaIncorreta')
+            Notificacao(ERRO, ERRO_SENHA);
         } else if ($('#senha').val().length < 6) {
-            this.erroValidacao(e = 'senhaMinimo')
+            Notificacao(ERRO, SENHA_MINIMA);
         }
 
         //REALIZA AS REQUISIÇÕES NA API DE VALIDAÇÃO
@@ -156,10 +158,11 @@ class FormularioLogin extends Component {
             dataType: "text",
             type: 'GET',
             success: function (data) {
-                if (data) {
+                if (data == "true") {
+
                     this.validaSenha(e)
                 } else {
-                    this.erroValidacao(e = 'emailIncorreto')
+                    Notificacao(ERRO, ERRO_EMAIL)
                 }
             }.bind(this),
             error: function (data) {

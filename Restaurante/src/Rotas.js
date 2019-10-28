@@ -45,7 +45,7 @@ export class RotaPaginas extends Component {
                     <Route
                         path="/cadastro" render={({ match: { url } }) => (
                             <Fragment>
-                                <Route path={`${url}/`} component={FormularioDados} />
+                                <Route path={`${url}/`} exact component={FormularioDados} />
                                 <PrivateRoute path={`${url}/endereco`} component={FormularioEndereco} exact />
                                 <PrivateRoute path={`${url}/login`} component={FormularioLogin} />
                                 <PrivateRoute path={`${url}/bem-vindo`} component={FormularioBemVindo} />
