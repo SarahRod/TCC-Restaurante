@@ -1,0 +1,22 @@
+.circle{
+    display: inline-block;
+    height: 18px;
+    width: 18px;
+}
+
+.max-select{
+    max-width: 15rem;
+}
+
+.mensagem-slogan{
+    max-width: 50rem;
+    height: 40px;
+    margin:20px 0 20px 0;
+    padding-top: 8px;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.select-data{
+    max-width: 50rem;
+}

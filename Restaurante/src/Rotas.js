@@ -14,6 +14,7 @@ import CabecalhoPaginaRestaurante from './componentes/cabecalho/restaurante/Cabe
 import { CorpoIndex } from './componentes/corpo/index/Corpo';
 import TemplateRestaurante from './componentes/corpo/template/TemplateRestaurante';
 import ErrorNotFound from './componentes/error';
+import { SeusPedidos } from './componentes/corpo/pedidos';
 
 export const estaAutenticado = () => localStorage.getItem("token") != null || sessionStorage.getItem("dados") != null;
 
@@ -59,6 +60,7 @@ export class RotaPaginas extends Component {
                         <Fragment>
                             <CabecalhoPaginaRestaurante />
                             <PrivateRoute path={`${url}/`} component={CorpoIndex} exact />
+                            <PrivateRoute path={`${url}/pedidos`} component={SeusPedidos} exact />
                             <PrivateRoute path={`${url}/cadastro-produto/:id?`} component={CadastroProduto} />
                             <PrivateRoute path={`${url}/visualizar-produto`} component={CorpoListagemProdutos} />
                             <Rodape />
