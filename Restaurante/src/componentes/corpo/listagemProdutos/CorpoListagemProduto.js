@@ -29,6 +29,7 @@ class CorpoListagemProduto extends Component {
         this.setState({ itens: [] });
 
         let id = localStorage.getItem("id");
+        let token = localStorage.getItem("token");
 
         let url;
 
@@ -49,7 +50,7 @@ class CorpoListagemProduto extends Component {
         $.ajax({
             url: url,
             method: 'get',
-            headers: { "token": TOKEN },
+            headers: { "token": token },
             dataType: 'json',
             contentType: 'application/json',
             success: function (resposta) {
@@ -77,7 +78,7 @@ class CorpoListagemProduto extends Component {
                     <FormControl
                         className="border-0  shadow-none"
                         type="text"
-                        placeholder="Search"
+                        placeholder="Buscar"
                         aria-label="Search"
                         aria-describedby="btnGroupAddon"
                     />

@@ -164,7 +164,7 @@ class FormularioEndereco extends Component {
         this.setState({ restaurante })
 
         //Máscaras do campos
-        $("#cep").mask("99.999-999");
+        $("#cep").mask("99999-999");
 
         const bordasCampoVazio = 'border border-danger';
 
@@ -276,7 +276,7 @@ class FormularioEndereco extends Component {
                         placeholder="N°" value={this.state.restaurante.n} onChange={e => this.atualizaCampo(e)} />
                 </div>
                 <div className="row mb-1">
-                    <Label className="col col-sm col-md col-lg p-1 ml-3 mr-3" texto="Referência"/>
+                    <Label className="col col-sm col-md col-lg p-1 ml-3 mr-3" texto="Referência" />
                 </div>
                 <div className="row mb-5">
                     <textarea className="col col-sm col-md col-lg p-2 ml-3 mr-3 border-input" id="referencia" maxLength="150" name="referencia" type="text" value={this.state.restaurante.referencia} onChange={e => this.atualizaCampo(e)}></textarea>
