@@ -90,7 +90,7 @@ export class CabecalhoPaginaRestaurante extends Component {
                 <div className="collapse navbar-collapse bg-light" id="conteudoNavbarSuportado">
                     <ul className="navbar-nav ml-auto bg-light">
                         <Li className="nav-item menu" maxWidth="80px">
-                            <Link className="nav-link text-secondary menu" to="/restaurante" >Pedidos</Link>
+                            <Link className="nav-link text-secondary menu" to="/restaurante/pedidos" >Pedidos</Link>
                         </Li>
                         <Li className="nav-item menu" maxWidth="150px">
                             <Link className="nav-link text-secondary menu" to="/restaurante/cadastro-produto">Cadastrar Produto</Link>
