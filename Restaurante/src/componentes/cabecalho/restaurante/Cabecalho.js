@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Logo from '../../../recursos/imgs/img-login.png';
 import { ImgRestaurante, OpcoesMenu, Li } from './styled';
 import { DOMINIO, TOKEN, DOMINIO_IMG, FOTORESTAURANTEPADRAO } from '../../../link_config';
+import { ERRO_REQUISICAO, Notificacao, INFO } from '../../../funcoes/Alerta'
 import $ from 'jquery';
 import { BotaoLink } from '../../globais/botao/Botao';
 import { LinksMenu, BotaoLaranja } from '../../globais/botao/styled';
@@ -69,7 +70,7 @@ export class CabecalhoPaginaRestaurante extends Component {
 
                 }.bind(this),
                 error: function (data) {
-                    console.log(data);
+                    Notificacao(INFO, ERRO_REQUISICAO);
 
                 }
             });

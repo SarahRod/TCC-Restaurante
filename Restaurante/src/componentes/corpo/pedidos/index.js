@@ -6,6 +6,7 @@ import $ from 'jquery';
 import { FaPencilAlt } from 'react-icons/fa';
 import { IoMdClose } from "react-icons/io";
 import ModalProduto from '../../modals/Modalproduto';
+import { ERRO_REQUISICAO, Notificacao, INFO } from '../../../funcoes/Alerta'
 
 const estadoInicial = {
     pedidos: []
@@ -42,7 +43,7 @@ export class SeusPedidos extends Component {
             }.bind(this),
             error: function (data) {
 
-                console.log(data)
+                Notificacao(INFO, ERRO_REQUISICAO);
             }
         });
     }

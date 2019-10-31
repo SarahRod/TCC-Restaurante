@@ -8,7 +8,7 @@ import { BotaoLink } from '../../../globais/botao/Botao';
 import Corpo from '../../../corpo/Corpo';
 import $ from 'jquery';
 import { DOMINIO } from '../../../../link_config';
-import { ERRO, Notificacao, CAMPO_VAZIO, ERRO_CONEXAO, NOME_MINIMO, ERRO_CNPJ } from '../../../../funcoes/Alerta';
+import { ERRO, Notificacao, CAMPO_VAZIO, ERRO_CONEXAO, NOME_MINIMO, ERRO_CNPJ, INFO, ERRO_REQUISICAO } from '../../../../funcoes/Alerta';
 
 
 /*PROPRIEDADES DO CABEÇALHO*/
@@ -101,7 +101,8 @@ class FormularioDados extends Component {
             }.bind(this),
             error: function (data) {
 
-                Notificacao(ERRO, ERRO_CONEXAO);
+            
+                Notificacao(INFO, ERRO_REQUISICAO);
 
             }
         });
