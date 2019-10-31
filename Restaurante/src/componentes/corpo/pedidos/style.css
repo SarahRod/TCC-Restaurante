@@ -21,3 +21,11 @@
 .select-data{
     max-width: 50rem;
 }
+
+.border-none{
+    border-top: none !important;
+}
+
+.max{
+    max-width: 50rem;
+}
