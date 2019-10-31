@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import './style.css'
 import { FaSyncAlt } from "react-icons/fa";
-import { DOMINIO, CORES_STATUS } from '../../../link_config';
+import { DOMINIO, CORES_STATUS, FOTOLANCHEPADRAO, DOMINIO_IMG } from '../../../link_config';
 import $ from 'jquery';
+import { FaPencilAlt } from 'react-icons/fa';
+import { IoMdClose } from "react-icons/io";
+import ModalProduto from '../../modals/Modalproduto';
+import { ERRO_REQUISICAO, Notificacao, INFO } from '../../../funcoes/Alerta'
 
 const estadoInicial = {
     pedidos: []
@@ -33,52 +37,13 @@ export class SeusPedidos extends Component {
             dataType: 'json',
             contentType: 'application/json',
             success: function (resposta) {
-                     
-                // resposta.map(item => {
 
-
-                //     switch (  item.statusPedido.id) {
-                //         case 1:
-                //             $(`#${item.id}`).addClass('bg-success');
-                //           this.prev();
-                //           break;
-              
-                //         // case ARROW_RIGHT_KEYCODE:
-                //         //   event.preventDefault();
-                //         //   this.next();
-                //         //   break;
-              
-                //         default:
-                //       }
-
-                //     }),
-                
-
-                // resposta.map(item => {
-                //     let data = resposta.map(item => item.dataDoPedido);
-
-                //     var d1 = new Date(data),
-                //      d2 = new Date(d1);
-                //     d2.setMinutes(d1.getMinutes() + 30);
-                //     alert(d2);
-
-                //     let pedido = `${d2.getHours()}:${d2.getMinutes()} `
-
-                //    let  novaResposta = {...resposta, "pedido": pedido }
-
-                   this.setState({ pedidos: resposta });
-                  
-
-                //    console.log(novaResposta);
-                // })
-
-                // resposta.previsao = resposta.dataDoP 
-
+                this.setState({ pedidos: resposta });
 
             }.bind(this),
             error: function (data) {
 
-                console.log(data)
+                Notificacao(INFO, ERRO_REQUISICAO);
             }
         });
     }
@@ -86,6 +51,34 @@ export class SeusPedidos extends Component {
     render() {
         return (
             <main className="container pb-5">
+                             <ModalProduto show={this.state.isOpen} onClose={this.toggleModal}>
+                        <div className="d-flex flex-row-reverse bd-highlight mt-2 mb-2">
+                            <IoMdClose className="close"/>
+                        </div>   
+                        <div className="modal-header h-50 pt-0 ">                         
+                            <figure className="figure w-100 h-100">    
+                                {/* <img className="mx-auto rounded w-100 h-100"
+                                    src={this.state.item.foto.length == 0? FOTOLANCHEPADRAO : DOMINIO_IMG + this.state.item.foto[0].foto } 
+                                    alt={this.state.item.foto.length == 0? "foto produto" : this.state.item.foto[0].legenda }/> */}
+                            </figure>
+
+                        </div>
+                        <div className="modal-body ">
+                            <div className="modal-title">
+                                {/* <h3>{this.state.item.nome}</h3> */}
+                            </div>                            
+                            <div className="w-100 hm-25" style={{overflow: 'auto', height: 150}}>
+                                <p className="text-break">
+                                    {/* {this.state.item.descricao} */}
+                                </p>
+                            </div>
+                        </div>
+                        <div className="modal-footer">
+                            <p className="text-success">
+                                {/* R$ {this.state.item.preco} */}
+                            </p>
+                        </div>
+                </ModalProduto>
                 <div className="ml-2 border mx-auto text-center rounded mensagem-slogan mb-5">Rapidez  + Qualidade =  +Dinheiro +Clientes </div>
                 <div className="row mb-5 mx-auto select-data">
                     <div className="col-6 col-lg-9">
@@ -115,7 +108,6 @@ export class SeusPedidos extends Component {
 
                         <div className=" text-right pr-3">
 
-
                             <font className="text-success mr-3">Pedido: {item.pedido} </font><font className="text-info">Previsão:19:20</font>
 
                         </div>
@@ -127,8 +119,6 @@ export class SeusPedidos extends Component {
                             <ul className="list-group list-group-flush">
                                 <li className="list-group-item">
                                     <span className="font-weight-bold">{item.quantidade}x</span> {item.produto.nome}</li>
-                                {/* <li className="list-group-item">1x Refrigerante </li>
-                            <li className="list-group-item">2x Hamburguer Top</li> */}
                             </ul>
                         ))}
                         <div className="p-4 text-muted">
@@ -140,54 +130,6 @@ export class SeusPedidos extends Component {
                         </div>
                     </div >
                 ))}
-                <div className="card mx-auto mt-5 max slider">
-
-                    <div className="text-right pr-3 pt-2 mb-2">
-                        <span className="bg-success rounded-circle mr-2 circle"></span>
-                        <font className="">Em produção</font>
-                    </div>
-                    <div className=" text-right pr-3">
-                        <font className="text-success mr-3">Pedido: 18:35</font><font className="text-info">Previsão:19:20</font>
-                    </div>
-                    <div className="row mt-3">
-                        <span className="col col-sm col-md col-lg text-primary text-right pr-5">Saida de entrega: 19:00</span>
-                    </div>
-
-                    <ul className="list-group list-group-flush">
-                        <li className="list-group-item">2x Hamburguer Top</li>
-                    </ul>
-                    <div className="p-4 text-muted">
-
-                        <blockquote className="text-muted">Pedido realizado por: Sarah Rodrigues</blockquote>
-                        <blockquote className="text-success">Valor total: 50,30</blockquote>
-                        <blockquote className="text-muted h6">Obs: Lorem Ipsum é simplesmente uma simulação de texto da indústria  ...</blockquote>
-
-                    </div>
-                </div >
-                <div className="card mx-auto mt-5 max slider">
-                    <div className="text-right pr-3 pt-2 mb-2">
-                        <span className="bg-warning rounded-circle mr-2 circle"></span>
-                        <font className="">Espera</font>
-                    </div>
-                    <div className=" text-right pr-3">
-                        <font className="text-success mr-3">Pedido: 18:35</font><font className="text-info">Previsão:19:20</font>
-                    </div>
-                    <div className="row mt-3">
-                        <span className="col col-sm col-md col-lg text-danger text-right pr-5">Saida de entrega: 19:00</span>
-                    </div>
-
-                    <ul className="list-group list-group-flush">
-                        <li className="list-group-item">1x Refrigerante </li>
-                        <li className="list-group-item">2x Hamburguer Top</li>
-                    </ul>
-                    <div className="p-4 text-muted">
-
-                        <blockquote className="text-muted">Pedido realizado por: Sarah Rodrigues</blockquote>
-                        <blockquote className="text-success">Valor total: 50,30</blockquote>
-                        <blockquote className="text-muted h6">Obs: Lorem Ipsum é simplesmente uma simulação de texto da indústria  ...</blockquote>
-
-                    </div>
-                </div>
 
             </main >
         );

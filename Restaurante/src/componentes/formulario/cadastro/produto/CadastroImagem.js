@@ -4,7 +4,8 @@ import $ from 'jquery';
 import { DOMINIO, TOKEN, DOMINIO_IMG, ID_PRODUTO } from '../../../../link_config';
 import '../../../../recursos/js/AddImagem';
 import ImgProduto from '../../../../recursos/imgs/imagem-produto.png';
-import './style.css'
+import './style.css';
+import { ERRO_REQUISICAO, Notificacao, INFO } from "../../../../funcoes/Alerta"
 
 
 const initialState = {
@@ -55,7 +56,7 @@ export class CadastroImagem extends Component {
             }.bind(this),
             error: function (data) {
                
-                console.log('Erro:', data);
+                Notificacao(INFO, ERRO_REQUISICAO);
 
             }
         });

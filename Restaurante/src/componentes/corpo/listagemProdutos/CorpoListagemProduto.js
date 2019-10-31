@@ -5,6 +5,7 @@ import { FaSearch } from 'react-icons/fa';
 import { DOMINIO, TOKEN } from "../../../link_config"
 import ItensLista from './../../lista/ItensLista';
 import { InputGroup, FormControl, ListGroup, Container } from 'react-bootstrap';
+import { ERRO_REQUISICAO, INFO, Notificacao } from '../../../funcoes/Alerta'
 import { CorpoCemVh } from '../styled';
 import {  } from '../styled';
 
@@ -61,7 +62,7 @@ class CorpoListagemProduto extends Component {
             }.bind(this),
             error: function (data) {
 
-                console.log(data)
+                Notificacao(INFO, ERRO_REQUISICAO);
             }
         });
     }
