@@ -11,12 +11,22 @@ import $ from 'jquery';
 import { DOMINIO, TOKEN } from '../../../link_config';
 import { Link } from 'react-router-dom';
 import { CorpoCemVh } from '../styled';
+import { FaClipboardCheck } from 'react-icons/fa';
 
 //COMPONENTE DO CORPO DA PÁGINA DE LOGIN
 export const CorpoIndex = React.memo(class CorpoIndex extends Component {
 
     state = {
         nome: ''
+    }
+
+    componentDidMount(){
+        $("#pedidos-div").click(function(){
+            $("#pedidos").addClass("border-bottom-laranja");
+        });
+        $("#cadastrar-div").click(function(){
+            $("#cadastrar").addClass("border-bottom-laranja");
+        });
     }
 
     render() {
@@ -26,10 +36,10 @@ export const CorpoIndex = React.memo(class CorpoIndex extends Component {
                     <h1 className="mx-auto nome-restaurante"></h1>
                 </div>
                 <div className="row text-center mt-2 border-bottom">
-                        <h3 className="mx-auto">Painel Administrativo <span className="nome-restaurante"></span></h3>
+                    <h3 className="mx-auto">Painel Administrativo <span className="nome-restaurante"></span></h3>
                 </div>
                 <div className="row mt-5">
-                    <Link to="/restaurante" className="col col-sm col-md col-lg h4 nav-link text-dark">
+                    <Link to="/restaurante/pedidos"  id="pedidos-div" className="col col-sm col-md col-lg h4 nav-link text-dark">
                         < DivOpecoes theme={{ cor: 'marrom' }}>
                             <IconeOpcoes src={Pedido} />
                         </DivOpecoes>
@@ -37,7 +47,7 @@ export const CorpoIndex = React.memo(class CorpoIndex extends Component {
                             Pedido
                 </DivOpecoesTitulo>
                     </Link>
-                    <Link to="/restaurante/cadastro-produto" className="col col-sm col-md col-lg h4 nav-link text-dark">
+                    <Link to="/restaurante/cadastro-produto" id="cadastrar-div" className="col col-sm col-md col-lg h4 nav-link text-dark">
                         < DivOpecoes theme={{ cor: 'laranja' }}>
                             <IconeOpcoes src={Talher} />
                         </ DivOpecoes>

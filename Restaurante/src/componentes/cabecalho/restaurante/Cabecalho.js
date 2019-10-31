@@ -25,14 +25,14 @@ export class CabecalhoPaginaRestaurante extends Component {
     componentDidUpdate() {
 
         //RETIRA A MARCAÇÃO AO CLICAR EM OUTRA OPÇÃO
-        $('.menu').click(function () {
-            $('.menu').removeClass('border-bottom-laranja');
+        $('.menu-cabecalho').click(function () {
+            $('.menu-cabecalho').removeClass('border-bottom-laranja');
             $(this).addClass('border-bottom-laranja');
         });
 
         //RETIRA A MARCAÇÃO AO CLICAR NO LOGO
         $('.logo').click(function () {
-            $('.menu').removeClass('border-bottom-laranja');
+            $('.menu-cabecalho').removeClass('border-bottom-laranja');
         });
 
         const nome = localStorage.getItem("nome");
@@ -90,14 +90,14 @@ export class CabecalhoPaginaRestaurante extends Component {
                 <div className="collapse navbar-collapse bg-light" id="conteudoNavbarSuportado">
                     <ul className="navbar-nav ml-auto bg-light">
                         <Li className="nav-item menu" maxWidth="80px">
-                            <Link className="nav-link text-secondary menu" to="/restaurante/pedidos" >Pedidos</Link>
+                            <Link className="nav-link text-secondary menu-cabecalho" to="/restaurante/pedidos" id="pedidos">Pedidos</Link>
                         </Li>
                         <Li className="nav-item menu" maxWidth="150px">
-                            <Link className="nav-link text-secondary menu" to="/restaurante/cadastro-produto">Cadastrar Produto</Link>
+                            <Link className="nav-link text-secondary menu-cabecalho" to="/restaurante/cadastro-produto" id="cadastrar">Cadastrar Produto</Link>
 
                         </Li>
                         <Li className="nav-item menu" maxWidth="180px">
-                            <Link className="nav-link text-secondary menu" to="/restaurante/visualizar-produto">Catálogo de Produtos</Link>
+                            <Link className="nav-link text-secondary menu-cabecalho" to="/restaurante/visualizar-produto">Catálogo de Produtos</Link>
                         </Li>
 
                     </ul>
