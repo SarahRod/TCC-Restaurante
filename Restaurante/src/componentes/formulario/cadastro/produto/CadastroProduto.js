@@ -173,6 +173,7 @@ class CadastroProduto extends Component {
 
                 $("#btn-lixeira").removeClass("d-none");
                 $("#btn-switch").removeClass("d-none");
+                $('#btn-status').attr("checked", "checked");
 
 
 
