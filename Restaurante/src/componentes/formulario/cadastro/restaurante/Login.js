@@ -218,7 +218,7 @@ class FormularioLogin extends Component {
                         placeholder="Confirmar Senha" value={this.state.restaurante.confirmarSenha} onChange={e => this.atualizaCampo(e)} />
                 </div>
                 <div className="row justify-content-end">
-                    <BotaoLink to="/bem-vindo" onClick={e => this.validaCampos(e)} className="col-4 col-sm-4 col-md-4 col-lg-4 btn-orange mr-3" texto="Próximo" />
+                    <BotaoLink onClick={e => this.validaCampos(e)} className="col-4 col-sm-4 col-md-4 col-lg-4 btn-orange mr-3" texto="Próximo" />
                 </div>
 
             </form>
