@@ -100,6 +100,10 @@ export class CabecalhoPaginaRestaurante extends Component {
                         <Li className="nav-item menu" maxWidth="180px">
                             <Link className="nav-link text-secondary menu-cabecalho" to="/restaurante/visualizar-produto">Catálogo de Produtos</Link>
                         </Li>
+                        <Li className="nav-item menu" maxWidth="150px">
+                            <Link className="nav-link text-secondary menu" to="/restaurante/cadastro-template">Meu site</Link>
+
+                        </Li>
 
                     </ul>
 
