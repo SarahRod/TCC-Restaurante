@@ -61,11 +61,13 @@
                         src="https://cdn3.iconfinder.com/data/icons/fast-food-outline-2/427/burger_hamburger_meat_cheese_food_meal_fast_restaurant_junk_fastfood-64.png"
                         alt="Icone Hambúguer" />
                 </figure>
+
                 <figure class="figure my-auto">
                     <img class="m-1" style="max-height: 64px"
                         src="https://cdn3.iconfinder.com/data/icons/fast-food-outline-2/439/pizza_italian_cheese_slice_tomato_food_meal_fast_restaurant_junk_fastfood-64.png"
                         alt="Icone Pizza" />
                 </figure>
+                
                 <figure class="figure my-auto">
                     <img class="m-1" style="max-height: 64px"
                         src="https://cdn0.iconfinder.com/data/icons/fastfood-29/64/cup-soft-drink-water-takeaway-fastfood-cola-64.png"
@@ -83,104 +85,9 @@
                 <li data-target="#ProdutosRestaurante" data-slide-to="1"></li>
                 <li data-target="#ProdutosRestaurante" data-slide-to="2"></li>
             </ol>
-            <div class="carousel-inner">
+            <div id="boxCarousel" class="carousel-inner">
 
                 <!-- Item Carousel -->
-                <div class="carousel-item active ">
-
-                    <div class="d-flex justify-content-around p-3">
-
-                        <div class="card mb-2 float-left" style="width: 18rem;">
-                            <img class="card-img-top"
-                                src="https://png.pngtree.com/element_pic/17/07/26/eb63d3b8ae4d2a1de45ba95e6d5b53ae.jpg"
-                                alt="Card image cap">
-                            <div class="card-body">
-                                <h5 id="nomeProduto" class="card-title text-center">
-                                    <!-- Nome Produto -->
-                                </h5>
-                                <p id="desProduto" class="card-text">
-                                    <!-- Descrição Produto     -->
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Itens Carousel -->
-                <div class="carousel-item">
-                    <div class="d-flex justify-content-around p-3">
-
-                        <div class="card mb-2 float-left" style="max-width: 18rem;">
-
-                            <img class="card-img-top"
-                                src="https://png.pngtree.com/element_pic/17/07/26/eb63d3b8ae4d2a1de45ba95e6d5b53ae.jpg"
-                                alt="Card image cap">
-                            <div class="card-body">
-                                <h5 id="prod01" class="card-title text-center">Burguer</h5>
-                                <p id="descProd" class="card-text">Some quick example text to build on the card title
-                                    and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                        <div class="card mb-2 float-left" style="width: 18rem;">
-                            <img class="card-img-top"
-                                src="https://png.pngtree.com/element_pic/17/07/26/eb63d3b8ae4d2a1de45ba95e6d5b53ae.jpg"
-                                alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Burguer</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.</p>
-                            </div>
-                        </div>
-                        <div class="card mb-2 float-left" style="width: 18rem;">
-                            <img class="card-img-top"
-                                src="https://png.pngtree.com/element_pic/17/07/26/eb63d3b8ae4d2a1de45ba95e6d5b53ae.jpg"
-                                alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Burguer</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Itens Carousel -->
-                <div class="carousel-item">
-                    <div class="d-flex justify-content-around p-3">
-                        <div class="card mb-2 float-left" style="width: 18rem;">
-                            <img class="card-img-top"
-                                src="https://png.pngtree.com/element_pic/17/07/26/eb63d3b8ae4d2a1de45ba95e6d5b53ae.jpg"
-                                alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Burguer</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.</p>
-                            </div>
-                        </div>
-                        <div class="card mb-2 float-left" style="width: 18rem;">
-                            <img class="card-img-top"
-                                src="https://png.pngtree.com/element_pic/17/07/26/eb63d3b8ae4d2a1de45ba95e6d5b53ae.jpg"
-                                alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Burguer</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.</p>
-                            </div>
-                        </div>
-                        <div class="card mb-2 float-left" style="width: 18rem;">
-                            <img class="card-img-top"
-                                src="https://png.pngtree.com/element_pic/17/07/26/eb63d3b8ae4d2a1de45ba95e6d5b53ae.jpg"
-                                alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Burguer</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
             <!-- SETAS -->
             <a class="carousel-control-prev" href="#ProdutosRestaurante" role="button" data-slide="prev">
@@ -240,7 +147,7 @@
 
             const idRestaurante = 153;
             const DOMAIN = "http://localhost:8080";
-            const TOKEN = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJydWJ1cmd1ZXJAZ21haWwuY29tIiwiZXhwIjoxNTcyMjkzODk1LCJpYXQiOjE1NzIyNzU4OTV9.NSME94dwrrP3Pw1xDDAlw3svinqntgJs2I_MNx68CuM6Jyy0LMr9mmKgoY5kBBBDylMEMznUDmSh3HRN09rfuw"; 
+            const TOKEN = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJydWJ1cmd1ZXJAZ21haWwuY29tIiwiZXhwIjoxNTcyMzgwMjI3LCJpYXQiOjE1NzIzNjIyMjd9.cVAUmP1pC7rjrbodkcF_e30eZp4TgyTji3wUEY14oZVocSJBYu-R0l9EkroKYny44-crtzuZmZUjZEtVnHW3ng"; 
 
             function buscarRestaurante() {
 
@@ -260,6 +167,60 @@
                         // $(".nomeRes").text(resposta.restaurante.razaoSocial);
                         // $("#cityRes").text(resposta.restaurante.endereco.cidade.cidade);
                         // $(".logo").attr("src", resposta.restaurante.foto);
+
+                    }.bind(this),
+                    error: function (data) {
+
+                        console.log(data)
+                    }
+                });
+            }
+			
+			function produto(resposta){
+                
+                var rubens = [];
+                
+                for(let cont = 0; cont < 3; cont++){
+
+                    rubens.push(resposta.shift());
+                }
+                console.log(rubens)
+                return rubens
+            } 
+
+            function carousel(){
+                
+                $.ajax({
+                    url: "https://servicodados.ibge.gov.br/api/v1/localidades/mesorregioes",
+                    method: 'get',
+                    headers:{token: TOKEN},
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    success: function (resposta) {
+
+                    for(let cont = 0; cont < 3; cont++){
+                            
+                        if(cont == 0){
+
+                            $(".carousel-inner").append($(`<div class="carousel-item active">`).append($(`<div class="abc d-flex justify-content-around p-3">`)))
+
+                        }else{
+                            $(".carousel-inner").append($(`<div class="carousel-item ">`).append($(`<div class="abc d-flex justify-content-around p-3">`)))
+                        }
+
+                        var teste = produto(resposta)
+                        
+                        for(let i in teste){
+                            
+                            $(".abc").append($(`<div class="card mb-2 float-left" style="width: 18rem;">`)
+                                    .append($(`<img class="card-img-top" alt="Card image cap">`).attr("src","https://png.pngtree.com/element_pic/17/07/26/eb63d3b8ae4d2a1de45ba95e6d5b53ae.jpg"))
+                                .append($(`<div class="card-body">`)
+                                    .append($(`<h5 class="card-title text-center">`).text(teste[i].id))
+                                    .append($(`<p class="card-text">`).text(teste[i].nome))
+                                )   
+                            )  
+                        }
+                    }
 
                     }.bind(this),
                     error: function (data) {
@@ -292,6 +253,8 @@
                                     ))
                         }
 
+                        console.log(Object.keys(resposta).length)
+
                     }.bind(this),
                     error: function (data) {
 
@@ -300,53 +263,68 @@
                 });
             }
 
-            function buscarCategoriasRestaurante() {
+            // function buscarCategoriasRestaurante() {
 
-                url = DOMAIN + `/categoriaproduto/categorias/${idRestaurante}`;
+            //     url = DOMAIN + `/categoriaproduto/categorias/${idRestaurante}`;
 
-                $.ajax({
+            //     $.ajax({
 
-                    url: url,
-                    method: 'get',
-                    dataType: 'json',
-                    contentType: 'application/json',
-                    success: function (resposta) {
+            //         url: url,
+            //         method: 'get',
+            //         dataType: 'json',
+            //         contentType: 'application/json',
+            //         success: function (resposta) {
 
-                        const idCategoria = JSON.stringify(resposta[0].id)
+            //             if(Object.keys(resposta).length <= 3){
 
-                        console.log(resposta[0].id);
+            //                 $("#boxCarousel").append($(`<div class="carousel-item active ">`))
 
-                        buscarProdutosCategoria(idCategoria)
+            //             }
+                        
+            //             if(Object.keys(resposta).length <= 6){
+                            
+            //                 $("#boxCarousel").append($(`<div class="carousel-item">`))
 
-                    }.bind(this),
-                    error: function (data) {
+            //             }else{
 
-                        console.log(data)
-                    }
-                });
-            }
+            //             }
 
-            function buscarProdutosCategoria(idCategoria) {
+            //             for(let i in resposta){
 
-                url = DOMAIN + `/categoriaproduto/restaurantes/${idRestaurante}/categorias/${idCategoria}`;
+            //                 const idCategoria = JSON.stringify(resposta[i].id)
 
-                $.ajax({
+            //                 buscarProdutosCategoria(idCategoria)
+            //             }
 
-                    url: url,
-                    method: 'get',
-                    dataType: 'json',
-                    contentType: 'application/json',
-                    success: function (resposta) {
+            //         }.bind(this),
+            //         error: function (data) {
 
-                        console.log(resposta)
+            //             console.log(data)
+            //         }
+            //     });
+            // }
 
-                    }.bind(this),
-                    error: function (data) {
+            // function buscarProdutosCategoria(idCategoria) {
 
-                        console.log(data)
-                    }
-                });
-            }
+            //     url = DOMAIN + `/categoriaproduto/restaurantes/${idRestaurante}/categorias/${idCategoria}`;''
+
+            //     $.ajax({
+
+            //         url: url,
+            //         method: 'get',
+            //         dataType: 'json',
+            //         contentType: 'application/json',
+            //         success: function (resposta) {
+
+            //             // console.log(Object.keys(resposta).length)
+
+            //         }.bind(this),
+            //         error: function (data) {
+
+            //             console.log(data)
+            //         }
+            //     });
+            // }
 
             function galeria(){
 
@@ -364,10 +342,9 @@
 
                             $("#boxGaleria").append($(`<figure class="col-md-4 float-left">`)
                                 .append($(`<a href="" data-size="1600x1067">`).attr("href", resposta.id)
-                                    .append($(`<img alt="picture" src="" class="img-fluid"`).attr("src", resposta.id)
+                                    .append($(`<img alt="picture" src="" class="img-fluid"/>`).attr("src", resposta.id)
                                     )))
                                 }
-
                     }.bind(this),
                     error: function (data) {
 
@@ -376,10 +353,11 @@
                 });
             }
 
+            carousel();
             galeria();
             maisVendidos();
             buscarRestaurante();
-            buscarCategoriasRestaurante();
+            // buscarCategoriasRestaurante();
         });
     </script>
 </body>
