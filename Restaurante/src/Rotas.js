@@ -47,13 +47,6 @@ export class RotaPaginas extends Component {
                     <Route
                         path="/cadastro" render={({ match: { url } }) => (
                             <Fragment>
-
-                                <CabecalhoPaginaRestaurante />
-                                <PrivateRoute path={`${url}/`} component={CorpoIndex} exact />
-                                <PrivateRoute path={`${url}/cadastro-produto/:id?`} component={CadastroProduto} />
-                                <PrivateRoute path={`${url}/visualizar-produto`} component={CorpoListagemProdutos} />
-                                <PrivateRoute path={`${url}/cadastro-template`} component={CadastroTemplate}/>   
-
                                 <Route path={`${url}/`} exact component={FormularioDados} />
                                 <PrivateRoute path={`${url}/endereco`} component={FormularioEndereco} exact />
                                 <PrivateRoute path={`${url}/login`} component={FormularioLogin} />
@@ -72,6 +65,7 @@ export class RotaPaginas extends Component {
                             <PrivateRoute path={`${url}/pedidos`} component={SeusPedidos} exact />
                             <PrivateRoute path={`${url}/cadastro-produto/:id?`} component={CadastroProduto} />
                             <PrivateRoute path={`${url}/visualizar-produto`} component={CorpoListagemProdutos} />
+                            <PrivateRoute path={`${url}/cadastro-template`} component={CadastroTemplate}/>   
                             <Rodape />
                         </Fragment>
 
