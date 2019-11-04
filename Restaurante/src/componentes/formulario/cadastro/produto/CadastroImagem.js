@@ -4,7 +4,8 @@ import $ from 'jquery';
 import { DOMINIO, TOKEN, DOMINIO_IMG, ID_PRODUTO } from '../../../../link_config';
 import '../../../../recursos/js/AddImagem';
 import ImgProduto from '../../../../recursos/imgs/imagem-produto.png';
-import './style.css'
+import './style.css';
+import { ERRO_REQUISICAO, Notificacao, INFO } from "../../../../funcoes/Alerta"
 
 
 const initialState = {
@@ -55,7 +56,7 @@ export class CadastroImagem extends Component {
             }.bind(this),
             error: function (data) {
                
-                console.log('Erro:', data);
+                Notificacao(INFO, ERRO_REQUISICAO);
 
             }
         });
@@ -135,6 +136,8 @@ export class CadastroImagem extends Component {
 
         const url = `${DOMINIO}/foto/produto`;
 
+        let token = localStorage.getItem('token')
+
         //FAZ O UPLOAD DA FOTO
         var formData = new FormData();
         var files = $("#foto")[0].files[0];
@@ -144,27 +147,30 @@ export class CadastroImagem extends Component {
         formData.append('id', idProduto);
 
 
-        $.ajax({
-            url: url,
-            type: 'post',
-            data: formData,
-            headers: { 'token': TOKEN },
-            contentType: false,
-            processData: false,
-            success: function (resposta) {
-
-                this.setState({ ...initialState })
-
-
-
-                this.visualizarImgSalva()
-
-            }.bind(this),
-            error: function (data) {
-                console.log('Erro:', data);
-
-            }
-        });
+        if(token != ''){
+            $.ajax({
+                url: url,
+                type: 'post',
+                data: formData,
+                headers: { 'token': token},
+                contentType: false,
+                processData: false,
+                success: function (resposta) {
+    
+                    this.setState({ ...initialState })
+    
+    
+    
+                    this.visualizarImgSalva()
+    
+                }.bind(this),
+                error: function (data) {
+                    console.log('Erro:', data);
+    
+                }
+            });
+        }
+      
     }
 
 

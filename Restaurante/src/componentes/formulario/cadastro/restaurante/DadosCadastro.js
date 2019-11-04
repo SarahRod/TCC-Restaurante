@@ -8,7 +8,7 @@ import { BotaoLink } from '../../../globais/botao/Botao';
 import Corpo from '../../../corpo/Corpo';
 import $ from 'jquery';
 import { DOMINIO } from '../../../../link_config';
-import { ERRO, Notificacao, CAMPO_VAZIO, ERRO_CONEXAO, USUARIO_INVALIDO, NOME_MINIMO, ERRO_CNPJ } from '../../../../funcoes/Alerta';
+import { ERRO, Notificacao, CAMPO_VAZIO, ERRO_CONEXAO, NOME_MINIMO, ERRO_CNPJ, INFO, ERRO_REQUISICAO } from '../../../../funcoes/Alerta';
 
 
 /*PROPRIEDADES DO CABEÇALHO*/
@@ -42,7 +42,7 @@ class FormularioDados extends Component {
     };
 
     //REDIRECIONA O COMPONENTE VALIDADO
-    campoValidado(e) {
+    campoValidado() {
         const restaurante = { ...this.state.restaurante }
         sessionStorage.setItem('dados', JSON.stringify(restaurante));
 
@@ -55,11 +55,7 @@ class FormularioDados extends Component {
     }
 
     //ENVIA OS DADOS DO FORMULÁRIO PARA O SESSION STORAGE
-    validaCampos(e) {
-        e.preventDefault();
-
-        const restaurante = this.state.restaurante;
-        const cnpj = restaurante.cnpj.replace("/", "@");
+    validaCampos() {      
 
         const bordasCampoVazio = 'border border-danger';
 
@@ -80,8 +76,21 @@ class FormularioDados extends Component {
             Notificacao(ERRO, CAMPO_VAZIO);
         } else if ($('#razaoSocial').val().length < 3) {
             Notificacao(ERRO, NOME_MINIMO);
+        }else if($('#cnpj').val() != '' && $('#razaoSocial').val() != '' && $('#telefone').val() != ''){
+            this.campoValidado();
         }
+        
 
+    }
+
+    validaCNPJ(e){
+
+        const restaurante = this.state.restaurante;
+        sessionStorage.setItem('dados', JSON.stringify(restaurante));
+        
+      
+
+        const cnpj = restaurante.cnpj.replace("/", "@");
 
         //REALIZA AS REQUISIÇÕES NA API DE VALIDAÇÃO
         const URL_CNPJ = `${DOMINIO}/restaurante/valida/cnpj/${cnpj}`;
@@ -92,7 +101,7 @@ class FormularioDados extends Component {
             type: 'GET',
             success: function (data) {
                 if (data) {
-                    this.campoValidado(data);
+                    this.validaCampos(data);
 
                 } else {
                     Notificacao(ERRO, ERRO_CNPJ);
@@ -101,7 +110,8 @@ class FormularioDados extends Component {
             }.bind(this),
             error: function (data) {
 
-                Notificacao(ERRO, ERRO_CONEXAO);
+            
+                Notificacao(INFO, ERRO_REQUISICAO);
 
             }
         });
@@ -161,7 +171,7 @@ class FormularioDados extends Component {
                 </div>
                 {/*LINHA DO  BOTÃO COM A ROTA PARA O PRÓXIMA PÁGINA  */}
                 <div className="row justify-content-end">
-                    <BotaoLink onClick={e => this.validaCampos(e)} to="/cadastro/endereco" className="col-4 col-sm-4 col-md-4 col-lg-4 btn-orange mr-3" texto="Próximo" />
+                    <BotaoLink onClick={e => this.validaCNPJ(e)} className="col-4 col-sm-4 col-md-4 col-lg-4 btn-orange mr-3" texto="Próximo" />
                 </div>
             </form>
         )

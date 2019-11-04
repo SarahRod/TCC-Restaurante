@@ -7,7 +7,7 @@ import $ from 'jquery';
 import { DOMINIO, TOKEN } from '../../../link_config';
 import { withRouter } from 'react-router-dom';
 import PropTypes from "prop-types";
-import { ERRO, Notificacao, CAMPO_VAZIO, ERRO_CONEXAO, USUARIO_INVALIDO } from '../../../funcoes/Alerta';
+import { ERRO, Notificacao, CAMPO_VAZIO, ERRO_CONEXAO, USUARIO_INVALIDO, ERRO_REQUISICAO } from '../../../funcoes/Alerta';
 
 //ARMAZENA OS ESTADOS INICIAIS
 const initialState = {
@@ -66,7 +66,7 @@ class FormularioLogin extends Component {
 
             }.bind(this),
             error: function (data) {
-                Notificacao(ERRO, ERRO_CONEXAO);
+                Notificacao(ERRO, ERRO_REQUISICAO);
             }
         });
     }

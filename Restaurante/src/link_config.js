@@ -5,4 +5,4 @@ export const FOTOLANCHEPADRAO = "https://encrypted-tbn0.gstatic.com/images?q=tbn
 export const FOTORESTAURANTEPADRAO = "https://icon-library.net/images/restaurant-icon-transparent/restaurant-icon-transparent-28.jpg";
 export const TOKEN = localStorage.getItem('token');
 export const ID_PRODUTO = sessionStorage.getItem('id_produto');
-
+export const CORES_STATUS = ["text-secondary", "text-info", "bg-success", "bg-warning", "bg-primary"];

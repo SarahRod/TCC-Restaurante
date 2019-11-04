@@ -171,6 +171,10 @@ class CadastroProduto extends Component {
 
                 this.props.history.push(`/restaurante/cadastro-produto/${resposta.id}`);
 
+                $("#btn-lixeira").removeClass("d-none");
+                $("#btn-switch").removeClass("d-none");
+                $('#btn-status').attr("checked", "checked");
+
 
 
             }.bind(this),

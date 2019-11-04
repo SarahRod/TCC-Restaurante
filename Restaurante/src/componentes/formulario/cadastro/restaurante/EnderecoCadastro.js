@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from "prop-types";
 import Corpo from '../../../corpo/Corpo';
 import { DOMINIO } from '../../../../link_config';
+import { ERRO, Notificacao, CAMPO_VAZIO } from '../../../../funcoes/Alerta';
 
 /*PROPRIEDADES DO CABEÇALHO*/
 const propriedadesCabecalho = {
@@ -67,13 +68,6 @@ class FormularioEndereco extends Component {
 
     }
 
-    //MENSAGEM DE ERRO DA VALIDAÇÃO
-    erroValidacao(e) {
-
-        this.setState({ classErro: 'alert show alert-danger', textoErro: `Preencha os campos corretamente` })
-
-    }
-
     //ENVIA OS DADOS DO FORMULÁRIO PARA O SESSION STORAGE
     validaCampos(e) {
         e.preventDefault();
@@ -108,7 +102,7 @@ class FormularioEndereco extends Component {
         if (!$('#cep').val() || !$('#logradouro').val() || !$('#bairro').val() ||
             !$('#sql_cidade').val() || !$('#sql_cidade').val() || !$('#numero').val()) {
 
-            this.erroValidacao(e)
+            Notificacao(ERRO, CAMPO_VAZIO);
         } else {
             this.enviaFormulario(e)
         }
@@ -165,6 +159,12 @@ class FormularioEndereco extends Component {
 
         //Máscaras do campos
         $("#cep").mask("99999-999");
+
+        let tamanhoCep = this.state.restaurante.cep;
+
+        if(tamanhoCep.length == 8){
+            this.atualizaCamposViaCep();
+        }
 
         const bordasCampoVazio = 'border border-danger';
 
@@ -240,11 +240,10 @@ class FormularioEndereco extends Component {
         return (
 
             <form className="form-group mt-5">
-                <span className={this.state.classErro}>{this.state.textoErro}</span>
                 <Label className="h2 mb-1" texto="Endereço do restaurante" />
                 <div className="row mt-4 mb-4">
                     <InputCadastro className="col col-sm p-1 col-md col-lg p-1 ml-3 mr-3" id="cep" name="cep" type="text"
-                        placeholder="CEP" value={this.state.restaurante.cep} onFocus={e => this.atualizaCamposViaCep(e)} onChange={e => this.atualizaCampo(e)} />
+                        placeholder="CEP" value={this.state.restaurante.cep}  onChange={e => this.atualizaCampo(e)} />
                     <InputCadastro className="col col-sm-5 col-md-5 col-lg-5 p-1 mr-3" id="logradouro" name="logradouro" type="text"
                         placeholder="Logradouro" value={this.state.restaurante.longradouro} onChange={e => this.atualizaCampo(e)} />
                     <InputCadastro className="col col-sm col-md col-lg p-1 mr-3" id="bairro" name="bairro" type="text"
@@ -283,7 +282,7 @@ class FormularioEndereco extends Component {
                 </div>
                 {/*LINHA DO  BOTÃO COM A ROTA PARA O PRÓXIMA PÁGINA  */}
                 <div className="row justify-content-end">
-                    <BotaoLink to="/cadastro/login" onClick={e => this.validaCampos(e)} className="col-3 col-sm-3 col-md-3 col-lg-3 btn-orange mr-3" texto="Próximo" />
+                    <BotaoLink onClick={e => this.validaCampos(e)} className="col-3 col-sm-3 col-md-3 col-lg-3 btn-orange mr-3" texto="Próximo" />
                 </div>
             </form>
         )
