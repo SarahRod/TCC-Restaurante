@@ -1,9 +1,11 @@
 import React, { Component, Fragment } from 'react';
-import FormularioDados from './componentes/formulario/cadastro/dadosCadastro/DadosCadastro';
-import FormularioEndereco from './componentes/formulario/cadastro/enderecoCadastro/EnderecoCadastro';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import FormularioLogin from './componentes/formulario/cadastro/login/Login';
-import { FormularioBemVindo } from './componentes/formulario/cadastro/bemVindo/BemVindo'
+
+import FormularioDados from './componentes/formulario/cadastro/restaurante/DadosCadastro';
+import FormularioEndereco from './componentes/formulario/cadastro/restaurante/EnderecoCadastro';
+import FormularioLogin from './componentes/formulario/cadastro/restaurante/Login';
+import FormularioBemVindo from './componentes/formulario/cadastro/restaurante/BemVindo'
+
 import { PaginaLogin } from './paginas/login/PaginaLogin';
 import { Rodape } from './componentes/rodape/cadastro/rodape';
 import CorpoListagemProdutos from "./componentes/corpo/listagemProdutos/CorpoListagemProduto";
@@ -12,6 +14,8 @@ import CabecalhoPaginaRestaurante from './componentes/cabecalho/restaurante/Cabe
 import { CorpoIndex } from './componentes/corpo/index/Corpo';
 import TemplateRestaurante from './componentes/corpo/template/TemplateRestaurante';
 import {CadastroTemplate} from './componentes/formulario/cadastro/template/CadastroTemplate';
+import ErrorNotFound from './componentes/error';
+import { SeusPedidos } from './componentes/corpo/pedidos';
 
 export const estaAutenticado = () => localStorage.getItem("token") != null || sessionStorage.getItem("dados") != null;
 
@@ -32,47 +36,59 @@ export class RotaPaginas extends Component {
 
     render() {
         return (
-            <Fragment>
-                <BrowserRouter>
-                    <Switch>
 
-                        <Route path="/" exact component={PaginaLogin} />
+            <BrowserRouter>
+                <Switch>
 
-                        <Route
-                            path="/cadastro" render={({ match: { url } }) => (
-                                <Fragment>
-                                    <Route path={`${url}/`} component={FormularioDados} exact />
-                                    <PrivateRoute path={`${url}/endereco`} component={FormularioEndereco} />
-                                    <PrivateRoute path={`${url}/login`} component={FormularioLogin} />
-                                    <PrivateRoute path={`${url}/bem-vindo`} component={FormularioBemVindo} />
-                                    <Rodape />
-                                </Fragment>
+                    <Route path="/" exact component={PaginaLogin} />
 
-                            )}
-                        />
 
-                        <Route path="/restaurante" render={({ match: { url } }) => (
+
+                    <Route
+                        path="/cadastro" render={({ match: { url } }) => (
                             <Fragment>
+
                                 <CabecalhoPaginaRestaurante />
                                 <PrivateRoute path={`${url}/`} component={CorpoIndex} exact />
                                 <PrivateRoute path={`${url}/cadastro-produto/:id?`} component={CadastroProduto} />
                                 <PrivateRoute path={`${url}/visualizar-produto`} component={CorpoListagemProdutos} />
                                 <PrivateRoute path={`${url}/cadastro-template`} component={CadastroTemplate}/>   
+
+                                <Route path={`${url}/`} exact component={FormularioDados} />
+                                <PrivateRoute path={`${url}/endereco`} component={FormularioEndereco} exact />
+                                <PrivateRoute path={`${url}/login`} component={FormularioLogin} />
+                                <PrivateRoute path={`${url}/bem-vindo`} component={FormularioBemVindo} />
+
                                 <Rodape />
                             </Fragment>
 
                         )}
-                        />
-                        
-                        <Route path="/corpo" render={({ match: { url } }) => (
+                    />
 
-                            <Route path={`${url}/TemplateRestaurante`} component={TemplateRestaurante} />
+                    <Route path="/restaurante" render={({ match: { url } }) => (
+                        <Fragment>
+                            <CabecalhoPaginaRestaurante />
+                            <PrivateRoute path={`${url}/`} component={CorpoIndex} exact />
+                            <PrivateRoute path={`${url}/pedidos`} component={SeusPedidos} exact />
+                            <PrivateRoute path={`${url}/cadastro-produto/:id?`} component={CadastroProduto} />
+                            <PrivateRoute path={`${url}/visualizar-produto`} component={CorpoListagemProdutos} />
+                            <Rodape />
+                        </Fragment>
 
-                        )}/>
+                    )}
+                    />
 
-                    </Switch>
-                </ BrowserRouter>
-            </Fragment>
+                    <Route path="/corpo" render={({ match: { url } }) => (
+
+                        <Route path={`${url}/TemplateRestaurante`} component={TemplateRestaurante} />
+
+                    )} />
+
+                    <Route path='*' component={ErrorNotFound} />
+
+                </Switch>
+            </ BrowserRouter>
+
         )
     }
 }
