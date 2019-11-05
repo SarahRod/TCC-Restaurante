@@ -19,17 +19,15 @@ import { getRestaurante } from '../../cabecalho/restaurante/actions';
 //COMPONENTE DO CORPO DA PÁGINA DE LOGIN
 const CorpoIndex = React.memo(class CorpoIndex extends Component {
 
-    componentDidMount(){
+    componentWillMount() {
+        this.props.getRestaurante();
+
         $("#pedidos-div").click(function(){
             $("#pedidos").addClass("border-bottom-laranja");
         });
         $("#cadastrar-div").click(function(){
             $("#cadastrar").addClass("border-bottom-laranja");
         });
-    }
-
-    componentWillMount() {
-        this.props.getRestaurante();
     };
 
     render() {

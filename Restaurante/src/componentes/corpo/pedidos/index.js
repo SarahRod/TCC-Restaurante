@@ -80,30 +80,28 @@ export class SeusPedidos extends Component {
     }
 
     pedidosEntregue(){
-        // let id = localStorage.getItem("id");
-        // let token = localStorage.getItem("token");
+        let id = localStorage.getItem("id");
+        let token = localStorage.getItem("token");
 
-        // const url = `${DOMINIO}/pedidos/emabertos/${id}`;
+        const url = `${DOMINIO}/pedidos/entregue/${id}`;
 
-        // $.ajax({
-        //     url: url,
-        //     method: 'get',
-        //     headers: { "token": token },
-        //     dataType: 'json',
-        //     contentType: 'application/json',
-        //     success: function (data) {
+        $.ajax({
+            url: url,
+            method: 'get',
+            headers: { "token": token },
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (data) {
                
-        //     let dados =  resposta.concat(data);
-
-        //     this.setState({pedidos: dados});
+            
 
 
-        //     }.bind(this),
-        //     error: function (data) {
+            }.bind(this),
+            error: function (data) {
 
-        //         Notificacao(INFO, ERRO_REQUISICAO);
-        //     }
-        // });
+                Notificacao(INFO, ERRO_REQUISICAO);
+            }
+        });
     }
 
     render() {
