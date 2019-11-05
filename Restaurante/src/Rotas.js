@@ -11,7 +11,7 @@ import { Rodape } from './componentes/rodape/cadastro/rodape';
 import CorpoListagemProdutos from "./componentes/corpo/listagemProdutos/CorpoListagemProduto";
 import CadastroProduto from "./componentes/formulario/cadastro/produto/CadastroProduto";
 import CabecalhoPaginaRestaurante from './componentes/cabecalho/restaurante/Cabecalho';
-import { CorpoIndex } from './componentes/corpo/index/Corpo';
+import  CorpoIndex from './componentes/corpo/index/Corpo';
 import TemplateRestaurante from './componentes/corpo/template/TemplateRestaurante';
 import {CadastroTemplate} from './componentes/formulario/cadastro/template/CadastroTemplate';
 import ErrorNotFound from './componentes/error';

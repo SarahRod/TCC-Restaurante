@@ -12,13 +12,12 @@ import { DOMINIO, TOKEN } from '../../../link_config';
 import { Link } from 'react-router-dom';
 import { CorpoCemVh } from '../styled';
 import { FaClipboardCheck } from 'react-icons/fa';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import { getRestaurante } from '../../cabecalho/restaurante/actions';
 
 //COMPONENTE DO CORPO DA PÁGINA DE LOGIN
-export const CorpoIndex = React.memo(class CorpoIndex extends Component {
-
-    state = {
-        nome: ''
-    }
+const CorpoIndex = React.memo(class CorpoIndex extends Component {
 
     componentDidMount(){
         $("#pedidos-div").click(function(){
@@ -29,14 +28,20 @@ export const CorpoIndex = React.memo(class CorpoIndex extends Component {
         });
     }
 
+    componentWillMount() {
+        this.props.getRestaurante();
+    };
+
     render() {
+        const { razaoSocial } = this.props.restaurante;
         return (
             <CorpoCemVh className="mx-auto">
                 <div className="row text-center mt-3">
-                    <h1 className="mx-auto nome-restaurante"></h1>
+                    <h1 className="mx-auto nome-restaurante">{ razaoSocial }</h1>
                 </div>
                 <div className="row text-center mt-2 border-bottom">
-                    <h3 className="mx-auto">Painel Administrativo <span className="nome-restaurante"></span></h3>
+                    <h3 className="mx-auto">Painel Administrativo { razaoSocial } </h3>
+
                 </div>
                 <div className="row mt-5">
                     <Link to="/restaurante/pedidos"  id="pedidos-div" className="col col-sm col-md col-lg h4 nav-link text-dark">
@@ -81,3 +86,7 @@ export const CorpoIndex = React.memo(class CorpoIndex extends Component {
     }
 
 });
+
+const mapStateToProps = state => ({restaurante: state.restaurante.restaurante});
+const mapDispatchToProps = dispatch => bindActionCreators({getRestaurante}, dispatch);
+export default connect(mapStateToProps, mapDispatchToProps)(CorpoIndex);

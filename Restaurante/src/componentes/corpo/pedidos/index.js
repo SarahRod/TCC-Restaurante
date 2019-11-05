@@ -26,12 +26,10 @@ export class SeusPedidos extends Component {
 
     visualizarPedidos(e) {
 
-        this.setState({ estadoInicial: [] });
-
         let id = localStorage.getItem("id");
         let token = localStorage.getItem("token");
 
-        const url = `${DOMINIO}/pedidos/emabertos/${id}`;
+        const url = `${DOMINIO}/pedidos/producoes/${id}`;
 
         $.ajax({
             url: url,
@@ -40,16 +38,72 @@ export class SeusPedidos extends Component {
             dataType: 'json',
             contentType: 'application/json',
             success: function (resposta) {
+               
+                
 
-                this.setState({ pedidos: resposta });
+                this.pedidosProducao(resposta);
+
+            }.bind(this),
+            error: function (data) {
+
+                
+            }
+        });
+    }
+
+    pedidosProducao(resposta) {
+
+        let id = localStorage.getItem("id");
+        let token = localStorage.getItem("token");
+
+        const url = `${DOMINIO}/pedidos/abertos/${id}`;
+
+        $.ajax({
+            url: url,
+            method: 'get',
+            headers: { "token": token },
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (data) {
+               
+            let dados =  resposta.concat(data);
+
+            this.setState({pedidos: dados});
 
 
             }.bind(this),
             error: function (data) {
 
-                Notificacao(INFO, ERRO_REQUISICAO);
+               
             }
         });
+    }
+
+    pedidosEntregue(){
+        // let id = localStorage.getItem("id");
+        // let token = localStorage.getItem("token");
+
+        // const url = `${DOMINIO}/pedidos/emabertos/${id}`;
+
+        // $.ajax({
+        //     url: url,
+        //     method: 'get',
+        //     headers: { "token": token },
+        //     dataType: 'json',
+        //     contentType: 'application/json',
+        //     success: function (data) {
+               
+        //     let dados =  resposta.concat(data);
+
+        //     this.setState({pedidos: dados});
+
+
+        //     }.bind(this),
+        //     error: function (data) {
+
+        //         Notificacao(INFO, ERRO_REQUISICAO);
+        //     }
+        // });
     }
 
     render() {
@@ -59,7 +113,9 @@ export class SeusPedidos extends Component {
                 <div className="ml-2 border mx-auto text-center rounded mensagem-slogan mb-5">Rapidez  + Qualidade =  +Dinheiro +Clientes </div>
                 <div className="row mb-5 mx-auto select-data">
                     <div className="col-6 col-lg-9">
-                        <button type="button" class="btn btn-warning font-weight-bold"><FaSyncAlt className="mr-2" />Atualizar</button>
+                        <button type="button" class="btn btn-warning font-weight-bold" onClick={e => this.visualizarPedidos(e)}>
+                            <FaSyncAlt className="mr-2" />Atualizar
+                        </button>
                     </div>
                     <div className="col-6 col-lg-3">
                         <select class="custom-select max-select" id="inlineFormCustomSelect">
@@ -103,6 +159,24 @@ export class DadosPedido extends Component {
         });
     }
 
+    horaPedidoFormatada(hora){
+        
+        let horaFormatada = hora.substring(11,16);
+
+        return horaFormatada;
+    }
+
+    previsaoPedido(hora){
+
+        let horaInicio = new Date(hora);
+
+        horaInicio.setMinutes(horaInicio.getMinutes() + 30 );
+
+        let previsao = `${horaInicio.getHours()}:${horaInicio.getMinutes()}`
+
+        return previsao;
+    }
+
 
 
     render() {
@@ -120,11 +194,11 @@ export class DadosPedido extends Component {
                         </div>
                         <hr />
                         <div className="row justify-content-center">
-                            <p className="col text-success">Pedido feito às: 19:00</p>
-                            <p className="col">Valor de entrega:  R${item.valorEntrege}</p>
+                            <p className="col">Pedido feito às: {this.horaPedidoFormatada(this.state.item.dataDoPedido)}</p>
+                            <p className="col text-info">Valor de entrega:  R${item.valorEntrega}</p>
                         </div>
                         <div className="row justify-content-center">
-                            <p className="col text-info">Previsão de entrega: 19:30</p>
+                            <p className="col ">Previsão de entrega: {this.previsaoPedido(item.dataDoPedido)}</p>
                             <p className="col text-success">Valor total R${item.valorTotal}</p>
                         </div>
                         <div className="row justify-content-center">
@@ -132,7 +206,7 @@ export class DadosPedido extends Component {
 
                         </div>
                         <hr />
-                        <div className="row justify-content-end pr-3">
+                        <div className="row justify-content-end pr-3 mt-4 mb-4">
                             <label className="mr-2">Status:</label>
                             <select className="form-control" style={{ maxWidth: "200px" }}>
                                 <option>{item.statusPedido.descricao}</option>
@@ -142,9 +216,6 @@ export class DadosPedido extends Component {
                             <>
                                 <div className="row justify-content-center">
                                     <h4 className="col">{item.quantidade}x {item.produto.nome}</h4>
-                                </div>
-                                <div className="row justify-content-center">
-                                    <p className="col text-muted">Tiras de frango, cebola, catupiry, queijo mussarela com cebolinha e um molho a sua escolha.</p>
                                 </div>
                                 <div className="row justify-content-center">
                                     <p className="col">Valor Unitário: R$ 10,00</p>
@@ -157,26 +228,27 @@ export class DadosPedido extends Component {
                         ))}
                         <div className="row pl-3">
                             <label>Observação:</label>
-                            <textarea className="form-control">
+                            <textarea className="w3-input" readOnly="readonly">
                                 {item.descricao}
                             </textarea>
                         </div>
                     </div>
                 </ModalProduto>
                 <div className="card mx-auto mt-5 max slider" id={item.id} >
-                    <div className="text-right pr-3 pt-2 mb-2">
+                    <div className="text-right pr-3 pt-2 mb-2 mt-2">
                         <span className={`${CORES_STATUS[item.statusPedido.id]} rounded-circle mr-2 circle`}></span>
                         <font className="">{item.statusPedido.descricao}</font>
                     </div>
 
                     <div className=" text-right pr-3">
 
-                        <font className="text-success mr-3">Pedido: {item.pedido} </font><font className="text-info">Previsão:19:20</font>
+                        <font className="text-success mr-3">Pedido: {this.horaPedidoFormatada(item.dataDoPedido)} </font>
+                        <font className="text-info">Previsão: {this.previsaoPedido(item.dataDoPedido)}</font>
 
                     </div>
 
                     <div className="row mt-3">
-                        <span className="col col-sm col-md col-lg text-primary text-right pr-5">Saida de entrega: 19:00</span>
+                        {/* <span className="col col-sm col-md col-lg text-primary text-right pr-5">Saida de entrega: 19:00</span> */}
                     </div>
                     {item.produtos.map(item => (
                     <ul className="list-group list-group-flush">
