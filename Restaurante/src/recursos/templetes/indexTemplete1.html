@@ -4,11 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <title>Tamplete Restaurante</title>
-    <link rel="stylesheet" href="./../../../../paginasEstaticas/restaurante/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <script type="text/javascript" src="./../../../../paginasEstaticas/restaurante/jquery/jquery.js"></script>
-    <script type="text/javascript"
-        src="./../../../../paginasEstaticas/restaurante/bootstrap/js/bootstrap.min.js"></script>
+    <!-- <link rel="stylesheet" href="./../../../../paginasEstaticas/restaurante/bootstrap/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- <script type="text/javascript"src="./../../../../paginasEstaticas/restaurante/bootstrap/js/bootstrap.min.js"></script> -->
+    <style type="text/css">
+
+        .bg-image-container1{
+            background-size: 100% 100%;
+            background-repeat: repeat;
+        }
+
+        .navbarColor{
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index:100;
+        }
+
+        .bg-image-container2{
+            width: 100%;
+            height: 300px;
+            
+            background-image: url("https://img.freepik.com/fotos-gratis/textura-de-lousa-de-estilo-grunge_1048-10295.jpg?size=626&ext=jpg");
+            background-size: 100% 100%;
+            background-repeat: repeat;
+        }
+
+        /* Setas Carousel */
+        .carousel-control-next-icon:after
+        {
+            content: '>';
+            font-family: monospace, 'Courier New', Courier;
+            font-size: 100px;
+            color:rgb(80, 80, 80);
+        }
+
+        .carousel-control-prev-icon:after {
+            content: '<';
+            font-family: monospace, 'Courier New', Courier;
+            font-size: 100px;
+            color:rgb(80, 80, 80);
+        }
+
+        .bg-image-container3{
+            background: url("https://voyage-onirique.com/wp-content/uploads/2018/04/WallpaperStudio10-86066.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: repeat;
+        }
+    </style>
 </head>
 
 
@@ -54,7 +98,7 @@
         <h1 class="text-center pt-2">MENU</h1>
         <div class="container w-25 mt-3 mb-0">
             <div class="d-flex justify-content-between" id="caixa_categorias">
-                <!-- Marlon Viado -->
+                
             </div>
         </div>
         <hr>
@@ -131,12 +175,11 @@
             const DOMAIN = "http://godinner.tk:8080";
             const DOMAINFOTO = "http://fotos.godinner.tk";
 
-            const TOKEN = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJydWJ1cmd1ZXJAZ21haWwuY29tIiwiZXhwIjoxNTcyODk5MjU2LCJpYXQiOjE1NzI4ODEyNTZ9.dLbCwXemK74uMDnLrXu4J9dvXUCdrL7vHnXRrzYx8GqANGBqRX4QL2gfa_apU1tjlzgY7IVsA6tBZQv8qacO-Q"; 
+            const TOKEN = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJydWJ1cmd1ZXJAZ21haWwuY29tIiwiZXhwIjoxNTcyOTg1MDMzLCJpYXQiOjE1NzI5NjcwMzN9.rolC7GbWNNVQ3RooKvDaINR2hPg5nMe4TYUuxLxfFrWqNuscahR6tXzqjI3g_1l1yMDL3jLIBIXuRhVaUtFIuA"; 
 
             function buscarRestaurante() {
 
                 let url = DOMAIN + `/templates/restaurantes/${idRestaurante}`;
-                // let url = DOMAIN + `/restaurante/${idRestaurante}`;
 
                 $.ajax({
 
@@ -146,13 +189,14 @@
                     dataType: 'json',
                     contentType: 'application/json',
                     success: function (resposta) {
+
                         $(".sobreRes").text(resposta.sobre);
                         $(".nomeRes").text(resposta.restaurante.razaoSocial);
                         $("#cityRes").text(resposta.restaurante.endereco.cidade.cidade);
                         $(".logo").attr("src", DOMAINFOTO + "/" + resposta.foto);
+
                     }.bind(this),
-                    error: function (data) {
-                        console.log(TOKEN)  
+                    error: function (data) {  
 
                         console.log(data)
                     }
@@ -167,14 +211,13 @@
 
                     rubens.push(resposta.shift());
                 }
-                // console.log(rubens);
+                
                 return rubens
             }    
 
             function carousel(idCategoria, status){
-                // console.log(idCategoria);
+                
                 url = DOMAIN + `/categoriaproduto/restaurantes/${idRestaurante}/categorias/${idCategoria}`;
-                // console.log(url);
                 
                 $.ajax({
                     url: url,
@@ -190,7 +233,7 @@
                                 
                                                     </div>
                                                 </div>`);
-                        
+                        // console.log(idCategoria);
                         
                         for(let cont = 0; cont <= loop; cont++){
                             
@@ -198,6 +241,10 @@
                                 continue;
 
                             let fotos = resposta[cont].foto;
+                            
+                            // console.log(idCategoria);
+
+                            console.log(resposta[cont].descricao)
 
                             fotos.forEach(f => {
                                 $(`#categoria${idCategoria}`).append(`
