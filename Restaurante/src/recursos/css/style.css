@@ -186,12 +186,11 @@ textarea:focus, input:focus, select:focus, a:focus{
     background-color: #fff;
     border-radius: 5px;
     width: 750px;
-    height: 700px;
+   height: 700px;
     padding: 30px;
     justify-content: center;
     display: block;
 }
-
 
 .blue{
     background-color: black;

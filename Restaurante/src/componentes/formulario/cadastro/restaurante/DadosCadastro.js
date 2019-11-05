@@ -8,8 +8,7 @@ import { BotaoLink } from '../../../globais/botao/Botao';
 import Corpo from '../../../corpo/Corpo';
 import $ from 'jquery';
 import { DOMINIO } from '../../../../link_config';
-import { ERRO, Notificacao, CAMPO_VAZIO, ERRO_CONEXAO, NOME_MINIMO, ERRO_CNPJ, INFO, ERRO_REQUISICAO } from '../../../../funcoes/Alerta';
-
+import { ERRO, Notificacao, CAMPO_VAZIO, NOME_MINIMO, ERRO_CNPJ } from '../../../../funcoes/Alerta';
 
 /*PROPRIEDADES DO CABEÇALHO*/
 const propriedadesCabecalho = {
@@ -77,7 +76,7 @@ class FormularioDados extends Component {
         } else if ($('#razaoSocial').val().length < 3) {
             Notificacao(ERRO, NOME_MINIMO);
         }else if($('#cnpj').val() != '' && $('#razaoSocial').val() != '' && $('#telefone').val() != ''){
-            this.campoValidado();
+            this.validaCNPJ();
         }
         
 
@@ -88,8 +87,6 @@ class FormularioDados extends Component {
         const restaurante = this.state.restaurante;
         sessionStorage.setItem('dados', JSON.stringify(restaurante));
         
-      
-
         const cnpj = restaurante.cnpj.replace("/", "@");
 
         //REALIZA AS REQUISIÇÕES NA API DE VALIDAÇÃO
@@ -101,7 +98,7 @@ class FormularioDados extends Component {
             type: 'GET',
             success: function (data) {
                 if (data) {
-                    this.validaCampos(data);
+                    this.campoValidado();
 
                 } else {
                     Notificacao(ERRO, ERRO_CNPJ);
@@ -111,7 +108,6 @@ class FormularioDados extends Component {
             error: function (data) {
 
             
-                Notificacao(INFO, ERRO_REQUISICAO);
 
             }
         });
@@ -171,7 +167,7 @@ class FormularioDados extends Component {
                 </div>
                 {/*LINHA DO  BOTÃO COM A ROTA PARA O PRÓXIMA PÁGINA  */}
                 <div className="row justify-content-end">
-                    <BotaoLink onClick={e => this.validaCNPJ(e)} className="col-4 col-sm-4 col-md-4 col-lg-4 btn-orange mr-3" texto="Próximo" />
+                    <BotaoLink onClick={e => this.validaCampos(e)} className="col-4 col-sm-4 col-md-4 col-lg-4 btn-orange mr-3" texto="Próximo" />
                 </div>
             </form>
         )
