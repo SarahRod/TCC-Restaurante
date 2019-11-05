@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Tamplete Restaurante</title>
-    <!-- <link rel="stylesheet" href="./../../../../paginasEstaticas/restaurante/bootstrap/css/bootstrap.min.css"> -->
+    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <!-- <script type="text/javascript"src="./../../../../paginasEstaticas/restaurante/bootstrap/js/bootstrap.min.js"></script> -->
+
     <style type="text/css">
 
         .bg-image-container1{
@@ -29,8 +29,12 @@
             background-size: 100% 100%;
             background-repeat: repeat;
         }
+        
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+        background-image: none;
+        }
 
-        /* Setas Carousel */
         .carousel-control-next-icon:after
         {
             content: '>';
@@ -97,7 +101,7 @@
     <div class="container-fluid" style="min-height: 700px">
         <h1 class="text-center pt-2">MENU</h1>
         <div class="container w-25 mt-3 mb-0">
-            <div class="d-flex justify-content-between" id="caixa_categorias">
+            <div class="d-flex justify-content-center" id="caixa_categorias">
                 
             </div>
         </div>
@@ -201,18 +205,6 @@
                         console.log(data)
                     }
                 });
-            }
-
-            function produto(resposta){
-                
-                var rubens = [];
-                
-                for(let cont = 0; cont < 3; cont++){
-
-                    rubens.push(resposta.shift());
-                }
-                
-                return rubens
             }    
 
             function carousel(idCategoria, status){
@@ -225,39 +217,52 @@
                     dataType: 'json',
                     contentType: 'application/json',
                     success: function (resposta) {
-                        
-                        let loop = resposta.length <= 3 ? resposta.length : 3;
 
                         $("#boxCarousel").append(`<div class="carousel-item ${status}">
                                                     <div class="d-flex justify-content-around p-3" id="categoria${idCategoria}">
                                 
                                                     </div>
                                                 </div>`);
-                        // console.log(idCategoria);
                         
+                        let loop = resposta.length <= 3 ? resposta.length : 3;
+
                         for(let cont = 0; cont <= loop; cont++){
                             
                             if(resposta[cont] == undefined)
                                 continue;
 
-                            let fotos = resposta[cont].foto;
+
+                            if(resposta[cont].foto.length == 0 ){
+                                
+                                resposta[cont].foto[0] = JSON.parse('{ "foto": "/restaurante/produto/1572570285790-download (1).jpg"}');
+                                
+                                
+                            }
                             
-                            // console.log(idCategoria);
+                                let fotos = resposta[cont].foto;
 
-                            console.log(resposta[cont].descricao)
+                                
+                                for(let i in resposta){
 
-                            fotos.forEach(f => {
-                                $(`#categoria${idCategoria}`).append(`
-                                    <div class="card mb-2 float-left" style="width: 18rem;">
-                                        <img class="card-img-top" src="${DOMAINFOTO + f.foto}" alt="Card image cap">
-                                        <div class="card-body">
-                                                <h5 class="card-title text-center">${resposta[cont].nome}</h5>
-                                                <p class="card-text">${resposta[cont].descricao}</p>
+                                    $(`#categoria${idCategoria}`).append(`
+                                        <div class="card mb-2 float-left" style="width: 18rem;">
+                                            <img class="card-img-top" src="${DOMAINFOTO + resposta[cont].foto[0].foto}" alt="Card image cap">
+                                            <div class="card-body">
+                                                    <h5 class="card-title text-center">${resposta[cont].nome}</h5>
+                                                    <p class="card-text">${resposta[cont].descricao}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                `);
-                            });
+                                    `);
+
+                                    console.log(resposta);
+                                }
                         }
+                            // fotos.map(f => {
+                                
+                            // });
+
+
+             
 
                     }.bind(this),
                     error: function (data) {
@@ -285,7 +290,7 @@
                             $("#boxMais").append(
                                 $(`<div class="d-flex flex-row justify-content-between pt-3 mb-3" style="border-bottom: 3px solid white; border-bottom-style:dotted;">`)
                                     .append($(`<div class="d-flex flex-column text-white">`).append($(`<h3>`).text(resposta[i].nome)),
-                                            $(`<div class="d-flex flex-column text-white">`).append($(`<h3>`).text(resposta[i].preco))
+                                            $(`<div class="d-flex flex-column text-white">`).append($(`<h3>`).text("R$ " + resposta[i].preco.toFixed(2)))
                                     ))
                         }
                     }.bind(this),
@@ -310,7 +315,7 @@
 
                         for (let i in resposta) {                       
                             $("#caixa_categorias").append(`<figure class="figure my-auto">
-                                                                <img class="m-1" style="max-height: 64px" src="${DOMAINFOTO +resposta[i].foto}" alt="${resposta[i].nome}" />
+                                                                <img class="m-1 img-thumbnail" style="width:64px; height:64px; max-height: 64px" src="${DOMAINFOTO +resposta[i].foto}" alt="${resposta[i].nome}" />
                                                           </figure> `);
 
                             const status = i == 0 ? "active" : "";
@@ -359,10 +364,12 @@
 
 
 
-                            $("#boxGaleria").append($(`<figure class="col-md-4 float-left">`)
-                                .append($(`<a href="" data-size="1600x1067">`).attr("href", resposta[i].id)
-                                    .append($(`<img alt="${resposta[i].nome}" src="" class="img-fluid"/>`).attr("src", DOMAINFOTO + resposta[i].foto)
-                                    )))
+                            $("#boxGaleria").append($(`<figure class="col-md-4 float-left">
+                                        <a href="${resposta[i].id}" data-size="1600x1067">
+                                            <img alt="${resposta[i].nome}" src="${DOMAINFOTO + resposta[i].foto}" class="img-thumbnail" style=" max-width:300px; max-height:300px;"/>
+                                        </a>
+                                    </figure>`
+                                    ))
                                 }
                     }.bind(this),
                     error: function (data) {
