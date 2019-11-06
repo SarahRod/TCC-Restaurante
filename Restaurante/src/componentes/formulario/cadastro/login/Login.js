@@ -199,7 +199,7 @@ class FormularioLogin extends Component {
     }
 
     /* FORMULÁRIO DO ENDEREÇO */
-    renderForm() {
+    renderForm() { 
         return (
             <form className="form-group mt-5">
                 <span className={this.state.classErro}>{this.state.textoErro}</span>

@@ -1,4 +1,6 @@
 
+// IMPORTANTE: ESSE CODIGO NÃO ESTÁ SENDO USADO !!!
+
 import React, { Component } from 'react';
 import { FaPencilAlt } from 'react-icons/fa';
 import { IoMdClose } from "react-icons/io";
@@ -18,7 +20,7 @@ class ItensLista extends Component{
 
     // status modal
 
-    toggleModal = () => {
+    toggleModal = () => { 
         this.setState({
             isOpen: !this.state.isOpen
         });
