@@ -111,15 +111,17 @@
 
         <div class="carousel slide mt-5" id="ProdutosRestaurante" data-ride="carousel">
 
-            <ol class="carousel-indicators">
-                <li data-target="#ProdutosRestaurante" data-slide-to="0" class="active"></li>
-                <li data-target="#ProdutosRestaurante" data-slide-to="1"></li>
-                <li data-target="#ProdutosRestaurante" data-slide-to="2"></li>
+            <ol class="carousel-indicators" id="carousel-indicators">
+                <!-- <li data-target="#ProdutosRestaurante" data-slide-to="0" class="active bg-info"></li>
+                <li data-target="#ProdutosRestaurante" data-slide-to="1" class="bg-danger"></li>
+                <li data-target="#ProdutosRestaurante" data-slide-to="2" class="bg-warning"></li> -->
             </ol>
+
             <div id="boxCarousel" class="carousel-inner">
                
                 <!-- Item Carousel -->
             </div>
+
             <!-- SETAS -->
             <a class="carousel-control-prev" href="#ProdutosRestaurante" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -178,10 +180,9 @@
 
             const idRestaurante = 153;
             const DOMAIN = "http://godinner.tk:8080";
-            const DOMAINFOTO = "http://fotos.godinner.tk";
+            const DOMAINFOTO = "http://fotos.godinner.tk"; 
 
-            const TOKEN = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJydWJ1cmd1ZXJAZ21haWwuY29tIiwiZXhwIjoxNTcyOTg1MDMzLCJpYXQiOjE1NzI5NjcwMzN9.rolC7GbWNNVQ3RooKvDaINR2hPg5nMe4TYUuxLxfFrWqNuscahR6tXzqjI3g_1l1yMDL3jLIBIXuRhVaUtFIuA"; 
-
+            // função p pegar informações do restaurante
             function buscarRestaurante() {
 
                 let url = DOMAIN + `/templates/restaurantes/${idRestaurante}`;
@@ -190,7 +191,6 @@
 
                     url: url,
                     method: 'get',
-                    headers:{ token: TOKEN},
                     dataType: 'json',
                     contentType: 'application/json',
                     success: function (resposta) {
@@ -208,7 +208,8 @@
                 });
             }    
 
-            function carousel(idCategoria, i){
+            // função p criar carrousel
+            function carousel(idCategoria, i = 0){
 
                 url = DOMAIN + `/categoriaproduto/restaurantes/${idRestaurante}/categorias/${idCategoria}`;
                 
@@ -218,42 +219,37 @@
                     dataType: 'json',
                     contentType: 'application/json',
                     success: function (resposta) {
-
+                        //console.log(resposta)
                         const status = i == 0 ? "active" : "";
 
-                        $("#boxCarousel").append(`<div class="carousel-item ${status}">
-                                                    <div class="d-flex justify-content-around p-3" id="categoria${idCategoria}">
-                                
-                                                    </div>
-                                                </div>`);
+                        $("#carousel-indicators").append(`<li data-target="#ProdutosRestaurante" data-slide-to="${i}" class="${status}" id="indicator${i}"></li>`);
                         
-                        let loop = resposta.length <= 3 ? resposta.length : 3;
-
-                        for(let cont = 0; cont <= loop; cont++){
+                        $("#boxCarousel").append(`<div class="carousel-item ${status}">
+                                                <div class="d-flex justify-content-around p-3" id="categoria${idCategoria}">
                             
+                                                </div>
+                                            </div>`);
+                            
+                        let loop = resposta.length <= 3 ? resposta.length : 3;
+                        
+                        for(let cont = 0; cont < loop; cont++){
                             if(resposta[cont] == undefined)
                                 continue;
 
+                            // Foto padrão
                             if(resposta[cont].foto.length == 0 ){
-                                
                                 resposta[cont].foto[0] = JSON.parse('{ "foto": "/restaurante/produto/1572570285790-download (1).jpg"}'); 
                             }
-                            
-                            let fotos = resposta[cont].foto;
-
-                            
-                            for(let i in resposta){
-
-                                $(`#categoria${idCategoria}`).append(`
-                                    <div class="card mb-2 float-left" style="width: 18rem;">
-                                        <img class="card-img-top" src="${DOMAINFOTO + resposta[cont].foto[0].foto}" alt="Card image cap">
-                                        <div class="card-body">
-                                                <h5 class="card-title text-center">${resposta[cont].nome}</h5>
-                                                <p class="card-text">${resposta[cont].descricao}</p>
-                                        </div>
+                       
+                            $(`#categoria${idCategoria}`).append(`
+                                <div class="card mb-2 float-left" style="width: 18rem;">
+                                    <img class="card-img-top" src="${DOMAINFOTO + resposta[cont].foto[0].foto}" alt="Card image cap">
+                                    <div class="card-body">
+                                            <h5 class="card-title text-center">${resposta[cont].nome}</h5>
+                                            <p class="card-text">${resposta[cont].descricao}</p>
                                     </div>
-                                `);
-                            }
+                                </div>
+                            `);
                         }           
 
                     }.bind(this),
@@ -264,21 +260,54 @@
                 });
             }
 
-            function maisVendidos(){
+            function buscarCategoriasRestaurante() {
 
-                // url = DOMAIN + `/templates/restaurantes/maisvendidos`;
-                url = DOMAIN + `/produto`;
+                url = DOMAIN + `/categoriaproduto/categorias/${idRestaurante}`;
 
                 $.ajax({
                     url: url,
                     method: 'get',
-                    headers:{ token: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJydWJ1cmd1ZXJAZ21haWwuY29tIiwiZXhwIjoxNTczMTAzMzM3LCJpYXQiOjE1NzMwODUzMzd9.hHfGYiXr0PunH_ymbHsBS5YqsiEytHXOz7rAZXNnGRBPeoTE61Z0qG67fbB8-gKdsU1O3W5X2OY8vknkPIU2CQ"},
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    success: function (resposta) {
+                        for (let i in resposta) {
+                            
+                            $("#caixa_categorias").append(`<figure class="figure my-auto">
+                                                                <img id="cat${i}" class="m-1 img-thumbnail p-0" style="width:64px; height:64px; max-height: 64px" src="${DOMAINFOTO +resposta[i].foto}" alt="${resposta[i].nome}" />
+                                                          </figure> `);
+
+                            $(`#cat${i}`).click(function(){
+                                $(`#indicator${i}`).trigger("click");
+                            });
+
+                            carousel(resposta[i].id, i);
+                        }
+
+                    }.bind(this),
+                    error: function (data) {
+                        console.log(data)
+                    }
+                });
+            }
+
+            function maisVendidos(){
+
+                url = DOMAIN + `/templates/maisvendidos/${idRestaurante}`
+
+                $.ajax({
+                    url: url,
+                    method: 'get',
                     dataType: 'json',
                     contentType: 'application/json',
                     success:function(resposta) {
 
-                        for(let i = 0; i < 5; i++){
-                             
+                        let qtdProd = resposta.length <= 5 ? resposta.length : 3;
+
+                        for(let i = 0; i <= qtdProd; i++){
+                            
+                            if(resposta[i] == undefined)
+                                continue;
+                                
                             $("#boxMais").append(
                                 $(`<div class="d-flex flex-row justify-content-between pt-3 mb-3" style="border-bottom: 3px solid white; border-bottom-style:dotted;">`)
                                     .append($(`<div class="d-flex flex-column text-white">`).append($(`<h3>`).text(resposta[i].nome)),
@@ -289,44 +318,6 @@
                     error: function (data) {
 
                         console.log(data);
-                    }
-                });
-            }
-
-            function buscarCategoriasRestaurante() {
-
-                url = DOMAIN + `/categoriaproduto/categorias/${idRestaurante}`;
-
-                $.ajax({
-
-                    url: url,
-                    method: 'get',
-                    dataType: 'json',
-                    contentType: 'application/json',
-                    success: function (resposta) {
-
-                        for (let i in resposta) {
-                            
-                            var id = resposta[i].id;
-                            console.log(resposta[i].id);
-                            $("#caixa_categorias").append(`<figure class="figure my-auto">
-                                                                <img id="cat${i}" class="m-1 img-thumbnail p-0" style="width:64px; height:64px; max-height: 64px" src="${DOMAINFOTO +resposta[i].foto}" alt="${resposta[i].nome}" />
-                                                          </figure> `);
-                            
-                            
-
-                            $(`#cat${i}`).click(function(){
-                                
-                                carousel(id, i);
-                            });
-
-                            carousel(id, i);
-                        }
-
-                    }.bind(this),
-                    error: function (data) {
-
-                        console.log(data)
                     }
                 });
             }
