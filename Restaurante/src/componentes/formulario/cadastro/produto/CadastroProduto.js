@@ -211,6 +211,10 @@ class CadastroProduto extends Component {
         const produto = { ...this.state.produto }
         produto[e.target.name] = e.target.value;
 
+        //MÁSCARA E VALIDAÇÃO
+        $('#desconto').mask('999');
+        $('#preco').mask('999');
+
         this.setState({ isChecked: !this.state.isChecked });
 
         this.setState({
@@ -254,15 +258,15 @@ class CadastroProduto extends Component {
                         </div>
 
                         <div className="row p-2 mb-3">
-                            <div className="col-3">
+                            <div className="col-12 col-md-3 mb-3">
                                 <label className="h5">Preço</label>
-                                <input className="form-control" type="text" name="preco" id="preco" value={preco} onChange={e => this.atualizaCampo(e)} required />
+                                <input className="form-control"  type="text" name="preco" id="preco" value={preco} onChange={e => this.atualizaCampo(e)} required />
+                            </div>
+                            <div className="col-9 col-md-3">
+                                <label className="h5">Promoção</label>
+                                <input className="form-control" maxLength="3" type="text" name="desconto" id="desconto" value={desconto} onChange={e => this.atualizaCampo(e)} required />
                             </div>
                             <div className="col-3">
-                                <label className="h5">Promoção</label>
-                                <input className="form-control" type="text" name="desconto" id="desconto" value={desconto} onChange={e => this.atualizaCampo(e)} required />
-                            </div>
-                            <div className="col-4">
                                 <h5 className="simbolo-porcentagem">%</h5>
                             </div>
                         </div>

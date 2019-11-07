@@ -45,14 +45,16 @@ export class CabecalhoPaginaRestaurante extends Component {
 
     componentWillMount() {
         this.props.getRestaurante();
+       
+    };
 
+    componentWillUpdate(){
         let id = this.props.restaurante.id;
 
         if(id != null){
             localStorage.setItem('id', this.props.restaurante.id);
         }
-       
-    };
+    }
 
     render() {
         const {foto} = this.props.restaurante;
