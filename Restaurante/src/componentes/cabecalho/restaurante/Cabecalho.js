@@ -69,18 +69,18 @@ export class CabecalhoPaginaRestaurante extends Component {
 
                 <div className="collapse navbar-collapse bg-light" id="conteudoNavbarSuportado">
                     <ul className="navbar-nav ml-auto bg-light">
-                        <Li className="nav-item menu" maxWidth="80px">
+                        <Li className="nav-item" maxWidth="80px">
                             <Link className="nav-link text-secondary menu-cabecalho" to="/restaurante/pedidos" id="pedidos">Pedidos</Link>
                         </Li>
-                        <Li className="nav-item menu" maxWidth="150px">
+                        <Li className="nav-item" maxWidth="150px">
                             <Link className="nav-link text-secondary menu-cabecalho" to="/restaurante/cadastro-produto" id="cadastrar">Cadastrar Produto</Link>
 
                         </Li>
-                        <Li className="nav-item menu" maxWidth="180px">
+                        <Li className="nav-item" maxWidth="180px">
                             <Link className="nav-link text-secondary menu-cabecalho" to="/restaurante/visualizar-produto">Catálogo de Produtos</Link>
                         </Li>
-                        <Li className="nav-item menu" maxWidth="150px">
-                            <Link className="nav-link text-secondary menu" to="/restaurante/cadastro-template">Meu site</Link>
+                        <Li className="nav-item" maxWidth="150px">
+                            <Link className="nav-link text-secondary menu-cabecalho" to="/restaurante/cadastro-template">Meu site</Link>
 
                         </Li>
 
