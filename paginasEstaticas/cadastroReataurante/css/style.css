@@ -40,7 +40,7 @@ form{
     height: 300px;
 }
 
-input{
+input, .slider{
     height: 40px;
     border: 1px solid #DEDEDE;
     box-sizing: border-box;

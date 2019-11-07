@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
+import { withRouter } from 'react-router-dom';
+
 import { Label } from '../../../globais/label/Label';
 import { BotaoLink } from '../../../globais/botao/Botao';
 import Corpo from '../../../corpo/Corpo';
@@ -6,6 +9,7 @@ import ImgPizza from '../../../../recursos/imgs/pizza.jpg';
 import { FaHome } from 'react-icons/fa';
 import { DOMINIO } from '../../../../link_config';
 import $ from 'jquery';
+import './style.css';
 
 /*PROPRIEDADES DO CABEÇALHO*/
 const propriedadesCabecalho = {
@@ -28,10 +32,18 @@ const initialState = {
 }
 
 
-export class FormularioBemVindo extends Component {
+class FormularioBemVindo extends Component {
 
     //STATE ESTÁ RECEBENDO OS ESTADOS INICIAIS
     state = { ...initialState }
+
+    
+    //PROPRIEDADES DO WITH ROUTER
+    static propTypes = {
+        match: PropTypes.object.isRequired,
+        location: PropTypes.object.isRequired,
+        history: PropTypes.object.isRequired
+    };
 
     componentWillMount() {
         var dados = sessionStorage.getItem('dados');
@@ -63,7 +75,7 @@ export class FormularioBemVindo extends Component {
         formData.append('foto', files);
         formData.append('id', this.state.restaurante.id);
 
-        if(foto != ''){
+        if (foto != '') {
             $.ajax({
                 url: url,
                 type: 'post',
@@ -71,21 +83,23 @@ export class FormularioBemVindo extends Component {
                 contentType: false,
                 processData: false,
                 success: function (resposta) {
-    
+
                     //Limpa os storages
                     localStorage.clear();
                     sessionStorage.clear();
-    
+
+                    this.props.history.push("/");
+
                 }.bind(this),
                 error: function (data) {
                     console.log('Erro:', data);
-    
+
                 }
             });
-        }else{
+        } else {
 
         }
-       
+
     }
 
     //ATUALIZA AS INPUTS COM OS ESTADOS 
@@ -113,14 +127,14 @@ export class FormularioBemVindo extends Component {
     renderForm() {
         return (
             <form className="form-group mt-4" method="POST" enctype="multipart/form-data" action="#">
-                <Label className="h1 mb-3" texto="Bem Vindo a GoDinner" />
+                <Label className="h1 mb-3" texto="Bem-vindo à GoDinner" />
                 <div className="row mb-2  justify-content-center">
                     <img className=" img-login rounded-circle img-responsive" id="foto-restaurante" alt="Imagem Empresa" src={this.state.imgSrc} />
                 </div>
                 <div className=" row justify-content-center mb-3">
                     <div className="input-file">
-                        <span>Anexar Imagem</span>
-                        <input ref="file" type="file" className="upload" multiple="true" id="foto" name="foto" value={this.state.restaurante.foto} onChange={e => this.atualizaCampo(e)} />
+                        <span className="font-weight-bold text-light text-upload">Anexar Imagem</span>
+                        <input ref="file" type="file" accept=".jpg, .png, .svg, .jpeg" className="upload" multiple="true" id="foto" name="foto" value={this.state.restaurante.foto} onChange={e => this.atualizaCampo(e)} />
                     </div>
                 </div>
                 <div className="row mb-5">
@@ -147,3 +161,5 @@ export class FormularioBemVindo extends Component {
         )
     }
 }
+
+export default withRouter(FormularioBemVindo);

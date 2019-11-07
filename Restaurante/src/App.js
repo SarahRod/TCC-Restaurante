@@ -10,12 +10,14 @@ import 'bootstrap';
 import 'bootstrap/js/dist/util';
 import 'bootstrap/js/dist/alert';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
-
-    <RotaPaginas />
-
+    <>
+      <RotaPaginas />
+      <ToastContainer />
+    </>
   );
 }
 

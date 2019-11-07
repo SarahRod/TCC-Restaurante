@@ -14,6 +14,13 @@ export const PADRAO = "default";
 //CONSTANTES DE MENSAGENS GENÉRICAS
 export const CAMPO_VAZIO = "Preencha todos os campos";
 export const ERRO_CONEXAO = "Erro de conexão";
+export const USUARIO_INVALIDO = "Email ou senha incorretos";
+export const NOME_MINIMO = "O nome do restaurante deve conter no mínimo 3 caracteres";
+export const ERRO_CNPJ = "Esse CNPJ já está cadastrado ou é inválido";
+export const SENHA_MINIMA = "A senha deve conter no mínimo 6 caracteres";
+export const ERRO_EMAIL = "Este e-mail já está cadastrado ou é inválido";
+export const ERRO_SENHA = "A Senha está incorreta";
+export const ERRO_REQUISICAO = "Verifique se todos os campos foram preenchidos corretamente";
 
 //FUNÇÃO DE NOTIFICAÇÃO
 export const Notificacao = (tipo, mensagem) => {
