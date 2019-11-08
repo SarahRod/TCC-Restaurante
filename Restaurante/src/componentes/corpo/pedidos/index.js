@@ -24,15 +24,9 @@ export class SeusPedidos extends Component {
 
     componentDidMount() {
 
-        if($("#teste").attr("data-teste") == '1' ){
-            alert("sucelso");
-        }
+      
         this.visualizarPedidos();
     }
-
-    
-
-    
 
     visualizarPedidos(e) {
 
@@ -204,7 +198,6 @@ export class DadosPedido extends Component {
             headers: { "token": token },
             success: function (data) {
 
-                $("#teste").attr("data-teste", '1');
                 this.closeModal(data);
 
 
