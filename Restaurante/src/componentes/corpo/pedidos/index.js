@@ -38,15 +38,15 @@ export class SeusPedidos extends Component {
             dataType: 'json',
             contentType: 'application/json',
             success: function (resposta) {
-               
-                
+
+
 
                 this.pedidosProducao(resposta);
 
             }.bind(this),
             error: function (data) {
 
-                
+
             }
         });
     }
@@ -65,25 +65,25 @@ export class SeusPedidos extends Component {
             dataType: 'json',
             contentType: 'application/json',
             success: function (data) {
-               
-            let dados =  resposta.concat(data);
 
-            this.setState({pedidos: dados});
+                let dados = resposta.concat(data);
+
+                this.setState({ pedidos: dados });
 
 
             }.bind(this),
             error: function (data) {
 
-               
+
             }
         });
     }
 
-    pedidosEntregue(e){
+    pedidosEntregue(e) {
         let id = localStorage.getItem("id");
         let token = localStorage.getItem("token");
 
-        const url = `${DOMINIO}/pedidos/entreguas/${id}`;
+        const url = `${DOMINIO}/pedidos/entregas/${id}`;
 
         $.ajax({
             url: url,
@@ -92,8 +92,8 @@ export class SeusPedidos extends Component {
             dataType: 'json',
             contentType: 'application/json',
             success: function (data) {
-               
-                this.setState({pedidos: data});
+
+                this.setState({ pedidos: data });
 
 
             }.bind(this),
@@ -143,47 +143,50 @@ export class SeusPedidos extends Component {
 
 export class DadosPedido extends Component {
     constructor(props) {
-        super();
+        super(props);
 
-        this.state = { item: props.item }
+        this.state = { item: props.item, isOpen: false }
 
     }
 
-    // status modal
-    toggleModal = () => {
-        this.setState({
-            isOpen: !this.state.isOpen
-        });
+    //ABRE A MODAL
+    openModal() {
+
+        this.setState({ isOpen: true });
     }
 
-    horaPedidoFormatada(hora){
-        
-        let horaFormatada = hora.substring(11,16);
+    //FECHA A MODAL
+    closeModal() {
+
+        this.setState({ isOpen: false });
+    }
+
+    horaPedidoFormatada(hora) {
+
+        let horaFormatada = hora.substring(11, 16);
 
         return horaFormatada;
     }
 
-    previsaoPedido(hora){
+    previsaoPedido(hora) {
 
         let horaInicio = new Date(hora);
 
-        horaInicio.setMinutes(horaInicio.getMinutes() + 30 );
+        horaInicio.setMinutes(horaInicio.getMinutes() + 30);
 
         let previsao = `${horaInicio.getHours()}:${horaInicio.getMinutes()}`
 
         return previsao;
     }
 
-
-
     render() {
         const item = this.state.item;
         return (
-            <div onClick={this.toggleModal}>
-                <ModalProduto show={this.state.isOpen} onClose={this.toggleModal}>
+            <div>
+                <ModalProduto show={this.state.isOpen}>
                     <div className="modalPedidos pt-3">
                         <div className="d-flex flex-row-reverse bd-highlight mt-2 mb-2">
-                            <IoMdClose className="close" />
+                            <IoMdClose className="close" onClick={e => this.closeModal(e)} />
                         </div>
                         <div className="row justify-content-center">
                             <h3>Pedido realizado por: {item.consumidor.nome}</h3>
@@ -231,7 +234,7 @@ export class DadosPedido extends Component {
                         </div>
                     </div>
                 </ModalProduto>
-                <div className="card mx-auto mt-5 max slider" id={item.id} >
+                <div className="card mx-auto mt-5 max slider" id={item.id} onClick={e => this.openModal(e)} >
                     <div className="text-right pr-3 pt-2 mb-2 mt-2">
                         <span className={`${CORES_STATUS[item.statusPedido.id]} rounded-circle mr-2 circle`}></span>
                         <font className="">{item.statusPedido.descricao}</font>
@@ -248,11 +251,11 @@ export class DadosPedido extends Component {
                         {/* <span className="col col-sm col-md col-lg text-primary text-right pr-5">Saida de entrega: 19:00</span> */}
                     </div>
                     {item.produtos.map(item => (
-                    <ul className="list-group list-group-flush">
-                        <li className="list-group-item">
-                            <span className="font-weight-bold">{item.quantidade}x</span> {item.produto.nome}
-                        </li>
-                    </ul>
+                        <ul className="list-group list-group-flush">
+                            <li className="list-group-item">
+                                <span className="font-weight-bold">{item.quantidade}x</span> {item.produto.nome}
+                            </li>
+                        </ul>
                     ))}
 
                     <div className="p-4 text-muted">
