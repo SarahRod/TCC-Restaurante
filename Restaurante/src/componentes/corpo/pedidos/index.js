@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { withRouter, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import './style.css'
 import { FaSyncAlt } from "react-icons/fa";
 import { DOMINIO, CORES_STATUS, FOTOLANCHEPADRAO, DOMINIO_IMG } from '../../../link_config';
@@ -19,10 +22,17 @@ export class SeusPedidos extends Component {
 
     }
 
-
     componentDidMount() {
+
+        if($("#teste").attr("data-teste") == '1' ){
+            alert("sucelso");
+        }
         this.visualizarPedidos();
     }
+
+    
+
+    
 
     visualizarPedidos(e) {
 
@@ -80,6 +90,9 @@ export class SeusPedidos extends Component {
     }
 
     pedidosEntregue(e) {
+
+        this.setState({ pedidos: [] });
+
         let id = localStorage.getItem("id");
         let token = localStorage.getItem("token");
 
@@ -179,6 +192,29 @@ export class DadosPedido extends Component {
         return previsao;
     }
 
+    atualizaStatusPedido(idPedido) {
+
+        let token = localStorage.getItem("token");
+
+        const url = `${DOMINIO}/pedidos/entregue/${idPedido}`;
+
+        $.ajax({
+            url: url,
+            method: 'PUT',
+            headers: { "token": token },
+            success: function (data) {
+
+                $("#teste").attr("data-teste", '1');
+                this.closeModal(data);
+
+
+            }.bind(this),
+            error: function (data) {
+
+            }
+        });
+    }
+
     render() {
         const item = this.state.item;
         return (
@@ -206,12 +242,6 @@ export class DadosPedido extends Component {
 
                         </div>
                         <hr />
-                        <div className="row justify-content-end pr-3 mt-4 mb-4">
-                            <label className="mr-2">Status:</label>
-                            <select className="form-control" style={{ maxWidth: "200px" }}>
-                                <option>{item.statusPedido.descricao}</option>
-                            </select>
-                        </div>
                         {item.produtos.map(item => (
                             <>
                                 <div className="row justify-content-center">
@@ -231,6 +261,16 @@ export class DadosPedido extends Component {
                             <textarea className="w3-input" readOnly="readonly">
                                 {item.descricao}
                             </textarea>
+                        </div>
+                        <hr />
+                        <div className="row justify-content-start pl-3 mt-4">
+                            <label className="mr-2 text-secondary">Status:</label>
+                            <label className="text-secondary">
+                                {item.statusPedido.descricao}
+                            </label>
+                        </div>
+                        <div className="row justify-content-end pr-2 mb-3 ">
+                            <Link to="/restaurante/pedidos" style={{ display: item.statusPedido.id == 2 ? 'block' : 'none' }} id="btn-status-pedido" className="btn btn-primary" onClick={e => this.atualizaStatusPedido(item.id)}>Pronto para Entrega</Link>
                         </div>
                     </div>
                 </ModalProduto>
