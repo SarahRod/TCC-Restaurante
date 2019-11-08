@@ -79,11 +79,11 @@ export class SeusPedidos extends Component {
         });
     }
 
-    pedidosEntregue(){
+    pedidosEntregue(e){
         let id = localStorage.getItem("id");
         let token = localStorage.getItem("token");
 
-        const url = `${DOMINIO}/pedidos/entregue/${id}`;
+        const url = `${DOMINIO}/pedidos/entreguas/${id}`;
 
         $.ajax({
             url: url,
@@ -93,13 +93,12 @@ export class SeusPedidos extends Component {
             contentType: 'application/json',
             success: function (data) {
                
-            
+                this.setState({pedidos: data});
 
 
             }.bind(this),
             error: function (data) {
 
-                Notificacao(INFO, ERRO_REQUISICAO);
             }
         });
     }
@@ -125,8 +124,8 @@ export class SeusPedidos extends Component {
                     </div>
                 </div>
                 <div className="row border-bottom mx-auto pl-3 w-75 pb-2" style={{ maxWidth: '80%', cursor: 'pointer' }}>
-                    <span className="col-6 col-sm-6 col-md-6 col-lg-3 text-sencodary" >Em produção</span>
-                    <span className="col-6 col-sm-6 col-md-6 col-lg-3 text-secondary" >Sendo entregue</span>
+                    <span className="col-6 col-sm-6 col-md-6 col-lg-3 text-sencodary" onClick={e => this.visualizarPedidos(e)} >Em produção</span>
+                    <span className="col-6 col-sm-6 col-md-6 col-lg-3 text-secondary" onClick={e => this.pedidosEntregue(e)}>Sendo entregue</span>
                 </div>
 
                 {this.state.pedidos.map(item => (

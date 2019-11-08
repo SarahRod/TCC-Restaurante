@@ -10,10 +10,10 @@ import { withRouter, Link } from 'react-router-dom';
 import { Navbar, Nav, Form, NavDropdown, FormControl, Button } from 'react-bootstrap';
 import './style.css';
 import { MdArrowDropDown } from "react-icons/md";
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import {getRestaurante} from './actions';
+import { getRestaurante } from './actions';
 
 
 export class CabecalhoPaginaRestaurante extends Component {
@@ -46,16 +46,18 @@ export class CabecalhoPaginaRestaurante extends Component {
     componentWillMount() {
         this.props.getRestaurante();
 
-        let id = this.props.restaurante.id;
-
-        if(id != null){
-            localStorage.setItem('id', this.props.restaurante.id);
-        }
-       
     };
 
+    componentWillUpdate() {
+        let id = this.props.restaurante.id;
+
+        if (id != null) {
+            localStorage.setItem('id', this.props.restaurante.id);
+        }
+    }
+
     render() {
-        const {foto} = this.props.restaurante;
+        const { foto } = this.props.restaurante;
         return (
             <nav class="navbar navbar-expand-lg navbar-light bg-light" style={{ zIndex: '1' }}>
                 <Link className="navbar-brand logo" to="/restaurante">
@@ -67,18 +69,18 @@ export class CabecalhoPaginaRestaurante extends Component {
 
                 <div className="collapse navbar-collapse bg-light" id="conteudoNavbarSuportado">
                     <ul className="navbar-nav ml-auto bg-light">
-                        <Li className="nav-item menu" maxWidth="80px">
+                        <Li className="nav-item" maxWidth="70px">
                             <Link className="nav-link text-secondary menu-cabecalho" to="/restaurante/pedidos" id="pedidos">Pedidos</Link>
                         </Li>
-                        <Li className="nav-item menu" maxWidth="150px">
+                        <Li className="nav-item" maxWidth="150px">
                             <Link className="nav-link text-secondary menu-cabecalho" to="/restaurante/cadastro-produto" id="cadastrar">Cadastrar Produto</Link>
 
                         </Li>
-                        <Li className="nav-item menu" maxWidth="180px">
+                        <Li className="nav-item" maxWidth="180px">
                             <Link className="nav-link text-secondary menu-cabecalho" to="/restaurante/visualizar-produto">Catálogo de Produtos</Link>
                         </Li>
-                        <Li className="nav-item menu" maxWidth="150px">
-                            <Link className="nav-link text-secondary menu" to="/restaurante/cadastro-template">Meu site</Link>
+                        <Li className="nav-item" maxWidth="80px">
+                            <Link className="nav-link text-secondary menu-cabecalho" to="/restaurante/cadastro-template">Meu site</Link>
 
                         </Li>
 
@@ -104,6 +106,6 @@ export class CabecalhoPaginaRestaurante extends Component {
     }
 }
 
-const mapStateToProps = state => ({restaurante: state.restaurante.restaurante});
-const mapDispatchToProps = dispatch => bindActionCreators({getRestaurante}, dispatch);
-export default  withRouter(connect(mapStateToProps, mapDispatchToProps)(CabecalhoPaginaRestaurante));
+const mapStateToProps = state => ({ restaurante: state.restaurante.restaurante });
+const mapDispatchToProps = dispatch => bindActionCreators({ getRestaurante }, dispatch);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CabecalhoPaginaRestaurante));
