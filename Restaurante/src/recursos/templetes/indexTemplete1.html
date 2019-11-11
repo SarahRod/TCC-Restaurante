@@ -16,24 +16,23 @@
             background-repeat: repeat;
         }
 
-        .navbarColor{
+        .bg-color-nav{
             background-color: rgba(0, 0, 0, 0.8);
             z-index:100;
         }
 
+        .bg-color-categorias{background-color: rgba(0, 0, 0, 0.5); }
+        
         .bg-image-container2{
             width: 100%;
-            height: 300px;
-            
+            height: 300px;   
             background-image: url("https://img.freepik.com/fotos-gratis/textura-de-lousa-de-estilo-grunge_1048-10295.jpg?size=626&ext=jpg");
             background-size: 100% 100%;
             background-repeat: repeat;
         }
         
         .carousel-control-prev-icon,
-        .carousel-control-next-icon {
-        background-image: none;
-        }
+        .carousel-control-next-icon {background-image: none; }
 
         .carousel-control-next-icon:after
         {
@@ -63,19 +62,19 @@
 
     <body class="w-100 mx-auto">
         <!-- navbar -->
-        <nav class="position-fixed navbar navbarColor justify-content-around w-100">
+        <nav id="menu" class="position-fixed navbar bg-color-nav justify-content-around w-100">
             <a class="navbar-brand" href="#">
                 <img class="logo rounded float-left" style="max-width: 55px" alt="" />
             </a>
             <ul class="nav justify-content-end w-50">
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="#">Menu</a>
+                    <a class="nav-link text-light" href="#menu">Menu</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="#">Galeria</a>
+                    <a class="nav-link text-light" href="#galeria">Galeria</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="#">Sobre o Restaurante</a>
+                    <a class="nav-link text-light" href="#sobre">Sobre o Restaurante</a>
                 </li>
             </ul>
         </nav>
@@ -109,7 +108,7 @@
             <hr>
             <!-- carousel -->
 
-            <div class="carousel slide mt-5" id="ProdutosRestaurante" data-ride="carousel">
+            <div class="carousel slide" id="ProdutosRestaurante" data-ride="carousel">
 
                 <ol class="carousel-indicators" id="carousel-indicators">
                     
@@ -134,7 +133,7 @@
 
         <!-- Container Mais Vendidos -->
         <div class="container-fluid bg-image-container3 p-0" style="min-height: 400px">
-            <div class="container-fluid navbarColor p-5" style="min-height: inherit">
+            <div class="container-fluid bg-color-nav p-5" style="min-height: inherit">
                 <div id="boxMais" class="container w-50 mx-auto">
                     <!-- Titulo -->
                     <h1 class="text-center text-white">Mais Vendidos</h1>
@@ -149,7 +148,7 @@
             <p id="sobreGodinner" class="sobreRes text-center w-75 text-wrap mx-auto" style="max-height: 300rem">
                 <!-- Sobre a Godinne -->
             </p>
-            <div class="d-flex flex-row w-75 mx-auto mt-5 justify-content-around">
+            <div id="sobre" class="d-flex flex-row w-75 mx-auto mt-5 justify-content-around">
                 <div class="d-flex flex-column">
                     <p>
                         <span class="nomeRes">
@@ -167,7 +166,7 @@
         <div class="container-fluid">
             <h1 class="text-center p-3">Galeria de fotos</h1>
             <div class="row justify-content-md-center">
-                <div id="boxGaleria" class="col-md-12">
+                <div id="galeria" class="col-md-12">
 
                 </div>
             </div>
@@ -217,13 +216,13 @@
                         dataType: 'json',
                         contentType: 'application/json',
                         success: function (resposta) {
-                            //console.log(resposta)
+                            console.log(resposta)
                             const status = i == 0 ? "active" : "";
 
                             $("#carousel-indicators").append(`<li data-target="#ProdutosRestaurante" data-slide-to="${i}" class="${status}" id="indicator${i}"></li>`);
                             
                             $("#boxCarousel").append(`<div class="carousel-item ${status}">
-                                <div class="d-flex justify-content-around p-3" id="categoria${idCategoria}">
+                                <div class="d-flex justify-content-center p-3" id="categoria${idCategoria}">
             
                                 </div>
                             </div>`);
@@ -232,7 +231,7 @@
                             
                             for(let cont = 0; cont < loop; cont++){
 
-                                console.log(resposta);
+                                
                                 if(resposta[cont] == undefined)
                                     continue;
 
@@ -242,7 +241,7 @@
                                 }
                         
                                 $(`#categoria${idCategoria}`).append(`
-                                    <div class="card mb-2 float-left" style="width: 18rem;">
+                                    <div class="card mr-5 float-left" style="width: 18rem;">
                                         <img class="card-img-top" src="${DOMAINFOTO + resposta[cont].foto[0].foto}" alt="Card image cap">
                                         <div class="card-body">
                                             <h5 class="card-title text-center">${resposta[cont].nome}</h5>
@@ -271,11 +270,16 @@
                         dataType: 'json',
                         contentType: 'application/json',
                         success: function (resposta) {
+                            console.log(resposta);
+                            
                             for (let i in resposta) {
                                 
-                                $("#caixa-categorias").append(`<figure class="figure my-auto">
-                                                                    <img id="cat${i}" class="m-1 img-thumbnail p-0" style="width:64px; height:64px; max-height: 64px" src="${DOMAINFOTO +resposta[i].foto}" alt="${resposta[i].nome}" />
-                                                            </figure>`);
+                                $("#caixa-categorias").append(`<div class="m-1 p-0  my-auto">
+                                    <figure class="figure m-0">
+                                        <img id="cat${i}" class=" img-thumbnail p-0 m-0" style="width:64px; height:64px; cursor: pointer;" src="${DOMAINFOTO +resposta[i].foto}" alt="${resposta[i].nome}" />
+                                    </figure>
+                                    
+                                </div>`);
 
                                 $(`#cat${i}`).click(function(){
                                     $(`#indicator${i}`).trigger("click");
@@ -339,13 +343,13 @@
                             
                             for(let i in resposta){
 
-                                $("#boxGaleria").append($(`<figure class="col-md-4 float-left">
-                                            <a href="${resposta[i].id}" data-size="1600x1067">
-                                                <img alt="${resposta[i].nome}" src="${DOMAINFOTO + resposta[i].foto}" class="img-thumbnail p-0" style=" max-width:300px; max-height:300px;"/>
-                                            </a>
-                                        </figure>`
-                                        ))
-                                    }
+                                $("#galeria").append($(`<figure class="col-md-4 float-left">
+                                    <a href="${resposta[i].id}" data-size="1600x1067">
+                                        <img alt="${resposta[i].nome}" src="${DOMAINFOTO + resposta[i].foto}" class="img-thumbnail p-0" style=" max-width:300px; max-height:300px;"/>
+                                    </a>
+                                </figure>`
+                                ))
+                            }
                         }.bind(this),
                         error: function (data) {
 
