@@ -81,7 +81,7 @@
 
         <!-- container-inicial -->
         <div class="container-fluid p-0" style="min-height: 600px; max-height: 750px;">
-            <img class="w-100" style="min-height: 600px; max-height: 750px;" src="../imgs/imagem.jpg" alt="" />
+            <img class="w-100" id="fotoTemplate" style="min-height: 600px; max-height: 750px;" src="" alt="" />
         </div>
 
         <!-- Container Sla -->
@@ -91,7 +91,7 @@
             </h1>
 
             <div class="d-block">
-                <p id="" class="sobreRes h5 text-center text-light">
+                <p id="" class="sobreRes h5 text-break mx-auto text-center w-50 text-light ">
                     <!-- Descrição Restaurante   -->
                 </p>
             </div>
@@ -145,7 +145,7 @@
         <!-- Container sobre nós -->
         <div class="container-fluid" style="min-height: 300px">
             <h1 id="titleSobre" class="text-center p-3">Sobre Nós</h1>
-            <p id="sobreGodinner" class="sobreRes text-center w-75 text-wrap mx-auto" style="max-height: 300rem">
+            <p id="sobreGodinner" class="sobreRes text-center w-75 text-break mx-auto" style="max-height: 300rem">
                 <!-- Sobre a Godinne -->
             </p>
             <div id="sobre" class="d-flex flex-row w-75 mx-auto mt-5 justify-content-around">
@@ -165,8 +165,8 @@
         <!-- Container Galeira -->
         <div class="container-fluid">
             <h1 class="text-center p-3">Galeria de fotos</h1>
-            <div class="row justify-content-md-center">
-                <div id="galeria" class="col-md-12">
+            <div class="row justify-content-md-center w-100">
+                <div id="galeria" class="col-md-9">
 
                 </div>
             </div>
@@ -175,7 +175,7 @@
         <script>
             $(document).ready(function () {
 
-                const idRestaurante = 153;
+                const idRestaurante =  idRestauranteSubstituir ;
                 const DOMAIN = "http://godinner.tk:8080";
                 const DOMAINFOTO = "http://fotos.godinner.tk"; 
 
@@ -196,6 +196,7 @@
                             $(".nomeRes").text(resposta.restaurante.razaoSocial);
                             $("#cityRes").text(resposta.restaurante.endereco.cidade.cidade);
                             $(".logo").attr("src", DOMAINFOTO + "/" + resposta.foto);
+                            $("#fotoTemplate").attr("src",DOMAINFOTO + resposta.foto);
 
                         }.bind(this),
                         error: function (data) {  
@@ -319,6 +320,13 @@
                                         .append($(`<div class="d-flex flex-column text-white">`).append($(`<h3>`).text(resposta[i].nome)),
                                                 $(`<div class="d-flex flex-column text-white">`).append($(`<h3>`).text("R$ " + resposta[i].preco.toFixed(2)))
                                         ))
+                                
+                                $("#galeria").append($(`<figure class="col-md-4 float-left">
+                                    <a href="${resposta[i].id}" data-size="1600x1067">
+                                        <img alt="${resposta[i].nome}" src="${DOMAINFOTO + resposta[i].foto[0].foto}" class="img-thumbnail p-0" style=" max-width:300px; max-height:300px;"/>
+                                    </a>
+                                </figure>`));
+
                             }
                         }.bind(this),
                         error: function (data) {
@@ -358,10 +366,10 @@
                     });
                 }
 
-                galeria();
                 maisVendidos();
                 buscarRestaurante();
                 buscarCategoriasRestaurante();
+                galeria();
             });
         </script>
     </body>
