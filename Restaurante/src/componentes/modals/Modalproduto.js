@@ -10,11 +10,9 @@ class ModalProduto extends React.Component {
         
         return (
             <div className="backdropStyle">
-
-                <div className="modalStyle pt-3" >
+               
                     {this.props.children}
 
-                </div>
             </div>
         );
     }

@@ -11,8 +11,9 @@ import { Rodape } from './componentes/rodape/cadastro/rodape';
 import CorpoListagemProdutos from "./componentes/corpo/listagemProdutos/CorpoListagemProduto";
 import CadastroProduto from "./componentes/formulario/cadastro/produto/CadastroProduto";
 import CabecalhoPaginaRestaurante from './componentes/cabecalho/restaurante/Cabecalho';
-import { CorpoIndex } from './componentes/corpo/index/Corpo';
+import CorpoIndex from './componentes/corpo/index/Corpo';
 import TemplateRestaurante from './componentes/corpo/template/TemplateRestaurante';
+import { CadastroTemplate } from './componentes/formulario/cadastro/template/CadastroTemplate';
 import ErrorNotFound from './componentes/error';
 import { SeusPedidos } from './componentes/corpo/pedidos';
 
@@ -41,8 +42,6 @@ export class RotaPaginas extends Component {
 
                     <Route path="/" exact component={PaginaLogin} />
 
-
-
                     <Route
                         path="/cadastro" render={({ match: { url } }) => (
                             <Fragment>
@@ -50,6 +49,8 @@ export class RotaPaginas extends Component {
                                 <PrivateRoute path={`${url}/endereco`} component={FormularioEndereco} exact />
                                 <PrivateRoute path={`${url}/login`} component={FormularioLogin} />
                                 <PrivateRoute path={`${url}/bem-vindo`} component={FormularioBemVindo} />
+                                
+
                                 <Rodape />
                             </Fragment>
 
@@ -63,6 +64,7 @@ export class RotaPaginas extends Component {
                             <PrivateRoute path={`${url}/pedidos`} component={SeusPedidos} exact />
                             <PrivateRoute path={`${url}/cadastro-produto/:id?`} component={CadastroProduto} />
                             <PrivateRoute path={`${url}/visualizar-produto`} component={CorpoListagemProdutos} />
+                            <PrivateRoute path={`${url}/cadastro-template`} component={CadastroTemplate}/>   
                             <Rodape />
                         </Fragment>
 

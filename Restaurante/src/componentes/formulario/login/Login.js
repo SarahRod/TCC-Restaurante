@@ -66,7 +66,9 @@ class FormularioLogin extends Component {
 
             }.bind(this),
             error: function (data) {
+
                 Notificacao(ERRO, ERRO_REQUISICAO);
+
             }
         });
     }

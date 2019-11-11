@@ -31,7 +31,9 @@ class ItensLista extends Component{
     render() {
         return (
             <div className="item-list-p list-group-item-action mb-3 w-100" onClick={this.toggleModal}>
+              
                 <ModalProduto show={this.state.isOpen} onClose={this.toggleModal}>
+                <div className="modalStyle pt-3" >
                         <div className="d-flex flex-row-reverse bd-highlight mt-2 mb-2">
                             <IoMdClose className="close"/>
                         </div>   
@@ -58,7 +60,9 @@ class ItensLista extends Component{
                                 R$ {this.state.item.preco}
                             </p>
                         </div>
+                        </div>
                 </ModalProduto>
+                
 
                 <div className="row m-1 ">
                     <div className="col-3 p-2 ">
