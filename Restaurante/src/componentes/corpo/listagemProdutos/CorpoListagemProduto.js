@@ -38,7 +38,7 @@ class CorpoListagemProduto extends Component {
 
         switch (e) {
             case "ativo":
-                url = `${DOMINIO}/produto/exibicao/${id}`;
+                url = `${DOMINIO}/produto/exposicoes/${id}`;
                
                 break;
             case "desativo":
@@ -46,7 +46,7 @@ class CorpoListagemProduto extends Component {
 
                 break;
             default:
-                url = `${DOMINIO}/produto/exibicao/${id}`;
+                url = `${DOMINIO}/produto/exposicoes/${id}`;
         }
 
         $.ajax({
