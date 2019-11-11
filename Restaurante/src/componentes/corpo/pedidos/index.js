@@ -114,7 +114,7 @@ export class SeusPedidos extends Component {
         return (
             <main className="container pb-5">
 
-                <div className="ml-2 border mx-auto text-center rounded mensagem-slogan mb-5">Rapidez  + Qualidade =  +Dinheiro +Clientes </div>
+                <div className="ml-2 border mx-auto text-center rounded mensagem-slogan mb-5">Rapidez  + Qualidade =  + Dinheiro  + Clientes </div>
                 <div className="row mb-5 mx-auto select-data">
                     <div className="col-6 col-lg-9">
                         <button type="button" class="btn btn-warning font-weight-bold" onClick={e => this.visualizarPedidos(e)}>
