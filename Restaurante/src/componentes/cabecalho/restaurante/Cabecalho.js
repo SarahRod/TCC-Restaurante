@@ -10,6 +10,11 @@ import { withRouter, Link } from 'react-router-dom';
 import { Navbar, Nav, Form, NavDropdown, FormControl, Button } from 'react-bootstrap';
 import './style.css';
 import { MdArrowDropDown } from "react-icons/md";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { getRestaurante } from './actions';
+
 
 export class CabecalhoPaginaRestaurante extends Component {
 
@@ -36,49 +41,23 @@ export class CabecalhoPaginaRestaurante extends Component {
             $('.menu-cabecalho').removeClass('border-bottom-laranja');
         });
 
-        const nome = localStorage.getItem("nome");
-        $(".nome-restaurante").text(nome);
-
     }
 
-    componentDidMount() {
+    componentWillMount() {
+        this.props.getRestaurante();
 
-        const url = `${DOMINIO}/restaurante/este`;
+    };
 
-        let token = localStorage.getItem('token');
+    componentWillUpdate() {
+        let id = this.props.restaurante.id;
 
-        if (token != null) {
-            $.ajax({
-                url: url,
-                type: 'GET',
-                headers: { "token": token },
-                success: function (resposta) {
-
-                    let nome = JSON.stringify(resposta.razaoSocial);
-                    nome = nome.replace(/"/g, " ")
-
-                    localStorage.setItem('id', JSON.stringify(resposta.id));
-                    localStorage.setItem('nome', nome);
-                    
-                    if (resposta.foto.length == 0) {
-                        $(".foto-restaurante").attr("src", FOTORESTAURANTEPADRAO);
-                    } else {
-                        $(".foto-restaurante").attr("src", DOMINIO_IMG + resposta.foto);
-                    }
-
-                    $(".nome-restaurante").text(nome);
-
-                }.bind(this),
-                error: function (data) {
-                    Notificacao(INFO, ERRO_REQUISICAO);
-
-                }
-            });
+        if (id != null) {
+            localStorage.setItem('id', this.props.restaurante.id);
         }
-
     }
 
     render() {
+        const { foto } = this.props.restaurante;
         return (
             <nav class="navbar navbar-expand-lg navbar-light bg-light" style={{ zIndex: '1' }}>
                 <Link className="navbar-brand logo" to="/restaurante">
@@ -90,15 +69,19 @@ export class CabecalhoPaginaRestaurante extends Component {
 
                 <div className="collapse navbar-collapse bg-light" id="conteudoNavbarSuportado">
                     <ul className="navbar-nav ml-auto bg-light">
-                        <Li className="nav-item menu" maxWidth="80px">
+                        <Li className="nav-item" maxWidth="70px">
                             <Link className="nav-link text-secondary menu-cabecalho" to="/restaurante/pedidos" id="pedidos">Pedidos</Link>
                         </Li>
-                        <Li className="nav-item menu" maxWidth="150px">
+                        <Li className="nav-item" maxWidth="150px">
                             <Link className="nav-link text-secondary menu-cabecalho" to="/restaurante/cadastro-produto" id="cadastrar">Cadastrar Produto</Link>
 
                         </Li>
-                        <Li className="nav-item menu" maxWidth="180px">
+                        <Li className="nav-item" maxWidth="180px">
                             <Link className="nav-link text-secondary menu-cabecalho" to="/restaurante/visualizar-produto">Catálogo de Produtos</Link>
+                        </Li>
+                        <Li className="nav-item" maxWidth="80px">
+                            <Link className="nav-link text-secondary menu-cabecalho" to="/restaurante/cadastro-template">Meu site</Link>
+
                         </Li>
 
                     </ul>
@@ -106,7 +89,7 @@ export class CabecalhoPaginaRestaurante extends Component {
                     <form className="form-inline bg-light">
                         <div className="nav-item dropdown">
                             <Link className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{ color: 'rgb(76, 76, 76)' }}>
-                                <img className="border rounded-circle foto-restaurante  mr-1" src='' style={{ width: 65 + 'px', height: 60 + 'px' }} />
+                                <img className="border rounded-circle foto-restaurante  mr-1" src={`${DOMINIO_IMG}${foto}`} style={{ width: 65 + 'px', height: 60 + 'px' }} />
                             </Link>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <Link className="dropdown-item" >Editar Perfil</Link>
@@ -123,4 +106,6 @@ export class CabecalhoPaginaRestaurante extends Component {
     }
 }
 
-export default withRouter(CabecalhoPaginaRestaurante);
+const mapStateToProps = state => ({ restaurante: state.restaurante.restaurante });
+const mapDispatchToProps = dispatch => bindActionCreators({ getRestaurante }, dispatch);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CabecalhoPaginaRestaurante));

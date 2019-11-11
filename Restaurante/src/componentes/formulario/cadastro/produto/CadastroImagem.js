@@ -56,7 +56,7 @@ export class CadastroImagem extends Component {
             }.bind(this),
             error: function (data) {
                
-                Notificacao(INFO, ERRO_REQUISICAO);
+              
 
             }
         });

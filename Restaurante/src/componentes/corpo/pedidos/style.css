@@ -29,3 +29,21 @@
 .max{
     max-width: 50rem;
 }
+
+.w3-input{
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.modalPedidos{
+    background-color: #fff;
+    border-radius: 5px;
+    width: 750px;
+    min-height: 670px;
+    height: auto;
+    padding: 30px 50px;
+    justify-content: center;
+    display: block;
+}
