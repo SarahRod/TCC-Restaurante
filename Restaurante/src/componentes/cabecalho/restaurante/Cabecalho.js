@@ -92,7 +92,7 @@ export class CabecalhoPaginaRestaurante extends Component {
                                 <img className="border rounded-circle foto-restaurante  mr-1" src={`${DOMINIO_IMG}${foto}`} style={{ width: 65 + 'px', height: 60 + 'px' }} />
                             </Link>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <Link className="dropdown-item" >Editar Perfil</Link>
+                                <Link className="dropdown-item"to="/restaurante/pagamento" >Pagamento</Link>
                                 <Link className="dropdown-item" >Configurações</Link>
                                 <div className="dropdown-divider"></div>
                                 <Link className="dropdown-item" >Outros</Link>
