@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PagarMeCheckout from 'pagarme';
 import './style.css';
 
 export class Pagamento extends Component {
@@ -88,7 +87,7 @@ export class Pagamento extends Component {
                 Payment_Details: true
             })
         } else {
-            if (this.CN_Part1.value.length === 4 && this.CN_Part2.value.length === 4 && this.CN_Part3.value.length === 4 && this.CN_Part4.value.length === 4 && this.CD_Name.value && this.CD_CVV.value.length >= 3) {
+            if (this.CN_Part1.value.length === 4 && this.CN_Part2.value.length === 4 && this.CN_Part3.value.length === 4 && this.CN_Part4.value.length === 4 && this.CD_Name.value && this.CD_CVV.value.length === 3) {
                 this.setState({
                     Payment_Success: true
                 });
@@ -165,7 +164,7 @@ export class Pagamento extends Component {
                             </svg>
                         </div>
                         <div className="Card-Title">
-                            <h2>{this.state.Payment_Details ? "Dados do pagamento" : "Checkout"}</h2>
+                            <h2>{this.state.Payment_Details ? "Dados do pagamento" : "Godinner"}</h2>
                         </div>
                         {
                             this.state.Payment_Details ?
@@ -182,27 +181,27 @@ export class Pagamento extends Component {
                                 </div>
                         }
                         <div className="Card-Btn">
-                            <button onClick={this.Confirm_Pay}>{this.state.Payment_Details ? "Pay" : "Confirm"}</button>
+                            <button onClick={this.Confirm_Pay}>{this.state.Payment_Details ? "Pagar" : "Confirmar"}</button>
                         </div>
                         {
                             this.state.Payment_Details ?
                                 <div className="Card-Details-Wrapper">
                                     <div className="Card-Holder">
-                                        <h4 className="Details-Title">Nome</h4>
+                                        <h4 className="Details-Title">NOME</h4>
                                         <div className="Card-Holder-input">
-                                            <input ref={(ref) => this.CD_Name = ref} type="text" className="Detailes-Input" placeholder="Yourname" />
+                                            <input ref={(ref) => this.CD_Name = ref} type="text" className="Detailes-Input" placeholder="nome(igual no cartão)" />
                                         </div>
                                     </div>
                                     <div className="Card-Expiration">
-                                        <h4 className="Details-Title">Data</h4>
+                                        <h4 className="Details-Title">VALIDO ATE</h4>
                                         <div className="Card-Expiration-input">
-                                            <input ref={(ref) => this.CD_Exp = ref} type="text" className="Detailes-Input" maxLength="5" placeholder="YY/MM" />
+                                            <input ref={(ref) => this.CD_Exp = ref} type="text" className="Detailes-Input" maxLength="5" placeholder="MM/AA" />
                                         </div>
                                     </div>
                                     <div className="Card-CVV">
                                         <h4 className="Details-Title">CVV</h4>
                                         <div className="Card-CVV-input">
-                                            <input ref={(ref) => this.CD_CVV = ref} type="text" className="Detailes-Input" maxLength="4" placeholder="****" />
+                                            <input ref={(ref) => this.CD_CVV = ref} type="text" className="Detailes-Input" maxLength="3" placeholder="***" />
                                         </div>
                                     </div>
                                 </div>
@@ -234,10 +233,9 @@ export class Pagamento extends Component {
                                 null
                         }
                         <div className="Payment-Success">
-                            <h2>Your payment was successfully processed.</h2>
-                            <h3>Thank you for your order!</h3>
-                            <p>We'll send you a confirmation email shortly.</p>
-                            <p>Your payment ID is <b>{Payment_ID}</b></p>
+                            <h2>Pagamaneto realizado com sucesso.</h2>
+                            
+                            <p>Número da transação <b>{Payment_ID}</b></p>
                         </div>
                     </div>
                 </div>
