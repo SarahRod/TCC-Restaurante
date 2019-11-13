@@ -15,6 +15,19 @@ a, button {
 	outline: none;
 }
 
+/* UPPERCASE */
+#pen, .Detailes-Input{
+	text-transform: uppercase;
+}
+
+.Detailes-Input{
+	text-align: center;
+}
+
+.Card-Holder-input input{
+	letter-spacing: 4px;
+}
+
 .Card-Total_Title {
 	color: #fff !important;
 }
@@ -439,7 +452,7 @@ a, button {
 	color: #fff;
 	font-weight: 400;
 	font-size: 0.9em;
-	margin: 0 0 6px;
+	margin: 0 0 20px;
 }
 
 .Card .Card-Inner .Card-Details-Wrapper .Detailes-Input {
@@ -451,6 +464,7 @@ a, button {
 	font-size: 1.2em;
 	width: 85%;
 	outline: none;
+	
 }
 
 .Card .Card-Inner .Card-Details-Wrapper .Card-Holder {
