@@ -237,7 +237,7 @@ class CadastroProduto extends Component {
                         <input id="btn-status" type="checkbox" value={isChecked} onChange={e => this.atualizaCampo} onClick={e => this.desativarProduto(e)} />
                         <div className="slider"></div>
                     </label>
-                    <Link onClick={id => this.excluirProduto()}>
+                    <Link style={{color: 'inherit'}} onClick={id => this.excluirProduto()}>
                         <FaTrashAlt id="btn-lixeira" className="ml-5 mt-3 d-none" size={25} />
                     </Link>
 
