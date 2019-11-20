@@ -119,7 +119,7 @@ class FormularioEndereco extends Component {
             dataType: 'json',
             type: 'GET',
             success: function (resposta) {
-                this.state.cidade = "";
+                // this.state.cidade = "";
 
                 this.setState({ cidade: resposta })
 

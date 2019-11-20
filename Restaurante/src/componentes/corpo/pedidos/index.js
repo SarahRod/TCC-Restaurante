@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
-import { withRouter, Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import './style.css'
 import { FaSyncAlt } from "react-icons/fa";
-import { DOMINIO, CORES_STATUS, FOTOLANCHEPADRAO, DOMINIO_IMG } from '../../../link_config';
+import { DOMINIO, CORES_STATUS} from '../../../link_config';
 import $ from 'jquery';
-import { FaPencilAlt } from 'react-icons/fa';
 import { IoMdClose } from "react-icons/io";
 import ModalProduto from '../../modals/Modalproduto';
-import { ERRO_REQUISICAO, Notificacao, INFO } from '../../../funcoes/Alerta'
-
 
 export class SeusPedidos extends Component {
 

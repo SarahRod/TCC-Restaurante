@@ -102,7 +102,7 @@ export class CadastroImagem extends Component {
 
 
     atualizaCampo(e) {
-        const Imagem = { ... this.state.Imagem }
+        const Imagem = { ...this.state.Imagem }
         Imagem[e.target.name] = e.target.value
         this.setState({ Imagem })
 

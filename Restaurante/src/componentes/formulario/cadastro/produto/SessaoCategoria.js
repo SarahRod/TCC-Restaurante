@@ -119,7 +119,6 @@ export class SessaoCategoria extends Component {
     }
 
     componentDidMount() {
-        const idProduto = this.props.idProduto;
         const url = `${DOMINIO}/categoria`;
 
         $.ajax({
