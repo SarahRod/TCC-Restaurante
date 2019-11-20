@@ -64,8 +64,8 @@ export class RotaPaginas extends Component {
                             <PrivateRoute path={`${url}/pedidos`} component={SeusPedidos} exact />
                             <PrivateRoute path={`${url}/cadastro-produto/:id?`} component={CadastroProduto} />
                             <PrivateRoute path={`${url}/visualizar-produto`} component={CorpoListagemProdutos} />
-                            <PrivateRoute path={`${url}/cadastro-template`} component={CadastroTemplate}/>   
-                            <PrivateRoute path={`${url}/pagamento`} component={Pagamento}/>   
+                            <PrivateRoute path={`${url}/cadastro-template`} component={CadastroTemplate} />
+                            <PrivateRoute path={`${url}/pagamento`} component={Pagamento} />
                             <Rodape />
                         </Fragment>
 

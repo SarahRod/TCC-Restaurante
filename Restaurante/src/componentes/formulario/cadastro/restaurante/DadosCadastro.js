@@ -47,7 +47,7 @@ class FormularioDados extends Component {
 
         const dados = sessionStorage.getItem('dados')
 
-        if (dados != null) {
+        if (dados !== null) {
             this.props.history.push("/cadastro/endereco");
         }
 
@@ -75,7 +75,7 @@ class FormularioDados extends Component {
             Notificacao(ERRO, CAMPO_VAZIO);
         } else if ($('#razaoSocial').val().length < 3) {
             Notificacao(ERRO, NOME_MINIMO);
-        }else if($('#cnpj').val() != '' && $('#razaoSocial').val() != '' && $('#telefone').val() != ''){
+        }else if($('#cnpj').val() !== '' && $('#razaoSocial').val() !== '' && $('#telefone').val() !== ''){
             this.validaCNPJ();
         }
         
@@ -126,15 +126,15 @@ class FormularioDados extends Component {
         $('#telefone').mask('00 0000-0000');
 
         //REMOVE A BORDA VERMELHA DOS CAMPOS PREENCHIDOS
-        if (!$('#cnpj').val() == '') {
+        if (!$('#cnpj').val() === '') {
             $('#cnpj').removeClass('border border-danger');
         }
 
-        if (!$('#razaoSocial').val() == '') {
+        if (!$('#razaoSocial').val() === '') {
             $('#razaoSocial').removeClass(bordasCampoVazio);
         }
 
-        if (!$('#telefone').val() == '') {
+        if (!$('#telefone').val() === '') {
             $('#telefone').removeClass(bordasCampoVazio);
         }
 

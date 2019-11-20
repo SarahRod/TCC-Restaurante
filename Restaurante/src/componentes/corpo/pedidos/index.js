@@ -263,7 +263,7 @@ export class DadosPedido extends Component {
                             </label>
                         </div>
                         <div className="row justify-content-end pr-2 mb-3 ">
-                            <Link to="/restaurante/pedidos" style={{ display: item.statusPedido.id == 2 ? 'block' : 'none' }} id="btn-status-pedido" className="btn btn-primary" onClick={e => this.atualizaStatusPedido(item.id)}>Pronto para Entrega</Link>
+                            <Link to="/restaurante/pedidos" style={{ display: item.statusPedido.id === 2 ? 'block' : 'none' }} id="btn-status-pedido" className="btn btn-primary" onClick={e => this.atualizaStatusPedido(item.id)}>Pronto para Entrega</Link>
                         </div>
                     </div>
                 </ModalProduto>
