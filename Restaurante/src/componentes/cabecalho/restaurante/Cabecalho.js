@@ -91,7 +91,7 @@ export class CabecalhoPaginaRestaurante extends Component {
                                 <Link className="dropdown-item" to="/restaurante/pagamento" >Pagamento</Link>
                                 <Link className="dropdown-item" >Configurações</Link>
                                 <div className="dropdown-divider"></div>
-                                <Link className="dropdown-item" >Outros</Link>
+                                <Link className="dropdown-item" >Perfil</Link>
                             </div>
                         </div>
                         <BotaoLaranja to="/" className="btn" onClick={e => this.apagarLocalStorage(e)}>Logout</BotaoLaranja>

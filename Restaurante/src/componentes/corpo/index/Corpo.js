@@ -59,14 +59,6 @@ const CorpoIndex = React.memo(class CorpoIndex extends Component {
                             Cadastrar
                 </DivOpecoesTitulo>
                     </Link>
-                    {/* <Link to="/restaurante" className="col col-sm col-md col-lg h4 nav-link text-dark">
-                        <DivOpecoes theme={{ cor: 'verde' }}>
-                            <IconeOpcoes src={Chat} />
-                        </DivOpecoes>
-                        <DivOpecoesTitulo className="pt-1" theme={{ cor: 'verde' }}>
-                            Chat
-                </DivOpecoesTitulo>
-                    </Link> */}
                 </div>
                 <div className="row mt-5">
                     <div className="col col-sm col-md col-lg h4">
