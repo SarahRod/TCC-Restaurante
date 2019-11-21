@@ -1,6 +1,4 @@
-import React, { Fragment } from 'react';
-import { Menu } from './styled'
-
+import React from 'react';
 
 export const MenuRestaurante = (props) => (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">

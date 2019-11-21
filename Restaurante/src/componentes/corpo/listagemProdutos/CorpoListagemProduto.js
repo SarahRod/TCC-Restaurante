@@ -1,13 +1,11 @@
-import React, { Fragment, Component } from 'react';
+import React, { Component } from 'react';
 import '../../../recursos/css/style.css';
 import $ from 'jquery';
 import { FaSearch } from 'react-icons/fa';
-import { DOMINIO, TOKEN } from "../../../link_config"
+import { DOMINIO } from "../../../link_config"
 import ItensLista from './../../lista/ItensLista';
-import { InputGroup, FormControl, ListGroup, Container } from 'react-bootstrap';
-import { ERRO_REQUISICAO, INFO, Notificacao } from '../../../funcoes/Alerta'
+import { InputGroup, FormControl, ListGroup } from 'react-bootstrap';
 import { CorpoCemVh } from '../styled';
-import {  } from '../styled';
 
 class CorpoListagemProduto extends Component {
 
@@ -26,7 +24,7 @@ class CorpoListagemProduto extends Component {
         });
     }
 
-    visualizarProduto(e){
+    visualizarProduto(e) {
 
         this.setState({ itens: [] });
 
@@ -39,7 +37,7 @@ class CorpoListagemProduto extends Component {
         switch (e) {
             case "ativo":
                 url = `${DOMINIO}/produto/exposicoes/${id}`;
-               
+
                 break;
             case "desativo":
                 url = `${DOMINIO}/produto/desativados/${id}`;
@@ -62,13 +60,13 @@ class CorpoListagemProduto extends Component {
             }.bind(this),
             error: function (data) {
 
-               
+
             }
         });
     }
 
     componentDidMount() {
-       
+
         this.visualizarProduto();
     }
 

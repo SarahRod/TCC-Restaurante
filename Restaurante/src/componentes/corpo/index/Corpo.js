@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import {
     DivOpecoes, DivOpecoesTitulo, CabecalhoGraficos,
     CorpoGraficos, IconeOpcoes
@@ -8,10 +8,8 @@ import Talher from '../../../recursos/icons/talher.png';
 import Pedido from '../../../recursos/icons/pedido.png';
 import Chat from '../../../recursos/icons/chat.png';
 import $ from 'jquery';
-import { DOMINIO, TOKEN } from '../../../link_config';
 import { Link } from 'react-router-dom';
 import { CorpoCemVh } from '../styled';
-import { FaClipboardCheck } from 'react-icons/fa';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getRestaurante } from '../../cabecalho/restaurante/actions';

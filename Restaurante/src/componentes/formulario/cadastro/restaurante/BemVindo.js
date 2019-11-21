@@ -75,7 +75,7 @@ class FormularioBemVindo extends Component {
         formData.append('foto', files);
         formData.append('id', this.state.restaurante.id);
 
-        if (foto != '') {
+        if (foto !== '') {
             $.ajax({
                 url: url,
                 type: 'post',
