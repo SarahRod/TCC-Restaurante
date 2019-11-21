@@ -42,8 +42,8 @@ const CorpoIndex = React.memo(class CorpoIndex extends Component {
                     <h3 className="mx-auto">Painel Administrativo {razaoSocial} </h3>
 
                 </div>
-                <div className="row mt-5">
-                    <Link to="/restaurante/pedidos" id="pedidos-div" className="col col-sm col-md col-lg h4 nav-link text-dark">
+                <div className="row mt-5 justify-content-center">
+                    <Link to="/restaurante/pedidos" id="pedidos-div" className="col col-sm col-md col-lg-4 h4 nav-link text-dark">
                         < DivOpecoes theme={{ cor: 'marrom' }}>
                             <IconeOpcoes src={Pedido} />
                         </DivOpecoes>
@@ -51,7 +51,7 @@ const CorpoIndex = React.memo(class CorpoIndex extends Component {
                             Pedido
                 </DivOpecoesTitulo>
                     </Link>
-                    <Link to="/restaurante/cadastro-produto" id="cadastrar-div" className="col col-sm col-md col-lg h4 nav-link text-dark">
+                    <Link to="/restaurante/cadastro-produto" id="cadastrar-div" className="col col-sm col-md col-lg-4 h4 nav-link text-dark">
                         < DivOpecoes theme={{ cor: 'laranja' }}>
                             <IconeOpcoes src={Talher} />
                         </ DivOpecoes>
@@ -59,14 +59,14 @@ const CorpoIndex = React.memo(class CorpoIndex extends Component {
                             Cadastrar
                 </DivOpecoesTitulo>
                     </Link>
-                    <Link to="/restaurante" className="col col-sm col-md col-lg h4 nav-link text-dark">
+                    {/* <Link to="/restaurante" className="col col-sm col-md col-lg h4 nav-link text-dark">
                         <DivOpecoes theme={{ cor: 'verde' }}>
                             <IconeOpcoes src={Chat} />
                         </DivOpecoes>
                         <DivOpecoesTitulo className="pt-1" theme={{ cor: 'verde' }}>
                             Chat
                 </DivOpecoesTitulo>
-                    </Link>
+                    </Link> */}
                 </div>
                 <div className="row mt-5">
                     <div className="col col-sm col-md col-lg h4">
