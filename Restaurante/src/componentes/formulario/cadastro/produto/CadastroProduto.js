@@ -53,6 +53,7 @@ class CadastroProduto extends Component {
         const { id } = this.props.match.params;
 
         const url = `${DOMINIO}/produto/${id}`;
+        
         $.ajax({
             url: url,
             type: 'DELETE',
