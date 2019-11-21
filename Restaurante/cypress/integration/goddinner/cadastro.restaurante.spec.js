@@ -16,9 +16,35 @@ describe("Cadastro de restaurante", () => {
 
     cy.get('.btn').click();
 
-    //(72) 10522-4255
+  });
+
+  it("endereço do restaurante", () => {
+    cy.get('#cep').type("12216-300");
+
+    cy.get('#sql_estado').select("35");
+
+    cy.get('#sql_cidade').select("3534500");
+
+    cy.get('#numero').type("95");
+
+    cy.get('#referencia').type("Perto do mercado atacado");
+
+    cy.get('.btn').click();
+  });
+
+  it("login do restaurante", () => {
+    cy.get('#email').type("teste@automatizado.com");
+    cy.get('#senha').type("123456789");
+    cy.get('#confirmarSenha').type("123456789");
+
+    cy.get('.btn').click();
+
+  });
+
+  it("finalizar cadastro", () => {
+    cy.get('.btn').click();
   })
 
 
-})
+});
 
