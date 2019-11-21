@@ -1,7 +1,6 @@
 /// <reference types="Cypress" />
 
 describe("Cadastro de restaurante", () => {
-  // beforeEach(())
 
   it("dados do restaurante", () => {
     cy.visit('/')

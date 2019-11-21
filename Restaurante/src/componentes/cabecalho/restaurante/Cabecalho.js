@@ -47,7 +47,7 @@ export class CabecalhoPaginaRestaurante extends Component {
     componentWillUpdate() {
         let id = this.props.restaurante.id;
 
-        if (id !== null) {
+        if (id !== null && id !== undefined) {
             localStorage.setItem('id', this.props.restaurante.id);
         }
     }

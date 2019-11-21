@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './style.css'
 import { FaSyncAlt } from "react-icons/fa";
-import { DOMINIO, CORES_STATUS} from '../../../link_config';
+import { DOMINIO, CORES_STATUS } from '../../../link_config';
 import $ from 'jquery';
 import { IoMdClose } from "react-icons/io";
 import ModalProduto from '../../modals/Modalproduto';
@@ -20,8 +20,12 @@ export class SeusPedidos extends Component {
 
     componentDidMount() {
 
-      
         this.visualizarPedidos();
+
+        $('.menu-pedido').click(function () {
+            $('.menu-pedido').removeClass('text-dark border-bottom border-secondary').addClass("text-secondary");
+            $(this).addClass('text-dark border-bottom border-secondary');
+        });
     }
 
     visualizarPedidos(e) {
@@ -127,8 +131,8 @@ export class SeusPedidos extends Component {
                     </div>
                 </div>
                 <div className="row border-bottom mx-auto pl-3 w-75 pb-2" style={{ maxWidth: '80%', cursor: 'pointer' }}>
-                    <span className="col-6 col-sm-6 col-md-6 col-lg-3 text-sencodary" onClick={e => this.visualizarPedidos(e)} >Em produção</span>
-                    <span className="col-6 col-sm-6 col-md-6 col-lg-3 text-secondary" onClick={e => this.pedidosEntregue(e)}>Sendo entregue</span>
+                    <span className="col-6 col-sm-6 col-md-6 col-lg-2 text-center text-sencodary menu-pedido" onClick={e => this.visualizarPedidos(e)} >Em produção</span>
+                    <span className="col-6 col-sm-6 col-md-6 col-lg-3 text-center text-secondary menu-pedido" onClick={e => this.pedidosEntregue(e)}>Sendo entregue</span>
                 </div>
 
                 {this.state.pedidos.map(item => (
