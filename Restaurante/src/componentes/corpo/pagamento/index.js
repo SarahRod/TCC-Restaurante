@@ -13,12 +13,10 @@ export class Pagamento extends Component {
         super(props);
         this.state = {
             Checkout_List_State: false,
-            Products_Data: '45.00',
+            Products_Data: '',
             Payment_Details: false,
             Payment_Success: false
         };
-        // this.Product_Count_DEC = this.Product_Count_DEC.bind(this);
-        // this.Product_Count_INC = this.Product_Count_INC.bind(this);
         this.Confirm_Pay = this.Confirm_Pay.bind(this);
         this.Checkout = this.Checkout.bind(this);
         this.AutoTab = this.AutoTab.bind(this);

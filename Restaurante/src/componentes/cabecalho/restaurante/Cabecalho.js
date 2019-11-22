@@ -47,7 +47,7 @@ export class CabecalhoPaginaRestaurante extends Component {
     componentWillUpdate() {
         let id = this.props.restaurante.id;
 
-        if (id !== null) {
+        if (id !== null && id !== undefined) {
             localStorage.setItem('id', this.props.restaurante.id);
         }
     }
@@ -91,7 +91,7 @@ export class CabecalhoPaginaRestaurante extends Component {
                                 <Link className="dropdown-item" to="/restaurante/pagamento" >Pagamento</Link>
                                 <Link className="dropdown-item" >Configurações</Link>
                                 <div className="dropdown-divider"></div>
-                                <Link className="dropdown-item" >Outros</Link>
+                                <Link className="dropdown-item" >Perfil</Link>
                             </div>
                         </div>
                         <BotaoLaranja to="/" className="btn" onClick={e => this.apagarLocalStorage(e)}>Logout</BotaoLaranja>
