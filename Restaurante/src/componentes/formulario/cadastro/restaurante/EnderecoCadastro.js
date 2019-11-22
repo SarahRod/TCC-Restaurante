@@ -111,7 +111,7 @@ class FormularioEndereco extends Component {
     //REQUISIÇÃO QUE BUSCA CIDADES DAQUELE ESTADO
     buscarCidadesporEstado(id = "") {
         let url = `${DOMINIO}/cidade`;
-        if (id != "") {
+        if (id !== "") {
             url += "/" + id;
         }
         $.ajax({
@@ -119,7 +119,7 @@ class FormularioEndereco extends Component {
             dataType: 'json',
             type: 'GET',
             success: function (resposta) {
-                this.state.cidade = "";
+                // this.state.cidade = "";
 
                 this.setState({ cidade: resposta })
 
@@ -162,34 +162,34 @@ class FormularioEndereco extends Component {
 
         let tamanhoCep = this.state.restaurante.cep;
 
-        if(tamanhoCep.length == 8){
+        if(tamanhoCep.length === 8){
             this.atualizaCamposViaCep();
         }
 
         const bordasCampoVazio = 'border border-danger';
 
         //REMOVE A BORDA VERMELHA DOS CAMPOS PREENCHIDOS
-        if (!$('#cep').val() == '') {
+        if (!$('#cep').val() === '') {
             $('#cep').removeClass(bordasCampoVazio);
         }
 
-        if (!$('#logradouro').val() == '') {
+        if (!$('#logradouro').val() === '') {
             $('#logradouro').removeClass(bordasCampoVazio);
         }
 
-        if (!$('#bairro').val() == '') {
+        if (!$('#bairro').val() === '') {
             $('#bairro').removeClass(bordasCampoVazio);
         }
 
-        if (!$('#sql_estado').val() == '') {
+        if (!$('#sql_estado').val() === '') {
             $('#sql_estado').removeClass(bordasCampoVazio);
         }
 
-        if (!$('#sql_cidade').val() == '') {
+        if (!$('#sql_cidade').val() === '') {
             $('#sql_cidade').removeClass(bordasCampoVazio);
         }
 
-        if (!$('#numero').val() == '') {
+        if (!$('#numero').val() === '') {
             $('#numero').removeClass(bordasCampoVazio);
         }
 

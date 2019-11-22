@@ -51,6 +51,28 @@ export class Pagamento extends Component {
         });
     }
 
+    pagamento() {
+
+
+        let id = localStorage.getItem("id");
+
+        let url = `${DOMINIO}/pedidos/debito/${id}`;
+
+
+        $.ajax({
+
+            url: url,
+            type: 'PUT',
+            headers: { 'token': TOKEN },
+            success: function (resposta) {
+
+            }.bind(this),
+            error: function () {
+
+            }
+        });
+    }
+
     Confirm_Pay() {
         if (this.state.Payment_Details === false) {
             this.setState({
@@ -63,6 +85,7 @@ export class Pagamento extends Component {
                 this.CN_Part4.value.length === 4 &&
                 this.CD_Name.value &&
                 this.CD_CVV.value.length === 3) {
+                this.pagamento();
                 this.setState({
                     Payment_Success: true
                 });

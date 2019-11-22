@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import Logo from '../../../recursos/imgs/img-login.png';
-import { ImgRestaurante, OpcoesMenu, Li } from './styled';
-import { DOMINIO, TOKEN, DOMINIO_IMG, FOTORESTAURANTEPADRAO } from '../../../link_config';
-import { ERRO_REQUISICAO, Notificacao, INFO } from '../../../funcoes/Alerta'
+import { Li } from './styled';
+import { DOMINIO_IMG } from '../../../link_config';
 import $ from 'jquery';
-import { BotaoLink } from '../../globais/botao/Botao';
-import { LinksMenu, BotaoLaranja } from '../../globais/botao/styled';
+import { BotaoLaranja } from '../../globais/botao/styled';
 import { withRouter, Link } from 'react-router-dom';
-import { Navbar, Nav, Form, NavDropdown, FormControl, Button } from 'react-bootstrap';
 import './style.css';
-import { MdArrowDropDown } from "react-icons/md";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -51,7 +47,7 @@ export class CabecalhoPaginaRestaurante extends Component {
     componentWillUpdate() {
         let id = this.props.restaurante.id;
 
-        if (id != null) {
+        if (id !== null && id !== undefined) {
             localStorage.setItem('id', this.props.restaurante.id);
         }
     }
@@ -92,10 +88,10 @@ export class CabecalhoPaginaRestaurante extends Component {
                                 <img className="border rounded-circle foto-restaurante  mr-1" src={`${DOMINIO_IMG}${foto}`} style={{ width: 65 + 'px', height: 60 + 'px' }} />
                             </Link>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <Link className="dropdown-item"to="/restaurante/pagamento" >Pagamento</Link>
+                                <Link className="dropdown-item" to="/restaurante/pagamento" >Pagamento</Link>
                                 <Link className="dropdown-item" >Configurações</Link>
                                 <div className="dropdown-divider"></div>
-                                <Link className="dropdown-item" >Outros</Link>
+                                <Link className="dropdown-item" >Perfil</Link>
                             </div>
                         </div>
                         <BotaoLaranja to="/" className="btn" onClick={e => this.apagarLocalStorage(e)}>Logout</BotaoLaranja>

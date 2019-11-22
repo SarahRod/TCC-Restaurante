@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
-import { withRouter, Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import './style.css'
 import { FaSyncAlt } from "react-icons/fa";
-import { DOMINIO, CORES_STATUS, FOTOLANCHEPADRAO, DOMINIO_IMG } from '../../../link_config';
+import { DOMINIO, CORES_STATUS } from '../../../link_config';
 import $ from 'jquery';
-import { FaPencilAlt } from 'react-icons/fa';
 import { IoMdClose } from "react-icons/io";
 import ModalProduto from '../../modals/Modalproduto';
-import { ERRO_REQUISICAO, Notificacao, INFO } from '../../../funcoes/Alerta'
-
 
 export class SeusPedidos extends Component {
 
@@ -24,8 +20,12 @@ export class SeusPedidos extends Component {
 
     componentDidMount() {
 
-      
         this.visualizarPedidos();
+
+        $('.menu-pedido').click(function () {
+            $('.menu-pedido').removeClass('text-dark border-bottom border-secondary').addClass("text-secondary");
+            $(this).addClass('text-dark border-bottom border-secondary');
+        });
     }
 
     visualizarPedidos(e) {
@@ -131,8 +131,8 @@ export class SeusPedidos extends Component {
                     </div>
                 </div>
                 <div className="row border-bottom mx-auto pl-3 w-75 pb-2" style={{ maxWidth: '80%', cursor: 'pointer' }}>
-                    <span className="col-6 col-sm-6 col-md-6 col-lg-3 text-sencodary" onClick={e => this.visualizarPedidos(e)} >Em produção</span>
-                    <span className="col-6 col-sm-6 col-md-6 col-lg-3 text-secondary" onClick={e => this.pedidosEntregue(e)}>Sendo entregue</span>
+                    <span className="col-6 col-sm-6 col-md-6 col-lg-2 text-center text-sencodary menu-pedido" onClick={e => this.visualizarPedidos(e)} >Em produção</span>
+                    <span className="col-6 col-sm-6 col-md-6 col-lg-3 text-center text-secondary menu-pedido" onClick={e => this.pedidosEntregue(e)}>Sendo entregue</span>
                 </div>
 
                 {this.state.pedidos.map(item => (
@@ -263,7 +263,7 @@ export class DadosPedido extends Component {
                             </label>
                         </div>
                         <div className="row justify-content-end pr-2 mb-3 ">
-                            <Link to="/restaurante/pedidos" style={{ display: item.statusPedido.id == 2 ? 'block' : 'none' }} id="btn-status-pedido" className="btn btn-primary" onClick={e => this.atualizaStatusPedido(item.id)}>Pronto para Entrega</Link>
+                            <Link to="/restaurante/pedidos" style={{ display: item.statusPedido.id === 2 ? 'block' : 'none' }} id="btn-status-pedido" className="btn btn-primary" onClick={e => this.atualizaStatusPedido(item.id)}>Pronto para Entrega</Link>
                         </div>
                     </div>
                 </ModalProduto>
