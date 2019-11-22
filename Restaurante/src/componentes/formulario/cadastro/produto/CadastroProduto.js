@@ -219,7 +219,7 @@ class CadastroProduto extends Component {
 
         this.setState({
             produto
-        })
+        });
 
     }
 
