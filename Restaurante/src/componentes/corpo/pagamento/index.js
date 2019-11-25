@@ -16,7 +16,7 @@ export class Pagamento extends Component {
         super(props);
         this.state = {
             Checkout_List_State: false,
-            Products_Data: '',
+            Products_Data: '00,00',
             Payment_Details: false,
             Payment_Success: false
         };
