@@ -1,12 +1,9 @@
-import React, { Component, Fragment } from 'react';
-import Carne from '../../../../recursos/imgs/carne.jpg';
+import React, { Component } from 'react';
 import $ from 'jquery';
-import { DOMINIO, TOKEN, DOMINIO_IMG, ID_PRODUTO } from '../../../../link_config';
+import { DOMINIO, TOKEN, DOMINIO_IMG } from '../../../../link_config';
 import '../../../../recursos/js/AddImagem';
 import ImgProduto from '../../../../recursos/imgs/imagem-produto.png';
 import './style.css';
-import { ERRO_REQUISICAO, Notificacao, INFO } from "../../../../funcoes/Alerta"
-
 
 const initialState = {
 
@@ -33,7 +30,7 @@ export class CadastroImagem extends Component {
     componentDidUpdate() {
         const idProduto = this.props.idProduto;
 
-        if (idProduto != null) {
+        if (idProduto !== null) {
             $("#cadastro-imagem").removeClass("disabilita-elemento");
         }
     }
@@ -55,8 +52,8 @@ export class CadastroImagem extends Component {
 
             }.bind(this),
             error: function (data) {
-               
-              
+
+
 
             }
         });
@@ -105,7 +102,7 @@ export class CadastroImagem extends Component {
 
 
     atualizaCampo(e) {
-        const Imagem = { ... this.state.Imagem }
+        const Imagem = { ...this.state.Imagem }
         Imagem[e.target.name] = e.target.value
         this.setState({ Imagem })
 
@@ -115,7 +112,7 @@ export class CadastroImagem extends Component {
 
 
         //Verifica se a imagem foi alterada (Tratamento de erro)
-        if (file != '' && file != null) {
+        if (file !== '' && file !== null) {
             reader.onloadend = function (e) {
 
                 this.setState({
@@ -147,30 +144,30 @@ export class CadastroImagem extends Component {
         formData.append('id', idProduto);
 
 
-        if(token != ''){
+        if (token !== '') {
             $.ajax({
                 url: url,
                 type: 'post',
                 data: formData,
-                headers: { 'token': token},
+                headers: { 'token': token },
                 contentType: false,
                 processData: false,
                 success: function (resposta) {
-    
+
                     this.setState({ ...initialState })
-    
-    
-    
+
+
+
                     this.visualizarImgSalva()
-    
+
                 }.bind(this),
                 error: function (data) {
                     console.log('Erro:', data);
-    
+
                 }
             });
         }
-      
+
     }
 
 
@@ -191,7 +188,7 @@ export class CadastroImagem extends Component {
 
                             <div className="input-file-produto btn-success rounded mx-auto">
                                 <span className="anexar-imagem text-light font-weight-bold">Anexar Imagem</span>
-                                <input ref="file" accept=".jpg, .png, .svg, .jpeg"  type="file" className="upload-image" multiple="true" id="foto" name="foto" value={this.state.Imagem.foto} onChange={e => this.atualizaCampo(e)} />
+                                <input ref="file" accept=".jpg, .png, .svg, .jpeg" type="file" className="upload-image" multiple="true" id="foto" name="foto" value={this.state.Imagem.foto} onChange={e => this.atualizaCampo(e)} />
                             </div>
                             <div className="row">
                                 <div className="col-md-12 col-12" >

@@ -53,6 +53,7 @@ class CadastroProduto extends Component {
         const { id } = this.props.match.params;
 
         const url = `${DOMINIO}/produto/${id}`;
+        
         $.ajax({
             url: url,
             type: 'DELETE',
@@ -74,7 +75,7 @@ class CadastroProduto extends Component {
 
         const url = `${DOMINIO}/produto/${id}`;
 
-        if (id != null) {
+        if (id !== null) {
 
 
 
@@ -119,7 +120,7 @@ class CadastroProduto extends Component {
 
         const { id } = this.props.match.params;
 
-        if (id != null || id != '') {
+        if (id !== null || id !== '') {
             this.verificaStatus();
         }
 
@@ -140,7 +141,7 @@ class CadastroProduto extends Component {
 
         const token = localStorage.getItem('token');
 
-        if (id != null) {
+        if (id !== null) {
             method = 'put';
 
             novoproduto = { ...produto };

@@ -1,8 +1,6 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import $ from 'jquery';
-import { DOMINIO, TOKEN, ID_PRODUTO } from '../../../../link_config';
-import { Link } from 'react-router-dom';
-
+import { DOMINIO, TOKEN } from '../../../../link_config';
 
 export class SessaoCategoria extends Component {
 
@@ -26,7 +24,7 @@ export class SessaoCategoria extends Component {
     componentDidUpdate() {
         const idProduto = this.props.idProduto;
 
-        if (idProduto != null) {
+        if (idProduto !== null) {
             $("#cadastro-categoria").removeClass("disabilita-elemento");
         }
     }
@@ -121,7 +119,6 @@ export class SessaoCategoria extends Component {
     }
 
     componentDidMount() {
-        const idProduto = this.props.idProduto;
         const url = `${DOMINIO}/categoria`;
 
         $.ajax({

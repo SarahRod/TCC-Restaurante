@@ -1,13 +1,11 @@
-import React, { Fragment, Component } from 'react';
+import React, { Component } from 'react';
 import '../../../recursos/css/style.css';
 import $ from 'jquery';
 import { FaSearch } from 'react-icons/fa';
-import { DOMINIO, TOKEN } from "../../../link_config"
+import { DOMINIO } from "../../../link_config"
 import ItensLista from './../../lista/ItensLista';
-import { InputGroup, FormControl, ListGroup, Container } from 'react-bootstrap';
-import { ERRO_REQUISICAO, INFO, Notificacao } from '../../../funcoes/Alerta'
+import { InputGroup, FormControl, ListGroup } from 'react-bootstrap';
 import { CorpoCemVh } from '../styled';
-import {  } from '../styled';
 
 class CorpoListagemProduto extends Component {
 
@@ -20,12 +18,12 @@ class CorpoListagemProduto extends Component {
 
     componentDidUpdate() {
         $('span').click(function () {
-            $('span').addClass('text-secondary');
-            $(this).removeClass('text-secondary');
+            $('span').removeClass('text-dark border-bottom border-secondary').addClass("text-secondary");
+            $(this).addClass('text-dark border-bottom border-secondary');
         });
     }
 
-    visualizarProduto(e){
+    visualizarProduto(e) {
 
         this.setState({ itens: [] });
 
@@ -38,7 +36,7 @@ class CorpoListagemProduto extends Component {
         switch (e) {
             case "ativo":
                 url = `${DOMINIO}/produto/exposicoes/${id}`;
-               
+
                 break;
             case "desativo":
                 url = `${DOMINIO}/produto/desativados/${id}`;
@@ -61,13 +59,13 @@ class CorpoListagemProduto extends Component {
             }.bind(this),
             error: function (data) {
 
-               
+
             }
         });
     }
 
     componentDidMount() {
-       
+
         this.visualizarProduto();
     }
 
@@ -88,8 +86,8 @@ class CorpoListagemProduto extends Component {
                     </InputGroup.Prepend>
                 </InputGroup>
                 <div className="row border-bottom mx-auto mb-4 pl-3 w-75 pb-2" style={{ maxWidth: '80%', cursor: 'pointer' }}>
-                    <span className="col-6 col-sm-6 col-md-6 col-lg-3 text-sencodary" onClick={e => this.visualizarProduto(e = "ativo")}>Em exposição</span>
-                    <span className="col-6 col-sm-6 col-md-6 col-lg-3 text-secondary" onClick={e => this.visualizarProduto(e = "desativo")} > Arquivados</span>
+                    <span className="col-6 col-sm-6 col-md-6 col-lg-2 text-dark border-bottom border-secondary" onClick={e => this.visualizarProduto(e = "ativo")}>Em exposição</span>
+                    <span className="col-6 col-sm-6 col-md-6 col-lg-2 text-secondary text-center" onClick={e => this.visualizarProduto(e = "desativo")} > Arquivados</span>
                 </div>
                 <ListGroup className="p-1 w-75 mx-auto mb-5 ">
                     {this.state.itens.map(item => ( 

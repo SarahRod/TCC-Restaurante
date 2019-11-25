@@ -1,9 +1,7 @@
 import React from 'react';
-import {toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
-//FaExclamationCircle
 //CONSTANTES DOS TIPOS DE NOTIFICAÇÃO  
 export const SUCESSO = "success";
 export const INFO = "info";

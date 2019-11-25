@@ -40,32 +40,6 @@ class FormularioLogin extends Component {
         history: PropTypes.object.isRequired
     };
 
-    //MENSAGEM DE ERRO DA VALIDAÇÃO
-    erroValidacao(e) {
-
-        this.setState({ classErro: 'alert show alert-danger', })
-
-        if (e == 'campoVazio') {
-            this.setState({
-                textoErro: `Preencha os campos corretamente`
-            })
-        } else if (e == "senhaIncorreta") {
-            this.setState({
-                textoErro: `A Senha está incorreta`
-            })
-        } else if (e == 'emailIncorreto') {
-            this.setState({
-                textoErro: `Preencha o campo email corretamente`
-            })
-        } else if (e == 'senhaMinimo') {
-            this.setState({
-                textoErro: `A senha deve conter no mínimo 6 caracteres`
-            })
-        }
-    }
-
-
-
     enviaFormulario() {
 
         const restaurante = { ...this.state.restaurante }
@@ -107,7 +81,7 @@ class FormularioLogin extends Component {
 
     validaSenha(e) {
 
-        if ($('#senha').val() != '' && $('#confirmarSenha').val()
+        if ($('#senha').val() !== '' && $('#confirmarSenha').val()
             && $('#senha').val().length >= 6 && $('#senha').val() === $('#confirmarSenha').val()
         ) {
             this.enviaFormulario(e)
@@ -144,7 +118,7 @@ class FormularioLogin extends Component {
         }
 
         //VERIFICA SE A SENHA FOI DIGITADA CORRETAMENTE
-        if ($('#senha').val() != $('#confirmarSenha').val()) {
+        if ($('#senha').val() !== $('#confirmarSenha').val()) {
             Notificacao(ERRO, ERRO_SENHA);
         } else if ($('#senha').val().length < 6) {
             Notificacao(ERRO, SENHA_MINIMA);
@@ -187,15 +161,15 @@ class FormularioLogin extends Component {
         const bordasCampoVazio = 'border border-danger';
 
         //REMOVE A BORDA VERMELHA DOS CAMPOS PREENCHIDOS
-        if (!$('#email').val() == '') {
+        if (!$('#email').val() === '') {
             $('#email').removeClass(bordasCampoVazio);
         }
 
-        if (!$('#senha').val() == '') {
+        if (!$('#senha').val() === '') {
             $('#senha').removeClass(bordasCampoVazio);
         }
 
-        if (!$('#confirmarSenha').val() == '') {
+        if (!$('#confirmarSenha').val() === '') {
             $('#confirmarSenha').removeClass(bordasCampoVazio);
         }
 

@@ -7,7 +7,7 @@ import $ from 'jquery';
 import { DOMINIO, TOKEN } from '../../../link_config';
 import { withRouter } from 'react-router-dom';
 import PropTypes from "prop-types";
-import { ERRO, Notificacao, CAMPO_VAZIO, ERRO_CONEXAO, USUARIO_INVALIDO, ERRO_REQUISICAO } from '../../../funcoes/Alerta';
+import { ERRO, Notificacao, CAMPO_VAZIO, USUARIO_INVALIDO, ERRO_REQUISICAO } from '../../../funcoes/Alerta';
 
 //ARMAZENA OS ESTADOS INICIAIS
 const initialState = {
@@ -50,11 +50,9 @@ class FormularioLogin extends Component {
             contentType: "application/json",
             success: function (resposta) {
 
-                const respostaJson = JSON.stringify(resposta)
+                if (resposta.error) {
 
-                if (respostaJson == '{"error":"Usuario não cadastrado"}') {
-
-                   Notificacao(ERRO, USUARIO_INVALIDO);
+                    Notificacao(ERRO, USUARIO_INVALIDO);
                 } else {
 
                     localStorage.setItem(TOKEN_KEY, resposta.token);
@@ -101,17 +99,17 @@ class FormularioLogin extends Component {
         const restaurante = { ...this.state.restaurante }
         restaurante[e.target.name] = e.target.value;
 
-        this.setState({restaurante});
+        this.setState({ restaurante });
 
         const bordasCampoVazio = 'border border-danger';
 
 
         //REMOVE A BORDA VERMELHA DOS CAMPOS PREENCHIDOS
-        if (!$('#email').val() == '') {
+        if (!$('#email').val() === '') {
             $('#email').removeClass(bordasCampoVazio);
         }
 
-        if (!$('#senha').val() == '') {
+        if (!$('#senha').val() === '') {
             $('#senha').removeClass(bordasCampoVazio);
         }
 
