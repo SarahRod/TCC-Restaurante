@@ -53,7 +53,7 @@ class CadastroProduto extends Component {
         const { id } = this.props.match.params;
 
         const url = `${DOMINIO}/produto/${id}`;
-        
+
         $.ajax({
             url: url,
             type: 'DELETE',
@@ -141,7 +141,7 @@ class CadastroProduto extends Component {
 
         const token = localStorage.getItem('token');
 
-        if (id !== null) {
+        if (id !== null && id !== undefined) {
             method = 'put';
 
             novoproduto = { ...produto };
@@ -154,8 +154,6 @@ class CadastroProduto extends Component {
 
             novoproduto = { ...produto, 'restaurante': this.state.restaurante };
             url = `${DOMINIO}/produto`;
-
-
         }
 
         $.ajax({
@@ -238,7 +236,7 @@ class CadastroProduto extends Component {
                         <input id="btn-status" type="checkbox" value={isChecked} onChange={e => this.atualizaCampo} onClick={e => this.desativarProduto(e)} />
                         <div className="slider"></div>
                     </label>
-                    <Link style={{color: 'inherit'}} onClick={id => this.excluirProduto()}>
+                    <Link style={{ color: 'inherit' }} onClick={id => this.excluirProduto()}>
                         <FaTrashAlt id="btn-lixeira" className="ml-5 mt-3 d-none" size={25} />
                     </Link>
 
@@ -261,7 +259,7 @@ class CadastroProduto extends Component {
                         <div className="row p-2 mb-3">
                             <div className="col-12 col-md-3 mb-3">
                                 <label className="h5">Preço</label>
-                                <input className="form-control"  type="text" name="preco" id="preco" value={preco} onChange={e => this.atualizaCampo(e)} required />
+                                <input className="form-control" type="text" name="preco" id="preco" value={preco} onChange={e => this.atualizaCampo(e)} required />
                             </div>
                             <div className="col-9 col-md-3">
                                 <label className="h5">Promoção</label>
