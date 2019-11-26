@@ -24,7 +24,6 @@ export const ERRO_REQUISICAO = "Verifique se todos os campos foram preenchidos c
 export const Notificacao = (tipo, mensagem) => {
 
     const parametros = {
-
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,

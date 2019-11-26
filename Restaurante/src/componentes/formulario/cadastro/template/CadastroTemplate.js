@@ -102,7 +102,7 @@ export class CadastroTemplate extends Component {
                         <div class="row mt-4 mb-5">
                             <div class="col-12 col-md-4">
                                 <div class="card mb-3">
-                                    <img class="card-img-top" style={{ height: 220 + 'px' }} src={`${DOMINIO_IMG} ${TEMPLATE_IMG_1}`} alt="imagem Template 01" />
+                                    <img class="card-img-top" style={{ height: 220 + 'px' }} src={`${DOMINIO_IMG + TEMPLATE_IMG_1}`} alt="imagem Template 01" />
                                 </div>
                                 <input class="mr-3" type="radio" name="foto" defaultChecked style={{ boxShadow: 'none' }}
                                     checked={this.state.foto}
@@ -111,7 +111,7 @@ export class CadastroTemplate extends Component {
                             </div>
                             <div class="col-12 col-md-4">
                                 <div class="card mb-3">
-                                    <img class="card-img-top" style={{ height: 220 + 'px' }} src={`${DOMINIO_IMG} ${TEMPLATE_IMG_2}`} alt="imagem Template 02" />
+                                    <img class="card-img-top" style={{ height: 220 + 'px' }} src={`${DOMINIO_IMG + TEMPLATE_IMG_2}`} alt="imagem Template 02" />
                                 </div>
                                 <input class="mr-3" type="radio" name="foto" style={{ boxShadow: 'none' }}
                                     checked={this.state.foto}
@@ -120,7 +120,7 @@ export class CadastroTemplate extends Component {
                             </div>
                             <div class="col-12 col-md-4">
                                 <div class="card mb-3">
-                                    <img class="card-img-top" style={{ height: 220 + 'px' }} src={`${DOMINIO_IMG} ${TEMPLATE_IMG_3}`} alt="imagem Template 03" />
+                                    <img class="card-img-top" style={{ height: 220 + 'px' }} src={`${DOMINIO_IMG + TEMPLATE_IMG_3}`} alt="imagem Template 03" />
                                 </div>
 
                                 <input class="mr-3" type="radio" style={{ boxShadow: 'none' }} name="foto"
