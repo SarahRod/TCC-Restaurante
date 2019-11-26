@@ -15,9 +15,15 @@ a, button {
 	outline: none;
 }
 
+#pen{
+	display: flex;
+    flex-direction: column;
+}
+
 /* UPPERCASE */
 #pen, .Detailes-Input{
 	text-transform: uppercase;
+	color: #fff;
 }
 
 .Detailes-Input{
@@ -25,7 +31,7 @@ a, button {
 }
 
 .Card-Holder-input input{
-	letter-spacing: 4px;
+	letter-spacing: 3px;
 }
 
 .Card-Total_Title {
@@ -132,7 +138,7 @@ a, button {
 
 .Card .Card-Checkout__List .List-Content ul li span.Product-SingerName .by {
 	display: inline;
-	color: #717171;
+	/* color: #717171; */
 }
 
 .Card .Card-Checkout__List .List-Content ul li span.block {
@@ -171,7 +177,7 @@ a, button {
 	height: 26px;
 	-webkit-transition: all 0.3s ease;
 	transition: all 0.3s ease;
-	color: #666;
+	/* color: #666; */
 	border: 0;
 	padding: 0;
 }
@@ -192,7 +198,6 @@ a, button {
 
 .Card .Card-Checkout__List .List-Content ul li .Product-Count-handler:hover, .Card .Card-Checkout__List .List-Content ul li .Product-Count-handler:active, .Card .Card-Checkout__List .List-Content ul li .Product-Count-handler:focus {
 	background: #643ebb;
-	color: #fff;
 }
 
 .Card .Card-Checkout__List .List-Content ul li .Product-Count-handler-up {
@@ -263,8 +268,7 @@ a, button {
 
 .Card .Card-Inner {
 	overflow: hidden;
-	/* background: linear-gradient(102deg, #3728af 0%, #c16ad5 100%); */
-	background-image: linear-gradient(to right, #ff4400, #fb4a0c, #f65016, #f2551e, #ed5925);
+	background-image: linear-gradient(to right top, #f26b3a, #f37040, #f37446, #f4794b, #f47d51);
 	position: relative;
 	height: 100%;
 	width: 100%;
@@ -389,7 +393,6 @@ a, button {
 	font-weight: 500;
 	color: #fff;
 	border: 0;
-	/* text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2); */
 	font-size: 2em;
 	letter-spacing: 12px;
 	text-align: center;
@@ -495,7 +498,6 @@ a, button {
 	stroke-width: 2;
 	stroke-miterlimit: 10;
 	height: 100%;
-	float: left;
 }
 
 .Card .Card-Inner .Back_To_Payment rect {
@@ -510,7 +512,6 @@ a, button {
 	transition: all 0.4s;
 	opacity: 0;
 	padding: 135px 0px;
-	color: #fff;
 	text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
 	text-align: center;
 }
@@ -532,7 +533,6 @@ a, button {
 }
 
 #success .Card-Inner {
-	/* background: linear-gradient(102deg, #4d8463 0%, #749847 100%); */
 	background-image: linear-gradient(to right, #47a615, #4ea522, #54a42c, #5aa235, #5fa13d);
 }
 
@@ -588,13 +588,11 @@ footer p {
 	text-align: center;
 	margin: 6px 0 0;
 	padding: 0;
-	color: #888;
 	text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.04);
 }
 
 footer p a {
 	text-decoration: none;
-	color: #2800ff;
 }
 
 footer p a:hover {

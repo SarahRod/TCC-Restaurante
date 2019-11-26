@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
+import { DOMINIO, TOKEN } from '../../../link_config';
+
 import InputMask from 'react-input-mask';
+import $ from 'jquery';
 
 import { ERRO, Notificacao, CAMPO_VAZIO } from '../../../funcoes/Alerta';
 import { CorpoCemVh } from '../styled';
@@ -13,14 +16,61 @@ export class Pagamento extends Component {
         super(props);
         this.state = {
             Checkout_List_State: false,
-            Products_Data: '',
+            Products_Data: '00,00',
             Payment_Details: false,
             Payment_Success: false
         };
+
+
         this.Confirm_Pay = this.Confirm_Pay.bind(this);
         this.Checkout = this.Checkout.bind(this);
         this.AutoTab = this.AutoTab.bind(this);
+    }
 
+    componentWillMount() {
+
+        let url = `${DOMINIO}/restaurante/debito/166`;
+
+        $.ajax({
+
+            url: url,
+            type: 'get',
+            headers: { 'token': TOKEN },
+            success: function (resposta) {
+
+                let total = resposta.total.toString();
+
+                let resultado = total.replace(".", ",");
+
+                this.setState({ Products_Data: resultado })
+
+            }.bind(this),
+            error: function () {
+
+            }
+        });
+    }
+
+    pagamento() {
+
+
+        let id = localStorage.getItem("id");
+
+        let url = `${DOMINIO}/pedidos/debito/${id}`;
+
+
+        $.ajax({
+
+            url: url,
+            type: 'PUT',
+            headers: { 'token': TOKEN },
+            success: function (resposta) {
+
+            }.bind(this),
+            error: function () {
+
+            }
+        });
     }
 
     Confirm_Pay() {
@@ -29,7 +79,13 @@ export class Pagamento extends Component {
                 Payment_Details: true
             })
         } else {
-            if (this.CN_Part1.value.length === 4 && this.CN_Part2.value.length === 4 && this.CN_Part3.value.length === 4 && this.CN_Part4.value.length === 4 && this.CD_Name.value && this.CD_CVV.value.length === 3) {
+            if (this.CN_Part1.value.length === 4
+                && this.CN_Part2.value.length === 4 &&
+                this.CN_Part3.value.length === 4 &&
+                this.CN_Part4.value.length === 4 &&
+                this.CD_Name.value &&
+                this.CD_CVV.value.length === 3) {
+                this.pagamento();
                 this.setState({
                     Payment_Success: true
                 });
@@ -39,11 +95,13 @@ export class Pagamento extends Component {
             }
         }
     }
+
     Checkout() {
         this.setState({
             Payment_Details: false
         })
     }
+
     AutoTab(event) {
         if (event.target.value.length === 4) {
             switch (event.target.name) {
@@ -129,7 +187,7 @@ export class Pagamento extends Component {
                                             </div>
                                         </div>
                                         <div className="Card-Expiration">
-                                            <h4 className="Details-Title">VALIDO ATE</h4>
+                                            <h4 className="Details-Title">VALIDO ATÉ</h4>
                                             <div className="Card-Expiration-input">
                                                 <InputMask mask="99/99" ref={(ref) => this.CD_Exp = ref} type="text" id="data-ate" className="Detailes-Input" placeholder="MM/AA" />
                                             </div>
@@ -169,7 +227,7 @@ export class Pagamento extends Component {
                                     null
                             }
                             <div className="Payment-Success">
-                                <h2>Pagamaneto realizado com sucesso.</h2>
+                                <h2>Pagamento realizado com sucesso.</h2>
                                 <p>Número da transação <b>{Payment_ID}</b></p>
                             </div>
                         </div>
