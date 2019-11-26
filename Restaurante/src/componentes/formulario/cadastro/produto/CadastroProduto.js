@@ -75,7 +75,7 @@ class CadastroProduto extends Component {
 
         const url = `${DOMINIO}/produto/${id}`;
 
-        if (id !== null) {
+        if (id !== null && id !== undefined) {
 
 
 
@@ -141,7 +141,7 @@ class CadastroProduto extends Component {
 
         const token = localStorage.getItem('token');
 
-        if (id !== null) {
+        if (id !== null && id!== undefined) {
             method = 'put';
 
             novoproduto = { ...produto };
