@@ -112,7 +112,7 @@ export class CadastroImagem extends Component {
 
 
         //Verifica se a imagem foi alterada (Tratamento de erro)
-        if (file !== '' && file !== null) {
+        if (file !== '' && file !== null && file !== undefined) {
             reader.onloadend = function (e) {
 
                 this.setState({
