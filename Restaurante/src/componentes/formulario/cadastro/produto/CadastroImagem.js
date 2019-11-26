@@ -63,9 +63,6 @@ export class CadastroImagem extends Component {
 
 
     visualizarImgSalva() {
-
-
-
         const idProduto = this.props.idProduto;
 
         const url = `${DOMINIO}/fotoproduto/${idProduto}`;
