@@ -22,7 +22,7 @@
 }
 
 .border-none{
-    border-top: none !important;
+    border-top: none;
 }
 
 .max{
@@ -32,7 +32,7 @@
 .w3-input{
     padding:10px;
     border:1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 5px ;
     width: 100%;
 }
 
@@ -40,7 +40,7 @@
     background-color: #fff;
     border-radius: 5px;
     width: 750px;
-    min-height: 670px;
+    min-height: 200px;
     height: auto;
     padding: 30px 50px;
     justify-content: center;

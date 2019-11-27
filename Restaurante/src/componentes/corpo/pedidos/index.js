@@ -267,7 +267,7 @@ export class DadosPedido extends Component {
                         </div>
                     </div>
                 </ModalProduto>
-                <div className="card mx-auto mt-5 max slider" id={item.id} onClick={e => this.openModal(e)} >
+                <div className="card mx-auto mt-5 max" id={item.id} onClick={e => this.openModal(e)} >
                     <div className="text-right pr-3 pt-2 mb-2 mt-2">
                         <span className={`${CORES_STATUS[item.statusPedido.id]} rounded-circle mr-2 circle`}></span>
                         <font className="">{item.statusPedido.descricao}</font>
