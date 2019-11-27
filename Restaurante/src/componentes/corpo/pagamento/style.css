@@ -4,7 +4,6 @@ html, body {
 
 body {
 	font: normal 1em 'DinRound';
-	background: #f6f5f4;
 	/* box-shadow: 10px 20px 100px rgba(0, 0, 0, 0.05) inset; */
 	user-select: none;
 	width: 100%;
