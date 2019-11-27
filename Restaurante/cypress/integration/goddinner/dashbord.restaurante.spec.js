@@ -24,5 +24,25 @@ describe("Cadastro de restaurante", () => {
     cy.get('#prox-campo').click();
 
   });
+
+  it("Cadastro de categoria", () => {
+
+    cy.get('#sql_categoria').select("2");
+
+    cy.get('#salvar-categoria').click();
+
+    cy.get('#sql_categoria').select("4");
+
+    cy.get('#salvar-categoria').click();
+
+    cy.get('#sql_categoria').select("1");
+
+    cy.get('#salvar-categoria').click();
+
+  });
+
+  it("Finalizar", () =>{
+    cy.get('.col-4 > .btn').click();
+  })
 });
 

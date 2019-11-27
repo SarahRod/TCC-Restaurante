@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
-import { DOMINIO, TOKEN, DOMINIO_IMG } from '../../../../link_config';
+import { DOMINIO, DOMINIO_IMG } from '../../../../link_config';
 import '../../../../recursos/js/AddImagem';
 import ImgProduto from '../../../../recursos/imgs/imagem-produto.png';
 import './style.css';
@@ -42,10 +42,12 @@ export class CadastroImagem extends Component {
     apagaFoto(id) {
 
         const url = `${DOMINIO}/fotoproduto/${id}`;
+        const token = localStorage.getItem("token");
+
         $.ajax({
             url: url,
             type: 'DELETE',
-            headers: { 'token': TOKEN },
+            headers: { 'token': token },
             success: function (resposta) {
 
                 this.visualizarImgSalva();
@@ -70,12 +72,12 @@ export class CadastroImagem extends Component {
 
         const url = `${DOMINIO}/fotoproduto/${idProduto}`;
 
-
+        const token = localStorage.getItem("token");
 
         $.ajax({
             url: url,
             type: 'GET',
-            headers: { 'token': TOKEN },
+            headers: { 'token': token },
             success: function (resposta) {
 
 

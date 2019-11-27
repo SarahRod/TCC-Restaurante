@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import { FaTrashAlt } from "react-icons/fa";
 
 import { CadastroImagem } from './CadastroImagem';
-import { DOMINIO, TOKEN } from '../../../../link_config';
+import { DOMINIO } from '../../../../link_config';
 import { SessaoCategoria } from './SessaoCategoria';
 import { CorpoCemVh } from '../../../corpo/styled';
 
@@ -54,10 +54,12 @@ class CadastroProduto extends Component {
 
         const url = `${DOMINIO}/produto/${id}`;
 
+        const token = localStorage.getItem("token");
+
         $.ajax({
             url: url,
             type: 'DELETE',
-            headers: { 'token': TOKEN },
+            headers: { 'token': token },
             success: (result) => {
 
                 this.props.history.push("/restaurante/visualizar-produto");
@@ -141,7 +143,7 @@ class CadastroProduto extends Component {
 
         const token = localStorage.getItem('token');
 
-        if (id !== null && id!== undefined) {
+        if (id !== null && id !== undefined) {
             method = 'put';
 
             novoproduto = { ...produto };
@@ -190,10 +192,12 @@ class CadastroProduto extends Component {
 
         const url = `${DOMINIO}/produto/status/${id}`;
 
+        const token = localStorage.getItem("token");
+
         $.ajax({
             url: url,
             type: 'PUT',
-            headers: { 'token': TOKEN },
+            headers: { 'token': token },
             success: function (data) {
 
 
