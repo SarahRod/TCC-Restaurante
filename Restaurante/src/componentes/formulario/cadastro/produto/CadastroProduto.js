@@ -44,9 +44,6 @@ class CadastroProduto extends Component {
         sessionStorage.removeItem("id_produto");
     }
 
-
-
-
     excluirProduto() {
 
         const { id } = this.props.match.params;
