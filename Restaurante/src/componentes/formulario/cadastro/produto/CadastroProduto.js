@@ -10,7 +10,6 @@ import { DOMINIO } from '../../../../link_config';
 import { SessaoCategoria } from './SessaoCategoria';
 import { CorpoCemVh } from '../../../corpo/styled';
 
-
 //ARMAZENA OS ESTADOS INICIAIS
 const initialState = {
     produto: {
