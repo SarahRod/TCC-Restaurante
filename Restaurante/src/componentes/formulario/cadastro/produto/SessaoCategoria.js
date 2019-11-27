@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
-import { DOMINIO, TOKEN } from '../../../../link_config';
+import { DOMINIO } from '../../../../link_config';
 
 export class SessaoCategoria extends Component {
 
@@ -37,10 +37,12 @@ export class SessaoCategoria extends Component {
 
         const url = `${DOMINIO}/categoriaproduto/${id}`;
 
+        const token = localStorage.getItem("token");
+
         $.ajax({
             url: url,
             type: 'DELETE',
-            headers: { 'token': TOKEN },
+            headers: { 'token': token },
             success: function (resposta) {
 
                 this.visualizarCategoriaSalva();
@@ -61,10 +63,12 @@ export class SessaoCategoria extends Component {
 
         const url = `${DOMINIO}/categoriaproduto/${idProduto}`;
 
+        const token = localStorage.getItem("token");
+
         $.ajax({
             url: url,
             type: 'GET',
-            headers: { 'token': TOKEN },
+            headers: { 'token': token },
             success: function (resposta) {
 
                 if (resposta.length >= 5) {
@@ -92,6 +96,8 @@ export class SessaoCategoria extends Component {
         categoriaNome.categoria = { "id": idCategoria }
         categoriaNome.produto = { "id": idProduto }
 
+        const token = localStorage.getItem("token");
+
         const url = `${DOMINIO}/categoriaproduto`;
 
         $.ajax({
@@ -99,7 +105,7 @@ export class SessaoCategoria extends Component {
             url: url,
             contentType: "application/json",
             dataType: 'json',
-            headers: { 'token': TOKEN },
+            headers: { 'token': token },
             type: 'POST',
             data: JSON.stringify(categoriaNome),
 
@@ -120,10 +126,11 @@ export class SessaoCategoria extends Component {
 
     componentDidMount() {
         const url = `${DOMINIO}/categoria`;
+        const token = localStorage.getItem("token");
 
         $.ajax({
             url: url,
-            headers: { 'token': TOKEN },
+            headers: { 'token': token },
             type: 'GET',
             success: function (resposta) {
                 console.log(resposta[0].nome)
