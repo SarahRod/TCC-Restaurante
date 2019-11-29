@@ -52,6 +52,12 @@ export class CabecalhoPaginaRestaurante extends Component {
         }
     }
 
+    styleMenu = {
+        "marginRight": "20px",
+        "textDecoration": "none",
+        "paddingBottom": "1px"
+    }
+
     render() {
         const { foto } = this.props.restaurante;
         return (
@@ -66,17 +72,17 @@ export class CabecalhoPaginaRestaurante extends Component {
                 <div className="collapse navbar-collapse bg-light" id="conteudoNavbarSuportado">
                     <ul className="navbar-nav ml-auto bg-light">
                         <Li className="nav-item" maxWidth="70px">
-                            <Link className="nav-link text-secondary menu-cabecalho" to="/restaurante/pedidos" id="pedidos">Pedidos</Link>
+                            <Link className="text-secondary menu-cabecalho" to="/restaurante/pedidos" id="pedidos" style={this.styleMenu}>Pedidos</Link>
                         </Li>
-                        <Li className="nav-item" maxWidth="150px">
-                            <Link className="nav-link text-secondary menu-cabecalho" to="/restaurante/cadastro-produto" id="cadastrar">Cadastrar Produto</Link>
+                        <Li className="nav-item" maxWidth="180px">
+                            <Link className="text-secondary menu-cabecalho" to="/restaurante/cadastro-produto" id="cadastrar" style={this.styleMenu}>Cadastrar Produto</Link>
 
                         </Li>
                         <Li className="nav-item" maxWidth="180px">
-                            <Link className="nav-link text-secondary menu-cabecalho" to="/restaurante/visualizar-produto">Catálogo de Produtos</Link>
+                            <Link className="text-secondary menu-cabecalho" to="/restaurante/visualizar-produto" style={this.styleMenu}>Catálogo de Produtos</Link>
                         </Li>
-                        <Li className="nav-item" maxWidth="80px">
-                            <Link className="nav-link text-secondary menu-cabecalho" to="/restaurante/cadastro-template">Meu site</Link>
+                        <Li className="nav-item" maxWidth="90px">
+                            <Link className="text-secondary menu-cabecalho" to="/restaurante/cadastro-template" style={this.styleMenu}>Meu site</Link>
 
                         </Li>
 

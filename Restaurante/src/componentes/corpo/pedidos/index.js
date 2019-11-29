@@ -7,6 +7,7 @@ import { DOMINIO, CORES_STATUS } from '../../../link_config';
 import $ from 'jquery';
 import { IoMdClose } from "react-icons/io";
 import ModalProduto from '../../modals/Modalproduto';
+import { CorpoCemVh } from '../styled';
 
 export class SeusPedidos extends Component {
 
@@ -112,38 +113,25 @@ export class SeusPedidos extends Component {
 
     render() {
         return (
-            <main className="container pb-5">
+            <CorpoCemVh className="container pb-5">
 
                 <div className="ml-2 border mx-auto text-center rounded mensagem-slogan mb-5">Rapidez  + Qualidade =  + Dinheiro  + Clientes </div>
                 <div className="row mb-5 mx-auto select-data">
-                    <div className="col-6 col-lg-9">
+                    <div className="col">
                         <button type="button" class="btn btn-warning font-weight-bold" onClick={e => this.visualizarPedidos(e)}>
                             <FaSyncAlt className="mr-2" />Atualizar
                         </button>
                     </div>
-                    <div className="col-6 col-lg-3">
-                        <select class="custom-select max-select" id="inlineFormCustomSelect">
-                            <option selected>Data de pedido</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </div>
                 </div>
-                <div className="row border-bottom mx-auto pl-3 w-75 pb-2" style={{ maxWidth: '80%', cursor: 'pointer' }}>
-                    <span className="col-6 col-sm-6 col-md-6 col-lg-2 text-center text-sencodary menu-pedido" onClick={e => this.visualizarPedidos(e)} >Em produção</span>
+                <div className="row border-bottom mx-auto pl-3 w-75 pb-2" style={{ cursor: 'pointer' }}>
+                    <span className="col-6 col-sm-6 col-md-6 col-lg-3 text-center text-sencodary menu-pedido" onClick={e => this.visualizarPedidos(e)} >Em produção</span>
                     <span className="col-6 col-sm-6 col-md-6 col-lg-3 text-center text-secondary menu-pedido" onClick={e => this.pedidosEntregue(e)}>Sendo entregue</span>
                 </div>
 
                 {this.state.pedidos.map(item => (
-
-
                     <DadosPedido item={item || ""} />
-
-
                 ))}
-
-            </main >
+            </CorpoCemVh>
         );
     }
 }
@@ -281,7 +269,6 @@ export class DadosPedido extends Component {
                     </div>
 
                     <div className="row mt-3">
-                        {/* <span className="col col-sm col-md col-lg text-primary text-right pr-5">Saida de entrega: 19:00</span> */}
                     </div>
                     {item.produtos.map(item => (
                         <ul className="list-group list-group-flush">

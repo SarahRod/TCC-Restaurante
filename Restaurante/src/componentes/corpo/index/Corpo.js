@@ -13,9 +13,36 @@ import { CorpoCemVh } from '../styled';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getRestaurante } from '../../cabecalho/restaurante/actions';
+import Chart from "react-apexcharts";
 
 //COMPONENTE DO CORPO DA PÁGINA DE LOGIN
-const CorpoIndex = React.memo(class CorpoIndex extends Component {
+class CorpoIndex extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            options: {
+                chart: {
+                    id: "basic-bar"
+                },
+                xaxis: {
+                    categories: ["Janeiro", "Fevereiro",
+                                 "Março", "Abril", 
+                                "Maio", "Junho", 
+                                "Julho", "Agosto",
+                                "Setembro", "Outubro",
+                                "Novembro", "Dezembro"]
+                }
+            },
+            series: [
+                {
+                    name: "series-1",
+                    data: [0, 0, 0, 10, 25, 30, 48, 0]
+                }
+            ]
+        };
+    }
 
     componentWillMount() {
         this.props.getRestaurante();
@@ -62,12 +89,23 @@ const CorpoIndex = React.memo(class CorpoIndex extends Component {
                 </div>
                 <div className="row mt-5">
                     <div className="col col-sm col-md col-lg h4">
-                        <CabecalhoGraficos className="border border-secondary pt-1">
+                        <CabecalhoGraficos className="border border-secondary pt-1 mx-auto">
                             <FiTrendingUp className="ml-3 mr-4" />
                             Gráfico de vendas do mês
-                </CabecalhoGraficos>
-                        <CorpoGraficos className="border border-secondary">
-
+                        </CabecalhoGraficos>
+                        <CorpoGraficos className="border border-secondary mx-auto">
+                            <div className="app">
+                                <div className="row">
+                                    <div className="mixed-chart mx-auto mt-3">
+                                        <Chart
+                                            options={this.state.options}
+                                            series={this.state.series}
+                                            type="bar"
+                                            width="600"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
                         </CorpoGraficos>
                     </div>
                 </div>
@@ -76,7 +114,7 @@ const CorpoIndex = React.memo(class CorpoIndex extends Component {
         )
     }
 
-});
+};
 
 const mapStateToProps = state => ({ restaurante: state.restaurante.restaurante });
 const mapDispatchToProps = dispatch => bindActionCreators({ getRestaurante }, dispatch);
