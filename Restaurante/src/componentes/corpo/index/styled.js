@@ -32,13 +32,15 @@ export const IconeOpcoes = styled.img`
 //ESTILIZAÇÃO DO CABECALHO DA PARTE DE GRÁFICOS
 export const CabecalhoGraficos = styled.div`
     height: 30px;
+    max-width: 1000px;
     font-size: 0.8em;
     border-radius: 10px 10px 0 0;
 `
 
 //ESTILIZAÇÃO CORPO DA PARTE DE GRÁFICOS
 export const CorpoGraficos = styled.div`
-    height: 200px;
+    height: 400px;
+    max-width: 1000px;
     border-radius: 0 0 10px 10px;
 `
 
