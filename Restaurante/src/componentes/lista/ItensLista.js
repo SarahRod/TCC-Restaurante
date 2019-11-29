@@ -24,8 +24,6 @@ class ItensLista extends Component {
         });
     }
 
-
-
     render() {
         return (
             <div className="item-list-p list-group-item-action mb-3 w-100" onClick={this.toggleModal}>
@@ -47,24 +45,22 @@ class ItensLista extends Component {
                             <div className="modal-title">
                                 <h3>{this.state.item.nome}</h3>
                             </div>
-                            <div className="w-100 hm-25" style={{ overflow: 'auto', height: 150 }}>
+                            <div className="" style={{ overflow: 'auto', height: 150 }}>
                                 <p className="text-break">
                                     {this.state.item.descricao}
                                 </p>
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <p className="text-success">
+                            <p className="text-success blockquote">
                                 R$ {this.state.item.preco}
                             </p>
                         </div>
                     </div>
                 </ModalProduto>
-
-
                 <div className="row m-1 ">
-                    <div className="col-3 p-2 ">
-                        <div className=" mx-auto my-auto" >
+                    <div className="col-6 col-lg-3 p-2 ">
+                        <div className=" mx-auto" >
                             <figure className="figure p-0 m-0">
                                 <Image
                                     className="rounded-circle w-100"
@@ -75,29 +71,28 @@ class ItensLista extends Component {
                             </figure>
                         </div>
                     </div>
-                    <div className="col-9">
-
-                        <div className="row ">
-                            <div className="col-11 p-0">
+                    <div className="col-6 col-lg-9">
+                        <div className="row">
+                            <div className="col-12 col-md-10 col-lg-11">
                                 <p className="h4 p-2 m-0">{this.state.item.nome}</p>
                             </div>
-                            <div className="col-1 mt-2">
+                            <div className="col-12 col-md-2 col-lg-1 mt-2">
                                 <Link to={`/restaurante/cadastro-produto/${this.state.item.id}`} className="text-muted">
-                                    <FaPencilAlt className="m-0 pointer" size={25} />
+                                    <FaPencilAlt className="pointer" size={30} />
                                 </Link>
                             </div>
                         </div>
 
                         <div className="row ">
-                            <div className="col  p-1 ">
-                                <p className="text-muted text-break pr-3" >
+                            <div className="col p-1 ">
+                                <p className="text-muted text-break ml-3" >
                                     {this.state.item.descricao}
                                 </p>
                             </div>
                         </div>
                         <div className="row " >
-                            <div className="col text-right">
-                                <small className="text-success">R$ {this.state.item.preco}</small>
+                            <div className="col text-right mt-4">
+                                <small className="text-success blockquote">R$ {this.state.item.preco}</small>
                             </div>
                         </div>
                     </div>
