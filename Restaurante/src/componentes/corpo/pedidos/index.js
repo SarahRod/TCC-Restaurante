@@ -123,7 +123,7 @@ export class SeusPedidos extends Component {
                         </button>
                     </div>
                 </div>
-                <div className="row border-bottom mx-auto pl-3 w-75 pb-2" style={{ cursor: 'pointer' }}>
+                <div className="row border-bottom mx-auto pl-3 pb-2" style={{ cursor: 'pointer' }}>
                     <span className="col-6 col-sm-6 col-md-6 col-lg-3 text-center text-sencodary menu-pedido" onClick={e => this.visualizarPedidos(e)} >Em produção</span>
                     <span className="col-6 col-sm-6 col-md-6 col-lg-3 text-center text-secondary menu-pedido" onClick={e => this.pedidosEntregue(e)}>Sendo entregue</span>
                 </div>
