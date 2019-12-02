@@ -8,6 +8,7 @@ import { DOMINIO, TOKEN } from '../../../link_config';
 import { withRouter } from 'react-router-dom';
 import PropTypes from "prop-types";
 import { ERRO, Notificacao, CAMPO_VAZIO, USUARIO_INVALIDO, ERRO_REQUISICAO } from '../../../funcoes/Alerta';
+import './style.css';
 
 //ARMAZENA OS ESTADOS INICIAIS
 const initialState = {
@@ -69,7 +70,7 @@ class FormularioLogin extends Component {
 
             }
         });
-    }
+    }   
 
     //ENVIA OS DADOS DO FORMULÁRIO PARA O SESSION STORAGE
     validaCampos(e) {
@@ -137,11 +138,11 @@ class FormularioLogin extends Component {
 
                     <Label className="h6 text-secondary" texto="Senha" />
                     <InputCadastro className="form-control p-1" type="password" id="senha" name="senha"
-                        value={this.state.restaurante.senha} onChange={e => this.atualizaCampo(e)} />
+                        value={this.state.restaurante.senha} onChange={e => this.atualizaCampo(e)}/>
 
                 </div>
                 <div className="row mt-5 pl-5 pr-5">
-                    <BotaoLink onClick={e => this.validaCampos(e)} to="/cadastro" className="btn form-control p-1" texto="Entrar" />
+                    <button type="submit" onClick={e => this.validaCampos(e)} to="/cadastro" className="btn form-control p-1 btn-login">Entrar</button>
                 </div>
                 <div className="row mt-3 pl-5 pr-5">
                     <BotaoLink to="/cadastro" className="btn form-control p-1" texto="Cadastrar" />
