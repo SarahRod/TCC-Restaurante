@@ -25,13 +25,14 @@ header{
 }
 
 main{
-    min-height: calc(100vh - 180px) !important;
+    min-height: calc(100vh - 200px) !important;
     min-width: 50vh !important;
     background-image: url("./image/background.jpg");
     background-size: contain;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 5px;
 }
 
 a{
@@ -60,6 +61,6 @@ footer{
     display: flex;
     background: #FFFFFF;
     justify-content: center; 
-    padding-top: 30px;
+    align-items: center;
     border-top:  1px solid #A5A5A5;;
 }
