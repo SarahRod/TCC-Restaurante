@@ -35,10 +35,10 @@ main{
 }
 
 a{
-    width: 380px;
-    height: 95px;
+    width: 250px;
+    height: 75px;
     color: #FFFFFF;
-    font-size: 1.3em;
+    font-size: 1.1em;
     letter-spacing: 2px;
     text-decoration: none;
     background: #333333;
@@ -50,8 +50,8 @@ a{
 }
 
 .download{
-    max-width: 46px;
-    margin-left: 20px;
+    max-width: 35px;
+    margin-left: 12px;
 }
 
 footer{
