@@ -21,7 +21,7 @@ export class CabecalhoPaginaRestaurante extends Component {
         localStorage.clear();
         sessionStorage.clear();
 
-        this.props.history.push("/cadastro/endereco");
+        this.props.history.push("/login");
     }
 
     componentDidUpdate() {
