@@ -202,30 +202,6 @@ export class Pagamento extends Component {
                                     :
                                     null
                             }
-                            {
-                                this.state.Payment_Details ?
-                                    <div className="Back_To_Payment">
-                                        <svg version="1.1" id="arrow_hover" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="60px" height="60px" viewBox="0 0 40 40">
-                                            <g>
-                                                <g transform="translate(-16.918 0)">
-                                                    <line x1="19.3" y1="19.3" x2="32.728" y2="32.728" />
-                                                    <line x1="32.728" y1="7.272" x2="19.3" y2="20.3" />
-                                                    <line x1="20" y1="20" x2="52" y2="20">
-                                                        <animate attributeName="x2" dur="0.1s" begin="rectar.mouseover" values="52; 70;" keyTimes="0; 1" repeatCount="1" fill="freeze" />
-                                                        <animate attributeName="x2" dur="0.1s" begin="rectar.mouseout" values="70; 52;" keyTimes="0; 1" repeatCount="1" fill="freeze" />
-                                                    </line>
-                                                </g>
-                                                <animateTransform attributeName="transform" attributeType="XML" type="translate" values="0 0; -4 0;" keyTimes="0; 1" dur="0.1s" begin="rectar.mouseover" repeatCount="1" fill="freeze" id="animar" restart="whenNotActive" />
-                                                <animateTransform attributeName="transform" attributeType="XML" type="translate" values="-4 0; 0 0;" keyTimes="0; 1" dur="0.1s" begin="rectar.mouseout" repeatCount="1" fill="freeze" />
-                                                <animate attributeName="stroke" dur="0.1s" begin="rectar.mouseover" values="#bfbfbf; #868686" keyTimes="0; 1" repeatCount="1" fill="freeze" />
-                                                <animate attributeName="stroke" dur="0.1s" begin="rectar.mouseout" values="#868686; #bfbfbf" keyTimes="0; 1" repeatCount="1" fill="freeze" />
-                                            </g>
-                                            <rect x="0" y="0" height="40" width="40" opacity="0" id="rectar" onClick={this.Checkout} />
-                                        </svg>
-                                    </div>
-                                    :
-                                    null
-                            }
                             <div className="Payment-Success">
                                 <h2>Pagamento realizado com sucesso.</h2>
                                 <p>Número da transação <b>{Payment_ID}</b></p>
