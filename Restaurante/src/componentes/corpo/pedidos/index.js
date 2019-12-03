@@ -58,6 +58,8 @@ export class SeusPedidos extends Component {
 
     pedidosProducao(resposta) {
 
+        this.setState({ pedidos: [] });
+
         let id = localStorage.getItem("id");
         let token = localStorage.getItem("token");
 
