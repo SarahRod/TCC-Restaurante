@@ -113,6 +113,10 @@ export class SeusPedidos extends Component {
         });
     }
 
+    entregues(){
+        this.setState({ pedidos: [] });
+    }
+
     render() {
         return (
             <CorpoCemVh className="container pb-5">
@@ -128,6 +132,7 @@ export class SeusPedidos extends Component {
                 <div className="row border-bottom mx-auto pl-3 pb-2" style={{ cursor: 'pointer' }}>
                     <span className="col-6 col-sm-6 col-md-6 col-lg-3 text-center text-sencodary menu-pedido" onClick={e => this.visualizarPedidos(e)} >Em produção</span>
                     <span className="col-6 col-sm-6 col-md-6 col-lg-3 text-center text-secondary menu-pedido" onClick={e => this.pedidosEntregue(e)}>Sendo entregue</span>
+                    <span className="col-6 col-sm-6 col-md-6 col-lg-2 text-center text-secondary menu-pedido" onClick={e => this.entregues(e)}>Entregues</span>
                 </div>
 
                 {this.state.pedidos.map(item => (
